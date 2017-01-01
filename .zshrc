@@ -1,6 +1,9 @@
 # set editor as vim
 export EDITOR='vi'
-
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+alias vi=vim
 # oh-my-zsh install
 export ZSH=/home/connor/.oh-my-zsh
 
