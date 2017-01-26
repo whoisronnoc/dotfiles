@@ -1,12 +1,13 @@
 execute pathogen#infect()
+
 syntax on
 filetype plugin indent on
 
 set nocompatible
 set shortmess=I
 
-set t_Co=256
-set background=light
+"set t_Co=256
+"set background=light
 
 set laststatus=2
 set number
@@ -21,41 +22,41 @@ set shiftwidth=4
 " Enable mouse
 set mouse=a
 " Mouse fix for tmux
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
+"if has("mouse_sgr")
+"    set ttymouse=sgr
+"else
+"    set ttymouse=xterm2
+"end
 
 " Smooth scroll
-nnoremap <ScrollWheelUp> <C-Y>
-nnoremap <ScrollWheelDown> <C-E>
+"nnoremap <ScrollWheelUp> <C-Y>
+"nnoremap <ScrollWheelDown> <C-E>
 
 " Arrow don't skip lines
-nnoremap <Up> gk
-nnoremap <Down> gj
+"nnoremap <Up> gk
+"nnoremap <Down> gj
 
 " Use system clipboard
-if !exists('$TMUX')
-    set clipboard=unnamed "unnamedplus
-endif
+"if !exists('$TMUX')
+"    set clipboard=unnamed "unnamedplus
+"endif
 
 " Vim column line
-" highlight ColorColumn ctermbg=233
+highlight ColorColumn ctermbg=233
 " let &colorcolumn=join(range(81,999),",")
 
 " cursor line
 set cursorline
 highlight CursorLine cterm=bold ctermbg=234
 highlight CursorLineNr cterm=bold ctermfg=3
-set scrolloff=2
+"set scrolloff=2
 
 " Highlight search
 set hlsearch
 highlight Search cterm=underline ctermbg=NONE
 set incsearch
 
-" gutter backgroung colors
+" gutter background colors
 highlight SignColumn ctermbg=237
 set fillchars+=vert:\ 
 
@@ -63,50 +64,50 @@ set fillchars+=vert:\
 set ruler
 
 " Vim popup for autocomplete
-"set omnifunc=syntaxcomplete#Complete
-"set completeopt=longest,menuone
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
 
 " AirLine configuration
-" set noshowmode
-" let g:airline_theme='dark'
+set noshowmode
+"let g:airline_theme='dark'
 " setup custom symbols
-" let g:airline_symbols = {}
+let g:airline_symbols = {}
 " compatible without powerline fonts
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.linenr = '␤' " Original symbol
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.maxlinenr = '☰'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.spell = 'Ꞩ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␤' " Original symbol
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " Signify signs and colors
-" let g:signify_sign_add = '+'
-" let g:signify_sign_delete = '-'
-" let g:signify_sign_change = '~'
-" let g:signify_sign_delete_first_line = g:signify_sign_delete
-" let g:signify_sign_changedelete = g:signify_sign_change
+let g:signify_sign_add = '+'
+let g:signify_sign_delete = '-'
+let g:signify_sign_change = '~'
+let g:signify_sign_delete_first_line = g:signify_sign_delete
+let g:signify_sign_changedelete = g:signify_sign_change
 " Signify gutter coloring
-" highlight SignifySignAdd    cterm=bold ctermbg=237 ctermfg=119
-" highlight SignifySignDelete cterm=bold ctermbg=237 ctermfg=167
-" highlight SignifySignChange cterm=bold ctermbg=237 ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237 ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237 ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237 ctermfg=227
 
 " Maps nerd tree for easy access
 "inoremap <silent> <C-\> <C-D>:NERDTreeToggle<cr>
 noremap <silent> <C-D> :NERDTreeToggle<cr>
-"let g:nerdtree_tabs_focus_on_files=1
-"let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_tabs_open_on_console_startup=1
 
 "noremap <silent> // :call NERDComment(0,"toggle")<cr>
-" let g:NERDSpaceDelims = 1 
-" let g:NERDCommentEmptyLines = 1
-" let g:NERDTrimTrailingWhitespace = 1
+let g:NERDSpaceDelims = 1 
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 " Synastic java fix
 " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java'] }
@@ -119,21 +120,23 @@ noremap <silent> <C-D> :NERDTreeToggle<cr>
 " let g:syntastic_aggregate_errors = 1
 " disable syntastic on the statusline
 " let g:statline_syntastic = 0
+
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-" if (empty($TMUX))
-"  if (has("nvim"))
-"    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-"    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"  endif
-"  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-"  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-"  if (has("termguicolors"))
-"    set termguicolors
-"  endif
-"endif
+if (empty($TMUX))
+  if (has("nvim"))
+   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+ "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+ "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+ " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+   set termguicolors
+  endif
+endif
 
+"color dracula
 colorscheme onedark
-" let g:airline_theme='onedark'
+let g:airline_theme='onedark'
