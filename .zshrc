@@ -14,6 +14,9 @@ alias c=clear
 eval "$(thefuck --alias)"
 alias f=fuck
 
+alias clip='xclip -se c'
+alias paste='clip -o'
+
 # oh-my-zsh install
 export ZSH=/home/connor/.oh-my-zsh
 
