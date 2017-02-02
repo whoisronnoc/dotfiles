@@ -43,3 +43,6 @@
 [submodule ".tmux/plugins/tmux-sidebar"]
 	path = .tmux/plugins/tmux-sidebar
 	url = https://github.com/tmux-plugins/tmux-sidebar
+[submodule ".vim/bundle/vim-polyglot"]
+	path = .vim/bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
