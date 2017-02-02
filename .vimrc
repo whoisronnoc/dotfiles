@@ -1,93 +1,54 @@
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
+" setup pathogen
 execute pathogen#infect()
 
-syntax on
 filetype plugin indent on
+syntax enable
 
-set nocompatible
-set shortmess=I
-set laststatus=2
-set number
+" colorscheme
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
-" spacing
-set backspace=2
-set tabstop=4
-set softtabstop=0
-set expandtab
-set shiftwidth=4
+" spaces and tabs
+set backspace=indent,eol,start " working backspace functionality
+set tabstop=2 " number of visual spaces per TAB
 
-" enable mouse
-set mouse=a
+" ui config
+set mouse=a " enable mouse
+set lazyredraw " redraw only when needed
+set number " show line numbers
+set cursorline " highlight current line
+set showmatch " highlight matching [{()}]
+set wildmenu " visual autocomplete for command menu
 
-" vim column line
-highlight ColorColumn ctermbg=233
-" let &colorcolumn=join(range(81,999),",")
+" searching
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
-" cursor line
-set cursorline
-highlight CursorLine cterm=bold ctermbg=234
-highlight CursorLineNr cterm=bold ctermfg=3
+" folding
+set foldenable " enable folding
+" space open/closes folds
+nnoremap <space> za
+set foldmethod=indent   " fold based on indent level
 
-" highlight search
-set hlsearch
-highlight Search cterm=underline ctermbg=NONE
-set incsearch
+" movement
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+" highlight last inserted text
+nnoremap gV `[v`]
 
-" gutter background colors
-highlight SignColumn ctermbg=237
-set fillchars+=vert:\ 
+let mapleader="," " leader is comma
+" jk is escape
+inoremap jk <esc>
 
-" show position in the document reg statusline
-set ruler
-
-" Vim popup for autocomplete
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
-
-" airLine configuration
-set noshowmode
-
-" setup custom symbols
-let g:airline_symbols = {}
-
-" compatible without powerline fonts
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" Signify signs and colors
-let g:signify_sign_add = '+'
-let g:signify_sign_delete = '-'
-let g:signify_sign_change = '~'
-let g:signify_sign_delete_first_line = g:signify_sign_delete
-let g:signify_sign_changedelete = g:signify_sign_change
-
-" Signify gutter coloring
-highlight SignifySignAdd    cterm=bold ctermbg=237 ctermfg=119
-highlight SignifySignDelete cterm=bold ctermbg=237 ctermfg=167
-highlight SignifySignChange cterm=bold ctermbg=237 ctermfg=227
-
-" map nerd tree
-noremap <silent> <C-D> :NERDTreeToggle<cr>
-let g:nerdtree_tabs_focus_on_files=1
-let g:nerdtree_tabs_open_on_console_startup=1
-let g:NERDSpaceDelims = 1 
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1
-
-" color scheme
-colorscheme onedark
-let g:airline_theme='onedark'
+" toggle gundo
+nnoremap <leader>u :GundoToggle<CR>
