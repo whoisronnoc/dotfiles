@@ -12,6 +12,10 @@ alias v=vi
 alias x=exit
 alias c=clear
 
+alias gsub='git submodule'
+alias gsubs='gsub status'
+alias gsa='gsub add'
+
 #thefuck
 eval "$(thefuck --alias)"
 alias f=fuck
