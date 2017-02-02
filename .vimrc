@@ -55,3 +55,10 @@ map <C-d> :NERDTreeToggle<CR>
 
 " toggle gundo
 nnoremap <F5> :GundoToggle<CR>
+
+" airline
+set laststatus=2
+let g:airline_theme = 'dark'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
