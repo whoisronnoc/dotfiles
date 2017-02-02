@@ -50,5 +50,8 @@ let mapleader="," " leader is comma
 " jk is escape
 inoremap jk <esc>
 
+" toggle nerdtree
+map <C-d> :NERDTreeToggle<CR>
+
 " toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <F5> :GundoToggle<CR>
