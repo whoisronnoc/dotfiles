@@ -49,6 +49,21 @@ let mapleader="," " leader is comma
 " jk is escape
 inoremap jk <esc>
 
+" vim splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+" nerd commenter
+noremap <silent> // :call NERDComment(0,"toggle")<cr>
+
+let g:NERDSpaceDelims=1
+let g:NERDCommentEmptyLines=1
+let g:NERDTrimTrailingWhitespace=1
+
 " toggle nerdtree
 map <C-d> :NERDTreeToggle<CR>
 
@@ -70,3 +85,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" enable spellcheck
+set spell spelllang=en_us
+" word wrap
+set wrap linebreak nolist
