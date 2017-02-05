@@ -4,14 +4,14 @@ execute pathogen#infect()
 filetype plugin indent on
 syntax enable
 
-" colorscheme
+" color scheme
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
 " spaces and tabs
-set backspace=indent,eol,start " working backspace functionality
 set tabstop=2 " number of visual spaces per TAB
+set shiftwidth=2 " how many columns text is indented with the reindent operations
 
 " ui config
 set mouse=a " enable mouse
@@ -19,7 +19,7 @@ set lazyredraw " redraw only when needed
 set number " show line numbers
 set cursorline " highlight current line
 set showmatch " highlight matching [{()}]
-set wildmenu " visual autocomplete for command menu
+set wildmenu " visual auto complete for command menu
 
 " searching
 set incsearch " search as characters are entered
@@ -31,7 +31,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 set foldenable " enable folding
 " space open/closes folds
 nnoremap <space> za
-set foldmethod=indent   " fold based on indent level
 
 " movement
 " move vertically by visual line
