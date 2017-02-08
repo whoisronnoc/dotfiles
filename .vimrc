@@ -86,7 +86,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" fugitive
+map <C-g> :Gdiff<CR>
+
 " enable spellcheck
 set spell spelllang=en_us
 " word wrap
 set wrap linebreak nolist
+" show line at column 80
+set colorcolumn=80
