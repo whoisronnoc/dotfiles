@@ -50,5 +50,5 @@ source $ZSH/oh-my-zsh.sh
 autoload -U compinit && compinit
 # custom zsh prompta
 local ret_status="%(?:%{$fg_bold[green]%}|:%{$fg_bold[red]%}|)"
-PROMPT='%{$fg_bold[red]%}%n%{$fg_bold[white]%}${ret_status}%{$reset_color%}%~%#% '
-RPROMPT='%{$fg[yellow]%}$(rvm-prompt)%{$reset_color%} $(git-prompt --zsh)'
+PROMPT='%{$fg_bold[red]%}%n%{$fg_bold[white]%} %{$reset_color%}%~ ${ret_status} '
+RPROMPT='%{$fg[yellow]%}$(rvm-prompt)%{$reset_color%} $(git-prompt -s 1 --zsh)'
