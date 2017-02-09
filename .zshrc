@@ -1,5 +1,5 @@
 #set editor as vim
-export EDITOR='vi'
+export EDITOR='vim'
 
 # universe
 export PATH="$PATH:$HOME/.dot/universe/bin"
@@ -45,8 +45,10 @@ export ZSH=/home/connor/.oh-my-zsh
 # zsh plugins
 plugins=(tmux common-aliases debian sudo systemd tmuxinator git brew command-not-found docker npm gem rails ruby rvm systemd web-search zsh-autosuggestions zsh-syntax-highlighting zsh-completions history-substring-search bundler jsontools)
 # configure oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 autoload -U compinit && compinit
-# custom zsh prompt
-PROMPT='%{$fg_bold[red]%}%n%{$fg_bold[white]%}|%{$reset_color%}%~%# '
+# custom zsh prompta
+local ret_status="%(?:%{$fg_bold[green]%}|:%{$fg_bold[red]%}|)"
+PROMPT='%{$fg_bold[red]%}%n%{$fg_bold[white]%}${ret_status}%{$reset_color%}%~%#% '
 RPROMPT='%{$fg[yellow]%}$(rvm-prompt)%{$reset_color%} $(git-prompt --zsh)'
