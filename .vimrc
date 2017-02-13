@@ -5,9 +5,7 @@ filetype plugin indent on
 syntax enable
 
 " color scheme
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme onedark
 
 " spaces and tabs
 set tabstop=2 " number of visual spaces per TAB
@@ -72,7 +70,7 @@ nnoremap <F5> :GundoToggle<CR>
 
 " airline
 set laststatus=2
-let g:airline_theme = 'dark'
+let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''

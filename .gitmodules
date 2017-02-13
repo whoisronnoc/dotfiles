@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule ".vim/bundle/onedark.vim"]
+	path = .vim/bundle/onedark.vim
+	url = https://github.com/joshdick/onedark.vim.git
