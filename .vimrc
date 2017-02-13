@@ -88,8 +88,19 @@ let g:syntastic_check_on_wq = 0
 map <C-g> :Gdiff<CR>
 
 " enable spellcheck
-set spell spelllang=en_us
+" set spell spelllang=en_us
 " word wrap
 set wrap linebreak nolist
 " show line at column 80
 set colorcolumn=80
+" Toggle spellchecking
+function! ToggleSpellCheck()
+	set spell!
+	if &spell
+		echo "Spellcheck ON"
+	else
+		echo "Spellcheck OFF"
+	endif
+endfunction
+nnoremap <silent> <Leader>s :call ToggleSpellCheck()<CR>
+nnoremap <Leader>w :w<CR>
