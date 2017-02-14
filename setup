@@ -39,6 +39,11 @@ do
 done
 
 # install vim plugins
-echo "installing vim plugins..."
+echo "installing vim plugins\n"
 vim +PluginInstall +qall
+
+# install universe
+echo "Installing universe\n"
+source $HOME/.profile # make sure universe path is loaded
+universe update
 echo "done."
