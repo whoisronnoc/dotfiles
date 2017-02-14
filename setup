@@ -6,8 +6,8 @@ git submodule update --recursive
 
 # symlink dotfiles
 dotdir=$PWD
-sources=("$dotdir/config/zshrc" "$dotdir/config/vimrc" "$dotdir/config/tmux.conf" "$dotdir/config/profile" "$dotdir/zsh/antigen")
-destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen")
+sources=("$dotdir/config/zshrc" "$dotdir/config/vimrc" "$dotdir/config/tmux.conf" "$dotdir/config/profile" "$dotdir/zsh/antigen" "$dotdir/vim")
+destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen" "$HOME/.vim")
 ammount=${#sources[@]}
 
 for (( i=0; i<${ammount}; i++ ));
@@ -35,3 +35,6 @@ do
 		ln -s $src $dst
 	fi
 done
+
+# install vim plugins
+vim +PluginInstall +qall
