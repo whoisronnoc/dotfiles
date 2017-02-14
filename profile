@@ -10,7 +10,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$HOME/scripts:$PATH
 
 # universe
-export PATH="$PATH:$HOME/.dot/universe/bin"
+export PATH="$PATH:$HOME/.universe/bin"
 
 # linuxbrew
 export PATH="$HOME/.linuxbrew/bin:$PATH"

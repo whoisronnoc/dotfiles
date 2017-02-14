@@ -8,8 +8,8 @@ git submodule update --recursive
 # symlink dotfiles
 echo -e "symlinking dotfiles\n"
 dotdir=$PWD
-sources=("$dotdir/zshrc" "$dotdir/vimrc" "$dotdir/tmux.conf" "$dotdir/profile" "$dotdir/zsh/antigen" "$dotdir/vim" "$dotdir/i3" "$dotdir/polybar")
-destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen" "$HOME/.vim" "$HOME/.config/i3" "$HOME/.config/polybar")
+sources=("$dotdir/zshrc" "$dotdir/vimrc" "$dotdir/tmux.conf" "$dotdir/profile" "$dotdir/zsh/antigen" "$dotdir/vim" "$dotdir/i3" "$dotdir/polybar" "$dotdir/universe")
+destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen" "$HOME/.vim" "$HOME/.config/i3" "$HOME/.config/polybar" "$HOME/.universe")
 ammount=${#sources[@]}
 
 for (( i=0; i<${ammount}; i++ ));
