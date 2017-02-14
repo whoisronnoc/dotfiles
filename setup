@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# init submodules
+git submodule init
+git submodule update --recursive
+
+# symlink dotfiles
+dotdir=$PWD
+sources=("$dotdir/config/zshrc" "$dotdir/config/vimrc" "$dotdir/config/tmux.conf" "$dotdir/config/profile" "$dotdir/zsh/antigen")
+destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen")
+ammount=${#sources[@]}
+
+for (( i=0; i<${ammount}; i++ ));
+do
+	src=${sources[$i]}
+	dst=${destinations[$i]}
+  echo "$src -> $dst"
+
+	if [[ -h $dst ]]; then
+		echo "$dst is already a link, recreating the link"
+		rm -f $dst
+		ln -s $src $dst
+
+	elif [[ -e $dst ]]; then
+		echo "$dst exists, backing up and creating a link"
+		backuptime=$(date +%Y.%m.%d-%H.%M.%S)
+		backupdir="$dotdir/backup/$backuptime"
+		mkdir -p $backupdir
+		mv $dst $backupdir
+
+		ln -s $src $dst
+
+	else
+		echo "$dst doesn't exist, creating link"
+		ln -s $src $dst
+	fi
+done
