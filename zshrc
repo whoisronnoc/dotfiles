@@ -1,3 +1,4 @@
+source $HOME/.profile
 #set editor as vim
 export EDITOR='vim'
 
