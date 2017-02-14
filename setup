@@ -1,13 +1,15 @@
 #!/bin/bash
 
 # init submodules
+echo -e "setting up submodules\n"
 git submodule init
 git submodule update --recursive
 
 # symlink dotfiles
+echo -e "symlinking dotfiles\n"
 dotdir=$PWD
-sources=("$dotdir/config/zshrc" "$dotdir/config/vimrc" "$dotdir/config/tmux.conf" "$dotdir/config/profile" "$dotdir/zsh/antigen" "$dotdir/vim")
-destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen" "$HOME/.vim")
+sources=("$dotdir/zshrc" "$dotdir/vimrc" "$dotdir/tmux.conf" "$dotdir/profile" "$dotdir/zsh/antigen" "$dotdir/vim" "$dotdir/i3" "$dotdir/polybar")
+destinations=("$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.tmux.conf" "$HOME/.profile" "$HOME/.antigen" "$HOME/.vim" "$HOME/.config/i3" "$HOME/.config/polybar")
 ammount=${#sources[@]}
 
 for (( i=0; i<${ammount}; i++ ));
@@ -17,12 +19,12 @@ do
   echo "$src -> $dst"
 
 	if [[ -h $dst ]]; then
-		echo "$dst is already a link, recreating the link"
+		echo -e "$dst is already a link, recreating the link\n"
 		rm -f $dst
 		ln -s $src $dst
 
 	elif [[ -e $dst ]]; then
-		echo "$dst exists, backing up and creating a link"
+		echo -e "$dst exists, backing up and creating a link\n"
 		backuptime=$(date +%Y.%m.%d-%H.%M.%S)
 		backupdir="$dotdir/backup/$backuptime"
 		mkdir -p $backupdir
@@ -31,10 +33,12 @@ do
 		ln -s $src $dst
 
 	else
-		echo "$dst doesn't exist, creating link"
+		echo -e "$dst doesn't exist, creating link\n"
 		ln -s $src $dst
 	fi
 done
 
 # install vim plugins
+echo "installing vim plugins..."
 vim +PluginInstall +qall
+echo "done."
