@@ -127,3 +127,6 @@ function! ToggleSpellCheck()
 endfunction
 nnoremap <silent> <Leader>s :call ToggleSpellCheck()<CR>
 nnoremap <Leader>w :w<CR>
+command Wq :wq
+command WQ :wq
+"command wQ :wq
