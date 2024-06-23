@@ -1,13 +1,15 @@
+export EDITOR='vim'
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 export PATH=/usr/local/bin:$PATH
 
-# include my custom executable scripts in path
-export PATH=$HOME/scripts:$PATH
+# my scripts
+# export PATH=$HOME/scripts:$PATH
 
-# universe
+# universe ( includes all our shared scripts )
 export PATH="$PATH:$HOME/.universe/bin"
 
 # linuxbrew
@@ -20,21 +22,24 @@ export PATH="$PATH:$HOME/.universe/bin"
 # 	PATH="$PATH:$HOME/swift/usr/bin"
 # fi
 # export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+# gnu-sed
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
-# export PATH="$PATH:$HOME/dev/shenanigans/flutter/bin"
-# export ANDROID_HOME=/usr/local/share/android-sdk
-
+# nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# rvm
 export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"

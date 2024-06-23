@@ -1,15 +1,94 @@
-source $HOME/.profile
-#set editor as vim
-export EDITOR='vim'
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-### aliases ###
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  # If you're using macOS, you'll want this enabled
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+
+# Load completions
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# shell integrations
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+# aliases
+
 # vim
-alias vi=vim
-alias v=vi
+alias vi='vim'
+alias v='vi'
 
 # misc
-alias x=exit
-alias c=clear
+alias x='exit'
+alias c='clear'
 
 # swift aliases
 # alias s=swift
@@ -18,122 +97,6 @@ alias c=clear
 # git
 # alias gsub='git submodule'
 # alias gsa='gsub add'
-
-# geeknote
-# alias evernote=geeknote
-# alias note=evernote
-# alias n=note
-
-# fuck
-# eval "$(thefuck --alias)"
-# alias f=fuck
-
-# clipboard
-# alias clip='xclip -se c'
-# alias paste='clip -o'
-
-# alias railserv='rails s -p 1024'
-
-# override default plugin settings
-# export ZSH_TMUX_AUTOSTART=true
-
-### ANTIGEN ###
-# _ANTIGEN_CACHE_ENABLED="false"
-source $HOME/.antigen/antigen.zsh
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-antigen bundle BrandonRoehl/zsh-clean
-# antigen theme BrandonRoehl/zsh-clean
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-# antigen bundle tmux
-antigen bundle common-aliases
-# antigen bundle debian
-antigen bundle sudo
-# antigen bundle systemd
-# antigen bundle tmuxinator
-antigen bundle git
-antigen bundle brew
-antigen bundle command-not-found
-antigen bundle docker
-# antigen bundle npm
-# antigen bundle gem
-
-# antigen bundle ruby
-# antigen bundle rvm
-# antigen bundle systemd
-# antigen bundle web-search
-# antigen bundle bundler
-# antigen bundle jsontools
-antigen bundle history-substring-search
-
-# other bundles
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# antigen bundle	BrandonRoehl/zsh-clean
-
-# antigen theme BrandonRoehl/zsh-clean
-
-# Tell antigen that you're done.
-antigen apply
-
-# PROMPT='%b%f%~ %B%(?:%F{green}:%F{red})%(!.#.|)%f%b '
-# RPROMPT='%f$(git-prompt --zsh -l)'
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=203,bold'
-ZSH_HIGHLIGHT_STYLES[command]='fg=84'
-ZSH_HIGHLIGHT_STYLES[alias]=$ZSH_HIGHLIGHT_STYLES[command]
-ZSH_HIGHLIGHT_STYLES[function]=$ZSH_HIGHLIGHT_STYLES[command]
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=177'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=177'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=99'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=50'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=45'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=$ZSH_HIGHLIGHT_STYLES[single-hyphen-option]
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=215'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=$ZSH_HIGHLIGHT_STYLES[single-quoted-argument]
-ZSH_HIGHLIGHT_STYLES[assign]='fg=227'
-ZSH_HIGHLIGHT_STYLES[redirection]=$ZSH_HIGHLIGHT_STYLES[assign]
-ZSH_HIGHLIGHT_STYLES[comment]='fg=243'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=50'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=212'
-ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=$ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/Users/connor/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/connor/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-# if [ -f '/Users/connor/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/connor/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-###-tns-completion-start-###
-# if [ -f /Users/connor/.tnsrc ]; then 
-#     source /Users/connor/.tnsrc 
-# fi
-###-tns-completion-end-###
-#
-#
-# eval "$(pyenv init -)"
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-eval "$(zoxide init --cmd cd zsh)"
 
 alias cat='bat'
 alias ls='lsd'
