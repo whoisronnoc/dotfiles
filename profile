@@ -17,6 +17,11 @@ export PATH="$PATH:$HOME/.universe/bin"
 # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 # export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
+# homebrew
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # swift
 # if [ -d "$HOME/swift/usr/bin" ] ; then
 # 	PATH="$PATH:$HOME/swift/usr/bin"

@@ -1543,7 +1543,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>2</integer>
+			<integer>7</integer>
 			<key>Working Directory</key>
 			<string>/Users/connor</string>
 		</dict>

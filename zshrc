@@ -1,38 +1,22 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Set the directory we want to store zinit and plugins
+# zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
-# Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# custom prompt
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/custom.toml)"
 
-# Add in zsh plugins
+# zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
 
-# Add in snippets
+# zsh snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
@@ -51,25 +35,21 @@ zinit snippet OMZP::common-aliases
 # zinit snippet OMZP::pyenv
 # zinit snippet OMZP::tmux
 
-# Load completions
+# completions
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Keybindings
-# bindkey -e
+# keybindings
+bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-# bindkey '^[w' kill-region
 bindkey '^[f' forward-word # ⌥→
 bindkey '^[b' backward-word # ⌥←
 bindkey "^A" beginning-of-line # cmd+←
 bindkey "^E" end-of-line # cmd+→
 
-# History
+# history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -109,8 +89,12 @@ alias c='clear'
 # alias sc=swiftc
 
 # git
-# alias gsub='git submodule'
-# alias gsa='gsub add'
+alias gsub='git submodrule'
+alias gsa='gsub add'
+alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 
 alias cat='bat'
 alias ls='lsd'
+
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
