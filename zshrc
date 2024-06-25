@@ -84,22 +84,21 @@ eval "$(zoxide init --cmd cd zsh)"
 # aliases
 
 # vim
-alias vi='vim'
-alias v='vi'
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+alias e='nvim'
 
 # misc
 alias x='exit'
 alias c='clear'
-
-# swift aliases
-# alias s=swift
-# alias sc=swiftc
 
 # git
 alias gsub='git submodrule'
 alias gsa='gsub add'
 alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 
+# modern-unix 
 alias cat='bat'
 alias ls='lsd'
 
