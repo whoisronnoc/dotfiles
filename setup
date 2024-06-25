@@ -13,6 +13,7 @@ sources=(
 	"$dotdir/profile"
 	"$dotdir/zshrc"
 	"$dotdir/ohmyposh"
+	"$dotdir/atuin"
 	"$dotdir/vimrc"
 	"$dotdir/vim"
 	"$dotdir/universe"
@@ -23,6 +24,7 @@ destinations=(
 	"$HOME/.zprofile"
 	"$HOME/.zshrc"
 	"$HOME/.config/ohmyposh"
+	"$HOME/.config/atuin"
 	"$HOME/.vimrc"
 	"$HOME/.vim"
 	"$HOME/.universe"
@@ -37,12 +39,12 @@ do
   echo "$src -> $dst"
 
 	if [[ -h $dst ]]; then
-		echo -e "$dst is already a link, recreating the link\n"
+		echo "🔗 $dst is already a link, recreating the link"
 		rm -f $dst
 		ln -s $src $dst
 
 	elif [[ -e $dst ]]; then
-		echo -e "$dst exists, backing up and creating a link\n"
+		echo "📦 $dst exists, backing up and creating a link"
 		backuptime=$(date +%Y.%m.%d-%H.%M.%S)
 		backupdir="$dotdir/backup/$backuptime"
 		mkdir -p $backupdir
@@ -51,17 +53,95 @@ do
 		ln -s $src $dst
 
 	else
-		echo -e "$dst doesn't exist, creating link\n"
+		echo "⛓️‍💥 $dst doesn't exist, creating link"
 		ln -s $src $dst
 	fi
+
+	echo ""
 done
 
-# install vim plugins
-echo "installing vim plugins\n"
-vim +PluginInstall +qall
-
 # install universe
-echo "Installing universe\n"
+echo "Installing universe..."
 source $HOME/.profile # make sure universe path is loaded
-universe update
-echo "done."
+cd universe && ./universe update && cd ..
+echo "universe updated"
+echo ""
+
+# install required pacakges
+# packages=(
+# 	"atuin"
+# 	"bat"
+# 	"cowsay"
+# 	"curl"
+# 	"curlie"
+# 	"dog"
+# 	"dua-cli"
+# 	"dust"
+# 	"fastlane"
+# 	"fortune"
+# 	"fzf"
+# 	"git-lfs"
+# 	"glew"
+# 	"gnu-sed"
+# 	"gnupg"
+# 	"go"
+# 	"gping"
+# 	"gradle"
+# 	"htop"
+# 	"httpie"
+# 	"ipmitool"
+# 	"jandedobbeleer/oh-my-posh/oh-my-posh"
+# 	"jenv"
+# 	"jq"
+# 	"lsd"
+# 	"neovim"
+# 	"node"
+# 	"procs"
+# 	"pyenv"
+# 	"telnet"
+# 	"tmux"
+# 	"tree"
+# 	"wget"
+# 	"youtube-dl"
+# 	"zoxide"
+# )
+
+# The script installs Homebrew to its default, supported, best prefix 
+# (/opt/homebrew for Apple Silicon (arm64), /usr/local for macOS Intel (x86_64) and /home/linuxbrew/.linuxbrew for Linux) 
+# if [[ $(uname -m) == 'arm64' ]]; then
+#   BREW_PATH="/opt/homebrew/bin/brew"
+# else
+BREW_PATH="/usr/local/bin/brew"
+# fi
+
+if [[ -f $BREW_PATH ]]; then
+  eval "$($BREW_PATH shellenv)"
+else 
+	echo "Installing homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$($BREW_PATH shellenv)"
+fi
+
+echo "Checking installed packages..."
+pacakge_count=${#packages[@]}
+for (( i=0; i<${pacakge_count}; i++ ));
+do
+	package=${packages[$i]}
+	if brew ls --versions $package > /dev/null; then
+		echo "✅ '$package' already installed"
+	else
+		echo "❌ '$package' not installed, installing..."
+		brew install $package
+	fi
+done
+echo ""
+
+# echo "Installing NVM"
+# curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# echo "nvm installed"
+
+# echo "Installing RVM"
+# gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+# curl -sSL https://get.rvm.io | bash -s stable --rails
+
+exec zsh

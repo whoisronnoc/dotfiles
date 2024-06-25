@@ -1,3 +1,8 @@
+# homebrew
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -15,8 +20,10 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
+zinit light atuinsh/atuin
 
 # zsh snippets
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
