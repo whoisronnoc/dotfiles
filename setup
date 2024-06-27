@@ -9,55 +9,57 @@ git submodule update --recursive
 echo -e "symlinking dotfiles\n"
 dotdir=$PWD
 sources=(
-	"$dotdir/profile"
-	"$dotdir/profile"
-	"$dotdir/zshrc"
-	"$dotdir/ohmyposh"
-	"$dotdir/atuin"
-	"$dotdir/vimrc"
-	"$dotdir/vim"
-	"$dotdir/universe"
-	"$dotdir/lsd"
+  "$dotdir/profile"
+  "$dotdir/profile"
+  "$dotdir/zshrc"
+  "$dotdir/ohmyposh"
+  "$dotdir/atuin"
+  "$dotdir/vimrc"
+  "$dotdir/vim"
+  "$dotdir/nvim"
+  "$dotdir/universe"
+  "$dotdir/lsd"
 )
 destinations=(
-	"$HOME/.profile"
-	"$HOME/.zprofile"
-	"$HOME/.zshrc"
-	"$HOME/.config/ohmyposh"
-	"$HOME/.config/atuin"
-	"$HOME/.vimrc"
-	"$HOME/.vim"
-	"$HOME/.universe"
-	"$HOME/.config/lsd"
+  "$HOME/.profile"
+  "$HOME/.zprofile"
+  "$HOME/.zshrc"
+  "$HOME/.config/ohmyposh"
+  "$HOME/.config/atuin"
+  "$HOME/.vimrc"
+  "$HOME/.vim"
+  "$HOME/.config/nvim"
+  "$HOME/.universe"
+  "$HOME/.config/lsd"
 )
 ammount=${#sources[@]}
 
 for (( i=0; i<${ammount}; i++ ));
 do
-	src=${sources[$i]}
-	dst=${destinations[$i]}
+  src=${sources[$i]}
+  dst=${destinations[$i]}
   echo "$src -> $dst"
 
-	if [[ -h $dst ]]; then
-		echo "🔗 $dst is already a link, recreating the link"
-		rm -f $dst
-		ln -s $src $dst
+  if [[ -h $dst ]]; then
+    echo "🔗 $dst is already a link, recreating the link"
+    rm -f $dst
+    ln -s $src $dst
 
-	elif [[ -e $dst ]]; then
-		echo "📦 $dst exists, backing up and creating a link"
-		backuptime=$(date +%Y.%m.%d-%H.%M.%S)
-		backupdir="$dotdir/backup/$backuptime"
-		mkdir -p $backupdir
-		mv $dst $backupdir
+  elif [[ -e $dst ]]; then
+    echo "📦 $dst exists, backing up and creating a link"
+    backuptime=$(date +%Y.%m.%d-%H.%M.%S)
+    backupdir="$dotdir/backup/$backuptime"
+    mkdir -p $backupdir
+    mv $dst $backupdir
 
-		ln -s $src $dst
+    ln -s $src $dst
 
-	else
-		echo "⛓️‍💥 $dst doesn't exist, creating link"
-		ln -s $src $dst
-	fi
+  else
+    echo "⛓️‍💥 $dst doesn't exist, creating link"
+    ln -s $src $dst
+  fi
 
-	echo ""
+  echo ""
 done
 
 # install universe
@@ -68,43 +70,45 @@ echo "universe updated"
 echo ""
 
 # install required pacakges
-# packages=(
-# 	"atuin"
-# 	"bat"
-# 	"cowsay"
-# 	"curl"
-# 	"curlie"
-# 	"dog"
-# 	"dua-cli"
-# 	"dust"
-# 	"fastlane"
-# 	"fortune"
-# 	"fzf"
-# 	"git-lfs"
-# 	"glew"
-# 	"gnu-sed"
-# 	"gnupg"
-# 	"go"
-# 	"gping"
-# 	"gradle"
-# 	"htop"
-# 	"httpie"
-# 	"ipmitool"
-# 	"jandedobbeleer/oh-my-posh/oh-my-posh"
-# 	"jenv"
-# 	"jq"
-# 	"lsd"
-# 	"neovim"
-# 	"node"
-# 	"procs"
-# 	"pyenv"
-# 	"telnet"
-# 	"tmux"
-# 	"tree"
-# 	"wget"
-# 	"youtube-dl"
-# 	"zoxide"
-# )
+packages=(
+  "atuin"
+  "bat"
+  "cowsay"
+  "curl"
+  "curlie"
+  "dog"
+  "dua-cli"
+  "dust"
+  "fastlane"
+  "fortune"
+  "fzf"
+  "git-lfs"
+  "glew"
+  "gnu-sed"
+  "gnupg"
+  "go"
+  "gping"
+  "gradle"
+  "htop"
+  "httpie"
+  "ipmitool"
+  "jandedobbeleer/oh-my-posh/oh-my-posh"
+  "jenv"
+  "jq"
+  "lsd"
+  "neovim"
+  "node"
+  "procs"
+  "pyenv"
+  "telnet"
+  "tmux"
+  "tree"
+  "wget"
+  "youtube-dl"
+  "zoxide"
+  "ripgrep"
+)
+# atuin fzf lsd zoxide jandedobbeleer/oh-my-posh/oh-my-posh bat neovim
 
 # The script installs Homebrew to its default, supported, best prefix 
 # (/opt/homebrew for Apple Silicon (arm64), /usr/local for macOS Intel (x86_64) and /home/linuxbrew/.linuxbrew for Linux) 
@@ -117,8 +121,8 @@ BREW_PATH="/usr/local/bin/brew"
 if [[ -f $BREW_PATH ]]; then
   eval "$($BREW_PATH shellenv)"
 else 
-	echo "Installing homebrew..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "Installing homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$($BREW_PATH shellenv)"
 fi
 
@@ -126,13 +130,13 @@ echo "Checking installed packages..."
 pacakge_count=${#packages[@]}
 for (( i=0; i<${pacakge_count}; i++ ));
 do
-	package=${packages[$i]}
-	if brew ls --versions $package > /dev/null; then
-		echo "✅ '$package' already installed"
-	else
-		echo "❌ '$package' not installed, installing..."
-		brew install $package
-	fi
+  package=${packages[$i]}
+  if brew ls --versions $package > /dev/null; then
+    echo "✅ '$package' already installed"
+  else
+    echo "❌ '$package' not installed, installing..."
+    brew install $package
+  fi
 done
 echo ""
 
@@ -143,8 +147,5 @@ echo ""
 # echo "Installing RVM"
 # gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 # curl -sSL https://get.rvm.io | bash -s stable --rails
-
-echo "Installing neovim and plugins"
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 
 exec zsh

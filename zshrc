@@ -1,6 +1,11 @@
 # homebrew
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+# if [[ $(uname -m) == 'arm64' ]]; then
+# BREW_PATH="/opt/homebrew/bin/brew"
+# else
+BREW_PATH="/usr/local/bin/brew"
+# fi
+if [[ -f $BREW_PATH ]]; then
+  eval "$($BREW_PATH shellenv)"
 fi
 
 # zinit
