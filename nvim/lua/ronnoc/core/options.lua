@@ -2,9 +2,9 @@
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
 local opt = vim.opt -- for conciseness
 
+-- sets the listing style to a tree view, which displays files and directories in a hierarchical tree format.
 vim.cmd("let g:netrw_liststyle = 3")
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
@@ -31,7 +31,11 @@ opt.swapfile = false
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = {
+    tab = '» ',
+    trail = '·',
+    nbsp = '␣'
+}
 -- space = '·',
 
 -- Enable mouse mode, can be useful for resizing splits for example!
@@ -79,11 +83,14 @@ opt.cursorline = true
 opt.scrolloff = 10
 
 -- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
--- expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.smarttab = true -- make tab insert indents in leading whitespace
+vim.opt.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
+vim.opt.softtabstop = 2 -- number of spaces that a <Tab> key in the file counts for
+vim.opt.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
+vim.opt.expandtab = false -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.encoding = "utf-8"
 
-opt.wrap = true
+opt.wrap = true -- wrap lines
 
-opt.conceallevel = 2
+opt.conceallevel = 1 -- Concealed text is shown with a placeholder character.
