@@ -32,14 +32,14 @@ opt.swapfile = false
 --  and `:help 'listchars'`
 opt.list = true
 opt.listchars = {
-    tab = '» ',
-    trail = '·',
-    nbsp = '␣'
+    tab = "» ",
+    trail = "·",
+    nbsp = "␣"
 }
 -- space = '·',
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 opt.showmode = false
@@ -47,7 +47,7 @@ opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 
 -- Enable break indent
 opt.breakindent = true
@@ -60,7 +60,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Keep signcolumn on by default so that text doesn't shift
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
 -- Decrease update time
 opt.updatetime = 250
@@ -74,7 +74,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+opt.inccommand = "split"
 
 -- Show which line your cursor is on
 opt.cursorline = true
@@ -87,7 +87,7 @@ vim.opt.smarttab = true -- make tab insert indents in leading whitespace
 vim.opt.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
 vim.opt.softtabstop = 2 -- number of spaces that a <Tab> key in the file counts for
 vim.opt.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
-vim.opt.expandtab = false -- expand tab to spaces
+vim.opt.expandtab = true -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.opt.encoding = "utf-8"
 
