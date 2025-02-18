@@ -1,3 +1,6 @@
+#zmodload zsh/zprof 
+# Add deno completions to search path
+# if [[ ":$FPATH:" != *":/Users/connor/.zsh/completions:"* ]]; then export FPATH="/Users/connor/.zsh/completions:$FPATH"; fi
 # homebrew
 # if [[ $(uname -m) == 'arm64' ]]; then
 # BREW_PATH="/opt/homebrew/bin/brew"
@@ -17,7 +20,9 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # custom prompt
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/custom.toml)"
+#eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/custom.toml)"
+export STARSHIP_CONFIG=~/.dot/starship.toml
+eval "$(starship init zsh)"
 
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -110,5 +115,8 @@ alias ls='lsd'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-eval "$(gh copilot alias -- zsh)"
+#eval "$(gh copilot alias -- zsh)"
 
+#. "/Users/connor/.deno/env"
+
+#zprof
