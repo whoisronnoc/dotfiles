@@ -1,0 +1,724 @@
+# Apply a font feature. To enable multiple font features you can repeat
+# this multiple times or use a comma-separated list of feature settings.
+# 
+# The syntax for feature settings is as follows, where `feat` is a feature:
+# 
+#   * Enable features with e.g. `feat`, `+feat`, `feat on`, `feat=1`.
+#   * Disabled features with e.g. `-feat`, `feat off`, `feat=0`.
+#   * Set a feature value with e.g. `feat=2`, `feat = 3`, `feat 4`.
+#   * Feature names may be wrapped in quotes, meaning this config should be
+#     syntactically compatible with the `font-feature-settings` CSS property.
+# 
+# The syntax is fairly loose, but invalid settings will be silently ignored.
+# 
+# The font feature will apply to all fonts rendered by Ghostty. A future
+# enhancement will allow targeting specific faces.
+# 
+# To disable programming ligatures, use `-calt` since this is the typical
+# feature name for programming ligatures. To look into what font features
+# your font has and what they do, use a font inspection tool such as
+# [fontdrop.info](https://fontdrop.info).
+# 
+# To generally disable most ligatures, use `-calt, -liga, -dlig`.
+font-feature = -liga
+
+# Font size in points. This value can be a non-integer and the nearest integer
+# pixel size will be selected. If you have a high dpi display where 1pt = 2px
+# then you can get an odd numbered pixel size by specifying a half point.
+# 
+# For example, 13.5pt @ 2px/pt = 27px
+# 
+# Changing this configuration at runtime will only affect new terminals,
+# i.e. new windows, tabs, etc. Note that you may still not see the change
+# depending on your `window-inherit-font-size` setting. If that setting is
+# true, only the first window will be affected by this change since all
+# subsequent windows will inherit the font size of the previous window.
+# 
+# On Linux with GTK, font size is scaled according to both display-wide and
+# text-specific scaling factors, which are often managed by your desktop
+# environment (e.g. the GNOME display scale and large text settings).
+font-size = 14
+
+# A theme to use. This can be a built-in theme name, a custom theme
+# name, or an absolute path to a custom theme file. Ghostty also supports
+# specifying a different theme to use for light and dark mode. Each
+# option is documented below.
+# 
+# If the theme is an absolute pathname, Ghostty will attempt to load that
+# file as a theme. If that file does not exist or is inaccessible, an error
+# will be logged and no other directories will be searched.
+# 
+# If the theme is not an absolute pathname, two different directories will be
+# searched for a file name that matches the theme. This is case sensitive on
+# systems with case-sensitive filesystems. It is an error for a theme name to
+# include path separators unless it is an absolute pathname.
+# 
+# The first directory is the `themes` subdirectory of your Ghostty
+# configuration directory. This is `$XDG_CONFIG_DIR/ghostty/themes` or
+# `~/.config/ghostty/themes`.
+# 
+# The second directory is the `themes` subdirectory of the Ghostty resources
+# directory. Ghostty ships with a multitude of themes that will be installed
+# into this directory. On macOS, this list is in the
+# `Ghostty.app/Contents/Resources/ghostty/themes` directory. On Linux, this
+# list is in the `share/ghostty/themes` directory (wherever you installed the
+# Ghostty "share" directory.
+# 
+# To see a list of available themes, run `ghostty +list-themes`.
+# 
+# A theme file is simply another Ghostty configuration file. They share
+# the same syntax and same configuration options. A theme can set any valid
+# configuration option so please do not use a theme file from an untrusted
+# source. The built-in themes are audited to only set safe configuration
+# options.
+# 
+# Some options cannot be set within theme files. The reason these are not
+# supported should be self-evident. A theme file cannot set `theme` or
+# `config-file`. At the time of writing this, Ghostty will not show any
+# warnings or errors if you set these options in a theme file but they will
+# be silently ignored.
+# 
+# Any additional colors specified via background, foreground, palette, etc.
+# will override the colors specified in the theme.
+# 
+# To specify a different theme for light and dark mode, use the following
+# syntax: `light:theme-name,dark:theme-name`. For example:
+# `light:rose-pine-dawn,dark:rose-pine`. Whitespace around all values are
+# trimmed and order of light and dark does not matter. Both light and dark
+# must be specified in this form. In this form, the theme used will be
+# based on the current desktop environment theme.
+# 
+# There are some known bugs with light/dark mode theming. These will
+# be fixed in a future update:
+# 
+#   - macOS: titlebar tabs style is not updated when switching themes.
+# 
+theme = custom
+
+# Background color for the window.
+# Specified as either hex (`#RRGGBB` or `RRGGBB`) or a named X11 color.
+background = #000000
+
+# Foreground color for the window.
+# Specified as either hex (`#RRGGBB` or `RRGGBB`) or a named X11 color.
+foreground = #c7c7c7
+
+# The foreground and background color for selection. If this is not set, then
+# the selection color is just the inverted window background and foreground
+# (note: not to be confused with the cell bg/fg).
+# Specified as either hex (`#RRGGBB` or `RRGGBB`) or a named X11 color.
+selection-foreground = #000000
+
+selection-background = #c6dcfc
+# Color palette for the 256 color form that many terminal applications use.
+# The syntax of this configuration is `N=COLOR` where `N` is 0 to 255 (for
+# the 256 colors in the terminal color table) and `COLOR` is a typical RGB
+# color code such as `#AABBCC` or `AABBCC`, or a named X11 color.
+# 
+# The palette index can be in decimal, binary, octal, or hexadecimal.
+# Decimal is assumed unless a prefix is used: `0b` for binary, `0o` for octal,
+# and `0x` for hexadecimal.
+# 
+# For definitions on the color indices and what they canonically map to,
+# [see this cheat sheet](https://www.ditig.com/256-colors-cheat-sheet).
+palette = 0=#000000
+palette = 1=#b83019
+palette = 2=#51bf37
+palette = 3=#c6c43d
+palette = 4=#4d65ff
+palette = 5=#ca30c7
+palette = 6=#53c2c5
+palette = 7=#c7c7c7
+palette = 8=#676767
+palette = 9=#ef766d
+palette = 10=#8cf67a
+palette = 11=#fefb7e
+palette = 12=#6a71f6
+palette = 13=#f07ef8
+palette = 14=#59f9ff
+palette = 15=#ffffff
+palette = 16=#000000
+palette = 17=#00005f
+palette = 18=#000087
+palette = 19=#0000af
+palette = 20=#0000d7
+palette = 21=#0000ff
+palette = 22=#005f00
+palette = 23=#005f5f
+palette = 24=#005f87
+palette = 25=#005faf
+palette = 26=#005fd7
+palette = 27=#005fff
+palette = 28=#008700
+palette = 29=#00875f
+palette = 30=#008787
+palette = 31=#0087af
+palette = 32=#0087d7
+palette = 33=#0087ff
+palette = 34=#00af00
+palette = 35=#00af5f
+palette = 36=#00af87
+palette = 37=#00afaf
+palette = 38=#00afd7
+palette = 39=#00afff
+palette = 40=#00d700
+palette = 41=#00d75f
+palette = 42=#00d787
+palette = 43=#00d7af
+palette = 44=#00d7d7
+palette = 45=#00d7ff
+palette = 46=#00ff00
+palette = 47=#00ff5f
+palette = 48=#00ff87
+palette = 49=#00ffaf
+palette = 50=#00ffd7
+palette = 51=#00ffff
+palette = 52=#5f0000
+palette = 53=#5f005f
+palette = 54=#5f0087
+palette = 55=#5f00af
+palette = 56=#5f00d7
+palette = 57=#5f00ff
+palette = 58=#5f5f00
+palette = 59=#5f5f5f
+palette = 60=#5f5f87
+palette = 61=#5f5faf
+palette = 62=#5f5fd7
+palette = 63=#5f5fff
+palette = 64=#5f8700
+palette = 65=#5f875f
+palette = 66=#5f8787
+palette = 67=#5f87af
+palette = 68=#5f87d7
+palette = 69=#5f87ff
+palette = 70=#5faf00
+palette = 71=#5faf5f
+palette = 72=#5faf87
+palette = 73=#5fafaf
+palette = 74=#5fafd7
+palette = 75=#5fafff
+palette = 76=#5fd700
+palette = 77=#5fd75f
+palette = 78=#5fd787
+palette = 79=#5fd7af
+palette = 80=#5fd7d7
+palette = 81=#5fd7ff
+palette = 82=#5fff00
+palette = 83=#5fff5f
+palette = 84=#5fff87
+palette = 85=#5fffaf
+palette = 86=#5fffd7
+palette = 87=#5fffff
+palette = 88=#870000
+palette = 89=#87005f
+palette = 90=#870087
+palette = 91=#8700af
+palette = 92=#8700d7
+palette = 93=#8700ff
+palette = 94=#875f00
+palette = 95=#875f5f
+palette = 96=#875f87
+palette = 97=#875faf
+palette = 98=#875fd7
+palette = 99=#875fff
+palette = 100=#878700
+palette = 101=#87875f
+palette = 102=#878787
+palette = 103=#8787af
+palette = 104=#8787d7
+palette = 105=#8787ff
+palette = 106=#87af00
+palette = 107=#87af5f
+palette = 108=#87af87
+palette = 109=#87afaf
+palette = 110=#87afd7
+palette = 111=#87afff
+palette = 112=#87d700
+palette = 113=#87d75f
+palette = 114=#87d787
+palette = 115=#87d7af
+palette = 116=#87d7d7
+palette = 117=#87d7ff
+palette = 118=#87ff00
+palette = 119=#87ff5f
+palette = 120=#87ff87
+palette = 121=#87ffaf
+palette = 122=#87ffd7
+palette = 123=#87ffff
+palette = 124=#af0000
+palette = 125=#af005f
+palette = 126=#af0087
+palette = 127=#af00af
+palette = 128=#af00d7
+palette = 129=#af00ff
+palette = 130=#af5f00
+palette = 131=#af5f5f
+palette = 132=#af5f87
+palette = 133=#af5faf
+palette = 134=#af5fd7
+palette = 135=#af5fff
+palette = 136=#af8700
+palette = 137=#af875f
+palette = 138=#af8787
+palette = 139=#af87af
+palette = 140=#af87d7
+palette = 141=#af87ff
+palette = 142=#afaf00
+palette = 143=#afaf5f
+palette = 144=#afaf87
+palette = 145=#afafaf
+palette = 146=#afafd7
+palette = 147=#afafff
+palette = 148=#afd700
+palette = 149=#afd75f
+palette = 150=#afd787
+palette = 151=#afd7af
+palette = 152=#afd7d7
+palette = 153=#afd7ff
+palette = 154=#afff00
+palette = 155=#afff5f
+palette = 156=#afff87
+palette = 157=#afffaf
+palette = 158=#afffd7
+palette = 159=#afffff
+palette = 160=#d70000
+palette = 161=#d7005f
+palette = 162=#d70087
+palette = 163=#d700af
+palette = 164=#d700d7
+palette = 165=#d700ff
+palette = 166=#d75f00
+palette = 167=#d75f5f
+palette = 168=#d75f87
+palette = 169=#d75faf
+palette = 170=#d75fd7
+palette = 171=#d75fff
+palette = 172=#d78700
+palette = 173=#d7875f
+palette = 174=#d78787
+palette = 175=#d787af
+palette = 176=#d787d7
+palette = 177=#d787ff
+palette = 178=#d7af00
+palette = 179=#d7af5f
+palette = 180=#d7af87
+palette = 181=#d7afaf
+palette = 182=#d7afd7
+palette = 183=#d7afff
+palette = 184=#d7d700
+palette = 185=#d7d75f
+palette = 186=#d7d787
+palette = 187=#d7d7af
+palette = 188=#d7d7d7
+palette = 189=#d7d7ff
+palette = 190=#d7ff00
+palette = 191=#d7ff5f
+palette = 192=#d7ff87
+palette = 193=#d7ffaf
+palette = 194=#d7ffd7
+palette = 195=#d7ffff
+palette = 196=#ff0000
+palette = 197=#ff005f
+palette = 198=#ff0087
+palette = 199=#ff00af
+palette = 200=#ff00d7
+palette = 201=#ff00ff
+palette = 202=#ff5f00
+palette = 203=#ff5f5f
+palette = 204=#ff5f87
+palette = 205=#ff5faf
+palette = 206=#ff5fd7
+palette = 207=#ff5fff
+palette = 208=#ff8700
+palette = 209=#ff875f
+palette = 210=#ff8787
+palette = 211=#ff87af
+palette = 212=#ff87d7
+palette = 213=#ff87ff
+palette = 214=#ffaf00
+palette = 215=#ffaf5f
+palette = 216=#ffaf87
+palette = 217=#ffafaf
+palette = 218=#ffafd7
+palette = 219=#ffafff
+palette = 220=#ffd700
+palette = 221=#ffd75f
+palette = 222=#ffd787
+palette = 223=#ffd7af
+palette = 224=#ffd7d7
+palette = 225=#ffd7ff
+palette = 226=#ffff00
+palette = 227=#ffff5f
+palette = 228=#ffff87
+palette = 229=#ffffaf
+palette = 230=#ffffd7
+palette = 231=#ffffff
+palette = 232=#080808
+palette = 233=#121212
+palette = 234=#1c1c1c
+palette = 235=#262626
+palette = 236=#303030
+palette = 237=#3a3a3a
+palette = 238=#444444
+palette = 239=#4e4e4e
+palette = 240=#585858
+palette = 241=#626262
+palette = 242=#6c6c6c
+palette = 243=#767676
+palette = 244=#808080
+palette = 245=#8a8a8a
+palette = 246=#949494
+palette = 247=#9e9e9e
+palette = 248=#a8a8a8
+palette = 249=#b2b2b2
+palette = 250=#bcbcbc
+palette = 251=#c6c6c6
+palette = 252=#d0d0d0
+palette = 253=#dadada
+palette = 254=#e4e4e4
+palette = 255=#eeeeee
+
+# The command to run, usually a shell. If this is not an absolute path, it'll
+# be looked up in the `PATH`. If this is not set, a default will be looked up
+# from your system. The rules for the default lookup are:
+# 
+#   * `SHELL` environment variable
+# 
+#   * `passwd` entry (user information)
+# 
+# This can contain additional arguments to run the command with. If additional
+# arguments are provided, the command will be executed using `/bin/sh -c`.
+# Ghostty does not do any shell command parsing.
+# 
+# This command will be used for all new terminal surfaces, i.e. new windows,
+# tabs, etc. If you want to run a command only for the first terminal surface
+# created when Ghostty starts, use the `initial-command` configuration.
+# 
+# Ghostty supports the common `-e` flag for executing a command with
+# arguments. For example, `ghostty -e fish --with --custom --args`.
+# This flag sets the `initial-command` configuration, see that for more
+# information.
+command = /bin/zsh
+
+# Key bindings. The format is `trigger=action`. Duplicate triggers will
+# overwrite previously set values. The list of actions is available in
+# the documentation or using the `ghostty +list-actions` command.
+# 
+# Trigger: `+`-separated list of keys and modifiers. Example: `ctrl+a`,
+# `ctrl+shift+b`, `up`.
+# 
+# Valid keys are currently only listed in the
+# [Ghostty source code](https://github.com/ghostty-org/ghostty/blob/d6e76858164d52cff460fedc61ddf2e560912d71/src/input/key.zig#L255).
+# This is a documentation limitation and we will improve this in the future.
+# A common gotcha is that numeric keys are written as words: e.g. `one`,
+# `two`, `three`, etc. and not `1`, `2`, `3`. This will also be improved in
+# the future.
+# 
+# Valid modifiers are `shift`, `ctrl` (alias: `control`), `alt` (alias: `opt`,
+# `option`), and `super` (alias: `cmd`, `command`). You may use the modifier
+# or the alias. When debugging keybinds, the non-aliased modifier will always
+# be used in output.
+# 
+# Note: The fn or "globe" key on keyboards are not supported as a
+# modifier. This is a limitation of the operating systems and GUI toolkits
+# that Ghostty uses.
+# 
+# Some additional notes for triggers:
+# 
+#   * modifiers cannot repeat, `ctrl+ctrl+a` is invalid.
+# 
+#   * modifiers and keys can be in any order, `shift+a+ctrl` is *weird*,
+#     but valid.
+# 
+#   * only a single key input is allowed, `ctrl+a+b` is invalid.
+# 
+#   * the key input can be prefixed with `physical:` to specify a
+#     physical key mapping rather than a logical one. A physical key
+#     mapping responds to the hardware keycode and not the keycode
+#     translated by any system keyboard layouts. Example: "ctrl+physical:a"
+# 
+# You may also specify multiple triggers separated by `>` to require a
+# sequence of triggers to activate the action. For example,
+# `ctrl+a>n=new_window` will only trigger the `new_window` action if the
+# user presses `ctrl+a` followed separately by `n`. In other software, this
+# is sometimes called a leader key, a key chord, a key table, etc. There
+# is no hardcoded limit on the number of parts in a sequence.
+# 
+# Warning: If you define a sequence as a CLI argument to `ghostty`,
+# you probably have to quote the keybind since `>` is a special character
+# in most shells. Example: ghostty --keybind='ctrl+a>n=new_window'
+# 
+# A trigger sequence has some special handling:
+# 
+#   * Ghostty will wait an indefinite amount of time for the next key in
+#     the sequence. There is no way to specify a timeout. The only way to
+#     force the output of a prefix key is to assign another keybind to
+#     specifically output that key (e.g. `ctrl+a>ctrl+a=text:foo`) or
+#     press an unbound key which will send both keys to the program.
+# 
+#   * If a prefix in a sequence is previously bound, the sequence will
+#     override the previous binding. For example, if `ctrl+a` is bound to
+#     `new_window` and `ctrl+a>n` is bound to `new_tab`, pressing `ctrl+a`
+#     will do nothing.
+# 
+#   * Adding to the above, if a previously bound sequence prefix is
+#     used in a new, non-sequence binding, the entire previously bound
+#     sequence will be unbound. For example, if you bind `ctrl+a>n` and
+#     `ctrl+a>t`, and then bind `ctrl+a` directly, both `ctrl+a>n` and
+#     `ctrl+a>t` will become unbound.
+# 
+#   * Trigger sequences are not allowed for `global:` or `all:`-prefixed
+#     triggers. This is a limitation we could remove in the future.
+# 
+# Action is the action to take when the trigger is satisfied. It takes the
+# format `action` or `action:param`. The latter form is only valid if the
+# action requires a parameter.
+# 
+#   * `ignore` - Do nothing, ignore the key input. This can be used to
+#     black hole certain inputs to have no effect.
+# 
+#   * `unbind` - Remove the binding. This makes it so the previous action
+#     is removed, and the key will be sent through to the child command
+#     if it is printable. Unbind will remove any matching trigger,
+#     including `physical:`-prefixed triggers without specifying the
+#     prefix.
+# 
+#   * `csi:text` - Send a CSI sequence. e.g. `csi:A` sends "cursor up".
+# 
+#   * `esc:text` - Send an escape sequence. e.g. `esc:d` deletes to the
+#     end of the word to the right.
+# 
+#   * `text:text` - Send a string. Uses Zig string literal syntax.
+#     e.g. `text:\x15` sends Ctrl-U.
+# 
+#   * All other actions can be found in the documentation or by using the
+#     `ghostty +list-actions` command.
+# 
+# Some notes for the action:
+# 
+#   * The parameter is taken as-is after the `:`. Double quotes or
+#     other mechanisms are included and NOT parsed. If you want to
+#     send a string value that includes spaces, wrap the entire
+#     trigger/action in double quotes. Example: `--keybind="up=csi:A B"`
+# 
+# There are some additional special values that can be specified for
+# keybind:
+# 
+#   * `keybind=clear` will clear all set keybindings. Warning: this
+#     removes ALL keybindings up to this point, including the default
+#     keybindings.
+# 
+# The keybind trigger can be prefixed with some special values to change
+# the behavior of the keybind. These are:
+# 
+#   * `all:` - Make the keybind apply to all terminal surfaces. By default,
+#     keybinds only apply to the focused terminal surface. If this is true,
+#     then the keybind will be sent to all terminal surfaces. This only
+#     applies to actions that are surface-specific. For actions that
+#     are already global (e.g. `quit`), this prefix has no effect.
+# 
+#   * `global:` - Make the keybind global. By default, keybinds only work
+#     within Ghostty and under the right conditions (application focused,
+#     sometimes terminal focused, etc.). If you want a keybind to work
+#     globally across your system (e.g. even when Ghostty is not focused),
+#     specify this prefix. This prefix implies `all:`. Note: this does not
+#     work in all environments; see the additional notes below for more
+#     information.
+# 
+#   * `unconsumed:` - Do not consume the input. By default, a keybind
+#     will consume the input, meaning that the associated encoding (if
+#     any) will not be sent to the running program in the terminal. If
+#     you wish to send the encoded value to the program, specify the
+#     `unconsumed:` prefix before the entire keybind. For example:
+#     `unconsumed:ctrl+a=reload_config`. `global:` and `all:`-prefixed
+#     keybinds will always consume the input regardless of this setting.
+#     Since they are not associated with a specific terminal surface,
+#     they're never encoded.
+# 
+#   * `performable:` - Only consume the input if the action is able to be
+#     performed. For example, the `copy_to_clipboard` action will only
+#     consume the input if there is a selection to copy. If there is no
+#     selection, Ghostty behaves as if the keybind was not set. This has
+#     no effect with `global:` or `all:`-prefixed keybinds. For key
+#     sequences, this will reset the sequence if the action is not
+#     performable (acting identically to not having a keybind set at
+#     all).
+# 
+#     Performable keybinds will not appear as menu shortcuts in the
+#     application menu. This is because the menu shortcuts force the
+#     action to be performed regardless of the state of the terminal.
+#     Performable keybinds will still work, they just won't appear as
+#     a shortcut label in the menu.
+# 
+# Keybind triggers are not unique per prefix combination. For example,
+# `ctrl+a` and `global:ctrl+a` are not two separate keybinds. The keybind
+# set later will overwrite the keybind set earlier. In this case, the
+# `global:` keybind will be used.
+# 
+# Multiple prefixes can be specified. For example,
+# `global:unconsumed:ctrl+a=reload_config` will make the keybind global
+# and not consume the input to reload the config.
+# 
+# Note: `global:` is only supported on macOS. On macOS,
+# this feature requires accessibility permissions to be granted to Ghostty.
+# When a `global:` keybind is specified and Ghostty is launched or reloaded,
+# Ghostty will attempt to request these permissions. If the permissions are
+# not granted, the keybind will not work. On macOS, you can find these
+# permissions in System Preferences -> Privacy & Security -> Accessibility.
+keybind = super+page_up=scroll_page_up
+keybind = super+ctrl+equal=equalize_splits
+keybind = super+physical:four=goto_tab:4
+keybind = super+shift+down=jump_to_prompt:1
+keybind = super+shift+w=close_window
+keybind = super+shift+left_bracket=previous_tab
+keybind = super+backspace=text:\x15
+keybind = super+alt+w=close_tab
+keybind = super+w=close_surface
+keybind = super+alt+i=inspector:toggle
+keybind = super+physical:eight=goto_tab:8
+keybind = super+alt+right=goto_split:right
+keybind = shift+up=adjust_selection:up
+keybind = super+down=jump_to_prompt:1
+keybind = super+enter=toggle_fullscreen
+keybind = super+t=new_tab
+keybind = super+c=copy_to_clipboard
+keybind = super+shift+right_bracket=next_tab
+keybind = super+physical:one=goto_tab:1
+keybind = shift+left=adjust_selection:left
+keybind = super+equal=increase_font_size:1
+keybind = shift+page_up=adjust_selection:page_up
+keybind = super+physical:three=goto_tab:3
+keybind = super+right=text:\x05
+keybind = super+d=new_split:right
+keybind = super+ctrl+down=resize_split:down,10
+keybind = shift+end=adjust_selection:end
+keybind = super+plus=increase_font_size:1
+keybind = super+q=quit
+keybind = super+home=scroll_to_top
+keybind = super+ctrl+left=resize_split:left,10
+keybind = alt+left=esc:b
+keybind = super+ctrl+up=resize_split:up,10
+keybind = super+left=text:\x01
+keybind = super+shift+up=jump_to_prompt:-1
+keybind = shift+right=adjust_selection:right
+keybind = super+comma=open_config
+keybind = super+shift+comma=reload_config
+keybind = super+minus=decrease_font_size:1
+keybind = shift+page_down=adjust_selection:page_down
+keybind = ctrl+tab=next_tab
+keybind = super+a=select_all
+keybind = alt+right=esc:f
+keybind = super+shift+enter=toggle_split_zoom
+keybind = super+alt+down=goto_split:down
+keybind = super+ctrl+f=toggle_fullscreen
+keybind = super+ctrl+right=resize_split:right,10
+keybind = super+alt+shift+j=write_scrollback_file:open
+keybind = shift+down=adjust_selection:down
+keybind = ctrl+shift+tab=previous_tab
+keybind = super+n=new_window
+keybind = super+alt+left=goto_split:left
+keybind = super+page_down=scroll_page_down
+keybind = super+alt+shift+w=close_all_windows
+keybind = super+alt+up=goto_split:up
+keybind = super+shift+v=paste_from_selection
+keybind = super+left_bracket=goto_split:previous
+keybind = super+physical:nine=last_tab
+keybind = super+right_bracket=goto_split:next
+keybind = super+end=scroll_to_bottom
+keybind = super+shift+j=write_scrollback_file:paste
+keybind = super+shift+d=new_split:down
+keybind = super+zero=reset_font_size
+keybind = super+physical:five=goto_tab:5
+keybind = shift+home=adjust_selection:home
+keybind = super+physical:seven=goto_tab:7
+keybind = super+up=jump_to_prompt:-1
+keybind = super+k=clear_screen
+keybind = super+physical:two=goto_tab:2
+keybind = super+physical:six=goto_tab:6
+keybind = super+v=paste_from_clipboard
+
+# Whether to automatically copy selected text to the clipboard. `true`
+# will prefer to copy to the selection clipboard, otherwise it will copy to
+# the system clipboard.
+# 
+# The value `clipboard` will always copy text to the selection clipboard
+# as well as the system clipboard.
+# 
+# Middle-click paste will always use the selection clipboard. Middle-click
+# paste is always enabled even if this is `false`.
+# 
+# The default value is true on Linux and macOS.
+copy-on-select = false
+
+# The time in milliseconds between clicks to consider a click a repeat
+# (double, triple, etc.) or an entirely new single click. A value of zero will
+# use a platform-specific default. The default on macOS is determined by the
+# OS settings. On every other platform it is 500ms.
+click-repeat-interval = 500
+
+# Shell integration features to enable. These require our shell integration
+# to be loaded, either automatically via shell-integration or manually.
+# 
+# The format of this is a list of features to enable separated by commas. If
+# you prefix a feature with `no-` then it is disabled. If you omit a feature,
+# its default value is used, so you must explicitly disable features you don't
+# want. You can also use `true` or `false` to turn all features on or off.
+# 
+# Available features:
+# 
+#   * `cursor` - Set the cursor to a blinking bar at the prompt.
+# 
+#   * `sudo` - Set sudo wrapper to preserve terminfo.
+# 
+#   * `title` - Set the window title via shell integration.
+# 
+# Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
+shell-integration-features = no-cursor,no-sudo,title
+
+# Control the auto-update functionality of Ghostty. This is only supported
+# on macOS currently, since Linux builds are distributed via package
+# managers that are not centrally controlled by Ghostty.
+# 
+# Checking or downloading an update does not send any information to
+# the project beyond standard network information mandated by the
+# underlying protocols. To put it another way: Ghostty doesn't explicitly
+# add any tracking to the update process. The update process works by
+# downloading information about the latest version and comparing it
+# client-side to the current version.
+# 
+# Valid values are:
+# 
+#  * `off` - Disable auto-updates.
+#  * `check` - Check for updates and notify the user if an update is
+#    available, but do not automatically download or install the update.
+#  * `download` - Check for updates, automatically download the update,
+#    notify the user, but do not automatically install the update.
+# 
+# If unset, we defer to Sparkle's default behavior, which respects the
+# preference stored in the standard user defaults (`defaults(1)`).
+# 
+# Changing this value at runtime works after a small delay.
+auto-update = check
+
+# The release channel to use for auto-updates.
+# 
+# The default value of this matches the release channel of the currently
+# running Ghostty version. If you download a pre-release version of Ghostty
+# then this will be set to `tip` and you will receive pre-release updates.
+# If you download a stable version of Ghostty then this will be set to
+# `stable` and you will receive stable updates.
+# 
+# Valid values are:
+# 
+#  * `stable` - Stable, tagged releases such as "1.0.0".
+#  * `tip` - Pre-release versions generated from each commit to the
+#    main branch. This is the version that was in use during private
+#    beta testing by thousands of people. It is generally stable but
+#    will likely have more bugs than the stable channel.
+# 
+# Changing this configuration requires a full restart of
+# Ghostty to take effect.
+# 
+# This only works on macOS since only macOS has an auto-update feature.
+auto-update-channel = stable
+
