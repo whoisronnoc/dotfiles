@@ -26,3 +26,12 @@ eval "$(jenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# go
+#export GOPATH="$HOME/go"
+#export PATH="$PATH:$(go env GOPATH)/bin"
+
+# flutter
+export PATH=$HOME/dev/flutter/flutter/bin:$PATH
+
+. "/Users/connor/.deno/env"
