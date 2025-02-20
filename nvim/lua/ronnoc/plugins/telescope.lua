@@ -1,11 +1,5 @@
 return {
 	-- https://github.com/nvim-telescope/telescope.nvim
-	-- NOTE: Plugins can specify dependencies.
-	--
-	-- The dependencies are proper plugin specifications as well - anything
-	-- you do for a plugin at the top level, you can do for a dependency.
-	--
-	-- Use the `dependencies` key to specify the dependencies of a particular plugin
 	-- INFO: `brew install ripgrep` if you are on macOS
 
 	{ -- Fuzzy Finder (files, lsp, etc)
@@ -113,3 +107,4 @@ return {
 		end,
 	},
 }
+
