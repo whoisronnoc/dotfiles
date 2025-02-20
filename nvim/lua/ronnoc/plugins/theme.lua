@@ -1,38 +1,38 @@
 return {
---    -- https://github.com/navarasu/onedark.nvim
---   {
---    "navarasu/onedark.nvim",
---    priority = 1000,
---    config = function()
---      require('onedark').load()
---    end
---    },
-  {
-    "loctvl842/monokai-pro.nvim",
-    priority = 1000,
-    dependencies = {'nvim-tree/nvim-web-devicons'},
-    config = function()
-      require('monokai-pro').setup({
-        devicons = true,
-        filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
-        background_clear = {"toggleterm", "telescope", "notify"}
-      })
-      vim.cmd([[colorscheme monokai-pro]])
-    end
-  }
---    {
---        "gmr458/vscode_modern_theme.nvim",
---        lazy = false,
---        priority = 1000,
---        config = function()
---            require("vscode_modern").setup({
---                cursorline = true,
---                transparent_background = false,
---                nvim_tree_darker = false,
---            })
---            vim.cmd.colorscheme("vscode_modern")
---        end,
---    }
+	--    -- https://github.com/navarasu/onedark.nvim
+	--   {
+	--    "navarasu/onedark.nvim",
+	--    priority = 1000,
+	--    config = function()
+	--      require('onedark').load()
+	--    end
+	--    },
+	{
+		"loctvl842/monokai-pro.nvim",
+		priority = 1000,
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("monokai-pro").setup({
+				devicons = true,
+				filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
+				background_clear = { "toggleterm", "telescope", "notify" },
+			})
+			vim.cmd([[colorscheme monokai-pro]])
+		end,
+	},
+	--    {
+	--        "gmr458/vscode_modern_theme.nvim",
+	--        lazy = false,
+	--        priority = 1000,
+	--        config = function()
+	--            require("vscode_modern").setup({
+	--                cursorline = true,
+	--                transparent_background = false,
+	--                nvim_tree_darker = false,
+	--            })
+	--            vim.cmd.colorscheme("vscode_modern")
+	--        end,
+	--    }
 }
 -- -- Lua
 -- require('onedark').load()
