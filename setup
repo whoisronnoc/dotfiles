@@ -112,6 +112,7 @@ packages=(
   "youtube-dl"
   "zoxide"
   "ripgrep"
+  "starship"
 )
 # atuin fzf lsd zoxide jandedobbeleer/oh-my-posh/oh-my-posh bat neovim
 
