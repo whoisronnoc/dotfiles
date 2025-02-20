@@ -6,15 +6,18 @@ local opt = vim.opt -- for conciseness
 
 -- sets the listing style to a tree view, which displays files and directories in a hierarchical tree format.
 vim.cmd("let g:netrw_liststyle = 3")
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+
 
 -- Make line numbers default
 opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+-- opt.relativenumber = false
 
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
@@ -34,9 +37,9 @@ opt.list = true
 opt.listchars = {
     tab = "» ",
     trail = "·",
-    nbsp = "␣"
+    nbsp = "␣",
+    space = '·',
 }
--- space = '·',
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
@@ -83,14 +86,14 @@ opt.cursorline = true
 opt.scrolloff = 10
 
 -- tabs & indentation
-vim.opt.smarttab = true -- make tab insert indents in leading whitespace
-vim.opt.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
-vim.opt.softtabstop = 2 -- number of spaces that a <Tab> key in the file counts for
-vim.opt.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
-vim.opt.expandtab = true -- expand tab to spaces
-vim.opt.autoindent = true -- copy indent from current line when starting new one
-vim.opt.encoding = "utf-8"
+opt.smarttab = true -- make tab insert indents in leading whitespace
+opt.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
+opt.softtabstop = 2 -- number of spaces that a <Tab> key in the file counts for
+opt.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
+opt.expandtab = true -- expand tab to spaces
+opt.autoindent = true -- copy indent from current line when starting new one
+opt.encoding = "utf-8"
 
 opt.wrap = true -- wrap lines
 
-opt.conceallevel = 1 -- Concealed text is shown with a placeholder character.
+opt.conceallevel = 0 -- Concealed text is shown with a placeholder character.

@@ -1,8 +1,12 @@
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {{ -- File tree
     "nvim-neo-tree/neo-tree.nvim",
-    -- branch = "v3.x",
-    dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-    "MunifTanjim/nui.nvim"},
+    branch = "v3.x",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "MunifTanjim/nui.nvim"
+    },
     cmd = "Neotree",
     keys = {{
         "\\",
@@ -24,6 +28,7 @@ return {{ -- File tree
     opts = {
         filesystem = {
             window = {
+                width = 24,
                 mappings = {
                     ["\\"] = "close_window"
                 }
@@ -38,7 +43,7 @@ return {{ -- File tree
                 enabled = true, -- This will find and focus the file in the active buffer every time
                 --               -- the current file is changed while the tree is open.
                 leave_dirs_open = false -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
-            }
+            } 
         },
         buffers = {
             follow_current_file = {
@@ -91,7 +96,7 @@ return {{ -- File tree
                 highlight = "NeoTreeModified"
             },
             name = {
-                trailing_slash = false,
+                trailing_slash = true,
                 use_git_status_colors = true,
                 highlight = "NeoTreeFileName"
             },
@@ -113,5 +118,8 @@ return {{ -- File tree
                 }
             }
         }
-    }
+    },
+  -- config = function()
+  --  require("neo-tree").setup(opts)
+  -- end
 }}

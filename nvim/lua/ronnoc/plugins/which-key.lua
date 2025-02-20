@@ -1,3 +1,4 @@
+-- https://github.com/folke/which-key.nvim
 return { -- NOTE: Plugins can also be added by using a table,
 -- with the first argument being the link and the following
 -- keys can be used to configure plugin behavior/loading/etc.
@@ -63,62 +64,62 @@ return { -- NOTE: Plugins can also be added by using a table,
 
         --- Document existing key chains
         --- You can add any mappings here, or use `require('which-key').add()` later
-        ---@type wk.Spec
-        spec = {{
-            "<leader>c",
-            group = "[C]ode",
-            mode = {"n", "x"}
-        }, {
-            "<leader>d",
-            group = "[D]ocument"
-        }, {
-            "<leader>r",
-            group = "[R]ename"
-        }, {
-            "<leader>s",
-            group = "[S]earch"
-        }, {
-            "<leader>n",
-            group = "[N]eoTree"
-        }, {
-            "<leader>w",
-            group = "[W]orkspace"
-        }, {
-            "<leader>t",
-            group = "[T]oggle"
-        }, {
-            "<leader>h",
-            group = "Git [H]unk",
-            mode = {"n", "v"}
-        }, {
-            "K",
-            desc = "LSP Hover",
-            mode = {"n"}
-        }, {
-            "<leader><leader>",
-            group = "EasyMotion",
-            mode = {"n"},
-            {
-                "<leader><leader>f",
-                desc = "EasyMotion [F]ind"
-            },
-            {
-                "<leader><leader>w",
-                desc = "EasyMotion [W]ord"
-            },
-            {
-                "<leader><leader>l",
-                desc = "EasyMotion [L]ine"
-            },
-            {
-                "<leader><leader>j",
-                desc = "EasyMotion [J]ump"
-            },
-            {
-                "<leader><leader>s",
-                desc = "EasyMotion [S]earch"
-            }
-        }}
+        -- ---@type wk.Spec
+        -- spec = {{
+        --     "<leader>c",
+        --     group = "[C]ode",
+        --     mode = {"n", "x"}
+        -- }, {
+        --     "<leader>d",
+        --     group = "[D]ocument"
+        -- }, {
+        --     "<leader>r",
+        --     group = "[R]ename"
+        -- }, {
+        --     "<leader>s",
+        --     group = "[S]earch"
+        -- }, {
+        --     "<leader>n",
+        --     group = "[N]eoTree"
+        -- }, {
+        --     "<leader>w",
+        --     group = "[W]orkspace"
+        -- }, {
+        --     "<leader>t",
+        --     group = "[T]oggle"
+        -- }, {
+        --     "<leader>h",
+        --     group = "Git [H]unk",
+        --     mode = {"n", "v"}
+        -- }, {
+        --     "K",
+        --     desc = "LSP Hover",
+        --     mode = {"n"}
+        -- }, {
+        --     "<leader><leader>",
+        --     group = "EasyMotion",
+        --     mode = {"n"},
+        --     {
+        --         "<leader><leader>f",
+        --         desc = "EasyMotion [F]ind"
+        --     },
+        --     {
+        --         "<leader><leader>w",
+        --         desc = "EasyMotion [W]ord"
+        --     },
+        --     {
+        --         "<leader><leader>l",
+        --         desc = "EasyMotion [L]ine"
+        --     },
+        --     {
+        --         "<leader><leader>j",
+        --         desc = "EasyMotion [J]ump"
+        --     },
+        --     {
+        --         "<leader><leader>s",
+        --         desc = "EasyMotion [S]earch"
+        --     }
+        -- }}
     },
     -- Show the local buffer mappings
     keys = {{

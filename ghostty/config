@@ -1,5 +1,13 @@
 # https://ghostty.org/docs/config/reference
-font-family = FiraCode Nerd Font Mono
+font-family = JetBrainsMono NFM SemiBold
+
+font-family-bold = JetBrainsMono NFM Bold
+font-family-italic = JetBrainsMono NFM Italic
+font-family-bold-italic = JetBrainsMono NFM Bold Italic
+#font-synthetic-style = bold,italic,bold-italic
+
+bold-is-bright = true
+
 #font-feature = -calt, -liga, -dlig
 font-size = 14
 
@@ -157,8 +165,6 @@ adw-toolbar-style = raised
 gtk-adwaita = true
 
 desktop-notifications = true
-
-bold-is-bright = false
 
 term = xterm-ghostty
 
