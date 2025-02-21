@@ -1,3 +1,4 @@
+-- install tools for formatting with mason-tool-installer
 return {
 	"stylua",
 	"black",

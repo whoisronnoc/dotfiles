@@ -1,0 +1,25 @@
+-- install languages for treesitter for syntax highlighting
+return {
+	"bash",
+	"diff",
+	"json",
+	"javascript",
+	"typescript",
+	"tsx",
+	"yaml",
+	"html",
+	"css",
+	"prisma",
+	"markdown",
+	"markdown_inline",
+	"graphql",
+	"bash",
+	"lua",
+	"vim",
+	"dockerfile",
+	"gitignore",
+	"query",
+	"c",
+	"vue",
+}
+
