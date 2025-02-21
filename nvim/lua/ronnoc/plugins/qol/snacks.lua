@@ -10,6 +10,14 @@ return {
 	},
 	keys = {
 		{
+			"<c-/>",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "Toggle Terminal",
+		},
+
+		{
 			"<leader>.",
 			function()
 				Snacks.scratch()
