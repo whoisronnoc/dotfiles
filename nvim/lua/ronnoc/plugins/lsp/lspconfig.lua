@@ -1,4 +1,32 @@
+--- @return LazyPluginSpec[]
 return {
+	--- @type LazyPluginSpec
+	{
+		"Bilal2453/luvit-meta",
+		lazy = true,
+	},
+	--- @type LazyPluginSpec
+	{
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		"folke/lazydev.nvim",
+		dependencies = { "Bilal2453/luvit-meta" },
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "lazy.nvim", words = { "Lazy" } },
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+			integrations = {
+
+				cmp = true,
+				lspconfig = true,
+			},
+		},
+	},
+	--- @type LazyPluginSpec
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -15,6 +43,7 @@ return {
 			})
 		end,
 	},
+	--- @type LazyPluginSpec
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
