@@ -6,3 +6,5 @@
 \.vim/spell/
 
 vim/bundle/
+
+backup/*
