@@ -31,6 +31,7 @@ return {
 		},
 		-- NOTE: Neotree configuration here is not the full config.
 		opts = {
+			close_if_last_window = true, -- close neotree if it is the only window left
 			filesystem = {
 				window = {
 					width = 24,
@@ -59,7 +60,7 @@ return {
 			},
 			default_component_configs = {
 				container = {
-					enable_character_fade = true,
+					enable_character_fade = false,
 				},
 				indent = {
 					indent_size = 2,
