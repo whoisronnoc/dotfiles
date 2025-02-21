@@ -14,12 +14,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		import = "ronnoc.plugins",
-	},
-	{
-		import = "ronnoc.plugins.lsp",
-	},
+	{ import = "ronnoc.plugins" },
+	{ import = "ronnoc.plugins.lsp" },
+	{ import = "ronnoc.plugins.theme" },
+	{ import = "ronnoc.plugins.autocomplete" },
 }, {
 	checker = {
 		enabled = true,
