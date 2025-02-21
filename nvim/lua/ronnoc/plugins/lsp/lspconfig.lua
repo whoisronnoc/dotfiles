@@ -4,6 +4,7 @@ return {
 		config = function()
 			local mason = require("mason")
 			mason.setup({
+				PATH = "prepend", -- "skip" seems to cause the spawning error
 				ui = {
 					icons = {
 						package_installed = "✓",
@@ -11,10 +12,6 @@ return {
 						package_uninstalled = "✗",
 					},
 				},
-			})
-			local mason_tool_installer = require("mason-tool-installer")
-			mason_tool_installer.setup({
-				ensure_installed = { "stylua", "black", "isort", "prettier", "eslint_d" },
 			})
 		end,
 	},
@@ -29,6 +26,8 @@ return {
 			"b0o/schemastore.nvim",
 		},
 		config = function()
+			vim.diagnostic.config({ update_in_insert = true })
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", {
 					clear = true,
@@ -99,6 +98,12 @@ return {
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
 			local servers = require("ronnoc.plugins.lsp.servers._servers")
+
+			local mason_tool_installer = require("mason-tool-installer")
+			local tools = require("ronnoc.plugins.lsp.formatters._tools")
+			mason_tool_installer.setup({
+				ensure_installed = tools,
+			})
 
 			local lspconfig = require("lspconfig")
 			for server_name, config in pairs(servers) do
