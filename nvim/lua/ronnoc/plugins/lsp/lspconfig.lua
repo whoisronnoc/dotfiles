@@ -98,38 +98,7 @@ return {
 			})
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
-			local servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-						},
-					},
-				},
-				jsonls = {
-					settings = {
-						json = {
-							schemas = require("schemastore").json.schemas(),
-							validate = {
-								enable = true,
-							},
-						},
-					},
-				},
-				yamlls = {
-					settings = {
-						yaml = {
-							schemaStore = {
-								enable = false,
-								url = "",
-							},
-							schemas = require("schemastore").yaml.schemas(),
-						},
-					},
-				},
-			}
+			local servers = require("ronnoc.plugins.lsp.servers._servers")
 
 			local lspconfig = require("lspconfig")
 			for server_name, config in pairs(servers) do
