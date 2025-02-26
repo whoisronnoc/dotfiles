@@ -12,7 +12,6 @@ vim.cmd("let g:netrw_liststyle = 3")
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-
 -- Make line numbers default
 opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -35,10 +34,10 @@ opt.swapfile = false
 --  and `:help 'listchars'`
 opt.list = true
 opt.listchars = {
-    tab = "» ",
-    trail = "·",
-    nbsp = "␣",
-    space = '·',
+	tab = "» ",
+	trail = "·",
+	nbsp = "␣",
+	space = "·",
 }
 
 -- Enable mouse mode, can be useful for resizing splits for example!
@@ -97,3 +96,6 @@ opt.encoding = "utf-8"
 opt.wrap = false -- wrap lines
 
 opt.conceallevel = 0 -- Concealed text is shown with a placeholder character.
+
+opt.title = true
+opt.titlestring = [[%f]]
