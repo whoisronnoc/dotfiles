@@ -1,4 +1,4 @@
-#zmodload zsh/zprof 
+# zmodload zsh/zprof 
 # Add deno completions to search path
 # if [[ ":$FPATH:" != *":/Users/connor/.zsh/completions:"* ]]; then export FPATH="/Users/connor/.zsh/completions:$FPATH"; fi
 # homebrew
@@ -44,7 +44,7 @@ zinit snippet OMZP::common-aliases
 # zinit snippet OMZP::docker-compose
 # zinit snippet OMZP::brew
 # zinit snippet OMZP::jsontools
-zinit snippet OMZP::nvm
+# zinit snippet OMZP::nvm
 # zinit snippet OMZP::jenv
 # zinit snippet OMZP::rvm
 # zinit snippet OMZP::gem
@@ -119,10 +119,4 @@ alias lg='lazygit'
 
 #eval "$(gh copilot alias -- zsh)"
 
-#. "/Users/connor/.deno/env"
-
-#zprof
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# zprof

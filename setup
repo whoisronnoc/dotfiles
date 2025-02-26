@@ -13,9 +13,7 @@ echo -e "symlinking dotfiles\n"
 dotdir=$PWD
 sources=(
   "$dotdir/profile"
-  "$dotdir/profile"
   "$dotdir/zshrc"
-  "$dotdir/ohmyposh"
   "$dotdir/atuin"
   "$dotdir/vimrc"
   "$dotdir/vim"
@@ -26,9 +24,7 @@ sources=(
 )
 destinations=(
   "$HOME/.profile"
-  "$HOME/.zprofile"
   "$HOME/.zshrc"
-  "$HOME/.config/ohmyposh"
   "$HOME/.config/atuin"
   "$HOME/.vimrc"
   "$HOME/.vim"
@@ -97,7 +93,6 @@ packages=(
   "htop"
   "httpie"
   "ipmitool"
-  "jandedobbeleer/oh-my-posh/oh-my-posh"
   "jenv"
   "jq"
   "lsd"
