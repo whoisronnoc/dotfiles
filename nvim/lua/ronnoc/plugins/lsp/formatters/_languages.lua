@@ -9,6 +9,7 @@ return {
 	"yaml",
 	"html",
 	"css",
+	"scss",
 	"prisma",
 	"markdown",
 	"markdown_inline",
@@ -22,4 +23,3 @@ return {
 	"c",
 	"vue",
 }
-
