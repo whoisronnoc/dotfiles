@@ -11,6 +11,12 @@ return {
 			-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md
 			-- Buffer removing (unshow, delete, wipeout), which saves window layout
 			require("mini.bufremove").setup({})
+
+			require("mini.indentscope").setup({
+				draw = { delay = 0, animation = require("mini.indentscope").gen_animation.none() },
+				options = { border = "both" },
+				symbol = "▏",
+			})
 		end,
 	},
 }
