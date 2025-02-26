@@ -94,6 +94,6 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 opt.encoding = "utf-8"
 
-opt.wrap = true -- wrap lines
+opt.wrap = false -- wrap lines
 
 opt.conceallevel = 0 -- Concealed text is shown with a placeholder character.

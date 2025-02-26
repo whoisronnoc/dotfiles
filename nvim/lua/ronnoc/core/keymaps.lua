@@ -103,5 +103,14 @@ keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', {
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
-keymap.set('', '<ScrollWheelUp>', '<C-Y>', { desc = 'Scroll up one line' })
-keymap.set('', '<ScrollWheelDown>', '<C-E>', { desc = 'Scroll down one line' })
+keymap.set("", "<ScrollWheelUp>", "<C-Y>", { desc = "Scroll up one line" })
+keymap.set("", "<ScrollWheelDown>", "<C-E>", { desc = "Scroll down one line" })
+
+keymap.set("n", "<leader>wt", function()
+	if vim.opt.wrap:get() then
+		vim.cmd("set nowrap")
+	else
+		vim.cmd("set wrap")
+	end
+end, { desc = "[w]rap [t]ext" })
+
