@@ -1,23 +1,23 @@
 # https://ghostty.org/docs/config/reference
 # command = tmux
 
-font-family = JetBrainsMono NFM Regular
-font-family-bold = JetBrainsMono NFM Bold
-font-family-italic = JetBrainsMono NFM Italic
-font-family-bold-italic = JetBrainsMono NFM Bold Italic
+#font-family = JetBrainsMono NFM Regular
+#font-family-bold = JetBrainsMono NFM Bold
+#font-family-italic = JetBrainsMono NFM Italic
+#font-family-bold-italic = JetBrainsMono NFM Bold Italic
 bold-is-bright = false
 
 font-feature = -calt, -liga, -dlig
 font-size = 14
 
-theme = Monokai Pro Spectrum
+theme = dark:Monokai Pro Spectrum,light:catppuccin-latte
 
-background = #000000
-foreground = #c7c7c7
-cursor-color = #c7c7c7
-cursor-text = #000000
-selection-background = #c6dcfc
-selection-foreground = #000000
+# background = #000000
+# foreground = #c7c7c7
+# cursor-color = #c7c7c7
+# cursor-text = #000000
+# selection-background = #c6dcfc
+# selection-foreground = #000000
 
 selection-invert-fg-bg = false
 minimum-contrast = 1
