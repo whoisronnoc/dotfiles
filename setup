@@ -13,6 +13,7 @@ echo -e "symlinking dotfiles\n"
 dotdir=$PWD
 sources=(
   "$dotdir/profile"
+  "$dotdir/profile"
   "$dotdir/zshrc"
   "$dotdir/atuin"
   "$dotdir/vimrc"
@@ -24,6 +25,7 @@ sources=(
 )
 destinations=(
   "$HOME/.profile"
+  "$HOME/.zprofile"
   "$HOME/.zshrc"
   "$HOME/.config/atuin"
   "$HOME/.vimrc"

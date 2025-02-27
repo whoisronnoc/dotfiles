@@ -11,12 +11,10 @@ export PATH="$PATH:$HOME/.universe/bin"
 
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # go
 #export GOPATH="$HOME/go"
@@ -25,9 +23,10 @@ eval "$(pyenv init -)"
 # flutter
 # export PATH=$HOME/dev/flutter/flutter/bin:$PATH
 
-# NVM initialisation
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# deno
+. "$HOME/.deno/env"
+
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
@@ -36,8 +35,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# deno
-. "$HOME/.deno/env"
-
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+# NVM initialisation
+export NVM_DIR="$HOME/.nvm"
 
