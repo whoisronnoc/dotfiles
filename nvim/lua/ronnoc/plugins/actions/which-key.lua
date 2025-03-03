@@ -101,6 +101,14 @@ return { -- NOTE: Plugins can also be added by using a table,
 					mode = { "n", "v" },
 				},
 				{
+					"<leader>u",
+					group = "[U]ndo",
+				},
+				{
+					"<leader>g",
+					group = "[G]it",
+				},
+				{
 					"K",
 					desc = "LSP Hover",
 					mode = { "n" },

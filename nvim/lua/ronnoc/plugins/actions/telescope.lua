@@ -82,6 +82,10 @@ return {
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing [B]uffers" })
 
+			vim.keymap.set("n", "<D-f>", builtin.buffers, { desc = "[S]earch in file" })
+			vim.keymap.set("n", "<D-S-f>", builtin.live_grep, { desc = "[S]earch grep" })
+			vim.keymap.set("n", "<D-p>", builtin.find_files, { desc = "[S]earch files" })
+
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
 				-- You can pass additional configuration to Telescope to change the theme, layout, etc.
@@ -107,4 +111,3 @@ return {
 		end,
 	},
 }
-
