@@ -19,6 +19,7 @@ return {
 							fg = "#ff9e64",
 						},
 					},
+					"rest",
 					{ "encoding" },
 					{ "fileformat" },
 					{ "filetype" },

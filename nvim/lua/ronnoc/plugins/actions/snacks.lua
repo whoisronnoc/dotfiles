@@ -3,7 +3,6 @@ return {
 	"folke/snacks.nvim",
 	---@type snacks.config
 	opts = {
-		image = {},
 		terminal = {},
 		toggle = {},
 		scratch = {},
@@ -16,7 +15,6 @@ return {
 			end,
 			desc = "Toggle Terminal",
 		},
-
 		{
 			"<leader>.",
 			function()

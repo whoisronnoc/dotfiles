@@ -31,6 +31,9 @@ return {
 		},
 		-- NOTE: Neotree configuration here is not the full config.
 		opts = {
+			source_selector = {
+				winbar = true,
+			},
 			close_if_last_window = true, -- close neotree if it is the only window left
 			filesystem = {
 				window = {
@@ -52,10 +55,11 @@ return {
 				},
 			},
 			buffers = {
+				leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 				follow_current_file = {
 					enabled = true, -- This will find and focus the file in the active buffer every time
 					--              -- the current file is changed while the tree is open.
-					leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+					leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 				},
 			},
 			default_component_configs = {
