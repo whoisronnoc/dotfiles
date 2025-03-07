@@ -1,5 +1,6 @@
 return {
 	{
+		emabled = true,
 		"github/copilot.vim",
 		cmd = "Copilot",
 		build = ":Copilot auth",
@@ -23,6 +24,7 @@ return {
 		end,
 	},
 	{
+		emabled = false,
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "main",
 		cmd = "CopilotChat",

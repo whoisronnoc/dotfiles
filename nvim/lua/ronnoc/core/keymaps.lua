@@ -114,3 +114,11 @@ keymap.set("n", "<leader>wt", function()
 	end
 end, { desc = "[w]rap [t]ext" })
 
+-- map left-alt plus left arrow to 'h'
+keymap.set("n", "<Esc-b>", "B", { desc = "Move cursor to the left one word" })
+keymap.set("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" })
+
+keymap.set("n", "<D-x>", "dd<CR>", { desc = "Delete current line" })
+keymap.set("n", "<D-c>", "yy<CR>", { desc = "Copy current line" })
+
+keymap.set("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })

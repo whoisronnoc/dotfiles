@@ -80,7 +80,10 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "copilot", "lsp", "path", "snippets", "buffer", "lazydev" },
+				-- per_filetype = {
+				--    codecompanion = { "codecompanion" },
+				-- },
+				default = { "codecompanion", "lsp", "path", "snippets", "buffer", "lazydev" },
 				-- default = { "copilot", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					lazydev = {
@@ -89,22 +92,22 @@ return {
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
 					},
-					copilot = {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-						opts = {
-							max_completions = 3,
-							max_attempts = 4,
-							-- kind = "Copilot",
-							debounce = 500, ---@type integer | false
-							auto_refresh = {
-								backward = true,
-								forward = true,
-							},
-						},
-					},
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-copilot",
+					-- 	score_offset = 100,
+					-- 	async = true,
+					-- 	opts = {
+					-- 		max_completions = 3,
+					-- 		max_attempts = 4,
+					-- 		-- kind = "Copilot",
+					-- 		debounce = 500, ---@type integer | false
+					-- 		auto_refresh = {
+					-- 			backward = true,
+					-- 			forward = true,
+					-- 		},
+					-- 	},
+					-- },
 				},
 			},
 			-- Completion behavior
