@@ -1,14 +1,34 @@
 -- Autocompletion
+--- @module 'blink.cmp'
+
+--- @type blink.cmp.WindowBorder
+local border = "none"
+
 return {
+	--- @type LazyPluginSpec
 	{
 		"saghen/blink.cmp",
 		event = "InsertEnter",
+		-- optional: provides snippets for the snippet source
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-			"fang2hou/blink-copilot",
+			{ "fang2hou/blink-copilot", version = "*" },
 		},
+
+		-- use a release tag to download pre-built binaries
 		version = "*",
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
+
+		--- @module 'blink.cmp'
+		--- @type blink.cmp.Config
 		opts = {
+			-- 'default' for mappings similar to built-in completion
+			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+			-- See the full "keymap" documentation for information on defining your own keymap.
 			keymap = {
 				preset = "default",
 
@@ -80,34 +100,31 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				-- per_filetype = {
-				--    codecompanion = { "codecompanion" },
-				-- },
-				default = { "codecompanion", "lsp", "path", "snippets", "buffer", "lazydev" },
-				-- default = { "copilot", "lsp", "path", "snippets", "buffer" },
+				default = { "copilot", "lsp", "path", "snippets", "lazydev" },
+				-- removed "buffer"
 				providers = {
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 100,
+						score_offset = 50,
 					},
-					-- copilot = {
-					-- 	name = "copilot",
-					-- 	module = "blink-copilot",
-					-- 	score_offset = 100,
-					-- 	async = true,
-					-- 	opts = {
-					-- 		max_completions = 3,
-					-- 		max_attempts = 4,
-					-- 		-- kind = "Copilot",
-					-- 		debounce = 500, ---@type integer | false
-					-- 		auto_refresh = {
-					-- 			backward = true,
-					-- 			forward = true,
-					-- 		},
-					-- 	},
-					-- },
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						score_offset = 100,
+						async = true,
+						opts = {
+							max_completions = 3,
+							max_attempts = 4,
+							-- kind = "Copilot",
+							debounce = 500, ---@type integer | false
+							auto_refresh = {
+								backward = true,
+								forward = true,
+							},
+						},
+					},
 				},
 			},
 			-- Completion behavior
@@ -129,6 +146,8 @@ return {
 					update_delay_ms = 50,
 					-- Whether to use treesitter highlighting, disable if you run into performance issues
 					treesitter_highlighting = true,
+					-- Window borders to easier see
+					window = { border = border },
 				},
 				list = {
 					selection = {
@@ -144,12 +163,15 @@ return {
 					},
 				},
 				menu = {
+					auto_show = true,
 					draw = vim.g.have_nerd_font and {} or {
 						columns = {
 							{ "label", "label_description", gap = 1 },
 							{ "kind" },
 						},
 					},
+					-- Window borders to easier see
+					border = border,
 				},
 			},
 			-- Show the signature help when typing
@@ -169,6 +191,8 @@ return {
 					-- Show the signature help window when the cursor comes after a trigger character when entering insert mode
 					show_on_insert_on_trigger_character = true,
 				},
+				-- Window borders to easier see
+				window = { border = border },
 			},
 		},
 		opts_extend = { "sources.default" },
