@@ -1,4 +1,5 @@
 return {
+	--- @type LazyPluginSpec
 	{
 		"loctvl842/monokai-pro.nvim",
 		priority = 1000,
@@ -12,10 +13,12 @@ return {
 			vim.cmd([[colorscheme monokai-pro]])
 		end,
 	},
+	--- @type LazyPluginSpec
 	{
 		"NLKNguyen/papercolor-theme",
 		lazy = true,
 	},
+	--- @type LazyPluginSpec
 	{
 		"f-person/auto-dark-mode.nvim",
 		opts = {

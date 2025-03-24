@@ -37,7 +37,7 @@ return {
 			close_if_last_window = true, -- close neotree if it is the only window left
 			filesystem = {
 				window = {
-					width = 24,
+					width = 32,
 					mappings = {
 						["\\"] = "close_window",
 					},
