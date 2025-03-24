@@ -97,7 +97,7 @@ opt.encoding = "utf-8"
 
 opt.wrap = false -- wrap lines
 
-opt.conceallevel = 0 -- Concealed text is shown with a placeholder character.
+opt.conceallevel = 1 -- Concealed text is shown with a placeholder character.
 
 opt.title = true
 opt.titlestring = [[%f]]
