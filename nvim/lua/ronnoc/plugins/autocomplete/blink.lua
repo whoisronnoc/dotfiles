@@ -11,10 +11,13 @@ return {
 		event = "InsertEnter",
 		-- optional: provides snippets for the snippet source
 		dependencies = {
+			"xzbdmw/colorful-menu.nvim",
 			"rafamadriz/friendly-snippets",
 			{ "fang2hou/blink-copilot", version = "*" },
+			"mikavilpas/blink-ripgrep.nvim",
+			-- "Kaiser-Yang/blink-cmp-avante",
+			-- "giuxtaposition/blink-cmp-copilot",
 		},
-
 		-- use a release tag to download pre-built binaries
 		version = "*",
 		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -30,77 +33,172 @@ return {
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
 			keymap = {
-				preset = "default",
-
-				-- Default mappings
-				-- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-				-- ['<C-e>'] = { 'cancel', 'fallback' },
-				-- ['<C-y>'] = { 'select_and_accept' },
-
-				-- Select the [p]revious item
-				-- ['<C-p>'] = { 'select_prev', 'fallback' },
-				-- ['<Up>'] = { 'select_prev', 'fallback' },
-
-				-- Select the [n]ext item
-				-- ['<C-n>'] = { 'select_next', 'fallback' },
-				-- ['<Down>'] = { 'select_next', 'fallback' },
-
-				-- Scroll the documentation window [b]ack / [f]orward
-				-- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-				-- ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-				-- unbinding tab this now goes to copilot if you remove copilot
-				-- add this back
-				-- ['<Tab>'] = { 'snippet_forward', 'fallback' },
-				-- ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-
-				-- Enter will insert whether is selected
-				-- or enter if nothing is yet
-				["<CR>"] = { "accept", "fallback" },
-				-- Tab will accept the ghost text or the selection first
-				["<Tab>"] = {
+				preset = "super-tab",
+				["<A-1>"] = {
 					function(cmp)
-						if cmp.snippet_active() then
-							return cmp.accept()
-						else
-							return cmp.select_and_accept()
-						end
+						cmp.accept({ index = 1 })
 					end,
-					"snippet_forward",
-					"fallback",
 				},
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-				-- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
-
-				-- Accept ([y]es) the completion.
-				--  This will auto-import if your LSP supports it.
-				--  This will expand snippets if the LSP sent a snippet.
-
-				-- cmdline = {
-				-- 	-- disable enter for the cmdline completion
-				-- 	["<CR>"] = {},
-				-- },
+				["<A-2>"] = {
+					function(cmp)
+						cmp.accept({ index = 2 })
+					end,
+				},
+				["<A-3>"] = {
+					function(cmp)
+						cmp.accept({ index = 3 })
+					end,
+				},
+				["<A-4>"] = {
+					function(cmp)
+						cmp.accept({ index = 4 })
+					end,
+				},
+				["<A-5>"] = {
+					function(cmp)
+						cmp.accept({ index = 5 })
+					end,
+				},
+				["<A-6>"] = {
+					function(cmp)
+						cmp.accept({ index = 6 })
+					end,
+				},
+				["<A-7>"] = {
+					function(cmp)
+						cmp.accept({ index = 7 })
+					end,
+				},
+				["<A-8>"] = {
+					function(cmp)
+						cmp.accept({ index = 8 })
+					end,
+				},
+				["<A-9>"] = {
+					function(cmp)
+						cmp.accept({ index = 9 })
+					end,
+				},
+				["<A-0>"] = {
+					function(cmp)
+						cmp.accept({ index = 10 })
+					end,
+				},
 			},
 
 			appearance = {
-				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
-				-- Useful for when your theme doesn't support blink.cmp
-				-- Will be removed in a future release
 				use_nvim_cmp_as_default = true,
-				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				-- Adjusts spacing to ensure icons are aligned
 				nerd_font_variant = "mono",
+
 				-- Custom icons
 				kind_icons = {
-					Copilot = "",
+					Copilot = "",
+					Text = "󰉿",
+					Method = "󰊕",
+					Function = "󰊕",
+					Constructor = "󰒓",
+
+					Field = "󰜢",
+					Variable = "󰆦",
+					Property = "󰖷",
+
+					Class = "󱡠",
+					Interface = "󱡠",
+					Struct = "󱡠",
+					Module = "󰅩",
+
+					Unit = "󰪚",
+					Value = "󰦨",
+					Enum = "󰦨",
+					EnumMember = "󰦨",
+
+					Keyword = "󰻾",
+					Constant = "󰏿",
+
+					Snippet = "󱄽",
+					Color = "󰏘",
+					File = "󰈔",
+					Reference = "󰬲",
+					Folder = "󰉋",
+					Event = "󱐋",
+					Operator = "󰪚",
+					TypeParameter = "󰬛",
 				},
 			},
 
-			-- Default list of enabled providers defined so that you can extend it
-			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			completion = {
+				ghost_text = {
+					enabled = true,
+					show_with_selection = true,
+					show_without_selection = true,
+				},
+
+				documentation = {
+					-- auto_show = true,
+					-- auto_show_delay_ms = 500,
+					-- update_delay_ms = 50,
+					treesitter_highlighting = true,
+					window = { border = border },
+				},
+
+				-- list = {
+				-- 	selection = {
+				-- 		preselect = false,
+				-- 		-- preselect = function(ctx)
+				-- 		-- 	return ctx.mode ~= "cmdline"
+				-- 		-- 	-- return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
+				-- 		-- end,
+				-- 		auto_insert = false,
+				-- 		-- auto_insert = function(ctx)
+				-- 		-- 	return ctx.mode ~= "cmdline"
+				-- 		-- end,
+				-- 	},
+				-- },
+
+				menu = {
+					-- auto_show = true,
+					draw = {
+						columns = { { "kind_icon" }, { "label", gap = 1 } },
+
+						-- components = {
+						-- 	label = {
+						-- 		text = require("colorful-menu").blink_components_text,
+						-- 		highlight = require("colorful-menu").blink_components_highlight,
+						-- 	},
+						-- },
+					},
+					border = border,
+				},
+			},
+
+			-- Show the signature help when typing
+			signature = {
+				-- enabled = true,
+				-- trigger = {
+				-- 	enabled = true,
+				-- 	show_on_keyword = false,
+				-- 	blocked_trigger_characters = {},
+				-- 	blocked_retrigger_characters = {},
+				-- 	show_on_trigger_character = true,
+				-- 	show_on_insert = true,
+				-- 	show_on_insert_on_trigger_character = true,
+				-- },
+				window = { border = border },
+			},
+
+			cmdline = { enabled = true },
+
 			sources = {
-				default = { "copilot", "lsp", "path", "snippets", "lazydev" },
+				default = {
+					-- "avante",
+					"copilot",
+					"lsp",
+					"path",
+					"snippets",
+					"lazydev",
+					"buffer",
+					-- "ripgrep",
+				},
 				-- removed "buffer"
 				providers = {
 					lazydev = {
@@ -109,6 +207,33 @@ return {
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 50,
 					},
+
+					-- ripgrep = {
+					-- 	module = "blink-ripgrep",
+					-- 	name = "Ripgrep",
+					-- 	opts = {
+					-- 		prefix_min_len = 3,
+					-- 		context_size = 5,
+					-- 		max_filesize = "1M",
+					-- 		additional_rg_options = {},
+					-- 	},
+					-- },
+
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-cmp-copilot",
+					-- 	score_offset = 100,
+					-- 	async = true,
+					-- 	transform_items = function(_, items)
+					-- 		local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+					-- 		local kind_idx = #CompletionItemKind + 1
+					-- 		CompletionItemKind[kind_idx] = "Copilot"
+					-- 		for _, item in ipairs(items) do
+					-- 			item.kind = kind_idx
+					-- 		end
+					-- 		return items
+					-- 	end,
+					-- },
 					copilot = {
 						name = "copilot",
 						module = "blink-copilot",
@@ -117,7 +242,7 @@ return {
 						opts = {
 							max_completions = 3,
 							max_attempts = 4,
-							-- kind = "Copilot",
+							kind = "Copilot",
 							debounce = 500, ---@type integer | false
 							auto_refresh = {
 								backward = true,
@@ -125,76 +250,20 @@ return {
 							},
 						},
 					},
+					-- avante = {
+					-- 	module = "blink-cmp-avante",
+					-- 	name = "Avante",
+					-- 	opts = {
+					-- 		-- options for blink-cmp-avante
+					-- 	},
+					-- },
 				},
-			},
-			-- Completion behavior
-			completion = {
-				ghost_text = {
-					enabled = true,
-					-- Show the ghost text when an item has been selected
-					show_with_selection = true,
-					-- Show the ghost text when no item has been selected, defaulting to the first item
-					show_without_selection = true,
-				},
-				documentation = {
-					-- Controls whether the documentation window will automatically show when selecting a completion item
-					auto_show = true,
-					-- Delay before showing the documentation window
-					auto_show_delay_ms = 500,
-					-- Delay before updating the documentation window when selecting a new item,
-					-- while an existing item is still visible
-					update_delay_ms = 50,
-					-- Whether to use treesitter highlighting, disable if you run into performance issues
-					treesitter_highlighting = true,
-					-- Window borders to easier see
-					window = { border = border },
-				},
-				list = {
-					selection = {
-						preselect = false,
-						-- preselect = function(ctx)
-						-- 	return ctx.mode ~= "cmdline"
-						-- 	-- return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
-						-- end,
-						auto_insert = false,
-						-- auto_insert = function(ctx)
-						-- 	return ctx.mode ~= "cmdline"
-						-- end,
-					},
-				},
-				menu = {
-					auto_show = true,
-					draw = vim.g.have_nerd_font and {} or {
-						columns = {
-							{ "label", "label_description", gap = 1 },
-							{ "kind" },
-						},
-					},
-					-- Window borders to easier see
-					border = border,
-				},
-			},
-			-- Show the signature help when typing
-			signature = {
-				enabled = true,
-				trigger = {
-					-- Show the signature help automatically
-					enabled = true,
-					-- Show the signature help window after typing any of alphanumerics, `-` or `_`
-					show_on_keyword = false,
-					blocked_trigger_characters = {},
-					blocked_retrigger_characters = {},
-					-- Show the signature help window after typing a trigger character
-					show_on_trigger_character = true,
-					-- Show the signature help window when entering insert mode
-					show_on_insert = true,
-					-- Show the signature help window when the cursor comes after a trigger character when entering insert mode
-					show_on_insert_on_trigger_character = true,
-				},
-				-- Window borders to easier see
-				window = { border = border },
 			},
 		},
-		opts_extend = { "sources.default" },
+
+		opts_extend = {
+			"sources.default",
+			"sources.providers",
+		},
 	},
 }
