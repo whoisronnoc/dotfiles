@@ -1,9 +1,11 @@
 local function update_cursor_theme(mode)
-	vim.cmd.hi("Cursor guifg=#d4cde5 guibg=#5eaf77")
-	vim.cmd.hi("hl-Cursor guifg=#d4cde5 guibg=#5eaf77")
-	vim.cmd.hi("lCursor guifg=#d4cde5 guibg=#5eaf77")
-	vim.cmd.hi("hl-lCursor guifg=#d4cde5 guibg=#5eaf77")
-
+	if mode == "dark" then
+		vim.cmd.hi("Cursor guifg=black guibg=white")
+		vim.cmd.hi("lCursor guifg=black guibg=white")
+	else
+		vim.cmd.hi("Cursor guifg=white guibg=black")
+		vim.cmd.hi("lCursor guifg=white guibg=black")
+	end
 	-- vim.opt.guicursor = "a:Cursor"
 	vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:ver25-Cursor/lCursor"
 
