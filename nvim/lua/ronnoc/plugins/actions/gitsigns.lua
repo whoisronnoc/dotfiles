@@ -1,4 +1,3 @@
--- https://github.com/lewis6991/gitsigns.nvim
 return { -- Adds git related signs to the gutter, as well as utilities for managing changes
 	"lewis6991/gitsigns.nvim",
 	opts = {
@@ -44,7 +43,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		},
 		signs_staged_enable = true,
 		signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-		numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+		numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
 		linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
 		word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 		watch_gitdir = {

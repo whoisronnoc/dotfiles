@@ -38,7 +38,7 @@ return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		version = "*",
-		enabled = true,
+		enabled = false,
 		cmd = "CopilotChat",
 		dependencies = {
 			{ "github/copilot.vim" },

@@ -19,8 +19,8 @@ theme = dark:Monokai Pro Spectrum,light:catppuccin-latte
 # selection-background = #c6dcfc
 # selection-foreground = #000000
 
-cursor-color = #556677
-cursor-text = #ffffff
+cursor-color = #ffffff
+cursor-text = #000000
 
 selection-invert-fg-bg = false
 minimum-contrast = 1

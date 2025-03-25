@@ -122,3 +122,7 @@ keymap.set("n", "<D-x>", "dd<CR>", { desc = "Delete current line" })
 keymap.set("n", "<D-c>", "yy<CR>", { desc = "Copy current line" })
 
 keymap.set("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
+
+keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+keymap.set("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle relative line numbers" })
