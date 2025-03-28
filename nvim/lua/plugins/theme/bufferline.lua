@@ -3,6 +3,7 @@ return {
 	"akinsho/bufferline.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = { "BufReadPost", "BufNewFile" },
+  -- stylua: ignore
 	keys = {
 		{ "<C-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", desc = "Go to buffer 1" },
 		{ "<C-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", desc = "Go to buffer 2" },
@@ -28,12 +29,14 @@ return {
 	opts = function()
 		return {
 			options = {
-				separator_style = "slope",
+				separator_style = "thick",
 				indicator = {
 					style = "underline",
 				},
-				close_command = function(n) require("mini.bufremove").delete(n, false) end,
-				diagnostics = 'nvim_lsp',
+				close_command = function(n)
+					require("mini.bufremove").delete(n, false)
+				end,
+				diagnostics = "nvim_lsp",
 				diagnostics_indicator = function(count, _, _, _)
 					if count > 9 then
 						return "9+"

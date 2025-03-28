@@ -110,23 +110,38 @@ return {
 					use_git_status_colors = true,
 					highlight = "NeoTreeFileName",
 				},
-				-- Set the icons to ASCII if you don't have a nerd font otherwise use
-				-- the default icons provided by nvim-web-devicons and unicode characters
-				git_status = vim.g.have_nerd_font and {} or {
+				git_status = {
 					symbols = {
 						-- Change type
-						added = "+", -- or "", but this is redundant info if you use git_status_colors on the name
-						modified = "*", -- or "", but this is redundant info if you use git_status_colors on the name
-						deleted = "-", -- this can only be used in the git_status source
-						renamed = "~", -- this can only be used in the git_status source
+						added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+						deleted = "✖", -- this can only be used in the git_status source
+						renamed = "󰁕", -- this can only be used in the git_status source
 						-- Status type
-						untracked = "-",
-						ignored = "?",
-						unstaged = "x",
-						staged = "✔",
-						conflict = "@",
+						untracked = "",
+						ignored = "",
+						unstaged = "󰄱",
+						staged = "",
+						conflict = "",
 					},
 				},
+				-- Set the icons to ASCII if you don't have a nerd font otherwise use
+				-- the default icons provided by nvim-web-devicons and unicode characters
+				-- git_status = vim.g.have_nerd_font and {} or {
+				-- 	symbols = {
+				-- 		-- Change type
+				-- 		added = "+", -- or "", but this is redundant info if you use git_status_colors on the name
+				-- 		modified = "*", -- or "", but this is redundant info if you use git_status_colors on the name
+				-- 		deleted = "-", -- this can only be used in the git_status source
+				-- 		renamed = "~", -- this can only be used in the git_status source
+				-- 		-- Status type
+				-- 		untracked = "-",
+				-- 		ignored = "?",
+				-- 		unstaged = "x",
+				-- 		staged = "✔",
+				-- 		conflict = "@",
+				-- 	},
+				-- },
 			},
 		},
 		-- config = function()

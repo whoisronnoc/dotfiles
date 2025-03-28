@@ -44,7 +44,7 @@ return {
 			},
 		},
 		init = function()
-			require("ronnoc.plugins.autocomplete.codecompanion.fidget-spinner"):init()
+			require("plugins.autocomplete.codecompanion.fidget-spinner"):init()
 		end,
 	},
 }

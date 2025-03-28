@@ -1,2 +1,2 @@
-require("ronnoc.core")
-require("ronnoc.lazy")
+require("core")
+require("lazyvim")

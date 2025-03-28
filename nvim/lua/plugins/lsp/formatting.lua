@@ -5,7 +5,7 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
-			formatters_by_ft = require("ronnoc.plugins.lsp.formatters._formatters"),
+			formatters_by_ft = require("plugins.lsp.formatters._formatters"),
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,

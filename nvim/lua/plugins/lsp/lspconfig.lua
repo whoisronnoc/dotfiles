@@ -66,6 +66,7 @@ return {
 				signs = true,
 				underline = true,
 				severity_sort = true,
+				-- virtual_lines = true,
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -137,10 +138,10 @@ return {
 			})
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
-			local servers = require("ronnoc.plugins.lsp.servers._servers")
+			local servers = require("plugins.lsp.servers._servers")
 
 			local mason_tool_installer = require("mason-tool-installer")
-			local tools = require("ronnoc.plugins.lsp.formatters._tools")
+			local tools = require("plugins.lsp.formatters._tools")
 			mason_tool_installer.setup({
 				ensure_installed = tools,
 			})
@@ -189,4 +190,27 @@ return {
 			},
 		},
 	},
+	{
+		"dawsers/edit-code-block.nvim",
+	},
+	-- {
+	-- 	"ahmedkhalf/lsp-rooter.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("lsp-rooter").setup()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	config = function()
+	-- 		require("lsp_signature").setup({
+	-- 			-- …
+	-- 		})
+	-- 		vim.lsp.on_attach_callback = function(client, bufnr)
+	-- 			-- …
+	-- 			require("lsp_signature").on_attach()
+	-- 			-- …
+	-- 		end
+	-- 	end,
+	-- },
 }
