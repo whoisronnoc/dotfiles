@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-local keymap = vim.keymap -- for conciseness
+local keymap = vim.keymap
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

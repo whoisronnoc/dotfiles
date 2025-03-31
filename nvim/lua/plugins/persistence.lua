@@ -12,25 +12,14 @@ return {
 	},
 	config = function(_, opts)
 		require("persistence").setup(opts)
+		-- stylua: ignore start
 		-- load the session for the current directory
-		vim.keymap.set("n", "<leader>qs", function()
-			require("persistence").load()
-		end, { desc = "[s]elect current session" })
-
-		-- select a session to load
-		vim.keymap.set("n", "<leader>qS", function()
-			require("persistence").select()
-		end, { desc = "[S]elect session" })
-
-		-- load the last session
-		vim.keymap.set("n", "<leader>ql", function()
-			require("persistence").load({ last = true })
-		end, { desc = "[l]oad last session" })
-
+		vim.keymap.set("n", "<leader>Ss", function() require("persistence").load() end,                { desc = "[s]elect current session" })
+		vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end,              { desc = "[S]elect session" })
+		vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end, { desc = "[l]oad last session" })
 		-- stop Persistence => session won't be saved on exit
-		vim.keymap.set("n", "<leader>qd", function()
-			require("persistence").stop()
-		end, { desc = "[d]elete session" })
+		vim.keymap.set("n", "<leader>Sd", function() require("persistence").stop() end,                { desc = "[d]elete session" })
+		-- stylua: ignore end
 
 		-- Create an autocommand to load session when starting Neovim in a directory
 		vim.api.nvim_create_autocmd("VimEnter", {
