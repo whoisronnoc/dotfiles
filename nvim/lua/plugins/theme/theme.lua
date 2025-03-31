@@ -1,3 +1,7 @@
+local function override_colors()
+	-- vim.cmd.hi("NeoTreeFileName guifg=red")
+end
+
 local function update_cursor_theme(mode)
 	if mode == "dark" then
 		vim.cmd.hi("Cursor guifg=black guibg=white")
@@ -12,6 +16,8 @@ local function update_cursor_theme(mode)
 	vim.opt.guicursor =
 		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 	-- "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,sm:block"
+
+	override_colors()
 end
 
 local function should_update_bg_option(mode)
@@ -23,6 +29,10 @@ return {
 	--- @type LazyPluginSpec
 	{
 		"Mofiqul/vscode.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"nvim-neo-tree/neo-tree.nvim",
+		},
 		config = function()
 			-- Lua:
 			-- For dark theme (neovim's default)
@@ -30,25 +40,15 @@ return {
 			-- For light theme
 			-- vim.o.background = "light"
 
+			local n = require("neo-tree.ui.highlights")
 			local c = require("vscode.colors").get_colors()
 			require("vscode").setup({
-				-- Alternatively set style in setup
-				-- style = 'light'
-
-				-- Enable transparent background
-				transparent = true,
-
-				-- Enable italic comment
-				italic_comments = true,
-
-				-- Underline `@markup.link.*` variants
-				underline_links = true,
-
-				-- Disable nvim-tree background color
-				disable_nvimtree_bg = true,
-
-				-- Apply theme colors to terminal
-				terminal_colors = true,
+				-- style = 'light' -- Alternatively set style in setup
+				transparent = true, -- Enable transparent background
+				italic_comments = true, -- Enable italic comment
+				underline_links = true, -- Underline `@markup.link.*` variants
+				disable_nvimtree_bg = true, -- Disable nvim-tree background color
+				terminal_colors = true, -- Apply theme colors to terminal
 
 				-- Override colors (see ./lua/vscode/colors.lua)
 				-- color_overrides = {
@@ -60,12 +60,31 @@ return {
 					-- this supports the same val table as vim.api.nvim_set_hl
 					-- use colors from this colorscheme by requiring vscode.colors!
 					Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+					-- NeoTreeDirectoryIcon = { fg = c.vscYellowOrange },
+					-- [n.DIRECTORY_NAME] = { fg = c.vscBack },
+
+					-- neo-tree color config
+					[n.DIRECTORY_ICON] = { fg = c.vscYellowOrange },
+					[n.DIM_TEXT] = { fg = c.vscDimHighlight },
+					[n.HIDDEN_BY_NAME] = { fg = c.vscDimHighlight },
+
+					[n.GIT_ADDED] = { fg = c.vscGitAdded },
+					[n.GIT_CONFLICT] = { fg = c.vscGitConflicting },
+					[n.GIT_DELETED] = { fg = c.vscGitDeleted },
+					[n.GIT_IGNORED] = { fg = c.vscGitIgnored },
+					[n.GIT_MODIFIED] = { fg = c.vscGitModified },
+					[n.GIT_RENAMED] = { fg = c.vscGitRenamed },
+					[n.GIT_STAGED] = { fg = c.vscGitStageModified },
+					[n.GIT_UNSTAGED] = { fg = c.vscGitStageDeleted },
+					[n.GIT_UNTRACKED] = { fg = c.vscGitUntracked },
+					[n.GIT_IGNORED] = { fg = c.vscDimHighlight },
 				},
 			})
 			require("vscode").load()
 
-			-- load the theme without affecting devicon colors.
+			local mode = "dark"
 			vim.cmd.colorscheme("vscode")
+			update_cursor_theme(mode)
 		end,
 	},
 	-- {
