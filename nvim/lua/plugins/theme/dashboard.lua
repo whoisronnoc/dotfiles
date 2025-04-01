@@ -9,8 +9,15 @@ return {
 		version = "*",
 		lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
 		opts = function()
-			local dir = vim.fn.getcwd()
+			local dir = " " .. vim.fn.getcwd()
 			local git_root = vim.fn.fnamemodify(vim.fn.finddir(".git", ".;"), ":h")
+			local git_branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+
+			if git_root ~= "." then
+				dir = dir .. "\n " .. git_root
+			end
+			dir = dir .. "\n" .. " " .. git_branch
+
     -- stylua: ignore 
 			local logo = [[
 
@@ -38,7 +45,7 @@ return {
 					-- append = { "append" },
 					-- },
 					-- header = vim.split(logo, "\n"),
-					header = vim.split(logo .. "\n" .. dir .. "\n" .. git_root .. "\n", "\n"),
+					header = vim.split(logo .. "\n" .. dir .. "\n", "\n"),
 					center = {
 						{
 							action = "Telescope find_files",
