@@ -41,6 +41,18 @@ opt.listchars = {
 	space = "·",
 }
 
+opt.fillchars = {
+	-- eob = " ", -- suppress ~ at EndOfBuffer
+	-- horiz = "─",
+	-- horizup = "╥",
+	-- horizdown = "╨",
+	vert = "│",
+	-- verthoriz = "┼",
+	-- fold = " ",
+	-- foldopen = "",
+	-- foldclose = "",
+}
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
 

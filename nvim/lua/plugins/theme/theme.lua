@@ -1,14 +1,14 @@
-local function override_colors()
-	-- vim.cmd.hi("NeoTreeFileName guifg=red")
-end
-
-local function update_cursor_theme(mode)
+local function update_theme(mode)
 	if mode == "dark" then
 		vim.cmd.hi("Cursor guifg=black guibg=white")
 		vim.cmd.hi("lCursor guifg=black guibg=white")
 	else
 		vim.cmd.hi("Cursor guifg=white guibg=lightgrey")
 		vim.cmd.hi("lCursor guifg=white guibg=lightgrey")
+
+		vim.cmd.hi("NeoTreeNormal guibg=lightgrey")
+		vim.cmd.hi("NeoTreeNormalNC guibg=lightgrey")
+		vim.cmd.hi("NeoTreeVertSplit guibg=lightgrey")
 	end
 	-- vim.opt.guicursor = "a:Cursor"
 	-- vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:hor20-Cursor/lCursor"
@@ -16,8 +16,6 @@ local function update_cursor_theme(mode)
 	vim.opt.guicursor =
 		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 	-- "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,sm:block"
-
-	override_colors()
 end
 
 local function should_update_bg_option(mode)
@@ -44,7 +42,7 @@ return {
 			local c = require("vscode.colors").get_colors()
 			require("vscode").setup({
 				-- style = 'light' -- Alternatively set style in setup
-				transparent = true, -- Enable transparent background
+				transparent = false, -- Enable transparent background
 				italic_comments = true, -- Enable italic comment
 				underline_links = true, -- Underline `@markup.link.*` variants
 				disable_nvimtree_bg = true, -- Disable nvim-tree background color
@@ -52,7 +50,7 @@ return {
 
 				-- Override colors (see ./lua/vscode/colors.lua)
 				-- color_overrides = {
-				-- 	vscLineNumber = "#FFFFFF",
+				-- vscLineNumber = "#FFFFFF",
 				-- },
 
 				-- Override highlight groups (see ./lua/vscode/theme.lua)
@@ -78,13 +76,21 @@ return {
 					[n.GIT_UNSTAGED] = { fg = c.vscGitStageDeleted },
 					[n.GIT_UNTRACKED] = { fg = c.vscGitUntracked },
 					[n.GIT_IGNORED] = { fg = c.vscDimHighlight },
+
+					[n.NORMAL] = { bg = "#181818" },
+					[n.NORMALNC] = { bg = "#181818" },
+					[n.VERTSPLIT] = { fg = "#2b2b2b", bg = "#222222" },
+
+					-- Normal = { bg = "#181818" },
+					-- StatusLine = { bg = "#181818" },
+					-- StatusLineNC = { bg = "#181818" },
 				},
 			})
 			require("vscode").load()
 
 			local mode = "dark"
 			vim.cmd.colorscheme("vscode")
-			update_cursor_theme(mode)
+			update_theme(mode)
 		end,
 	},
 	-- {
@@ -120,7 +126,7 @@ return {
 				if should_update then
 					vim.api.nvim_set_option_value("background", mode, {})
 					vim.cmd([[colorscheme vscode]])
-					update_cursor_theme(mode)
+					update_theme(mode)
 				end
 			end,
 			set_light_mode = function()
@@ -129,7 +135,7 @@ return {
 				if should_update then
 					vim.api.nvim_set_option_value("background", mode, {})
 					vim.cmd([[colorscheme vscode]])
-					update_cursor_theme(mode)
+					update_theme(mode)
 				end
 			end,
 			update_interval = 5000,

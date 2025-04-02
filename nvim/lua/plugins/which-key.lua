@@ -67,6 +67,11 @@ return { -- NOTE: Plugins can also be added by using a table,
 			-- ---@type wk.Spec
 			spec = {
 				{
+					"<leader>S",
+					group = "Persistence",
+					mode = "n",
+				},
+				{
 					"<leader>c",
 					group = "[C]ode",
 					mode = { "n", "x" },
