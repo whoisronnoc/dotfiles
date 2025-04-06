@@ -2,11 +2,11 @@
 --- @return LazyPluginSpec[]
 return {
 	{
-		enabled = true,
 		"github/copilot.vim",
 		cmd = "Copilot",
-		build = ":Copilot auth",
-		event = "BufWinEnter",
+		-- build = "<cmd>Copilot setup<cr>",
+		-- event = "BufWinEnter",
+		event = { "BufReadPost", "BufNewFile" },
 		version = "*",
 		init = function()
 			vim.g.copilot_no_maps = true
@@ -48,7 +48,7 @@ return {
 			local user = vim.env.USER or "User"
 			user = user:sub(1, 1):upper() .. user:sub(2)
 			return {
-				model = "claude-3.7-sonnet",
+				model = "claude-3.7-sonnet-thought",
 				auto_insert_mode = false,
 				question_header = (vim.g.have_nerd_font and "  " or " ") .. user .. " ",
 				answer_header = vim.g.have_nerd_font and "  Copilot " or " Copilot ",
@@ -58,38 +58,38 @@ return {
 				-- },
 			}
 		end,
-		-- keys = {
-		-- 	{ "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-		-- 	{
-		-- 		"<leader>aa",
-		-- 		function()
-		-- 			return require("CopilotChat").toggle()
-		-- 		end,
-		-- 		desc = "Toggle (CopilotChat)",
-		-- 		mode = { "n", "v" },
-		-- 	},
-		-- 	{
-		-- 		"<leader>ax",
-		-- 		function()
-		-- 			return require("CopilotChat").reset()
-		-- 		end,
-		-- 		desc = "Clear (CopilotChat)",
-		-- 		mode = { "n", "v" },
-		-- 	},
-		-- 	{
-		-- 		"<leader>aq",
-		-- 		function()
-		-- 			local input = vim.fn.input("Quick Chat: ")
-		-- 			if input ~= "" then
-		-- 				require("CopilotChat").ask(input)
-		-- 			end
-		-- 		end,
-		-- 		desc = "Quick Chat (CopilotChat)",
-		-- 		mode = { "n", "v" },
-		-- 	},
-		-- 	-- Show prompts actions with telescope
-		-- 	-- { "<leader>ap", M.pick("prompt"), desc = "Prompt Actions (CopilotChat)", mode = { "n", "v" } },
-		-- },
+		keys = {
+			{ "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+			{
+				"<leader>aa",
+				function()
+					return require("CopilotChat").toggle()
+				end,
+				desc = "Toggle (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>ax",
+				function()
+					return require("CopilotChat").reset()
+				end,
+				desc = "Clear (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>aq",
+				function()
+					local input = vim.fn.input("Quick Chat: ")
+					if input ~= "" then
+						require("CopilotChat").ask(input)
+					end
+				end,
+				desc = "Quick Chat (CopilotChat)",
+				mode = { "n", "v" },
+			},
+			-- Show prompts actions with telescope
+			-- { "<leader>ap", M.pick("prompt"), desc = "Prompt Actions (CopilotChat)", mode = { "n", "v" } },
+		},
 		config = function(_, opts)
 			local chat = require("CopilotChat")
 

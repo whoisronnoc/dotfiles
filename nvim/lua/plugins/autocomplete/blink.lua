@@ -15,6 +15,7 @@ return {
 			"rafamadriz/friendly-snippets",
 			{ "fang2hou/blink-copilot", version = "*" },
 			"mikavilpas/blink-ripgrep.nvim",
+			"folke/lazydev.nvim",
 			-- "Kaiser-Yang/blink-cmp-avante",
 			-- "giuxtaposition/blink-cmp-copilot",
 		},

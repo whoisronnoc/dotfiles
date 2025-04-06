@@ -1,10 +1,19 @@
+--- @module 'lazy'
+--- @return LazyPluginSpec[]
 return {
-	-- https://github.com/nvim-telescope/telescope.nvim
+	-- NOTE: Plugins can specify dependencies.
+	--
+	-- The dependencies are proper plugin specifications as well - anything
+	-- you do for a plugin at the top level, you can do for a dependency.
+	--
+	-- Use the `dependencies` key to specify the dependencies of a particular plugin
 	-- INFO: `brew install ripgrep` if you are on macOS
 
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
-		event = "VimEnter",
+		-- event = "VeryLazy",
+		lazy = true,
+		version = "*",
 		-- branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -25,6 +34,64 @@ return {
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+		},
+		cmd = { "Telescope" },
+		keys = {
+			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", mode = "n", desc = "[S]earch [H]elp" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", mode = "n", desc = "[S]earch [K]eymaps" },
+			{ "<leader>sf", "<cmd>Telescope find_files<cr>", mode = "n", desc = "[S]earch [F]iles" },
+			{ "<leader>ss", "<cmd>Telescope builtin<cr>", mode = "n", desc = "[S]earch Telescope" },
+			{ "<leader>sw", "<cmd>Telescope grep_string<cr>", mode = "n", desc = "[S]earch current [W]ord" },
+			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", mode = "n", desc = "[S]earch by [G]rep" },
+			{ "<leader>sd", "<cmd>Telescope diagnostics<cr>", mode = "n", desc = "[S]earch [D]iagnostics" },
+			{ "<leader>sr", "<cmd>Telescope resume<cr>", mode = "n", desc = "[S]earch [R]esume" },
+			{
+				"<leader>s.",
+				"<cmd>Telescope oldfiles<cr>",
+				mode = "n",
+				desc = '[S]earch Recent Files ("." for repeat)',
+			},
+			{ "<leader>sb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "[S]earch existing [B]uffers" },
+
+			-- Slightly advanced example of overriding default behavior and theme
+			{
+				"<leader>/",
+				function()
+					-- You can pass additional configuration to Telescope to change the theme, layout, etc.
+					require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+						-- winblend = 10,
+						border = vim.g.border ~= "none",
+						previewer = false,
+					}))
+				end,
+				mode = "n",
+				desc = "[/] Fuzzily search in current buffer",
+			},
+
+			-- It's also possible to pass additional configuration options.
+			--  See `:help telescope.builtin.live_grep()` for information about particular keys
+			{
+				"<leader>s/",
+				function()
+					require("telescope.builtin").live_grep({
+						grep_open_files = true,
+						prompt_title = "Live Grep in Open Files",
+					})
+				end,
+				mode = "n",
+				desc = "[S]earch [/] in Open Files",
+			},
+
+			-- Shortcut for searching your Neovim configuration files
+			{
+				"<leader>sn",
+				-- "Telescope find_files cwd=~/.config/nvim",
+				function()
+					require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+				end,
+				mode = "n",
+				desc = "[S]earch [N]eovim files",
+			},
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -53,6 +120,10 @@ return {
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				-- defaults = {
+				-- defaults = {
+				--  -- if you want borderless
+				-- 	borderchars = { " ", "", " ", "", "", "", "", "" },
+				-- },
 				--   mappings = {
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
@@ -68,46 +139,6 @@ return {
 			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
-
-			-- See `:help telescope.builtin`
-			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing [B]uffers" })
-
-			vim.keymap.set("n", "<D-f>", builtin.buffers, { desc = "[S]earch in file" })
-			vim.keymap.set("n", "<D-S-f>", builtin.live_grep, { desc = "[S]earch grep" })
-			vim.keymap.set("n", "<D-p>", builtin.find_files, { desc = "[S]earch files" })
-
-			-- Slightly advanced example of overriding default behavior and theme
-			vim.keymap.set("n", "<leader>/", function()
-				-- You can pass additional configuration to Telescope to change the theme, layout, etc.
-				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
-					previewer = false,
-				}))
-			end, { desc = "[/] Fuzzily search in current buffer" })
-
-			-- It's also possible to pass additional configuration options.
-			--  See `:help telescope.builtin.live_grep()` for information about particular keys
-			vim.keymap.set("n", "<leader>s/", function()
-				builtin.live_grep({
-					grep_open_files = true,
-					prompt_title = "Live Grep in Open Files",
-				})
-			end, { desc = "[S]earch [/] in Open Files" })
-
-			-- Shortcut for searching your Neovim configuration files
-			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
 }

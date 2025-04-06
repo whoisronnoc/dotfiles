@@ -2,6 +2,7 @@
 return {
 	{
 		"echasnovski/mini.nvim",
+		event = "VeryLazy",
 		version = "*",
 		config = function()
 			-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md

@@ -5,6 +5,8 @@ return {
 		"nvim-telescope/telescope.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
+	lazy = true,
+	cmd = "Octo",
 	config = function()
 		vim.treesitter.language.register("markdown", "octo")
 
