@@ -115,6 +115,7 @@ return {
 	--- @type LazyPluginSpec
 	{
 		"f-person/auto-dark-mode.nvim",
+		event = "VeryLazy",
 		-- dependencies = {
 		-- 	"loctvl842/monokai-pro.nvim",
 		-- 	"NLKNguyen/papercolor-theme",

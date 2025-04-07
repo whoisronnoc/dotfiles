@@ -14,23 +14,29 @@ return {
 	-- :Boole {increment|decrement}
 	--
 	"nat-418/boole.nvim",
-	config = function()
-		require("boole").setup({
-			mappings = {
-				increment = "<C-a>",
-				decrement = "<C-x>",
-			},
-			-- User defined loops
-			additions = {
-				{ "Foo", "Bar" },
-				{ "tic", "tac", "toe" },
-			},
-			allow_caps_additions = {
-				{ "enable", "disable" },
-				-- enable → disable
-				-- Enable → Disable
-				-- ENABLE → DISABLE
-			},
-		})
-	end,
+	lazy = true,
+	keys = {
+		{ "<C-a>", "<cmd>Boole increment<cr>", mode = "n", desc = "Boole increment" },
+		{ "<C-x>", "<cmd>Boole decrement<cr>", mode = "n", desc = "Boole decrement" },
+	},
+	cmd = {
+		"Boole",
+	},
+	opts = {
+		mappings = {
+			increment = "<C-a>",
+			decrement = "<C-x>",
+		},
+		-- User defined loops
+		additions = {
+			{ "Foo", "Bar" },
+			{ "tic", "tac", "toe" },
+		},
+		allow_caps_additions = {
+			{ "enable", "disable" },
+			-- enable → disable
+			-- Enable → Disable
+			-- ENABLE → DISABLE
+		},
+	},
 }

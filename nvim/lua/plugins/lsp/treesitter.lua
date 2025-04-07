@@ -3,6 +3,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "VeryLazy",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
 		opts = {
@@ -31,5 +32,4 @@ return {
 			},
 		},
 	},
-	{ "mrjones2014/nvim-ts-rainbow" },
 }
