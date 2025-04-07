@@ -4,6 +4,28 @@
 return {
 	--- @type LazyPluginSpec
 	{
+		"Bilal2453/luvit-meta",
+		lazy = true,
+	},
+	--- @type LazyPluginSpec
+	{
+		"folke/lazydev.nvim",
+		dependencies = { "Bilal2453/luvit-meta" },
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "lazy.nvim", words = { "Lazy" } },
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+			integrations = {
+				cmp = true,
+				lspconfig = true,
+			},
+		},
+	},
+	--- @type LazyPluginSpec
+	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		version = "*",

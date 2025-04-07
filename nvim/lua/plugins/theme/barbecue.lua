@@ -1,6 +1,7 @@
 -- https://github.com/utilyre/barbecue.nvim
 return {
 	"utilyre/barbecue.nvim",
+	event = "LspAttach",
 	name = "barbecue",
 	version = "*",
 	dependencies = {
@@ -11,4 +12,3 @@ return {
 		-- configurations go here
 	},
 }
-
