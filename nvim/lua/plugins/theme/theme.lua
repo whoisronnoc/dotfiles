@@ -1,8 +1,18 @@
+local default_mode = "dark"
+local theme_light = "vscode"
+local theme_dark = "vscode"
+
 local function update_theme(mode)
+	vim.api.nvim_set_option_value("background", mode, {})
+
 	if mode == "dark" then
+		vim.cmd.colorscheme(theme_dark)
+
 		vim.cmd.hi("Cursor guifg=black guibg=white")
 		vim.cmd.hi("lCursor guifg=black guibg=white")
 	else
+		vim.cmd.colorscheme(theme_light)
+
 		vim.cmd.hi("Cursor guifg=white guibg=lightgrey")
 		vim.cmd.hi("lCursor guifg=white guibg=lightgrey")
 
@@ -10,12 +20,9 @@ local function update_theme(mode)
 		vim.cmd.hi("NeoTreeNormalNC guibg=lightgrey")
 		vim.cmd.hi("NeoTreeVertSplit guibg=lightgrey")
 	end
-	-- vim.opt.guicursor = "a:Cursor"
-	-- vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci:hor20-Cursor/lCursor"
 
 	vim.opt.guicursor =
 		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-	-- "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,sm:block"
 end
 
 local function should_update_bg_option(mode)
@@ -24,35 +31,77 @@ local function should_update_bg_option(mode)
 end
 
 return {
-	--- @type LazyPluginSpec
 	{
-		"nvim-tree/nvim-web-devicons",
-		lazy = true,
-		event = "VeryLazy",
-		dependencies = {
-			-- "nvim-neo-tree/neo-tree.nvim",
-		},
+		"catppuccin/nvim",
+		name = "catppuccin",
+		enabled = false,
+		priority = 1000,
 		config = function()
-			require("nvim-web-devicons").setup({
-				color_icons = true,
-				default = true,
+			require("catppuccin").setup({
+				flavour = "auto", -- latte, frappe, macchiato, mocha
+				background = { -- :h background
+					light = "latte",
+					dark = "mocha",
+				},
+				custom_highlights = function(colors)
+					return {
+						NeoTreeDirectoryIcon = { fg = colors.yellow },
+						NeoTreeDirectoryName = { fg = colors.yellow },
+					}
+				end,
 			})
+			update_theme(default_mode)
+		end,
+	},
+	{
+		"sainnhe/sonokai",
+		enabled = false,
+		config = function()
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				group = vim.api.nvim_create_augroup("custom_highlights_sonokai", {}),
+				pattern = "sonokai",
+				callback = function()
+					local config = vim.fn["sonokai#get_configuration"]()
+					local palette = vim.fn["sonokai#get_palette"](config.style, config.colors_override)
+					local set_hl = vim.fn["sonokai#highlight"]
+
+					set_hl("Directory", palette.none, palette.none)
+					set_hl("Title", palette.none, palette.none)
+				end,
+			})
+
+			vim.g.sonokai_style = "atlantis"
+			update_theme(default_mode)
+		end,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		enabled = false,
+		config = function()
+			require("nightfox").setup({})
+			update_theme(default_mode)
+		end,
+	},
+	{
+		"projekt0n/github-nvim-theme",
+		name = "github-theme",
+		enabled = false,
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			require("github-theme").setup({})
+			update_theme(default_mode)
 		end,
 	},
 	--- @type LazyPluginSpec
 	{
 		"Mofiqul/vscode.nvim",
+		enabled = true,
 		dependencies = {
 			-- "nvim-tree/nvim-web-devicons",
 			-- "nvim-neo-tree/neo-tree.nvim",
 		},
 		config = function()
-			-- Lua:
-			-- For dark theme (neovim's default)
-			vim.o.background = "dark"
-			-- For light theme
-			-- vim.o.background = "light"
-
 			local n = require("neo-tree.ui.highlights")
 			local c = require("vscode.colors").get_colors()
 			require("vscode").setup({
@@ -104,46 +153,17 @@ return {
 				},
 			})
 			require("vscode").load()
-
-			local mode = "dark"
-			vim.cmd.colorscheme("vscode")
-			update_theme(mode)
+			update_theme(default_mode)
 		end,
 	},
-	-- {
-	-- 	"loctvl842/monokai-pro.nvim",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- 	config = function()
-	-- 		require("monokai-pro").setup({
-	-- 			devicons = true,
-	-- 			filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
-	-- 			background_clear = { "toggleterm", "telescope", "notify" },
-	-- 		})
-	-- 		local mode = "dark"
-	-- 		vim.api.nvim_set_option_value("background", mode, {})
-	-- 		vim.cmd([[colorscheme monokai-pro-spectrum]])
-	-- 		update_cursor_theme(mode)
-	-- 	end,
-	-- },
-	-- --- @type LazyPluginSpec
-	-- {
-	-- 	"NLKNguyen/papercolor-theme",
-	-- },
-	--- @type LazyPluginSpec
 	{
 		"f-person/auto-dark-mode.nvim",
 		event = "VeryLazy",
-		-- dependencies = {
-		-- 	"loctvl842/monokai-pro.nvim",
-		-- 	"NLKNguyen/papercolor-theme",
-		-- },
 		opts = {
 			set_dark_mode = function()
 				local mode = "dark"
 				local should_update = should_update_bg_option(mode)
 				if should_update then
-					vim.api.nvim_set_option_value("background", mode, {})
-					vim.cmd([[colorscheme vscode]])
 					update_theme(mode)
 				end
 			end,
@@ -151,8 +171,6 @@ return {
 				local mode = "light"
 				local should_update = should_update_bg_option(mode)
 				if should_update then
-					vim.api.nvim_set_option_value("background", mode, {})
-					vim.cmd([[colorscheme vscode]])
 					update_theme(mode)
 				end
 			end,
@@ -160,36 +178,15 @@ return {
 			fallback = "dark",
 		},
 	},
-	-- {
-	-- 	"nvimdev/indentmini.nvim",
-	-- 	event = "BufEnter",
-	-- 	config = function()
-	-- 		require("indentmini").setup({
-	-- 			char = "▏",
-	-- 		})
-	-- 		-- Colors are applied automatically based on user-defined highlight groups.
-	-- 		vim.cmd.highlight("IndentLine guifg=#123456")
-	-- 		-- vim.cmd.highlight("default link IndentLine Comment") -- use comment color
-	-- 		-- Current indent line highlight
-	-- 		vim.cmd.highlight("IndentLineCurrent guifg=#545680")
-	-- 	end,
-	-- },
-	-- 	{
-	-- 		"lukas-reineke/indent-blankline.nvim",
-	-- 		main = "ibl",
-	-- 		config = function()
-	-- 			local highlight = {
-	-- 				"CursorColumn",
-	-- 				"Whitespace",
-	-- 			}
-	-- 			require("ibl").setup({
-	-- 				indent = { highlight = highlight, char = "" },
-	-- 				whitespace = {
-	-- 					highlight = highlight,
-	-- 					remove_blankline_trail = false,
-	-- 				},
-	-- 				scope = { enabled = false },
-	-- 			})
-	-- 		end,
-	-- 	},
+	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+		event = "VeryLazy",
+		config = function()
+			require("nvim-web-devicons").setup({
+				color_icons = true,
+				default = true,
+			})
+		end,
+	},
 }

@@ -31,7 +31,7 @@ return {
 			options = {
 				separator_style = "thick",
 				indicator = {
-					style = "underline",
+					style = "none",
 				},
 				close_command = function(n)
 					require("mini.bufremove").delete(n, false)
