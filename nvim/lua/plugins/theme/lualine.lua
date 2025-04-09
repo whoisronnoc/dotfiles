@@ -4,8 +4,6 @@ return {
 	event = "VimEnter",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		-- Copyright (c) 2020-2021 Mofiqul Islam
-		-- MIT license, see LICENSE for more details.
 		local config = require("vscode.config")
 		local vscode = {}
 		local colors = {}
@@ -17,7 +15,7 @@ return {
 			colors.fg = "#ffffff"
 			colors.red = "#f44747"
 			colors.green = "#4EC9B0"
-			colors.blue = "#0a7aca"
+			colors.blue = "#00a0ff"
 			colors.lightblue = "#5CB6F8"
 			colors.yellow = "#ffaf00"
 			colors.pink = "#DDB6F2"
@@ -35,7 +33,7 @@ return {
 		end
 
 		vscode.normal = {
-			a = { fg = vim.o.background == "dark" and colors.fg or colors.bg, bg = colors.blue, gui = "bold" },
+			a = { fg = vim.o.background == "dark" and colors.bg or colors.bg, bg = colors.blue, gui = "bold" },
 			b = { fg = colors.blue, bg = config.opts.transparent and "NONE" or colors.bg2 },
 			c = { fg = colors.fg, bg = config.opts.transparent and "NONE" or colors.bg },
 		}
@@ -75,14 +73,58 @@ return {
 			c = { fg = colors.fg, bg = config.opts.transparent and "NONE" or colors.bg },
 		}
 
+		local mode_map = {
+			["NORMAL"] = "N",
+			["O-PENDING"] = "N?",
+			["INSERT"] = "I",
+			["VISUAL"] = "V",
+			["V-BLOCK"] = "VB",
+			["V-LINE"] = "VL",
+			["V-REPLACE"] = "VR",
+			["REPLACE"] = "R",
+			["COMMAND"] = "!",
+			["SHELL"] = "SH",
+			["TERMINAL"] = "T",
+			["EX"] = "X",
+			["S-BLOCK"] = "SB",
+			["S-LINE"] = "SL",
+			["SELECT"] = "S",
+			["CONFIRM"] = "Y?",
+			["MORE"] = "M",
+		}
+
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
 		lualine.setup({
 			options = {
-				theme = "auto",
+				icons_enabled = vim.g.have_nerd_font,
+
+				globalstatus = vim.o.laststatus == 3,
+				component_separators = { left = "│", right = "│" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" },
+					winbar = {},
+				},
+
+				theme = vscode,
 			},
 			sections = {
+				lualine_a = { {
+					"mode",
+					fmt = function(s)
+						return mode_map[s] or s
+					end,
+				} },
+				-- lualine_a = {
+				-- 	{
+				-- 		"mode",
+				-- 		fmt = function(res)
+				-- 			return res:sub(1, 1)
+				-- 		end,
+				-- 	},
+				-- },
 				lualine_x = {
 					{
 						lazy_status.updates,
@@ -92,11 +134,14 @@ return {
 						},
 					},
 					"rest",
-					{ "encoding" },
-					{ "fileformat" },
-					{ "filetype" },
+					"codecompanion",
+					"encoding",
+					"fileformat",
+					"filetype",
 				},
+				lualine_y = {},
 			},
+			extensions = { "lazy", "mason", "neo-tree", "nvim-dap-ui" },
 		})
 	end,
 }

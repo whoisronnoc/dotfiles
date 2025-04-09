@@ -18,16 +18,9 @@ return {
 			end
 			dir = dir .. "\n" .. " " .. git_branch
 
-    -- stylua: ignore 
-			local logo = [[
-
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-]]
+			-- stylua: ignore 
+			local jira_ticket = string.match(git_branch, "[A-Za-z]+-[0-9]+")
+			local logo = vim.fn.system("figlet " .. (jira_ticket or "neovim") .. " 2> /dev/null")
 			-- logo = string.rep("\n", 8) .. logo .. "\n\n"
 			-- header = vim.split(logo .. "\n" .. dir, "\n"),
 			local opts = {

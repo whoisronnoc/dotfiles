@@ -3,7 +3,7 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 local opt = vim.opt -- for conciseness
-
+vim.g.border = "single"
 -- sets the listing style to a tree view, which displays files and directories in a hierarchical tree format.
 vim.cmd("let g:netrw_liststyle = 3")
 -- vim.g.loaded_netrw = 1
@@ -108,7 +108,7 @@ opt.encoding = "utf-8"
 
 opt.wrap = false -- wrap lines
 
-opt.conceallevel = 1 -- Concealed text is shown with a placeholder character.
+opt.conceallevel = 0
 
 opt.title = true
 opt.titlestring = [[%f]]

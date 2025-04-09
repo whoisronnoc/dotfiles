@@ -6,6 +6,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
+			"echasnovski/mini.nvim",
 			"MunifTanjim/nui.nvim",
 		},
 		cmd = "Neotree",
@@ -31,6 +32,10 @@ return {
 			},
 		},
 		config = function()
+			local miniicons = require("mini.icons")
+			local web_devicons = require("nvim-web-devicons")
+			local highlights = require("neo-tree.ui.highlights")
+
 			require("neo-tree").setup({
 				source_selector = {
 					winbar = true,
@@ -54,6 +59,42 @@ return {
 						enabled = true, -- This will find and focus the file in the active buffer every time
 						--               -- the current file is changed while the tree is open.
 						leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+					},
+					components = {
+						icon = function(config, node, state)
+							local icon = config.default or " "
+							local padding = config.padding or " "
+							local highlight = config.highlight or highlights.FILE_ICON
+
+							if node.type == "directory" then
+								highlight = highlights.DIRECTORY_ICON
+
+								if package.loaded["mini.icons"] then
+									icon = miniicons.get("directory", node.name)
+									-- icon, highlight = miniicons.get("directory", node.name)
+								end
+
+								-- if node.name == ".git" then
+								-- 	icon = web_devicons.get_icon_by_filetype("git") or config.folder_closed or "-"
+								-- 	highlight = web_devicons.get_icon_color_by_filetype("git") or highlight
+								-- else
+								-- 	if node:is_expanded() then
+								-- 		icon = config.folder_open or "v"
+								-- 	else
+								-- 		icon = config.folder_closed or "+"
+								-- 	end
+								-- end
+							elseif node.type == "file" then
+								local devicon, hl = web_devicons.get_icon(node.name, node.ext)
+								icon = devicon or icon
+								highlight = hl or highlight
+							end
+
+							return {
+								text = icon .. padding,
+								highlight = highlight,
+							}
+						end,
 					},
 				},
 				buffers = {

@@ -26,10 +26,25 @@ end
 return {
 	--- @type LazyPluginSpec
 	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+		event = "VeryLazy",
+		dependencies = {
+			-- "nvim-neo-tree/neo-tree.nvim",
+		},
+		config = function()
+			require("nvim-web-devicons").setup({
+				color_icons = true,
+				default = true,
+			})
+		end,
+	},
+	--- @type LazyPluginSpec
+	{
 		"Mofiqul/vscode.nvim",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			"nvim-neo-tree/neo-tree.nvim",
+			-- "nvim-tree/nvim-web-devicons",
+			-- "nvim-neo-tree/neo-tree.nvim",
 		},
 		config = function()
 			-- Lua:
@@ -80,6 +95,8 @@ return {
 					[n.NORMAL] = { bg = "#181818" },
 					[n.NORMALNC] = { bg = "#181818" },
 					[n.VERTSPLIT] = { fg = "#2b2b2b", bg = "#222222" },
+
+					GitSignsCurrentLineBlame = { fg = "#a0a0a0" },
 
 					-- Normal = { bg = "#181818" },
 					-- StatusLine = { bg = "#181818" },
