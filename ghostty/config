@@ -10,7 +10,8 @@ bold-is-bright = false
 font-feature = -calt, -liga, -dlig
 font-size = 14
 
-theme = dark:Monokai Pro Spectrum,light:catppuccin-latte
+# theme = dark:flexoki-dark,light:catppuccin-latte
+theme = dark:GitHub-Dark-High-Contrast,light:catppuccin-latte
 
 # background = #000000
 # foreground = #c7c7c7
