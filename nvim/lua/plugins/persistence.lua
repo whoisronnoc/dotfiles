@@ -39,6 +39,13 @@ return {
 			end,
 			desc = "Auto-load session when opening Neovim in a directory",
 		})
+
+		-- vim.api.nvim_create_autocmd("PersistenceSavePre", {
+		-- 	callback = function()
+		-- 		vim.cmd("Neotree close")
+		-- 	end,
+		-- 	desc = "Auto-close Neotree",
+		-- })
 	end,
 	-- keys = {
 	-- 	{ "<leader>qs", require("persistence").load, desc = "Restore Session" },

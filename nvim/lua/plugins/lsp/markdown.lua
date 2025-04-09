@@ -14,12 +14,9 @@ return {
 		--   "BufNewFile path/to/my-vault/*.md",
 		-- },
 		dependencies = {
-			-- Required.
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"saghen/blink.cmp",
-
-			-- see below for full list of optional dependencies 👇
 		},
 		opts = {
 			workspaces = {
@@ -28,16 +25,12 @@ return {
 					path = "~/dev/ronnocwiki/RonnocWiki",
 				},
 			},
-
-			-- see below for full list of options 👇
 		},
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		event = "VeryLazy",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {

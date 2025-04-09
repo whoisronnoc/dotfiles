@@ -58,7 +58,7 @@ return {
 				underline = true,
 				severity_sort = true,
 				-- virtual_lines = true,
-				virtual_lines = { current_line = true },
+				-- virtual_lines = { current_line = true },
 				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "",
