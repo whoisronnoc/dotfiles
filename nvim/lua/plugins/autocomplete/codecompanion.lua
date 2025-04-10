@@ -1,13 +1,15 @@
 return {
 	"olimorris/codecompanion.nvim",
 	version = "*",
-	enabled = true,
+	enabled = false,
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		-- Progress options optional
 		"nvim-telescope/telescope.nvim",
 		"j-hui/fidget.nvim",
+		"ravitemer/mcphub.nvim",
 	},
 	config = true,
 	lazy = true,
@@ -23,11 +25,20 @@ return {
 	},
 	opts = {
 		strategies = {
-			chat = {
-				adapter = "copilot",
-			},
 			inline = {
 				adapter = "copilot",
+			},
+			chat = {
+				adapter = "copilot",
+				tools = {
+					["mcp"] = {
+						-- calling it in a function would prevent mcphub from being loaded before it's needed
+						callback = function()
+							return require("mcphub.extensions.codecompanion")
+						end,
+						description = "Call tools and resources from the MCP Servers",
+					},
+				},
 			},
 		},
 		show_defaults = false,

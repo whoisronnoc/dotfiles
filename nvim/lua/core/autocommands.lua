@@ -12,9 +12,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
+	pattern = { "markdown", "codecompanion", "Avante" },
 	callback = function()
-		vim.opt_local.conceallevel = 1
+		vim.opt_local.conceallevel = 2
 	end,
 	desc = "Set conceallevel for markdown files",
 })

@@ -258,7 +258,10 @@ return {
 					-- 	module = "blink-cmp-avante",
 					-- 	name = "Avante",
 					-- 	opts = {
-					-- 		-- options for blink-cmp-avante
+					-- 		-- options for blink-cmp-avant
+					-- 		max_suggestions = 3, -- Maximum number of suggestions to show
+					-- 		debounce = 300, -- Debounce time in milliseconds
+					-- 		score_offset = 100, -- Higher score offset gives Avante suggestions higher priority
 					-- 	},
 					-- },
 				},
