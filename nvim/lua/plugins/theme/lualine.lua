@@ -2,7 +2,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VimEnter",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local mode_map = {
 			["NORMAL"] = "N",
@@ -48,6 +47,22 @@ return {
 						return mode_map[s] or s
 					end,
 				} },
+				lualine_c = {
+					"filename",
+					{
+						function()
+							local ok, screenkey = pcall(require, "screenkey")
+							if ok then
+								return screenkey.get_keys()
+							end
+							return ""
+						end,
+						cond = function()
+							local ok, _ = pcall(require, "screenkey")
+							return ok
+						end,
+					},
+				},
 				lualine_x = {
 					{
 						lazy_status.updates,

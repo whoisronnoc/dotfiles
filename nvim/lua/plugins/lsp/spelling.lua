@@ -33,10 +33,10 @@ return {
 				prefix = "possible misspelling(s): ", -- prefix for each diagnostic message
 				diagnostic_opts = { severity_sort = true }, -- options for diagnostic display
 			})
-			vim.keymap.set("n", "<leader>sp", function()
+			vim.keymap.set("n", "<leader>ts", function()
 				require("spellwarn").toggle()
 				vim.opt.spell = not vim.opt.spell:get()
-			end, { desc = "Toggle spellwarn" })
+			end, { desc = "Toggle [s]pellwarn " })
 		end,
 	},
 	{

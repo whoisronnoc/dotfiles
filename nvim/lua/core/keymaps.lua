@@ -72,7 +72,7 @@ end, { desc = "[w]rap [t]ext" })
 
 -- map left-alt plus left arrow to 'h'
 map("n", "<Esc-b>", "B", { desc = "Move cursor to the left one word" })
-map("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" })
+map("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" }) -- FIX:
 
 map("n", "<D-x>", "dd", { desc = "Delete current line" })
 map("n", "<D-c>", "yy", { desc = "Copy current line" })
@@ -80,4 +80,4 @@ map("n", "<D-c>", "yy", { desc = "Copy current line" })
 map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
-map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle relative line numbers" })
+map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle [r]elative line numbers" })
