@@ -1,6 +1,7 @@
 return {
 	{
 		{
+			enabled = true,
 			"rcarriga/nvim-notify",
 			event = "VeryLazy",
 			opts = {
@@ -9,9 +10,14 @@ return {
 			},
 		},
 		{
+			enabled = true,
 			"folke/noice.nvim",
 			event = "VeryLazy",
-			opts = {},
+			opts = {
+				presets = {
+					long_message_to_split = true,
+				},
+			},
 			dependencies = {
 				"MunifTanjim/nui.nvim",
 				"rcarriga/nvim-notify",
