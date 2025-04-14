@@ -6,18 +6,16 @@ return {
 		version = "*",
 		config = function()
 			-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md
-			-- Add, delete, replace, find, highlight surrounding (like pair of parenthesis, quotes, etc.).
+			-- automatically insert or delete pairs of characters (like parentheses, brackets, etc.)
 			require("mini.pairs").setup({})
+
+			-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
+			-- Add, delete, replace, find, highlight surrounding (like pair of parenthesis, quotes, etc.).
+			require("mini.surround").setup({})
 
 			-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md
 			-- Buffer removing (unshow, delete, wipeout), which saves window layout
 			require("mini.bufremove").setup({})
-
-			-- require("mini.indentscope").setup({
-			-- 	draw = { delay = 0, animation = require("mini.indentscope").gen_animation.none() },
-			-- 	options = { border = "both" },
-			-- 	symbol = "▏",
-			-- })
 
 			require("mini.icons").setup({
 				-- No need to copy this inside `setup()`. Will be used automatically.
