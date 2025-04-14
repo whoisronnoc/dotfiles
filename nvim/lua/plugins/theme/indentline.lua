@@ -1,10 +1,10 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	event = "VeryLazy",
 	main = "ibl",
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	opts = function(_, opts)
-		-- Other blankline configuration here
 		return require("indent-rainbowline").make_opts(opts, {
+			exclude = { filetypes = { "dashboard", "text" } },
 			colors = {
 				-- 0xff6e67,
 				-- 0xff8700,
