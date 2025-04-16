@@ -165,6 +165,15 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
 			local servers = require("plugins.lsp.servers._servers")
 
+			local install_servers = {}
+			for key, _ in pairs(servers) do
+				table.insert(install_servers, key)
+			end
+			require("mason-lspconfig").setup({
+				ensure_installed = install_servers,
+				automatic_installation = false,
+			})
+
 			local mason_tool_installer = require("mason-tool-installer")
 			local tools = require("plugins.lsp.formatters._tools")
 			mason_tool_installer.setup({
