@@ -25,6 +25,7 @@ return {
 		{ "<leader>bd", function() require("mini.bufremove").delete(0, true) end, desc = "Delete current buffer" },
 		{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close buffers to the left" },
 		{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close buffers to the right" },
+		{ "<leader>ba", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close all other buffers" },
 	},
 	opts = function()
 		return {
