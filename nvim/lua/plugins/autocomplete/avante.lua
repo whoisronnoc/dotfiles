@@ -3,17 +3,20 @@ return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!
+	--- @type avante.Config
 	opts = {
 		provider = "copilot",
+		-- cursor_applying_provider = "copilot",
 		copilot = {
 			model = "claude-3.7-sonnet",
+			max_tokens = 90000, -- Set the token limit to 90000
 		},
-		-- model = "copilot/claude-3-7-sonnet",
 		file_selector = {
-			--- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string | fun(params: avante.file_selector.IParams|nil): nil
 			provider = "telescope",
-			-- Options override for custom providers
 			provider_opts = {},
+		},
+		windows = {
+			width = 40,
 		},
 		behaviour = {
 			auto_suggestions = false, -- Experimental stage
@@ -25,6 +28,8 @@ return {
 			enable_token_counting = true, -- Whether to enable token counting. Default to true.
 			enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
 			enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
+			trim_context_on_token_overflow = true, -- Automatically trim context when approaching token limit
+			optimize_context_strategy = "importance", -- Focus on most important files/sections in context
 		},
 		suggestion = {
 			debounce = 600,
@@ -66,23 +71,7 @@ return {
 		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 		"github/copilot.vim",
-		{
-			-- support for image pasting
-			"HakonHarnes/img-clip.nvim",
-			event = "VeryLazy",
-			opts = {
-				-- recommended settings
-				default = {
-					embed_image_as_base64 = false,
-					prompt_for_file_name = false,
-					drag_and_drop = {
-						insert_mode = true,
-					},
-					-- required for Windows users
-					use_absolute_path = true,
-				},
-			},
-		},
+		"HakonHarnes/img-clip.nvim", -- for image pasting
 		"ravitemer/mcphub.nvim",
 	},
 }
