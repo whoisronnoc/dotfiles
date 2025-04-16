@@ -9,15 +9,13 @@ return {
 	{
 		"saghen/blink.cmp",
 		event = "InsertEnter",
-		-- optional: provides snippets for the snippet source
 		dependencies = {
 			"xzbdmw/colorful-menu.nvim",
 			"rafamadriz/friendly-snippets",
 			{ "fang2hou/blink-copilot", version = "*" },
-			"mikavilpas/blink-ripgrep.nvim",
+			-- "mikavilpas/blink-ripgrep.nvim",
 			"folke/lazydev.nvim",
 			-- "Kaiser-Yang/blink-cmp-avante",
-			-- "giuxtaposition/blink-cmp-copilot",
 		},
 		-- use a release tag to download pre-built binaries
 		version = "*",
@@ -194,16 +192,14 @@ return {
 
 			sources = {
 				default = {
-					-- "avante",
 					"copilot",
+					-- "avante",
 					"lsp",
 					"path",
 					"snippets",
 					"lazydev",
 					"buffer",
-					-- "ripgrep",
 				},
-				-- removed "buffer"
 				providers = {
 					lazydev = {
 						name = "LazyDev",
@@ -211,33 +207,6 @@ return {
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 50,
 					},
-
-					-- ripgrep = {
-					-- 	module = "blink-ripgrep",
-					-- 	name = "Ripgrep",
-					-- 	opts = {
-					-- 		prefix_min_len = 3,
-					-- 		context_size = 5,
-					-- 		max_filesize = "1M",
-					-- 		additional_rg_options = {},
-					-- 	},
-					-- },
-
-					-- copilot = {
-					-- 	name = "copilot",
-					-- 	module = "blink-cmp-copilot",
-					-- 	score_offset = 100,
-					-- 	async = true,
-					-- 	transform_items = function(_, items)
-					-- 		local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-					-- 		local kind_idx = #CompletionItemKind + 1
-					-- 		CompletionItemKind[kind_idx] = "Copilot"
-					-- 		for _, item in ipairs(items) do
-					-- 			item.kind = kind_idx
-					-- 		end
-					-- 		return items
-					-- 	end,
-					-- },
 					copilot = {
 						name = "copilot",
 						module = "blink-copilot",
@@ -259,9 +228,6 @@ return {
 					-- 	name = "Avante",
 					-- 	opts = {
 					-- 		-- options for blink-cmp-avant
-					-- 		max_suggestions = 3, -- Maximum number of suggestions to show
-					-- 		debounce = 300, -- Debounce time in milliseconds
-					-- 		score_offset = 100, -- Higher score offset gives Avante suggestions higher priority
 					-- 	},
 					-- },
 				},
