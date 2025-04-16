@@ -62,14 +62,6 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("", "<ScrollWheelUp>", "<C-Y>", { desc = "Scroll up one line" })
 map("", "<ScrollWheelDown>", "<C-E>", { desc = "Scroll down one line" })
 
-map("n", "<leader>wt", function()
-	if vim.opt.wrap:get() then
-		vim.cmd("set nowrap")
-	else
-		vim.cmd("set wrap")
-	end
-end, { desc = "[w]rap [t]ext" })
-
 -- map left-alt plus left arrow to 'h'
 map("n", "<Esc-b>", "B", { desc = "Move cursor to the left one word" })
 map("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" }) -- FIX:
@@ -80,10 +72,13 @@ map("n", "<D-c>", "yy", { desc = "Copy current line" })
 map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
+map("n", "<leader>tw", function()
+	if vim.opt.wrap:get() then
+		vim.cmd("set nowrap")
+	else
+		vim.cmd("set wrap")
+	end
+end, { desc = "Toggle [w]rap text" })
 map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle [r]elative line numbers" })
 
--- config gui quick open
 map("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage Lazy Config"})
-map("n", "<leader>mm", "<cmd>Mason<CR>", { desc = "Manage Mason Config"})
-map("n", "<leader>ms", "<cmd>LspInfo<CR>", { desc = "LspInfo"})
-map("n", "<leader>mc", "<cmd>ConformInfo<CR>", { desc = "ConformInfo"})

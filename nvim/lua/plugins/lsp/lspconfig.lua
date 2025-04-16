@@ -32,6 +32,10 @@ return {
 		lazy = true,
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+		keys = {
+			{ "<leader>ms", "<cmd>LspInfo<CR>", desc = "LSP Info" },
+			{ "<leader>mm", "<cmd>Mason<CR>", desc = "Manage Mason" },
+		},
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			"williamboman/mason.nvim", -- NOTE: Must be added on the top level

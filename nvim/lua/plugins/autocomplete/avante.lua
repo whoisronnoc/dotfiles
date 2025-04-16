@@ -28,8 +28,6 @@ return {
 			enable_token_counting = true, -- Whether to enable token counting. Default to true.
 			enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
 			enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
-			trim_context_on_token_overflow = true, -- Automatically trim context when approaching token limit
-			optimize_context_strategy = "importance", -- Focus on most important files/sections in context
 		},
 		suggestion = {
 			debounce = 600,
