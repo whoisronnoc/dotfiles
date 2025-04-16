@@ -81,3 +81,9 @@ map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle [r]elative line numbers" })
+
+-- config gui quick open
+map("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage Lazy Config"})
+map("n", "<leader>mm", "<cmd>Mason<CR>", { desc = "Manage Mason Config"})
+map("n", "<leader>ms", "<cmd>LspInfo<CR>", { desc = "LspInfo"})
+map("n", "<leader>mc", "<cmd>ConformInfo<CR>", { desc = "ConformInfo"})
