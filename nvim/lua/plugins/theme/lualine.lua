@@ -40,7 +40,7 @@ return {
 						"ministarter",
 						"snacks_dashboard",
 						"Avante",
-						"AvanteInput",
+						-- "AvanteInput",
 						"AvanteSelectedFiles",
 						"codecompanion",
 					},
@@ -73,7 +73,16 @@ return {
 					},
 				},
 				lualine_x = {
-					{ require("mcphub.extensions.lualine") },
+					{
+						require("mcphub.extensions.lualine"),
+						cond = function()
+							local ok, avante = pcall(require, "avante")
+							if ok then
+								return avante.get():is_open()
+							end
+							return false
+						end,
+					},
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
