@@ -31,6 +31,7 @@ return {
 		additions = {
 			{ "Foo", "Bar" },
 			{ "tic", "tac", "toe" },
+			{ "const", "let", "var" },
 		},
 		allow_caps_additions = {
 			{ "enable", "disable" },
