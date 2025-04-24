@@ -186,6 +186,18 @@ return {
 			require("nvim-web-devicons").setup({
 				color_icons = true,
 				default = true,
+				override_by_extension = {
+					-- ["spec.ts"] = {
+					-- icon = "",
+					-- color = "#f5bc40",
+					-- name = "Test",
+					-- },
+					["stories.js"] = {
+						icon = "",
+						color = "#eb5685",
+						name = "Storybook",
+					},
+				},
 			})
 		end,
 	},

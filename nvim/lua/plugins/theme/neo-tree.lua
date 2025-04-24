@@ -85,7 +85,7 @@ return {
 								-- 	end
 								-- end
 							elseif node.type == "file" then
-								local devicon, hl = web_devicons.get_icon(node.name, node.ext)
+								local devicon, hl = web_devicons.get_icon(node.name) -- node.ext https://github.com/nvim-neo-tree/neo-tree.nvim/pull/1044
 								icon = devicon or icon
 								highlight = hl or highlight
 							end
