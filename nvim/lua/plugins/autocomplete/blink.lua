@@ -2,7 +2,7 @@
 --- @module 'blink.cmp'
 
 --- @type blink.cmp.WindowBorder
-local border = "none"
+local border = "single"
 
 return {
 	--- @type LazyPluginSpec
@@ -32,57 +32,36 @@ return {
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
 			keymap = {
-				preset = "super-tab",
-				["<A-1>"] = {
+				preset = "default",
+				-- preset = "super-tab",
+
+				-- Enter will insert whether is selected
+				-- or enter if nothing is yet
+				["<CR>"] = { "accept", "fallback" },
+				-- Tab will accept the ghost text or the selection first
+				["<Tab>"] = {
 					function(cmp)
-						cmp.accept({ index = 1 })
+						if cmp.snippet_active() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
 					end,
+					"snippet_forward",
+					"fallback",
 				},
-				["<A-2>"] = {
-					function(cmp)
-						cmp.accept({ index = 2 })
-					end,
-				},
-				["<A-3>"] = {
-					function(cmp)
-						cmp.accept({ index = 3 })
-					end,
-				},
-				["<A-4>"] = {
-					function(cmp)
-						cmp.accept({ index = 4 })
-					end,
-				},
-				["<A-5>"] = {
-					function(cmp)
-						cmp.accept({ index = 5 })
-					end,
-				},
-				["<A-6>"] = {
-					function(cmp)
-						cmp.accept({ index = 6 })
-					end,
-				},
-				["<A-7>"] = {
-					function(cmp)
-						cmp.accept({ index = 7 })
-					end,
-				},
-				["<A-8>"] = {
-					function(cmp)
-						cmp.accept({ index = 8 })
-					end,
-				},
-				["<A-9>"] = {
-					function(cmp)
-						cmp.accept({ index = 9 })
-					end,
-				},
-				["<A-0>"] = {
-					function(cmp)
-						cmp.accept({ index = 10 })
-					end,
-				},
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+
+				-- Accept ([y]es) the completion.
+				--  This will auto-import if your LSP supports it.
+				--  This will expand snippets if the LSP sent a snippet.
+
+				-- cmdline = {
+				-- 	-- disable enter for the cmdline completion
+				-- 	["<CR>"] = {},
+				-- },
 			},
 
 			appearance = {
@@ -127,15 +106,15 @@ return {
 
 			completion = {
 				ghost_text = {
-					enabled = true,
+					enabled = false,
 					show_with_selection = true,
 					show_without_selection = true,
 				},
 
 				documentation = {
-					-- auto_show = true,
-					-- auto_show_delay_ms = 500,
-					-- update_delay_ms = 50,
+					auto_show = true,
+					auto_show_delay_ms = 500,
+					update_delay_ms = 50,
 					treesitter_highlighting = true,
 					window = { border = border },
 				},
