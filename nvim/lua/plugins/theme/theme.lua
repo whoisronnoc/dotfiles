@@ -1,9 +1,10 @@
 local default_mode = "dark"
-local theme_light = "vscode"
-local theme_dark = "vscode"
+local theme_light = "catppuccin"
+local theme_dark = "sonokai"
 
 local function update_theme(mode)
 	vim.api.nvim_set_option_value("background", mode, {})
+	-- vim.o.background = mode
 
 	if mode == "dark" then
 		vim.cmd.colorscheme(theme_dark)
@@ -12,13 +13,6 @@ local function update_theme(mode)
 		vim.cmd.hi("lCursor guifg=black guibg=white")
 	else
 		vim.cmd.colorscheme(theme_light)
-
-		vim.cmd.hi("Cursor guifg=white guibg=lightgrey")
-		vim.cmd.hi("lCursor guifg=white guibg=lightgrey")
-
-		vim.cmd.hi("NeoTreeNormal guibg=lightgrey")
-		vim.cmd.hi("NeoTreeNormalNC guibg=lightgrey")
-		vim.cmd.hi("NeoTreeVertSplit guibg=lightgrey")
 	end
 
 	vim.opt.guicursor =
@@ -30,11 +24,45 @@ local function should_update_bg_option(mode)
 	return current ~= mode
 end
 
+-- stylua: ignore start
+function switch_theme(theme)
+	if theme == "catppuccin" then
+		theme_dark = "catppuccin"
+		theme_light = "catppuccin"
+
+	elseif theme == "sonokai" then
+		theme_dark = "sonokai"
+		theme_light = "sonokai"
+
+	elseif theme == "github" then
+		theme_dark = "github_dark_dimmed"
+		theme_light = "github_light"
+
+	elseif theme == "nightfox" then
+		theme_dark = "carbonfox"
+		theme_light = "dayfox"
+
+	elseif theme == "vscode" then
+		theme_dark = "vscode"
+		theme_light = "vscode"
+
+	end
+	update_theme(default_mode)
+end
+
+-- map keys to switch themes
+vim.keymap.set("n", "<leader>t5", ":lua switch_theme('nightfox')<CR>", { desc = "Theme: nightfox", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t4", ":lua switch_theme('sonokai')<CR>", { desc = "Theme: sonokai", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t3", ":lua switch_theme('catppuccin')<CR>", { desc = "Theme: catppuccin", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t2", ":lua switch_theme('github')<CR>", { desc = "Theme: github", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t1", ":lua switch_theme('vscode')<CR>", { desc = "Theme: vscode", noremap = true, silent = true })
+-- stylua: ignore end
+
 return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		enabled = false,
+		enabled = true,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -50,12 +78,11 @@ return {
 					}
 				end,
 			})
-			update_theme(default_mode)
 		end,
 	},
 	{
 		"sainnhe/sonokai",
-		enabled = false,
+		enabled = true,
 		config = function()
 			vim.api.nvim_create_autocmd("ColorScheme", {
 				group = vim.api.nvim_create_augroup("custom_highlights_sonokai", {}),
@@ -71,14 +98,6 @@ return {
 			})
 
 			vim.g.sonokai_style = "atlantis"
-			update_theme(default_mode)
-		end,
-	},
-	{
-		"EdenEast/nightfox.nvim",
-		enabled = false,
-		config = function()
-			require("nightfox").setup({})
 			update_theme(default_mode)
 		end,
 	},
@@ -146,10 +165,6 @@ return {
 					[n.VERTSPLIT] = { fg = "#2b2b2b", bg = "#222222" },
 
 					GitSignsCurrentLineBlame = { fg = "#a0a0a0" },
-
-					-- Normal = { bg = "#181818" },
-					-- StatusLine = { bg = "#181818" },
-					-- StatusLineNC = { bg = "#181818" },
 				},
 			})
 			require("vscode").load()
