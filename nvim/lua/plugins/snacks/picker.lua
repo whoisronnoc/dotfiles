@@ -11,6 +11,11 @@ return {
 			enabled = true,
 			sources = {
 				explorer = {
+					layout = {
+						layout = {
+							width = 32,
+						},
+					},
 					win = {
 						list = {
 							keys = {
