@@ -41,43 +41,73 @@ return {
 					header = vim.split(logo .. "\n" .. dir .. "\n", "\n"),
 					center = {
 						{
-							action = "Telescope find_files",
-							desc = " Find File",
 							icon = vim.g.have_nerd_font and " " or "🔍",
 							key = "f",
+							desc = " Find File",
+							action = ":lua Snacks.dashboard.pick('files')",
 						},
 						{
-							action = "ene | startinsert",
-							desc = " New File",
 							icon = vim.g.have_nerd_font and " " or "📄",
 							key = "n",
+							desc = " New File",
+							action = ":ene | startinsert",
 						},
 						{
-							action = "Neotree reveal",
-							desc = " File Tree",
-							icon = vim.g.have_nerd_font and " " or "📁",
-							key = "\\",
-						},
-						{
-							action = "Telescope oldfiles",
-							desc = " Recent Files",
 							icon = vim.g.have_nerd_font and " " or "📑",
 							key = "r",
+							desc = " Recent Files",
+							action = ":lua Snacks.dashboard.pick('oldfiles')",
 						},
 						{
-							action = "Telescope live_grep",
-							desc = " Find Text",
 							icon = vim.g.have_nerd_font and " " or "📋",
 							key = "g",
+							desc = " Find Text",
+							action = ":lua Snacks.dashboard.pick('live_grep')",
 						},
 						{
-							action = function()
-								require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-							end,
-							desc = " Config",
 							icon = vim.g.have_nerd_font and " " or "⚙ ",
 							key = "c",
+							desc = " Config",
+							action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
 						},
+						-- {
+						-- 	action = "Telescope find_files",
+						-- 	desc = " Find File",
+						-- 	icon = vim.g.have_nerd_font and " " or "🔍",
+						-- 	key = "f",
+						-- },
+						-- {
+						-- 	action = "ene | startinsert",
+						-- 	desc = " New File",
+						-- 	icon = vim.g.have_nerd_font and " " or "📄",
+						-- 	key = "n",
+						-- },
+						-- {
+						-- 	action = "Neotree reveal",
+						-- 	desc = " File Tree",
+						-- 	icon = vim.g.have_nerd_font and " " or "📁",
+						-- 	key = "\\",
+						-- },
+						-- {
+						-- 	action = "Telescope oldfiles",
+						-- 	desc = " Recent Files",
+						-- 	icon = vim.g.have_nerd_font and " " or "📑",
+						-- 	key = "r",
+						-- },
+						-- {
+						-- 	action = "Telescope live_grep",
+						-- 	desc = " Find Text",
+						-- 	icon = vim.g.have_nerd_font and " " or "📋",
+						-- 	key = "g",
+						-- },
+						-- {
+						-- 	action = function()
+						-- 		require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+						-- 	end,
+						-- 	desc = " Config",
+						-- 	icon = vim.g.have_nerd_font and " " or "⚙ ",
+						-- 	key = "c",
+						-- },
 						{
 							action = "LazyGit",
 							desc = " Lazy Git",
@@ -96,6 +126,19 @@ return {
 							icon = vim.g.have_nerd_font and "󰒲 " or "📦 ",
 							key = "l",
 						},
+						{
+							icon = vim.g.have_nerd_font and "󱌣 " or "🛠️",
+							key = "M",
+							desc = " Mason",
+							action = ":Mason",
+						},
+						{
+							icon = vim.g.have_nerd_font and "󱌣 " or "🛠️",
+							key = "H",
+							desc = " MCPHub",
+							action = ":MMCPHub",
+						},
+
 						{
 							action = function()
 								require("persistence").load()
