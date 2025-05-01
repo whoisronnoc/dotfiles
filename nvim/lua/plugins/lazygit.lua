@@ -1,6 +1,6 @@
 -- https://github.com/kdheepak/lazygit.nvim
 return {
-	enable = false,
+	enable = true,
 	"kdheepak/lazygit.nvim",
 	cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
 	-- optional for floating window border decoration
