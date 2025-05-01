@@ -78,7 +78,9 @@ return {
 						cond = function()
 							local ok, avante = pcall(require, "avante")
 							if ok then
-								return avante.get():is_open()
+								if avante.get() then
+									return avante.get():is_open()
+								end
 							end
 							return false
 						end,
