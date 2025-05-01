@@ -1,7 +1,7 @@
 return {
 	{
 		{
-			enabled = true,
+			enabled = false,
 			"rcarriga/nvim-notify",
 			event = "VeryLazy",
 			opts = {
@@ -10,7 +10,7 @@ return {
 			},
 		},
 		{
-			enabled = true,
+			enabled = false,
 			"folke/noice.nvim",
 			event = "VeryLazy",
 			opts = {
