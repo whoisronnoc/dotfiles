@@ -11,9 +11,27 @@ return {
 			enabled = true,
 			sources = {
 				explorer = {
+					border = "none",
+					hidden = true,
+					ignored = true,
 					layout = {
 						layout = {
 							width = 32,
+							backdrop = false,
+							min_width = 32,
+							height = 0,
+							position = "left",
+							border = "none",
+							box = "vertical",
+							-- {
+							-- 	win = "input",
+							-- 	height = 1,
+							-- 	border = "rounded",
+							-- 	title = "{title} {live} {flags}",
+							-- 	title_pos = "center",
+							-- },
+							{ win = "list", border = "none" },
+							{ win = "preview", title = "{preview}", height = 0.4, border = "top" },
 						},
 					},
 					win = {
