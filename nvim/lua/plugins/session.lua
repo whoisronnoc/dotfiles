@@ -1,6 +1,6 @@
 return {
 	"rmagatti/auto-session",
-	enabled = false,
+	enabled = true,
 	lazy = false,
 	---@module "auto-session"
 	---@type AutoSession.Config
@@ -8,9 +8,11 @@ return {
 		suppressed_dirs = { "~/", "~/dev", "~/Downloads", "/" },
 		pre_save_cmds = {
 			-- "Neotree close",
+			"lua Snacks.explorer()",
 		},
 		post_restore_cmds = {
 			-- "Neotree",
+			"lua Snacks.explorer()",
 		},
 		bypass_save_filetypes = { "alpha", "dashboard" },
 	},
