@@ -38,3 +38,12 @@ esac
 # NVM initialisation
 export NVM_DIR="$HOME/.nvm"
 
+
+# Enable colored output for ls
+export CLICOLOR=1 # MacOS
+# For Linux or MacOS with brew install coreutils
+if which gdircolors &>/dev/null
+then
+    # alias ls='ls --color=auto --classify'
+    eval $(gdircolors)
+fi
