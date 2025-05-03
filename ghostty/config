@@ -10,8 +10,8 @@ bold-is-bright = false
 font-feature = -calt, -liga, -dlig
 font-size = 14
 
-# theme = dark:flexoki-dark,light:catppuccin-latte
-theme = dark:GitHub-Dark-High-Contrast,light:catppuccin-latte
+# theme = dark:GitHub-Dark-High-Contrast,light:catppuccin-latte
+theme = dark:custom,light:custom-light
 
 # background = #000000
 # foreground = #c7c7c7
@@ -23,9 +23,6 @@ theme = dark:GitHub-Dark-High-Contrast,light:catppuccin-latte
 unfocused-split-opacity = 1
 unfocused-split-fill = black
 split-divider-color = #444444
-
-cursor-color = #ffffff
-cursor-text = #000000
 
 selection-invert-fg-bg = false
 minimum-contrast = 1
