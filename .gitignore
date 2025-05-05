@@ -9,3 +9,5 @@ vim/bundle/
 
 backup/*
 nvim/spell
+.luarc.json
+lazy-lock.json
