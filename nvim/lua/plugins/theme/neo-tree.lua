@@ -1,7 +1,10 @@
+local machine_options = require("core.machine_options")
+local explorer = machine_options:getOption("explorer")
+
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {
 	{
-		enabled = false,
+		enabled = explorer == "neo-tree",
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -38,6 +41,7 @@ return {
 			local highlights = require("neo-tree.ui.highlights")
 
 			require("neo-tree").setup({
+				use_libuv_file_watcher = true,
 				source_selector = {
 					winbar = true,
 					truncation_character = "",
@@ -55,6 +59,9 @@ return {
 						hide_dotfiles = false,
 						hide_gitignored = false,
 						hide_hidden = false, -- only works on Windows for hidden files/directories
+						never_show = {
+							".DS_Store",
+						},
 					},
 					follow_current_file = {
 						enabled = true, -- This will find and focus the file in the active buffer every time
@@ -157,16 +164,27 @@ return {
 							and {
 								symbols = {
 									-- Change type
-									added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-									modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-									deleted = "✖", -- this can only be used in the git_status source
-									renamed = "󰁕", -- this can only be used in the git_status source
-									-- Status type
-									untracked = "",
-									ignored = "",
-									unstaged = "󰄱",
-									staged = "",
-									conflict = "",
+									-- added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+									-- modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+									-- deleted = "✖", -- this can only be used in the git_status source
+									-- renamed = "󰁕", -- this can only be used in the git_status source
+									-- -- Status type
+									-- untracked = "",
+									-- ignored = "",
+									-- unstaged = "󰄱",
+									-- staged = "",
+									-- conflict = "",
+
+									added = "",
+									modified = "○",
+									deleted = "",
+									renamed = "",
+
+									untracked = "?",
+									ignored = " ",
+									unstaged = "",
+									staged = "●",
+									conflict = " ",
 								},
 							}
 						-- Set the icons to ASCII if you don't have a nerd font otherwise use

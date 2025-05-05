@@ -5,6 +5,8 @@ return {
 	},
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
+		event = "VeryLazy",
 		dependencies = {
 			"theHamsta/nvim-dap-virtual-text",
 			{

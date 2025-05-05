@@ -1,3 +1,6 @@
+local machine_options = require("core.machine_options")
+local explorer = machine_options:getOption("explorer")
+
 return {
 	"snacks.nvim",
 	--- @module 'snacks'
@@ -50,7 +53,7 @@ return {
     -- stylua: ignore
   keys = {
 		-- Top Pickers & Explorer
-		{ "\\", desc = "File Explorer", function()
+    explorer == "snacks" and { "\\", desc = "File Explorer", function()
 			local explorer_pickers = Snacks.picker.get({ source = "explorer" })
 			if #explorer_pickers == 0 then
 				Snacks.picker.explorer()
@@ -59,7 +62,7 @@ return {
 			else
 				explorer_pickers[1]:focus()
 			end
-		end },
+		end } or { "\\\\", desc = "File Explorer", function() end },
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },

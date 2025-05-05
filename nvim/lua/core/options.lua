@@ -1,3 +1,6 @@
+local machine_options = require("core.machine_options")
+local profile = machine_options:getOption("profile")
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -14,8 +17,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 opt.number = true
--- You can also add relative line numbers, to help with jumping.
-opt.relativenumber = false
+opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "80,120"
 
@@ -26,9 +28,6 @@ opt.background = "dark" -- colorschemes that can be light or dark will be made d
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
-
--- turn off swapfile
-opt.swapfile = false
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -112,3 +111,13 @@ opt.conceallevel = 0
 
 opt.title = true
 opt.titlestring = [[%f]]
+
+-- Disable swapfile for JamfProtect cause it causes lag cause we cannot handle
+-- file events. So no recovery and no quick switching. Also no multiple
+-- instances in the same file otherwise you are going to have a bad time.
+if vim.uv.fs_stat("/Applications/JamfProtect.app/") then
+	opt.swapfile = false
+	-- Characters typed to schedule a swap file write
+	-- 0 will disable the swap file feature even if the other flag is flipped
+	opt.updatecount = 0
+end

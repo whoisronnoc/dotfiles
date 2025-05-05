@@ -1,8 +1,9 @@
 vim.filetype.add({
 	filename = {
-		[".env"] = "config",
+		-- [".env"] = "config",
 	},
 	pattern = {
-		["%.?env.*"] = "config",
+		-- ["%.?env.*"] = "config",
+		-- ["%.?.ts"] = "typescript",
 	},
 })

@@ -1,3 +1,6 @@
+local machine_options = require("core.machine_options")
+local enable_supermaven = machine_options:getOption("ai_source") == "supermaven"
+
 -- Autocompletion
 --- @module 'blink.cmp'
 
@@ -38,8 +41,8 @@ return {
 				-- Enter will insert whether is selected
 				-- or enter if nothing is yet
 				["<CR>"] = { "accept", "fallback" },
-				-- Tab will accept the ghost text or the selection first
-				["<Tab>"] = {
+
+				["<Tab>"] = enable_supermaven and {} or {
 					function(cmp)
 						if cmp.snippet_active() then
 							return cmp.accept()
@@ -50,6 +53,8 @@ return {
 					"snippet_forward",
 					"fallback",
 				},
+
+				-- Tab will accept the ghost text or the selection first
 				["<S-Tab>"] = { "snippet_backward", "fallback" },
 
 				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
