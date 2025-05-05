@@ -16,6 +16,7 @@ local function update_theme(mode)
 
 		if theme_light == "carbide" then
 			vim.cmd.hi("NonText guifg=#a8a8a8")
+			vim.cmd.hi("Comment guifg=#0B4AED")
 		end
 	end
 
@@ -113,11 +114,11 @@ return {
 						NeoTreeGitAdded = { fg = colors.green },
 						NeoTreeGitConflict = { fg = colors.red },
 						NeoTreeGitDeleted = { fg = colors.red },
-						NeoTreeGitIgnored = { fg = colors.base },
+						NeoTreeGitIgnored = { fg = colors.text },
 						NeoTreeGitModified = { fg = colors.yellow },
 						NeoTreeGitRenamed = { fg = colors.yellow },
 						NeoTreeGitStaged = { fg = colors.lavender },
-						NeoTreeGitUnstaged = { fg = colors.teal },
+						NeoTreeGitUnstaged = { fg = colors.yellow },
 						NeoTreeGitUntracked = { fg = colors.green },
 
 						-- NeoTreeNormal = { bg = "#181818" },

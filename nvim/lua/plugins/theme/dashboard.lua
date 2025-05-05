@@ -136,17 +136,16 @@ return {
 							icon = vim.g.have_nerd_font and "󱌣 " or "🛠️",
 							key = "H",
 							desc = " MCPHub",
-							action = ":MMCPHub",
+							action = ":MCPHub",
 						},
-
-						{
-							action = function()
-								require("persistence").load()
-							end,
-							desc = " Session",
-							icon = vim.g.have_nerd_font and " " or "🕓 ",
-							key = "S",
-						},
+						-- {
+						-- 	action = function()
+						-- 		require("persistence").load()
+						-- 	end,
+						-- 	desc = " Session",
+						-- 	icon = vim.g.have_nerd_font and " " or "🕓 ",
+						-- 	key = "S",
+						-- },
 						{
 							action = function()
 								if vim.fn.tabpagenr("$") > 1 then

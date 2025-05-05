@@ -46,10 +46,10 @@ M.options = {
 	--- @type machine_options
 	MkIII = {
 		profile = "personal",
-		explorer = "snacks",
+		explorer = "neo-tree",
 		picker = "snacks",
 		theme_dark = "sonokai",
-		theme_light = "carbide",
+		theme_light = "catppuccin",
 		theme_default_mode = "dark",
 		ai_source = "supermaven",
 	},
