@@ -5,4 +5,5 @@ return {
 	"isort",
 	"prettier",
 	"eslint_d",
+	"xmllint",
 }

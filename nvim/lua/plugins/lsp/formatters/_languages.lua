@@ -22,4 +22,5 @@ return {
 	"query",
 	"c",
 	"vue",
+	"angular",
 }

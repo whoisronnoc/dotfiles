@@ -43,6 +43,7 @@ return {
 						-- "AvanteInput",
 						"AvanteSelectedFiles",
 						"codecompanion",
+						"snacks_picker_list",
 					},
 					winbar = {},
 				},
