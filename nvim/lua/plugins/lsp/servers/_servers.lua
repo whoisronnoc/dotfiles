@@ -1,7 +1,7 @@
 local util = require("lspconfig.util")
 
 return {
-	harper_ls = require("plugins.lsp.servers.harper_ls"),
+	-- harper_ls = require("plugins.lsp.servers.harper_ls"),
 	lua_ls = require("plugins.lsp.servers.lua_ls"),
 	jsonls = require("plugins.lsp.servers.jsonls"),
 	yamlls = require("plugins.lsp.servers.yamlls"),
@@ -18,7 +18,6 @@ return {
 	},
 	html = {},
 	angularls = require("plugins.lsp.servers.angularls"),
-	csharp_ls = {},
 	rust_analyzer = {
 		root_dir = util.root_pattern("Cargo.toml"),
 	},
