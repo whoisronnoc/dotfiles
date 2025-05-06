@@ -1,6 +1,7 @@
 local util = require("lspconfig.util")
 
 return {
+	harper_ls = require("plugins.lsp.servers.harper_ls"),
 	lua_ls = require("plugins.lsp.servers.lua_ls"),
 	jsonls = require("plugins.lsp.servers.jsonls"),
 	yamlls = require("plugins.lsp.servers.yamlls"),
@@ -12,9 +13,10 @@ return {
 	stylelint_lsp = {
 		root_dir = util.root_pattern("node_modules"),
 	},
-	-- tailwind = {},
+	tailwindcss = {
+		roort_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
+	},
 	html = {},
-	tailwindcss = {},
 	angularls = require("plugins.lsp.servers.angularls"),
 	csharp_ls = {},
 	rust_analyzer = {
