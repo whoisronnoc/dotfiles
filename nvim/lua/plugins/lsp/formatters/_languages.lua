@@ -23,4 +23,5 @@ return {
 	"c",
 	"vue",
 	"angular",
+	"xml",
 }

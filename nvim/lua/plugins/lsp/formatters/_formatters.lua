@@ -12,5 +12,5 @@ return {
 	markdown = { "prettier" },
 	lua = { "stylua" },
 	python = { "isort", "black" },
-	xml = { "xmllint" },
+	xml = { "xmlformatter" },
 }
