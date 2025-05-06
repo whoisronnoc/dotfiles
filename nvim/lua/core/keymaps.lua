@@ -72,13 +72,4 @@ map("n", "<D-c>", "yy", { desc = "Copy current line" })
 map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
-map("n", "<leader>tw", function()
-	if vim.opt.wrap:get() then
-		vim.cmd("set nowrap")
-	else
-		vim.cmd("set wrap")
-	end
-end, { desc = "Toggle [w]rap text" })
-map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "Toggle [r]elative line numbers" })
-
 map("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage Lazy Config"})
