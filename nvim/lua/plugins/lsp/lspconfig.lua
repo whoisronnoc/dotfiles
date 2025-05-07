@@ -132,6 +132,7 @@ return {
 			local mason_tool_installer = require("mason-tool-installer")
 			local tools = require("plugins.lsp.formatters._tools")
 			mason_tool_installer.setup({
+				auto_update = true,
 				ensure_installed = tools,
 			})
 

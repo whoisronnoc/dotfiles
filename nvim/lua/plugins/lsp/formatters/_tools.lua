@@ -6,4 +6,5 @@ return {
 	"prettier",
 	"eslint_d",
 	"xmlformatter",
+	"commitlint",
 }

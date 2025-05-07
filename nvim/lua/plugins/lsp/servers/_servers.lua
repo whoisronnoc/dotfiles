@@ -1,6 +1,12 @@
 local util = require("lspconfig.util")
 
 return {
+	eslint = {
+		root_dir = util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.json"),
+	},
+	stylelint_lsp = {
+		root_dir = util.root_pattern("node_modules"),
+	},
 	-- harper_ls = require("plugins.lsp.servers.harper_ls"),
 	lua_ls = require("plugins.lsp.servers.lua_ls"),
 	jsonls = require("plugins.lsp.servers.jsonls"),
@@ -8,10 +14,7 @@ return {
 	ts_ls = require("plugins.lsp.servers.ts_ls"),
 	volar = require("plugins.lsp.servers.volar"),
 	biome = {
-		root_dir = util.root_pattern("node_modules", "biome.json", "biome.jsonc"),
-	},
-	stylelint_lsp = {
-		root_dir = util.root_pattern("node_modules"),
+		root_dir = util.root_pattern("biome.json", "biome.jsonc"),
 	},
 	tailwindcss = {
 		roort_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
