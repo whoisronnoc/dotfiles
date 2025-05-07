@@ -17,8 +17,17 @@ local function update_theme(mode)
 		if theme_light == "carbide" then
 			vim.cmd.hi("NonText guifg=#a8a8a8")
 			vim.cmd.hi("Comment guifg=#0B4AED")
+
+			-- vim.cmd.hi("NeoTreeTabInactive  guifg=#000000 guibg=#CDCDCD")
+			-- vim.cmd.hi("NeoTreeTabSeparatorInactive  guifg=#000000 guibg=#CDCDCD")
 		end
 	end
+
+	vim.cmd("hi! link NeoTreeTab BufferLineTab")
+	vim.cmd("hi! link NeoTreeTabInactive BufferLineTab")
+	vim.cmd("hi! link NeoTreeTabSeparator BufferLineTabSeparator")
+	vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
+	vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
 
 	vim.opt.guicursor =
 		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
@@ -47,6 +56,7 @@ return {
 		config = function(_, opts)
 			require("carbide").setup(opts)
 			require("carbide").apply()
+			update_theme(default_mode)
 		end,
 	},
 	-- {
