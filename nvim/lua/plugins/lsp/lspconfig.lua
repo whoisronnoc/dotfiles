@@ -51,12 +51,12 @@ return {
 			"b0o/schemastore.nvim",
 		},
 		config = function(_, opts)
-			require("plugins.lsp.lspconfig.diagnostic")
+			require("plugins.lsp.config.diagnostic")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					local m = require("plugins.lsp.lspconfig.keymaps")
+					local m = require("plugins.lsp.config.keymaps")
 					m.setup(event.buf)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -112,8 +112,7 @@ return {
 
 					-- The following code creates a keymap to toggle inlay hints in your
 					-- code, if the language server you are using supports them
-					--
-					-- This may be unwanted, since they displace some of your code
+					-- NOTE: This may be unwanted, since they displace some of your code
 					if
 						client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
@@ -122,7 +121,7 @@ return {
 				end,
 			})
 
-			local servers = require("plugins.lsp.lspconfig._lsp_servers")
+			local servers = require("plugins.lsp.config._lsp_servers")
 
 			require("mason-lspconfig").setup({
 				ensure_installed = servers,
@@ -131,7 +130,7 @@ return {
 			})
 
 			local mason_tool_installer = require("mason-tool-installer")
-			local tools = require("plugins.lsp.formatters._install_tools")
+			local tools = require("plugins.lsp.config._install_tools")
 			mason_tool_installer.setup({
 				auto_update = true,
 				ensure_installed = tools,
@@ -148,36 +147,6 @@ return {
 				),
 			})
 			vim.lsp.enable(servers)
-
-			-- local lspconfig = require("lspconfig")
-			-- for server_name, config in pairs(servers) do
-			-- 	-- config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
-			-- 	-- lspconfig[server_name].setup(config)
-			-- 	-- vim.lsp.config(server_name, {
-			-- 	-- 	settings = {
-			-- 	-- 		[server_name] = config,
-			-- 	-- 	},
-			-- 	-- })
-			-- end
 		end,
-
-		--
-		-- local ensure_installed = vim.tbl_filter(function(server)
-		-- 	return not vim.tbl_contains(opts.exclude, server)
-		-- end, opts.servers)
-		-- require("mason-lspconfig").setup({
-		-- 	ensure_installed = ensure_installed,
-		-- 	automatic_installation = false,
-		-- })
-
-		-- vim.lsp.config("*", {
-		-- 	--- @type lsp.ClientCapabilities
-		-- 	capabilities = vim.tbl_extend(
-		-- 		"force",
-		-- 		vim.lsp.protocol.make_client_capabilities(),
-		-- 		require("blink.cmp").get_lsp_capabilities()
-		-- 	),
-		-- })
-		-- vim.lsp.enable(opts.servers)
 	},
 }

@@ -8,7 +8,7 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
-			formatters_by_ft = require("plugins.lsp.formatters._formatters_ft"),
+			formatters_by_ft = require("plugins.lsp.config._formatters_ft"),
 			format_on_save = {
 				lsp_format = "fallback",
 				async = false,
