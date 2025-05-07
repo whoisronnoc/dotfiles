@@ -1,4 +1,5 @@
 return {
+	enabled = true,
 	"mfussenegger/nvim-lint",
 	event = {
 		"BufReadPre",
@@ -6,7 +7,7 @@ return {
 	},
 	config = function()
 		local lint = require("lint")
-		lint.linters_by_ft = require("plugins.lsp.formatters._linters")
+		lint.linters_by_ft = require("plugins.lsp.formatters._linters_ft")
 
 		local lint_all = vim.api.nvim_create_augroup("lint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

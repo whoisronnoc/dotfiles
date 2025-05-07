@@ -1,4 +1,3 @@
--- yamlls
 return {
 	settings = {
 		yaml = {

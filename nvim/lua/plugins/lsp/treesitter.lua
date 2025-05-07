@@ -7,7 +7,7 @@ return {
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
 		opts = {
-			ensure_installed = require("plugins.lsp.formatters._languages"),
+			ensure_installed = require("plugins.lsp.formatters._treesitter_langs"),
 
 			-- Autoinstall languages that are not installed
 			auto_install = true,

@@ -1,4 +1,3 @@
--- jsonls
 return {
 	settings = {
 		json = {

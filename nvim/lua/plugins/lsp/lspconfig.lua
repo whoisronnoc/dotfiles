@@ -64,11 +64,6 @@ return {
 						client
 						and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 					then
-						-- vim.cmd([[
-						-- hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-						-- hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-						-- hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-						-- ]])
 						vim.api.nvim_create_augroup("lsp_document_highlight", {
 							clear = false,
 						})
@@ -86,6 +81,17 @@ return {
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
+						-- vim.api.nvim_create_autocmd("BufWritePre", {
+						-- 	callback = function()
+						-- 		vim.lsp.buf.code_action({
+						-- 			context = {
+						-- 				only = { "source.organizeImports" },
+						-- 			},
+						-- 			apply = true,
+						-- 		})
+						-- 	end,
+						-- 	buffer = event.buf,
+						-- })
 					end
 
 					-- The following auto commands trigger the diagnostics for what you are hovering
@@ -116,31 +122,62 @@ return {
 				end,
 			})
 
-			--- @type lsp.ClientCapabilities
-			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
-			local servers = require("plugins.lsp.servers._servers")
+			local servers = require("plugins.lsp.lspconfig._lsp_servers")
 
-			local install_servers = {}
-			for key, _ in pairs(servers) do
-				table.insert(install_servers, key)
-			end
 			require("mason-lspconfig").setup({
-				ensure_installed = install_servers,
+				ensure_installed = servers,
 				automatic_installation = false,
+				automatic_enable = false,
 			})
 
 			local mason_tool_installer = require("mason-tool-installer")
-			local tools = require("plugins.lsp.formatters._tools")
+			local tools = require("plugins.lsp.formatters._install_tools")
 			mason_tool_installer.setup({
 				auto_update = true,
 				ensure_installed = tools,
 			})
 
-			local lspconfig = require("lspconfig")
-			for server_name, config in pairs(servers) do
-				config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
-				lspconfig[server_name].setup(config)
-			end
+			--- @type lsp.ClientCapabilities
+			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
+
+			vim.lsp.config("*", {
+				capabilities = vim.tbl_extend(
+					"force",
+					vim.lsp.protocol.make_client_capabilities(),
+					require("blink.cmp").get_lsp_capabilities()
+				),
+			})
+			vim.lsp.enable(servers)
+
+			-- local lspconfig = require("lspconfig")
+			-- for server_name, config in pairs(servers) do
+			-- 	-- config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+			-- 	-- lspconfig[server_name].setup(config)
+			-- 	-- vim.lsp.config(server_name, {
+			-- 	-- 	settings = {
+			-- 	-- 		[server_name] = config,
+			-- 	-- 	},
+			-- 	-- })
+			-- end
 		end,
+
+		--
+		-- local ensure_installed = vim.tbl_filter(function(server)
+		-- 	return not vim.tbl_contains(opts.exclude, server)
+		-- end, opts.servers)
+		-- require("mason-lspconfig").setup({
+		-- 	ensure_installed = ensure_installed,
+		-- 	automatic_installation = false,
+		-- })
+
+		-- vim.lsp.config("*", {
+		-- 	--- @type lsp.ClientCapabilities
+		-- 	capabilities = vim.tbl_extend(
+		-- 		"force",
+		-- 		vim.lsp.protocol.make_client_capabilities(),
+		-- 		require("blink.cmp").get_lsp_capabilities()
+		-- 	),
+		-- })
+		-- vim.lsp.enable(opts.servers)
 	},
 }

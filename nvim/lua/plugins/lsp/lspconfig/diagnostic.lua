@@ -1,26 +1,3 @@
--- vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
--- vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
--- vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
--- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
---
--- vim.diagnostic.config({
--- 	update_in_insert = false,
--- 	-- virtual_text = { current_line = true },
--- 	underline = true,
--- 	severity_sort = true,
--- 	-- virtual_lines = true,
--- 	-- virtual_lines = { current_line = true },
--- 	signs = {
--- 		text = {
--- 			[vim.diagnostic.severity.ERROR] = "",
--- 			[vim.diagnostic.severity.WARN] = "",
--- 			[vim.diagnostic.severity.INFO] = "",
--- 			[vim.diagnostic.severity.HINT] = "󰌵",
--- 		},
--- 	},
--- })
---
-
 if vim.g.border then
 	-- To override globally the opts if none are provided
 	-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
@@ -42,6 +19,7 @@ local diag_opts = {
 	},
 	update_in_insert = false,
 	virtual_text = {
+		current_line = true,
 		severity = {
 			min = vim.diagnostic.severity.ERROR,
 		},
@@ -63,6 +41,7 @@ local diag_opts = {
 	underline = true,
 	severity_sort = true,
 	virtual_lines = false,
+	-- virtual_lines = { current_line = true },
 	focusable = false,
 }
 

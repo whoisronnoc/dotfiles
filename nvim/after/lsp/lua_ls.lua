@@ -1,4 +1,3 @@
--- lua_ls
 return {
 	settings = {
 		Lua = {
