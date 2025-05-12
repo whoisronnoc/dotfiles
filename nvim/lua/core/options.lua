@@ -17,7 +17,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.signcolumn = "yes"
 opt.colorcolumn = "80,120"
 
@@ -54,6 +54,7 @@ opt.fillchars = {
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
+opt.mousescroll = "ver:3,hor:0"
 
 -- Don't show the mode, since it's already in the status line
 opt.showmode = false
