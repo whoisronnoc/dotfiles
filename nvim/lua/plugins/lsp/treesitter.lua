@@ -84,4 +84,20 @@ return {
 			end
 		end,
 	},
+	-- https://github.com/folke/ts-comments.nvim
+	-- Easily override the comment string for a given treesitter language
+	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+		enabled = vim.fn.has("nvim-0.10.0") == 1,
+	},
+	-- https://github.com/windwp/nvim-ts-autotag
+	-- Use treesitter to autoclose and autorename html tag
+	{
+		"windwp/nvim-ts-autotag",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {},
+	},
 }
