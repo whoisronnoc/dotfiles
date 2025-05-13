@@ -1,3 +1,5 @@
+local machine_options = require("core.machine_options")
+local picker = machine_options:getOption("picker")
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {
@@ -12,7 +14,7 @@ return {
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		-- event = "VeryLazy",
-		enabled = true,
+		enabled = picker == "telescope",
 		lazy = true,
 		version = "*",
 		-- branch = "0.1.x",
