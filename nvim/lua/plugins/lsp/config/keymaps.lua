@@ -2,7 +2,7 @@ local M = {}
 
 function M.map_inlay_hints(buffer)
 	vim.keymap.set("n", "<leader>ch", function()
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buffer.bufnr }))
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buffer }))
 	end, { desc = "Toggle Inlay [C]ode [H]ints" })
 end
 

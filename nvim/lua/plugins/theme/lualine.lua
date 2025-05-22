@@ -1,5 +1,6 @@
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#mixed-indent
 local function mixed_indent()
+	local shift_width = vim.opt.shiftwidth:get()
 	local space_pat = [[\v^ +]]
 	local tab_pat = [[\v^\t+]]
 	local space_indent = vim.fn.search(space_pat, "nwc")
@@ -15,7 +16,7 @@ local function mixed_indent()
 			return ""
 		end
 		if space_indent > 0 then
-			return "󱁐"
+			return "󱁐 " .. shift_width
 		end
 		return "not"
 	end

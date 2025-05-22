@@ -18,6 +18,28 @@ return {
 			tsdk = "",
 		},
 	},
+	settings = {
+		typescript = {
+			inlayHints = {
+				enumMemberValues = {
+					enabled = true,
+				},
+				functionLikeReturnTypes = {
+					enabled = true,
+				},
+				propertyDeclarationTypes = {
+					enabled = true,
+				},
+				parameterTypes = {
+					enabled = true,
+					-- suppressWhenArgumentMatchesName = true,
+				},
+				variableTypes = {
+					enabled = true,
+				},
+			},
+		},
+	},
 	before_init = function(_, config)
 		if vim.tbl_get(config, "init_options", "typescript", "tsdk") ~= "" then
 			return

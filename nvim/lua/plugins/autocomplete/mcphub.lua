@@ -1,4 +1,5 @@
 return {
+	event = "VeryLazy",
 	lazy = true,
 	"ravitemer/mcphub.nvim",
 	dependencies = {

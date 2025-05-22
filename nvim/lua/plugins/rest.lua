@@ -1,5 +1,6 @@
 return {
 	"rest-nvim/rest.nvim",
+	lazy = true,
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",

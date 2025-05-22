@@ -14,8 +14,13 @@ local function update_theme(mode)
 	else
 		vim.cmd.colorscheme(theme_light)
 
+		-- vim.cmd.hi("LspInlayHint guibg=#E9EBF1 guifg=#0B4AED")
+		-- bg = "#E9EBF1",
+		-- fg = "#9CA0B0"
 		if theme_light == "carbide" then
-			vim.cmd.hi("NonText guifg=#a8a8a8")
+			vim.cmd.hi("Normal guibg=none")
+			vim.cmd.hi("NeoTreeNormal guibg=none")
+			vim.cmd.hi("Text guifg=#a8a8a8")
 			vim.cmd.hi("Comment guifg=#0B4AED")
 
 			-- vim.cmd.hi("NeoTreeTabInactive  guifg=#000000 guibg=#CDCDCD")
@@ -28,6 +33,8 @@ local function update_theme(mode)
 	vim.cmd("hi! link NeoTreeTabSeparator BufferLineTabSeparator")
 	vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
 	vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
+
+	vim.cmd("hi! link LspInlayHint Type")
 
 	vim.opt.guicursor =
 		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
@@ -284,7 +291,7 @@ return {
 					update_theme(mode)
 				end
 			end,
-			update_interval = 5000,
+			update_interval = 2000,
 			fallback = "dark",
 		},
 	},
