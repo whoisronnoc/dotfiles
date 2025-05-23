@@ -4,6 +4,9 @@ function M.map_inlay_hints(buffer)
 	vim.keymap.set("n", "<leader>ch", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buffer }))
 	end, { desc = "Toggle Inlay [C]ode [H]ints" })
+
+	-- enable inlay hints by default
+	vim.lsp.inlay_hint.enable()
 end
 
 -- setup lsp keybinds
@@ -26,6 +29,6 @@ function M.setup(buffer)
 
 	-- Execute a code action, usually your cursor needs to be on top an error
 	-- or a suggestion from your LSP for this to activate.
-  vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
+	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
 end
 return M

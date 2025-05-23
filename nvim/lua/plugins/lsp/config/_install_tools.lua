@@ -3,8 +3,12 @@ return {
 	"stylua",
 	"black",
 	"isort",
-	"prettier",
+	"prettier_d",
 	"eslint_d",
 	"xmlformatter",
 	"commitlint",
+	-- code spell
+	"codespell",
+	"misspell",
+	"cspell",
 }

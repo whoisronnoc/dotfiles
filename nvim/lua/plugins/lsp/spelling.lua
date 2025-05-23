@@ -1,12 +1,13 @@
 return {
+	-- { "https://github.com/kamykn/spelunker.vim" },
+	--- @type LazyPluginSpec
 	{
 		"ravibrock/spellwarn.nvim",
 		event = "VeryLazy",
-		config = function()
-			-- vim.opt.spell = true
-			-- vim.opt.spelllang = "en_us"
-
-			require("spellwarn").setup({
+		enabled = true,
+		config = true,
+		opts = {
+			{
 				event = { -- event(s) to refresh diagnostics on
 					"CursorHold",
 					"InsertLeave",
@@ -30,18 +31,13 @@ return {
 					spelllocal = "HINT",
 					spellrare = "INFO",
 				},
-				prefix = "possible misspelling(s): ", -- prefix for each diagnostic message
+				prefix = "possible misspelling(s): ", -- prefix for each diagnostic messagez
 				diagnostic_opts = { severity_sort = true }, -- options for diagnostic display
-			})
-			vim.keymap.set("n", "<leader>ts", function()
-				require("spellwarn").toggle()
-				vim.opt.spell = not vim.opt.spell:get()
-			end, { desc = "Toggle [s]pellwarn " })
-		end,
+			},
+		},
 	},
 	{
 		"psliwka/vim-dirtytalk",
-		event = "VeryLazy",
 		build = ":DirtytalkUpdate",
 		config = function()
 			vim.opt.spelllang = { "en", "programming" }

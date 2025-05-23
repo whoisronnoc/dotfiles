@@ -14,11 +14,15 @@ return {
 			group = lint_all,
 			callback = function()
 				lint.try_lint()
+
+				-- lint.try_lint("cspell")
+				-- lint.try_lint("codespell")
 			end,
 		})
 
 		vim.keymap.set("n", "<leader>me", function()
 			lint.try_lint()
+			-- lint.try_lint("cspell")
 		end, {
 			desc = "Trigger linting",
 		})
