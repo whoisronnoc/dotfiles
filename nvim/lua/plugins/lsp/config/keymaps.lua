@@ -11,7 +11,7 @@ end
 
 -- setup lsp keybinds
 function M.setup(buffer)
-  -- stylua: ignore start
+	-- stylua: ignore start
 	vim.keymap.set("n", "gd",         Snacks.picker.lsp_definitions,       { buffer = buffer, desc = "[G]oto [D]efinition" })
 	vim.keymap.set("n", "gD",         Snacks.picker.lsp_declarations,      { buffer = buffer, desc = "[G]oto [D]eclaration" })
 	vim.keymap.set("n", "gr",         Snacks.picker.lsp_references,        { buffer = buffer, desc = "[R]eferences", nowait = true, })
@@ -30,5 +30,36 @@ function M.setup(buffer)
 	-- Execute a code action, usually your cursor needs to be on top an error
 	-- or a suggestion from your LSP for this to activate.
 	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
+end
+
+function M.setup_document_highlight(event)
+	vim.api.nvim_create_augroup("lsp_document_highlight", {
+		clear = false,
+	})
+	vim.api.nvim_clear_autocmds({
+		buffer = event.buf,
+		group = "lsp_document_highlight",
+	})
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		group = "lsp_document_highlight",
+		buffer = event.buf,
+		callback = vim.lsp.buf.document_highlight,
+	})
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = "lsp_document_highlight",
+		buffer = event.buf,
+		callback = vim.lsp.buf.clear_references,
+	})
+	-- vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 	callback = function()
+	-- 		vim.lsp.buf.code_action({
+	-- 			context = {
+	-- 				only = { "source.organizeImports" },
+	-- 			},
+	-- 			apply = true,
+	-- 		})
+	-- 	end,
+	-- 	buffer = event.buf,
+	-- })
 end
 return M

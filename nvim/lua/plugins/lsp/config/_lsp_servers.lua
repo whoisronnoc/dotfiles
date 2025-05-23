@@ -7,6 +7,7 @@ return {
 	"html",
 	"tailwindcss",
 	"ts_ls",
+	"vue-language-server",
 	"volar",
 	"angularls",
 	-- "eslint",

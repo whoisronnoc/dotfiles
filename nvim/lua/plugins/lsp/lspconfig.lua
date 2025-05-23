@@ -74,34 +74,7 @@ return {
 						client
 						and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 					then
-						vim.api.nvim_create_augroup("lsp_document_highlight", {
-							clear = false,
-						})
-						vim.api.nvim_clear_autocmds({
-							buffer = event.buf,
-							group = "lsp_document_highlight",
-						})
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							group = "lsp_document_highlight",
-							buffer = event.buf,
-							callback = vim.lsp.buf.document_highlight,
-						})
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							group = "lsp_document_highlight",
-							buffer = event.buf,
-							callback = vim.lsp.buf.clear_references,
-						})
-						-- vim.api.nvim_create_autocmd("BufWritePre", {
-						-- 	callback = function()
-						-- 		vim.lsp.buf.code_action({
-						-- 			context = {
-						-- 				only = { "source.organizeImports" },
-						-- 			},
-						-- 			apply = true,
-						-- 		})
-						-- 	end,
-						-- 	buffer = event.buf,
-						-- })
+						m.setup_document_highlight(event)
 					end
 
 					-- The following auto commands trigger the diagnostics for what you are hovering
@@ -122,7 +95,6 @@ return {
 
 					-- The following code creates a keymap to toggle inlay hints in your
 					-- code, if the language server you are using supports them
-					-- NOTE: This may be unwanted, since they displace some of your code
 					if
 						client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
@@ -131,7 +103,20 @@ return {
 				end,
 			})
 
+			-- installation of LSP servers and tools
 			local servers = require("plugins.lsp.config._lsp_servers")
+			local tools = require("plugins.lsp.config._install_tools")
+			local install = {}
+
+			local function tableMerge(table1, table2, result)
+				for _, v in ipairs(table1) do
+					table.insert(result, v)
+				end
+				for _, v in ipairs(table2) do
+					table.insert(result, v)
+				end
+			end
+			tableMerge(servers, tools, install)
 
 			require("mason-lspconfig").setup({
 				ensure_installed = servers,
@@ -139,15 +124,10 @@ return {
 				automatic_enable = false,
 			})
 
-			local mason_tool_installer = require("mason-tool-installer")
-			local tools = require("plugins.lsp.config._install_tools")
-			mason_tool_installer.setup({
+			require("mason-tool-installer").setup({
+				ensure_installed = install,
 				auto_update = true,
-				ensure_installed = tools,
 			})
-
-			--- @type lsp.ClientCapabilities
-			local capabilities = require("blink.cmp").get_lsp_capabilities({}, true)
 
 			vim.lsp.config("*", {
 				capabilities = vim.tbl_extend(
@@ -156,6 +136,7 @@ return {
 					require("blink.cmp").get_lsp_capabilities()
 				),
 			})
+
 			vim.lsp.enable(servers)
 		end,
 	},
