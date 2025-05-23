@@ -15,13 +15,14 @@ function M:getOption(option)
 	end
 end
 
---- @alias machine_option "profile" | "explorer" | "theme_dark" | "theme_light" | "theme_default_mode" | "picker" | "ai_source"
+--- @alias machine_option "profile" | "explorer" | "theme_dark" | "theme_light" | "theme_default_mode" | "picker" | "ai_source" | "diagnostic_display"
 --- @alias profile "work" | "personal"
 --- @alias explorer "neo-tree" | "snacks"
 --- @alias theme "vscode" | "sonokai" | "catppuccin" | "carbide"
 --- @alias theme_default_mode "dark" | "light"
 --- @alias picker "telescope" | "snacks"
 --- @alias ai_source "copilot" | "supermaven"
+--- @alias diagnostic_display "float" | "virtual_text"
 
 --- @class machine_options
 --- @field profile profile
@@ -31,6 +32,7 @@ end
 --- @field theme_light theme
 --- @field theme_default_mode theme_default_mode
 --- @field ai_source ai_source
+--- @field diagnostic_display diagnostic_display
 
 M.options = {
 	--- @type machine_options
@@ -42,6 +44,7 @@ M.options = {
 		theme_light = "carbide",
 		theme_default_mode = "dark",
 		ai_source = "copilot",
+		diagnostic_display = "float",
 	},
 	--- @type machine_options
 	MkIII = {
@@ -52,6 +55,7 @@ M.options = {
 		theme_light = "catppuccin",
 		theme_default_mode = "dark",
 		ai_source = "supermaven",
+		diagnostic_display = "virtual_text",
 	},
 }
 

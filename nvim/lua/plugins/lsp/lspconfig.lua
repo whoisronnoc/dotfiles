@@ -1,3 +1,6 @@
+local machine_options = require("core.machine_options")
+local diagnostic_display = machine_options:getOption("diagnostic_display")
+
 -- LSP Plugins
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
@@ -66,8 +69,8 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					local m = require("plugins.lsp.config.keymaps")
-					m.setup(event.buf)
+					local m = require("plugins.lsp.config.lsp_utils")
+					m.setup_keybinds(event.buf)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
@@ -77,21 +80,9 @@ return {
 						m.setup_document_highlight(event)
 					end
 
-					-- The following auto commands trigger the diagnostics for what you are hovering
-					vim.api.nvim_create_autocmd("CursorHold", {
-						buffer = event.buf,
-						callback = function()
-							-- Check if there are any visible floating windows already
-							-- for _, win in ipairs(vim.api.nvim_list_wins()) do
-							-- 	if vim.api.nvim_win_get_config(win).relative ~= "" then
-							-- 		-- A float exists, don't create another one
-							-- 		return
-							-- 	end
-							-- end
-
-							vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-						end,
-					})
+					if diagnostic_display == "float" then
+						m.setup_float_diagnostics(event)
+					end
 
 					-- The following code creates a keymap to toggle inlay hints in your
 					-- code, if the language server you are using supports them

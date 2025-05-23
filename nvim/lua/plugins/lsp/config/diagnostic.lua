@@ -1,7 +1,11 @@
+local machine_options = require("core.machine_options")
+local diagnostic_display = machine_options:getOption("diagnostic_display")
+
 if vim.g.border then
 	-- To override globally the opts if none are provided
 	-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
 	local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+	---@diagnostic disable-next-line: duplicate-set-field
 	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 		opts = opts or {}
 		opts.border = opts.border or vim.g.border
@@ -18,12 +22,13 @@ local diag_opts = {
 		scope = "cursor",
 	},
 	update_in_insert = false,
-	virtual_text = {
-		current_line = true,
-		severity = {
-			min = vim.diagnostic.severity.ERROR,
-		},
-	},
+	virtual_text = diagnostic_display == "virtual_text",
+	-- virtual_text = {
+	-- 	current_line = true,
+	-- 	severity = {
+	-- 		min = vim.diagnostic.severity.ERROR,
+	-- 	},
+	-- },
 	signs = {
 		-- linehl = {
 		-- 	[vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
@@ -40,7 +45,8 @@ local diag_opts = {
 	},
 	underline = true,
 	severity_sort = true,
-	virtual_lines = false,
+	-- virtual_lines = false,
+	virtual_lines = diagnostic_display == "virtual_text" and { current_line = true },
 	-- virtual_lines = { current_line = true },
 	focusable = false,
 }

@@ -10,7 +10,7 @@ function M.map_inlay_hints(buffer)
 end
 
 -- setup lsp keybinds
-function M.setup(buffer)
+function M.setup_keybinds(buffer)
 	-- stylua: ignore start
 	vim.keymap.set("n", "gd",         Snacks.picker.lsp_definitions,       { buffer = buffer, desc = "[G]oto [D]efinition" })
 	vim.keymap.set("n", "gD",         Snacks.picker.lsp_declarations,      { buffer = buffer, desc = "[G]oto [D]eclaration" })
@@ -62,4 +62,23 @@ function M.setup_document_highlight(event)
 	-- 	buffer = event.buf,
 	-- })
 end
+
+function M.setup_float_diagnostics(event)
+	-- The following auto commands trigger the diagnostics for what you are hovering
+	vim.api.nvim_create_autocmd("CursorHold", {
+		buffer = event.buf,
+		callback = function()
+			-- Check if there are any visible floating windows already
+			-- for _, win in ipairs(vim.api.nvim_list_wins()) do
+			-- 	if vim.api.nvim_win_get_config(win).relative ~= "" then
+			-- 		-- A float exists, don't create another one
+			-- 		return
+			-- 	end
+			-- end
+
+			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		end,
+	})
+end
+
 return M

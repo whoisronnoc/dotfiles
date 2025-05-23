@@ -9,8 +9,4 @@ return {
 	"ts_ls",
 	"vue_ls",
 	"angularls",
-	-- "eslint",
-	-- "stylelint",
-	-- "biome",
-	-- "harper_ls",
 }

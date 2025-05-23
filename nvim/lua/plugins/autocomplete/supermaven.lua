@@ -17,8 +17,9 @@ return {
 				suggestion_color = "#d160d1",
 				cterm = 13,
 			},
+			-- return true to disable supermaven
 			condition = function()
-				return not string.match(vim.fn.expand("%:t"), "Avante")
+				return string.match(vim.fn.expand("%:t"), "Avante")
 			end,
 		})
 	end,
