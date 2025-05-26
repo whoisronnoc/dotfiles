@@ -3,7 +3,7 @@ return {
 	"stylua",
 	"black",
 	"isort",
-	"prettier_d",
+	"prettierd",
 	"eslint_d",
 	"xmlformatter",
 	"commitlint",
