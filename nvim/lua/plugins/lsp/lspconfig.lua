@@ -62,6 +62,9 @@ return {
 			"saghen/blink.cmp",
 
 			"b0o/schemastore.nvim",
+
+			"nvimtools/none-ls.nvim",
+			"jay-babu/mason-null-ls.nvim",
 		},
 		config = function(_, opts)
 			require("plugins.lsp.config.diagnostic")
@@ -119,6 +122,10 @@ return {
 				ensure_installed = install,
 				auto_update = true,
 			})
+
+			-- require("mason-null-ls").setup({
+			-- 	handlers = {},
+			-- })
 
 			vim.lsp.config("*", {
 				capabilities = vim.tbl_extend(

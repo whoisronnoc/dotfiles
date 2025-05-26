@@ -114,7 +114,7 @@ opt.title = true
 opt.titlestring = [[%f]]
 
 -- enable spellcheck
-opt.spell = true
+opt.spell = false
 
 -- Disable swapfile for JamfProtect cause it causes lag cause we cannot handle
 -- file events. So no recovery and no quick switching. Also no multiple
