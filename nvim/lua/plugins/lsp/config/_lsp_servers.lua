@@ -1,5 +1,7 @@
 return {
 	-- "harper_ls",
+	"eslint",
+	"stylelint_lsp",
 	"rust_analyzer",
 	"lua_ls",
 	"jsonls",

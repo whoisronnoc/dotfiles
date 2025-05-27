@@ -1,6 +1,4 @@
 local obsidan_vault = "~/dev/ronnocwiki/RonnocWiki"
-
---- @module 'lazy'
 return {
 	{
 		"epwalsh/obsidian.nvim",
