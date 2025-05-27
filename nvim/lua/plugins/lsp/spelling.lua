@@ -37,7 +37,6 @@ return {
 			-- misspelledd wordz
 		end,
 	},
-
 	{
 		"psliwka/vim-dirtytalk",
 		enabled = false,
@@ -54,21 +53,9 @@ return {
 		dependencies = {
 			"davidmh/cspell.nvim",
 		},
-		opts = function(_, opts)
-			-- https://github.com/streetsidesoftware/cspell-dicts
+		config = function()
+			-- todo: https://github.com/streetsidesoftware/cspell-dicts
 			local cspell = require("cspell")
-
-			-- opts.sources = opts.sources or {}
-			-- table.insert(
-			-- 	opts.sources,
-			-- 	cspell.diagnostics.with({
-			-- 		diagnostics_postprocess = function(diagnostic)
-			-- 			diagnostic.severity = vim.diagnostic.severity.HINT
-			-- 		end,
-			-- 	})
-			-- )
-			-- table.insert(opts.sources, cspell.code_actions)
-
 			require("null-ls").setup({
 				sources = {
 					cspell.diagnostics.with({

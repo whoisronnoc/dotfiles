@@ -1,5 +1,5 @@
 return {
-	"harper_ls",
+	-- "harper_ls",
 	"rust_analyzer",
 	"lua_ls",
 	"jsonls",
