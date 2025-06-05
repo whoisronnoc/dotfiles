@@ -1,7 +1,15 @@
 {
   "version": "0.2",
   "flagWords": [],
-  "words": ["spelllang", "spelloptions"],
-  "language": "en"
+  "words": ["spelllang", "spelloptions", "jamf"],
+  "language": "en",
+  "import": ["@cspell/dict-vim/cspell-ext.json"],
+  "dictionaries": ["vim"],
+  "allowCompoundWords": true,
+  "languageSettings": [
+    {
+      "languageId": "en",
+      "allowCompoundWords": true
+    }
+  ]
 }
-
