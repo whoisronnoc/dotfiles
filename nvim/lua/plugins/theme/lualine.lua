@@ -32,6 +32,18 @@ local function mixed_indent()
 	end
 end
 
+local function lint_status()
+	local ok, linters = pcall(require, "lint")
+	if not ok then
+		return ""
+	end
+
+	if #linters == 0 then
+		return "󰦕"
+	end
+	return "󱉶 " .. table.concat(linters, ", ")
+end
+
 -- https://github.com/nvim-lualine/lualine.nvim
 return {
 	"nvim-lualine/lualine.nvim",
@@ -129,6 +141,18 @@ return {
 					},
 					"rest",
 					"codecompanion",
+					-- "lsp_status",
+					{
+						"lsp_status",
+						icon = "",
+						symbols = {
+							spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+							done = "✓",
+							separator = " ",
+						},
+						ignore_lsp = { "null-ls", "GitHub Copilot" },
+					},
+					lint_status,
 					mixed_indent,
 					"encoding",
 					"fileformat",
