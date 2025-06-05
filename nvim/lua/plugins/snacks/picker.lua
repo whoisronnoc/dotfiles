@@ -8,7 +8,7 @@ return {
 	opts = {
 		explorer = {
 			enabled = true,
-			replace_net = true,
+			replace_netrw = true,
 		},
 		picker = {
 			enabled = true,

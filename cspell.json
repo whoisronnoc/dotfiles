@@ -3,7 +3,10 @@
   "flagWords": [],
   "words": ["spelllang", "spelloptions", "jamf"],
   "language": "en",
-  "import": ["@cspell/dict-vim/cspell-ext.json"],
+  "import": [
+    "@cspell/dict-lua/cspell-ext.json",
+    "@cspell/dict-lua/cspell-ext.json"
+  ],
   "dictionaries": ["vim"],
   "allowCompoundWords": true,
   "languageSettings": [
