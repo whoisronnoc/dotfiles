@@ -8,15 +8,21 @@ return {
 	opts = {
 		explorer = {
 			enabled = true,
-			replace_netrw = true,
+			replace_net = true,
 		},
 		picker = {
 			enabled = true,
+			hidden = true,
+			ignored = true,
 			sources = {
+				smart = {
+					-- hidden = true,
+					-- ignored = true,
+				},
 				explorer = {
 					border = "none",
-					hidden = true,
-					ignored = true,
+					-- hidden = true,
+					-- ignored = true,
 					layout = {
 						layout = {
 							width = 32,
