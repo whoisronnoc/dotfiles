@@ -11,6 +11,11 @@ local function update_theme(mode)
 
 		vim.cmd.hi("Cursor guifg=black guibg=white")
 		vim.cmd.hi("lCursor guifg=black guibg=white")
+
+		if theme_dark == "sonokai" then
+			vim.cmd.hi("GitConflictCurrentLabel guibg=#9FC9FF")
+			vim.cmd.hi("GitConflictCurrent guibg=#989EFE")
+		end
 	else
 		vim.cmd.colorscheme(theme_light)
 
@@ -36,7 +41,6 @@ local function update_theme(mode)
 	vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
 	vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
 
-	-- vim.cmd("hi! link LspInlayHint Pmenu")
 	vim.cmd("hi! link LspInlayHint @comment.documentation")
 	vim.cmd("hi! link SpellBad LspDiagnosticHint")
 
@@ -319,6 +323,46 @@ return {
 						icon = "",
 						color = "#eb5685",
 						name = "Storybook",
+					},
+					["component.ts"] = {
+						icon = "",
+						color = "#4267b7",
+						name = "AngularComponent",
+					},
+					["service.ts"] = {
+						icon = "",
+						color = "#f5bc40",
+						name = "AngularService",
+					},
+					["module.ts"] = {
+						icon = "",
+						color = "#c92e3a",
+						name = "AngularModule",
+					},
+					["guard.ts"] = {
+						icon = "",
+						color = "#cbe697",
+						name = "AngularGuard",
+					},
+					["directive.ts"] = {
+						icon = "",
+						color = "#f2a1ad",
+						name = "AngularDirective",
+					},
+					["pipe.ts"] = {
+						icon = "",
+						color = "#9cdcfc",
+						name = "AngularPipe",
+					},
+					["model.ts"] = {
+						icon = "",
+						color = "#4267b7",
+						name = "TypeScriptModel",
+					},
+					["type.ts"] = {
+						icon = "",
+						color = "#4267b7",
+						name = "TypeScriptType",
 					},
 				},
 			})
