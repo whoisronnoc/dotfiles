@@ -6,13 +6,19 @@ return {
 	--- @type avante.Config
 	opts = {
 		provider = "copilot",
-		-- cursor_applying_provider = "copilot",
-		copilot = {
-			model = "claude-3.7-sonnet",
-			max_tokens = 90000, -- Set the token limit to 90000
+		cursor_applying_provider = "copilot",
+		providers = {
+			copilot = {
+				extra_request_body = { max_tokens = 4096 },
+				model = "claude-3.7-sonnet",
+			},
 		},
+		-- web_search_engine = { -- must set TAVILY_API_KEY, BRAVE_API_KEY, etc
+		-- 	provider = "brave", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+		-- 	proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+		-- },
 		file_selector = {
-			provider = "telescope",
+			provider = "snacks",
 			provider_opts = {},
 		},
 		windows = {
@@ -60,7 +66,6 @@ return {
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",
-	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		-- "stevearc/dressing.nvim",
