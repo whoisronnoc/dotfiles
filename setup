@@ -22,6 +22,7 @@ sources=(
   "$dotdir/universe"
   "$dotdir/lsd"
   "$dotdir/ghostty"
+  "$dotdir/tmux"
 )
 destinations=(
   "$HOME/.profile"
@@ -34,6 +35,7 @@ destinations=(
   "$HOME/.universe"
   "$HOME/.config/lsd"
   "$HOME/.config/ghostty"
+  "$HOME/.tmux"
 )
 ammount=${#sources[@]}
 
