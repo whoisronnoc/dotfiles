@@ -64,6 +64,7 @@ return {
 			"b0o/schemastore.nvim",
 
 			"nvimtools/none-ls.nvim",
+
 			"jay-babu/mason-null-ls.nvim",
 		},
 		config = function(_, opts)
