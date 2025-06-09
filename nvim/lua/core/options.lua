@@ -111,6 +111,7 @@ opt.wrap = false -- wrap lines
 opt.conceallevel = 0
 
 opt.title = true
+opt.titlelen = 12
 opt.titlestring = [[%f]]
 
 -- enable spellcheck

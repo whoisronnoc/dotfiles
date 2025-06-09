@@ -36,7 +36,7 @@ end
 
 M.options = {
 	--- @type machine_options
-	QL4 = {
+	MkIV = {
 		profile = "work",
 		explorer = "neo-tree",
 		picker = "snacks",

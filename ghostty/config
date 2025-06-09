@@ -1,5 +1,6 @@
 # https://ghostty.org/docs/config/reference
 # command = tmux
+command=~/.dot/ghostty/tmux.sh
 
 #font-family = JetBrainsMono NFM Regular
 #font-family-bold = JetBrainsMono NFM Bold
