@@ -34,6 +34,20 @@ return {
 				Snacks.toggle.indent():map("<leader>tg")
 				Snacks.toggle.dim():map("<leader>tD")
 				Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark [b]ackground" }):map("<leader>tb")
+				-- stylua: ignore end
+
+				Snacks.toggle
+					.new({
+						id = "toggle_autoformat",
+						name = "Auto [f]ormat",
+						get = function()
+							return vim.g.autoformat
+						end,
+						set = function(state)
+							vim.g.autoformat = state
+						end,
+					})
+					:map("<leader>tf")
 			end,
 		})
 	end,
