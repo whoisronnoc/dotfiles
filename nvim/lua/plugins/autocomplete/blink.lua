@@ -1,5 +1,6 @@
 local machine_options = require("core.machine_options")
 local enable_supermaven = machine_options:getOption("ai_source") == "supermaven"
+local enable_ai = machine_options:getOption("ai_source") ~= "none"
 
 -- Autocompletion
 --- @module 'blink.cmp'
@@ -15,7 +16,7 @@ return {
 		dependencies = {
 			"xzbdmw/colorful-menu.nvim",
 			"rafamadriz/friendly-snippets",
-			{ "fang2hou/blink-copilot", version = "*" },
+			{ "fang2hou/blink-copilot", version = "*", enabled = enable_ai },
 			-- "mikavilpas/blink-ripgrep.nvim",
 			"folke/lazydev.nvim",
 			-- "Kaiser-Yang/blink-cmp-avante",
@@ -35,14 +36,25 @@ return {
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
 			keymap = {
-				preset = enable_supermaven and "default" or "super-tab",
-				-- preset = "super-tab",
+				preset = "none",
 
-				-- Enter will insert whether is selected
-				-- or enter if nothing is yet
-				["<CR>"] = { "accept", "fallback" },
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide", "fallback" },
+				["<C-y>"] = { "select_and_accept" },
 
-				["<Tab>"] = enable_supermaven and {} or {
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+
+				["<Tab>"] = enable_supermaven and { "snippet_forward", "fallback" } or {
 					function(cmp)
 						if cmp.snippet_active() then
 							return cmp.accept()
@@ -54,14 +66,7 @@ return {
 					"fallback",
 				},
 
-				-- Tab will accept the ghost text or the selection first
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-
-				-- Accept ([y]es) the completion.
-				--  This will auto-import if your LSP supports it.
-				--  This will expand snippets if the LSP sent a snippet.
+				["<CR>"] = { "accept", "fallback" },
 
 				-- cmdline = {
 				-- 	-- disable enter for the cmdline completion
@@ -124,19 +129,19 @@ return {
 					window = { border = border },
 				},
 
-				-- list = {
-				-- 	selection = {
-				-- 		preselect = false,
-				-- 		-- preselect = function(ctx)
-				-- 		-- 	return ctx.mode ~= "cmdline"
-				-- 		-- 	-- return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
-				-- 		-- end,
-				-- 		auto_insert = false,
-				-- 		-- auto_insert = function(ctx)
-				-- 		-- 	return ctx.mode ~= "cmdline"
-				-- 		-- end,
-				-- 	},
-				-- },
+				list = {
+					selection = {
+						preselect = false,
+						-- preselect = function(ctx)
+						-- 	return ctx.mode ~= "cmdline"
+						-- 	-- return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
+						-- end,
+						auto_insert = false,
+						-- auto_insert = function(ctx)
+						-- 	return ctx.mode ~= "cmdline"
+						-- end,
+					},
+				},
 
 				menu = {
 					-- auto_show = true,
@@ -175,46 +180,62 @@ return {
 			cmdline = { enabled = true },
 
 			sources = {
-				default = {
-					"copilot",
-					-- "avante",
-					"lsp",
-					"path",
-					"snippets",
-					"lazydev",
-					"buffer",
-				},
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 50,
+				default = enable_ai
+						and {
+							"lsp",
+							"path",
+							"snippets",
+							"lazydev",
+							"buffer",
+							-- "avante",
+							"copilot",
+						}
+					or {
+						"lsp",
+						"path",
+						"snippets",
+						"lazydev",
+						"buffer",
 					},
-					copilot = {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-						opts = {
-							max_completions = 3,
-							max_attempts = 4,
-							kind = "Copilot",
-							debounce = 500, ---@type integer | false
-							auto_refresh = {
-								backward = true,
-								forward = true,
+
+				providers = enable_ai
+						and {
+							lazydev = {
+								name = "LazyDev",
+								module = "lazydev.integrations.blink",
+								score_offset = 50,
 							},
+							copilot = {
+								name = "copilot",
+								module = "blink-copilot",
+								score_offset = 100,
+								async = true,
+								opts = {
+									max_completions = 3,
+									max_attempts = 4,
+									kind = "Copilot",
+									debounce = 500, ---@type integer | false
+									auto_refresh = {
+										backward = true,
+										forward = true,
+									},
+								},
+							},
+							-- avante = {
+							-- 	module = "blink-cmp-avante",
+							-- 	name = "Avante",
+							-- 	opts = {
+							-- 		-- options for blink-cmp-avant
+							-- 	},
+							-- },
+						}
+					or {
+						lazydev = {
+							name = "LazyDev",
+							module = "lazydev.integrations.blink",
+							score_offset = 50,
 						},
 					},
-					-- avante = {
-					-- 	module = "blink-cmp-avante",
-					-- 	name = "Avante",
-					-- 	opts = {
-					-- 		-- options for blink-cmp-avant
-					-- 	},
-					-- },
-				},
 			},
 		},
 

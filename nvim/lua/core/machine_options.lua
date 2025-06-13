@@ -21,7 +21,7 @@ end
 --- @alias theme "vscode" | "sonokai" | "catppuccin" | "carbide"
 --- @alias theme_default_mode "dark" | "light"
 --- @alias picker "telescope" | "snacks"
---- @alias ai_source "copilot" | "supermaven"
+--- @alias ai_source "none" | "copilot" | "supermaven"
 --- @alias diagnostic_display "float" | "virtual_text"
 
 --- @class machine_options
@@ -54,8 +54,8 @@ M.options = {
 		theme_dark = "sonokai",
 		theme_light = "catppuccin",
 		theme_default_mode = "dark",
-		ai_source = "supermaven",
-		diagnostic_display = "virtual_text",
+		ai_source = "none",
+		diagnostic_display = "float",
 	},
 }
 

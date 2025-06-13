@@ -1,5 +1,8 @@
+local machine_options = require("core.machine_options")
+local enable_ai = machine_options:getOption("ai_source") ~= "none"
+
 return {
-	enabled = true,
+	enabled = enable_ai,
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!

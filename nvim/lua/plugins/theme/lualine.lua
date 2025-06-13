@@ -1,3 +1,6 @@
+local machine_options = require("core.machine_options")
+local enable_ai = machine_options:getOption("ai_source") ~= "none"
+
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#mixed-indent
 local function mixed_indent()
 	local shift_width = vim.opt.shiftwidth:get()
@@ -72,7 +75,7 @@ return {
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
-		lualine.setup({
+		local opts = {
 			options = {
 				icons_enabled = vim.g.have_nerd_font,
 
@@ -121,18 +124,6 @@ return {
 				},
 				lualine_x = {
 					{
-						require("mcphub.extensions.lualine"),
-						cond = function()
-							local ok, avante = pcall(require, "avante")
-							if ok then
-								if avante.get() then
-									return avante.get():is_open()
-								end
-							end
-							return false
-						end,
-					},
-					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
 						color = {
@@ -141,7 +132,6 @@ return {
 					},
 					"rest",
 					"codecompanion",
-					-- "lsp_status",
 					{
 						"lsp_status",
 						icon = "",
@@ -161,6 +151,24 @@ return {
 				lualine_y = {},
 			},
 			extensions = { "lazy", "mason", "neo-tree", "nvim-dap-ui" },
-		})
+		}
+
+		if enable_ai then
+			local mcp_hub = {
+				require("mcphub.extensions.lualine"),
+				cond = function()
+					local ok, avante = pcall(require, "avante")
+					if ok then
+						if avante.get() then
+							return avante.get():is_open()
+						end
+					end
+					return false
+				end,
+			}
+			table.insert(opts.sections.lualine_x, 1, mcp_hub)
+		end
+
+		lualine.setup(opts)
 	end,
 }

@@ -1,5 +1,9 @@
+local machine_options = require("core.machine_options")
+local enable_ai = machine_options:getOption("ai_source") ~= "none"
+
 return {
 	event = "VeryLazy",
+	enabled = enable_ai,
 	lazy = true,
 	"ravitemer/mcphub.nvim",
 	dependencies = {

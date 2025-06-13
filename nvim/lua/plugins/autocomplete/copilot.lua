@@ -1,8 +1,12 @@
+local machine_options = require("core.machine_options")
+local enable_ai = machine_options:getOption("ai_source") ~= "none"
+
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {
 	{
 		"github/copilot.vim",
+		enabled = enable_ai,
 		cmd = "Copilot",
 		-- build = "<cmd>Copilot setup<cr>",
 		-- event = "BufWinEnter",
