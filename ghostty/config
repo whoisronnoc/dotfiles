@@ -87,8 +87,11 @@ keybind = super+zero=reset_font_size
 keybind = super+plus=increase_font_size:1
 
 # tab navigation
-keybind = ctrl+shift+tab=previous_tab
-keybind = ctrl+tab=next_tab
+keybind = alt+shift+tab=previous_tab
+keybind = alt+tab=next_tab
+# Send Ctrl Tab and Ctrl + Shift + Tab for Tmux navigation
+keybind = ctrl+tab=text:\x1b[27;5;9~
+keybind = ctrl+shift+tab=text:\x1b[27;6;9~
 # keybind = super+shift+right_bracket=next_tab
 # keybind = super+shift+left_bracket=previous_tab
 keybind = super+physical:one=goto_tab:1
