@@ -14,3 +14,4 @@ lazy-lock.json
 .DS_Store
 tmux/plugins
 tmuxinator
+nvim/plugins/

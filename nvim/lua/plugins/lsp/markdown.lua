@@ -35,6 +35,7 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		event = "VeryLazy",
+		enabled = true,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -49,6 +50,10 @@ return {
 			},
 			bullet = {
 				right_pad = 1,
+			},
+			code = {
+				language_name = false,
+				language_icon = false,
 			},
 		},
 		ft = { "markdown", "Avante" },

@@ -12,6 +12,8 @@ end
 -- setup lsp keybinds
 function M.setup_keybinds(buffer)
 	-- stylua: ignore start
+	vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+	vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
 	vim.keymap.set("n", "gd",         Snacks.picker.lsp_definitions,       { buffer = buffer, desc = "[G]oto [D]efinition" })
 	vim.keymap.set("n", "gD",         Snacks.picker.lsp_declarations,      { buffer = buffer, desc = "[G]oto [D]eclaration" })
 	vim.keymap.set("n", "gr",         Snacks.picker.lsp_references,        { buffer = buffer, desc = "[R]eferences", nowait = true, })
@@ -76,7 +78,15 @@ function M.setup_float_diagnostics(event)
 			-- 	end
 			-- end
 
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+			local b = vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+			if b then
+				vim.api.nvim_buf_set_option(b, "filetype", "markdown")
+				-- vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = b })
+				vim.cmd("hi! clear DiagnosticError")
+				-- vim.cmd("hi! link DiagnosticFloatingError Normal")
+				-- vim.cmd("syntax match customConceals 'typescript' conceal cchar=4")
+				vim.cmd("hi! link @markup.link.label.markdown_inline Normal")
+			end
 		end,
 	})
 end
