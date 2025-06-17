@@ -19,6 +19,12 @@ require("lazy").setup({
 	{ import = "plugins.autocomplete" },
 	{ import = "plugins" },
 }, {
+	dev = {
+		-- Directory where you store your local plugin projects. If a function is used,
+		-- the plugin directory (e.g. `~/projects/plugin-name`) must be returned.
+		---@type string | fun(plugin: LazyPlugin): string
+		path = "~/.dot/nvim/plugins",
+	},
 	checker = {
 		enabled = true,
 		notify = false,
@@ -26,25 +32,23 @@ require("lazy").setup({
 	change_detection = {
 		notify = false,
 	},
-	{
-		ui = {
-			-- If you are using a Nerd Font: set icons to an empty table which will use the
-			-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-			icons = vim.g.have_nerd_font and {} or {
-				cmd = "⌘",
-				config = "🛠",
-				event = "📅",
-				ft = "📂",
-				init = "⚙",
-				keys = "🗝",
-				plugin = "🔌",
-				runtime = "💻",
-				require = "🌙",
-				source = "📄",
-				start = "🚀",
-				task = "📌",
-				lazy = "💤 ",
-			},
+	ui = {
+		-- If you are using a Nerd Font: set icons to an empty table which will use the
+		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+		icons = vim.g.have_nerd_font and {} or {
+			cmd = "⌘",
+			config = "🛠",
+			event = "📅",
+			ft = "📂",
+			init = "⚙",
+			keys = "🗝",
+			plugin = "🔌",
+			runtime = "💻",
+			require = "🌙",
+			source = "📄",
+			start = "🚀",
+			task = "📌",
+			lazy = "💤 ",
 		},
 	},
 })

@@ -5,16 +5,16 @@ local diagnostic_display = machine_options:getOption("diagnostic_display")
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {
-	{ "dmmulroy/ts-error-translator.nvim" },
-	-- {
-	-- 	"davidosomething/format-ts-errors.nvim",
-	-- 	config = function()
-	-- 		require("format-ts-errors").setup({
-	-- 			add_markdown = true, -- wrap output with markdown ```ts ``` markers
-	-- 			start_indent_level = 0, -- initial indent
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"whoisronnoc/format-ts-errors.nvim",
+		dev = true,
+		config = function()
+			require("format-ts-errors").setup({
+				add_markdown = true,
+				start_indent_level = 0,
+			})
+		end,
+	},
 	--- @type LazyPluginSpec
 	{
 		"Bilal2453/luvit-meta",
