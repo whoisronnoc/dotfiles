@@ -111,7 +111,7 @@ alias gsa='gsub add'
 alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 
 # modern-unix 
-alias cat='bat'
+alias cat='bat --theme auto:system --theme-dark default --theme-light GitHub'
 alias ls='lsd'
 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
