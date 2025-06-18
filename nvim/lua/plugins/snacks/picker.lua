@@ -15,14 +15,20 @@ return {
 			hidden = true,
 			ignored = true,
 			sources = {
+				grep = {
+					exclude = {
+						".git",
+						"node_modules",
+					},
+				},
 				smart = {
-					-- hidden = true,
-					-- ignored = true,
+					exclude = {
+						".git",
+						"node_modules",
+					},
 				},
 				explorer = {
 					border = "none",
-					-- hidden = true,
-					-- ignored = true,
 					layout = {
 						layout = {
 							width = 32,
@@ -32,13 +38,6 @@ return {
 							position = "left",
 							border = "none",
 							box = "vertical",
-							-- {
-							-- 	win = "input",
-							-- 	height = 1,
-							-- 	border = "rounded",
-							-- 	title = "{title} {live} {flags}",
-							-- 	title_pos = "center",
-							-- },
 							{ win = "list", border = "none" },
 							-- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
 						},
