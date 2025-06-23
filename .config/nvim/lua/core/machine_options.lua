@@ -56,7 +56,7 @@ M.options = {
 		theme_dark = "sonokai",
 		theme_light = "catppuccin",
 		theme_default_mode = "dark",
-		ai_source = "none",
+		ai_source = "supermaven",
 		diagnostic_display = "float",
 		obsidian_vault = "~/dev/ronnocwiki/RonnocWiki",
 	},
