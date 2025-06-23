@@ -1,18 +1,25 @@
 {
   "version": "0.2",
-  "flagWords": [],
-  "words": ["spelllang", "spelloptions", "jamf"],
   "language": "en",
+  "languageSettings": [],
+  "allowCompoundWords": true,
+  "words": [],
+  "flagWords": [],
+  "dictionaries": ["custom-words", "local-words"],
   "import": [
     "@cspell/dict-lua/cspell-ext.json",
-    "@cspell/dict-lua/cspell-ext.json"
+    "@cspell/dict-vim/cspell-ext.json"
   ],
-  "dictionaries": ["vim"],
-  "allowCompoundWords": true,
-  "languageSettings": [
+  "dictionaryDefinitions": [
     {
-      "languageId": "en",
-      "allowCompoundWords": true
+      "name": "custom-words",
+      "path": "~/.config/cspell/custom-words.txt",
+      "addWords": true
+    },
+    {
+      "name": "local-words",
+      "path": "~/.config/cspell/local-words.txt",
+      "addWords": true
     }
   ]
 }

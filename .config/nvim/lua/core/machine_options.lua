@@ -15,7 +15,7 @@ function M:getOption(option)
 	end
 end
 
---- @alias machine_option "profile" | "explorer" | "theme_dark" | "theme_light" | "theme_default_mode" | "picker" | "ai_source" | "diagnostic_display"
+--- @alias machine_option "profile" | "explorer" | "theme_dark" | "theme_light" | "theme_default_mode" | "picker" | "ai_source" | "diagnostic_display" | "obsidian_vault"
 --- @alias profile "work" | "personal"
 --- @alias explorer "neo-tree" | "snacks"
 --- @alias theme "vscode" | "sonokai" | "catppuccin" | "carbide"
@@ -33,6 +33,7 @@ end
 --- @field theme_default_mode theme_default_mode
 --- @field ai_source ai_source
 --- @field diagnostic_display diagnostic_display
+--- @field obsidian_vault string
 
 M.options = {
 	--- @type machine_options
@@ -45,6 +46,7 @@ M.options = {
 		theme_default_mode = "dark",
 		ai_source = "copilot",
 		diagnostic_display = "float",
+		obsidian_vault = "~/dev/notes",
 	},
 	--- @type machine_options
 	MkIII = {
@@ -56,6 +58,7 @@ M.options = {
 		theme_default_mode = "dark",
 		ai_source = "none",
 		diagnostic_display = "float",
+		obsidian_vault = "~/dev/ronnocwiki/RonnocWiki",
 	},
 }
 

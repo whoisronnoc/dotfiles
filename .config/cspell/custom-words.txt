@@ -1,0 +1,6 @@
+nvim
+ronnoc
+jamf
+catppuccin
+sonokai
+udid

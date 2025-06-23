@@ -1,4 +1,6 @@
-local obsidan_vault = "~/dev/ronnocwiki/RonnocWiki"
+local machine_options = require("core.machine_options")
+local obsidian_vault = machine_options:getOption("obsidian_vault")
+
 return {
 	{
 		"epwalsh/obsidian.nvim",
@@ -11,7 +13,7 @@ return {
 			-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
 			-- refer to `:h file-pattern` for more examples
 			"BufReadPre "
-				.. vim.fn.expand(obsidan_vault)
+				.. vim.fn.expand(obsidian_vault)
 				.. "/*.md",
 		},
 		keys = {
@@ -26,8 +28,8 @@ return {
 		opts = {
 			workspaces = {
 				{
-					name = "personal",
-					path = obsidan_vault,
+					name = "notes",
+					path = obsidian_vault,
 				},
 			},
 		},

@@ -1,0 +1,8 @@
+.git
+.git*
+README.md
+.DS_Store
+.luarc.json
+com.googlecode.iterm2.plist
+setup
+

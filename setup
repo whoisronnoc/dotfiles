@@ -1,82 +1,6 @@
 #!/bin/bash
 
-# init submodules
-echo -e "setting up submodules\n"
-git submodule init
-git submodule update --recursive
-
-# install nix
-# sh <(curl -L https://nixos.org/nix/install)
-
-# symlink dotfiles
-echo -e "symlinking dotfiles\n"
-dotdir=$PWD
-sources=(
-  "$dotdir/profile"
-  "$dotdir/profile"
-  "$dotdir/zshrc"
-  "$dotdir/atuin"
-  "$dotdir/vimrc"
-  "$dotdir/vim"
-  "$dotdir/nvim"
-  "$dotdir/universe"
-  "$dotdir/lsd"
-  "$dotdir/ghostty"
-  "$dotdir/tmux"
-  "$dotdir/tmuxinator"
-)
-destinations=(
-  "$HOME/.profile"
-  "$HOME/.zprofile"
-  "$HOME/.zshrc"
-  "$HOME/.config/atuin"
-  "$HOME/.vimrc"
-  "$HOME/.vim"
-  "$HOME/.config/nvim"
-  "$HOME/.universe"
-  "$HOME/.config/lsd"
-  "$HOME/.config/ghostty"
-  "$HOME/.tmux"
-  "$HOME/.config/tmuxinator"
-)
-ammount=${#sources[@]}
-
-for (( i=0; i<${ammount}; i++ ));
-do
-  src=${sources[$i]}
-  dst=${destinations[$i]}
-  echo "$src -> $dst"
-
-  if [[ -h $dst ]]; then
-    echo "🔗 $dst is already a link, recreating the link"
-    rm -f $dst
-    ln -s $src $dst
-
-  elif [[ -e $dst ]]; then
-    echo "📦 $dst exists, backing up and creating a link"
-    backuptime=$(date +%Y.%m.%d-%H.%M.%S)
-    backupdir="$dotdir/backup/$backuptime"
-    mkdir -p $backupdir
-    mv $dst $backupdir
-
-    ln -s $src $dst
-
-  else
-    echo "⛓️‍💥 $dst doesn't exist, creating link"
-    ln -s $src $dst
-  fi
-
-  echo ""
-done
-
-# install universe
-echo "Installing universe..."
-source $HOME/.profile # make sure universe path is loaded
-cd universe && ./universe update && cd ..
-echo "universe updated"
-echo ""
-
-# install required pacakges
+# homebrew packages
 packages=(
   "atuin"
   "bat"
@@ -114,8 +38,10 @@ packages=(
   "zoxide"
   "ripgrep"
   "starship"
+  "stow"
 )
-# atuin fzf lsd zoxide jandedobbeleer/oh-my-posh/oh-my-posh bat neovim
+
+# install homebrew
 
 # The script installs Homebrew to its default, supported, best prefix 
 # (/opt/homebrew for Apple Silicon (arm64), /usr/local for macOS Intel (x86_64) and /home/linuxbrew/.linuxbrew for Linux) 
@@ -133,6 +59,7 @@ else
   eval "$($BREW_PATH shellenv)"
 fi
 
+# install homebrew packages
 echo "Checking installed packages..."
 pacakge_count=${#packages[@]}
 for (( i=0; i<${pacakge_count}; i++ ));
@@ -145,6 +72,26 @@ do
     brew install $package
   fi
 done
+echo ""
+
+
+# init submodules
+echo -e "setting up submodules\n"
+git submodule init
+git submodule update --recursive
+
+# install nix
+# sh <(curl -L https://nixos.org/nix/install)
+
+# symlink dotfiles
+echo -e "symlinking dotfiles\n"
+stow . --adopt
+
+# install universe
+echo "Installing universe..."
+source $HOME/.profile # make sure universe path is loaded
+cd universe && ./universe update && cd ..
+echo "universe updated"
 echo ""
 
 # echo "Installing NVM"
