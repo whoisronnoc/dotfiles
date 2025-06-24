@@ -1,5 +1,6 @@
 local machine_options = require("core.machine_options")
 local diagnostic_display = machine_options:getOption("diagnostic_display")
+local workspace_diagnostics = machine_options:getOption("workspace_diagnostics")
 
 -- LSP Plugins
 --- @module 'lazy'
@@ -18,7 +19,10 @@ return {
 			require("lsp-toggle").setup()
 		end,
 	},
-	"artemave/workspace-diagnostics.nvim",
+	{
+		"artemave/workspace-diagnostics.nvim",
+		enabled = workspace_diagnostics,
+	},
 	{
 		"whoisronnoc/format-ts-errors.nvim",
 		dev = true,
@@ -91,7 +95,7 @@ return {
 					m.setup_keybinds(event.buf)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.name ~= "GitHub Copilot" then
+					if workspace_diagnostics and client and client.name ~= "GitHub Copilot" then
 						require("workspace-diagnostics").populate_workspace_diagnostics(client, event.buf)
 					end
 
