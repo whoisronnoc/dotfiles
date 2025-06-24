@@ -5,6 +5,7 @@ local diagnostic_display = machine_options:getOption("diagnostic_display")
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {
+	"artemave/workspace-diagnostics.nvim",
 	{
 		"whoisronnoc/format-ts-errors.nvim",
 		dev = true,
@@ -77,6 +78,10 @@ return {
 					m.setup_keybinds(event.buf)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
+					if client and client.name ~= "GitHub Copilot" then
+						require("workspace-diagnostics").populate_workspace_diagnostics(client, event.buf)
+					end
+
 					if
 						client
 						and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)

@@ -4,3 +4,4 @@ jamf
 catppuccin
 sonokai
 udid
+lspconfig
