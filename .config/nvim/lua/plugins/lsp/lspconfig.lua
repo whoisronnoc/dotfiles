@@ -5,6 +5,19 @@ local diagnostic_display = machine_options:getOption("diagnostic_display")
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {
+	{
+		"whoisronnoc/lsp-toggle.nvim",
+		dev = true,
+		cmd = { "ToggleLSP", "ToggleNullLSP" },
+		keys = {
+			{ "<leader>ma", "<cmd>ToggleLSP<CR>", desc = "ToggleLSP" },
+			{ "<leader>mS", "<cmd>ToggleNullLSP<CR>", desc = "ToggleNullLSP" },
+			{ "<leader>ts", "<cmd>ToggleNullLSP cspell<CR>", desc = "ToggleNullLSP cspell" },
+		},
+		config = function()
+			require("lsp-toggle").setup()
+		end,
+	},
 	"artemave/workspace-diagnostics.nvim",
 	{
 		"whoisronnoc/format-ts-errors.nvim",

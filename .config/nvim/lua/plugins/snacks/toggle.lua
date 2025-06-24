@@ -19,7 +19,7 @@ return {
 
 				-- Create some toggle mappings
 				-- stylua: ignore start
-				Snacks.toggle.option("spell", { name = "[s]pelling" }):map("<leader>ts")
+				-- Snacks.toggle.option("spell", { name = "[s]pelling" }):map("<leader>ts")
 				Snacks.toggle.option("wrap", { name = "[w]rap" }):map("<leader>tw")
 				Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>tc")
 				Snacks.toggle.option("mousescroll", { off = "ver:3,hor:0", on = "ver3,hor:1", name = "Horizontal Scroll" }):map("<leader>tm")
