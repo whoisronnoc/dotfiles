@@ -123,6 +123,7 @@ return {
 					},
 				},
 				lualine_x = {
+					"overseer",
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
