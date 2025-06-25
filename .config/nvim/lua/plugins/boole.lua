@@ -16,16 +16,16 @@ return {
 	"nat-418/boole.nvim",
 	lazy = true,
 	keys = {
-		{ "<C-a>", "<cmd>Boole increment<cr>", mode = "n", desc = "Boole increment" },
-		{ "<C-x>", "<cmd>Boole decrement<cr>", mode = "n", desc = "Boole decrement" },
+		{ "<C-x>", "<cmd>Boole increment<cr>", mode = "n", desc = "Boole increment" },
+		{ "<C-X>", "<cmd>Boole decrement<cr>", mode = "n", desc = "Boole decrement" },
 	},
 	cmd = {
 		"Boole",
 	},
 	opts = {
 		mappings = {
-			increment = "<C-a>",
-			decrement = "<C-x>",
+			increment = "<C-x>",
+			decrement = "<C-X>",
 		},
 		-- User defined loops
 		additions = {
