@@ -4,6 +4,7 @@ lazy-lock.json
 .DS_Store
 .config/nvim/spell
 .config/tmux/plugins/
-.config/tmuxinator/
+.config/tmuxinator/*
+!.config/tmuxinator/dot.yml
 .config/nvim/plugins/
 .config/cspell/local-words.txt
