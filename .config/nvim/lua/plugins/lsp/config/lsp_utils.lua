@@ -32,42 +32,51 @@ function M.setup_keybinds(buffer)
 	-- Execute a code action, usually your cursor needs to be on top an error
 	-- or a suggestion from your LSP for this to activate.
 	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
+	-- stylua: ignore end
+
+	vim.keymap.set("n", "<esc>", function()
+		for _, win in ipairs(vim.api.nvim_list_wins()) do
+			if vim.api.nvim_win_get_config(win).relative == "win" then
+				vim.g.block_next_cursor_hold_event = true
+				vim.api.nvim_win_close(win, false)
+			end
+		end
+	end, { buffer = buffer })
 end
 
 function M.setup_document_highlight(event)
-	vim.api.nvim_create_augroup("lsp_document_highlight", {
-		clear = false,
-	})
-	vim.api.nvim_clear_autocmds({
-		buffer = event.buf,
-		group = "lsp_document_highlight",
-	})
+	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_document_highlight" })
+
 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		group = "lsp_document_highlight",
 		buffer = event.buf,
 		callback = vim.lsp.buf.document_highlight,
 	})
+
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		group = "lsp_document_highlight",
 		buffer = event.buf,
 		callback = vim.lsp.buf.clear_references,
 	})
-	-- vim.api.nvim_create_autocmd("BufWritePre", {
-	-- 	callback = function()
-	-- 		vim.lsp.buf.code_action({
-	-- 			context = {
-	-- 				only = { "source.organizeImports" },
-	-- 			},
-	-- 			apply = true,
-	-- 		})
-	-- 	end,
-	-- 	buffer = event.buf,
-	-- })
 end
 
 function M.setup_float_diagnostics(event)
-	-- The following auto commands trigger the diagnostics for what you are hovering
+	vim.api.nvim_create_augroup("lsp_float_diagnostics", { clear = false })
+	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_float_diagnostics" })
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = "lsp_float_diagnostics",
+		buffer = event.buf,
+		callback = function()
+			if vim.g.block_next_cursor_hold_event then
+				vim.g.block_next_cursor_hold_event = false
+			end
+		end,
+	})
+
 	vim.api.nvim_create_autocmd("CursorHold", {
+		group = "lsp_float_diagnostics",
 		buffer = event.buf,
 		callback = function()
 			-- Check if there are any visible floating windows already
@@ -77,6 +86,10 @@ function M.setup_float_diagnostics(event)
 			-- 		return
 			-- 	end
 			-- end
+
+			if vim.g.block_next_cursor_hold_event then
+				return
+			end
 
 			local b = vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
 			if b then

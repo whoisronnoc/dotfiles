@@ -6,3 +6,5 @@ sonokai
 udid
 lspconfig
 whoisronnoc
+autocmd
+autocmds
