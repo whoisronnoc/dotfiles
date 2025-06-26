@@ -8,6 +8,7 @@ local workspace_diagnostics = machine_options:getOption("workspace_diagnostics")
 return {
 	{
 		"whoisronnoc/lsp-toggle.nvim",
+		event = "VeryLazy",
 		dev = true,
 		cmd = { "ToggleLSP", "ToggleNullLSP" },
 		keys = {
@@ -21,10 +22,12 @@ return {
 	},
 	{
 		"artemave/workspace-diagnostics.nvim",
+		event = "VeryLazy",
 		enabled = workspace_diagnostics,
 	},
 	{
 		"whoisronnoc/format-ts-errors.nvim",
+		event = "VeryLazy",
 		dev = true,
 		config = function()
 			require("format-ts-errors").setup({
