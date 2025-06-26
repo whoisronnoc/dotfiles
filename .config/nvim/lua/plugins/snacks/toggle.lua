@@ -31,8 +31,6 @@ return {
 				Snacks.toggle.treesitter():map("<leader>tT")
 				Snacks.toggle.inlay_hints():map("<leader>th")
 
-				Snacks.toggle.indent():map("<leader>tg")
-				Snacks.toggle.dim():map("<leader>tD")
 				Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark [b]ackground" }):map("<leader>tb")
 				-- stylua: ignore end
 
