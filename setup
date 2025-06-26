@@ -61,8 +61,8 @@ fi
 
 # install homebrew packages
 echo "Checking installed packages..."
-pacakge_count=${#packages[@]}
-for (( i=0; i<${pacakge_count}; i++ ));
+package_count=${#packages[@]}
+for (( i=0; i<${package_count}; i++ ));
 do
   package=${packages[$i]}
   if brew ls --versions $package > /dev/null; then

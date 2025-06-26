@@ -57,15 +57,20 @@ return {
 			-- todo: https://github.com/streetsidesoftware/cspell-dicts
 			local cspell = require("cspell")
 			local null_ls = require("null-ls")
+
+			local cspell_config = {
+				config_file_preferred_name = "cspell.json",
+				cspell_config_dirs = { "~/" },
+				diagnostics_postprocess = function(diagnostic)
+					diagnostic.severity = vim.diagnostic.severity.HINT
+					diagnostic.message = string.format("cspell: %s", diagnostic.message)
+				end,
+			}
+
 			null_ls.setup({
 				sources = {
-					cspell.diagnostics.with({
-						diagnostics_postprocess = function(diagnostic)
-							diagnostic.severity = vim.diagnostic.severity.HINT
-							diagnostic.message = string.format("cspell: %s", diagnostic.message)
-						end,
-					}),
-					cspell.code_actions,
+					cspell.diagnostics.with(cspell_config),
+					cspell.code_actions.with(cspell_config),
 					-- diagnostics_format = "[#{c}] #{m} (#{s})",
 					null_ls.builtins.diagnostics.commitlint.with({
 						diagnostics_format = "#{s}: #{m}",
