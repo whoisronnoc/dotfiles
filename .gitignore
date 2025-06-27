@@ -8,3 +8,5 @@ lazy-lock.json
 !.config/tmuxinator/dot.yml
 .config/nvim/plugins/
 .config/cspell/local-words.txt
+*.env
+!.env.sample

@@ -11,4 +11,5 @@ return {
 	"codespell",
 	"misspell",
 	"cspell",
+	"sonarlint-language-server",
 }

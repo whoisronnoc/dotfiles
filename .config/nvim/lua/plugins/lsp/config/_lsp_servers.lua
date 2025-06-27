@@ -12,4 +12,5 @@ return {
 	"ts_ls",
 	"vue_ls",
 	"angularls",
+	"kotlin_language_server",
 }

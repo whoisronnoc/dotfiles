@@ -87,6 +87,8 @@ return {
 			"nvimtools/none-ls.nvim",
 
 			"jay-babu/mason-null-ls.nvim",
+
+			"https://gitlab.com/schrieveslaach/sonarlint.nvim",
 		},
 		config = function(_, opts)
 			require("plugins.lsp.config.diagnostic")
@@ -162,6 +164,73 @@ return {
 			})
 
 			vim.lsp.enable(servers)
+
+			if
+				os.getenv("SONARQUBE_ID")
+				and os.getenv("SONARQUBE_KEY")
+				and os.getenv("SONARQUBE_URL")
+				and os.getenv("SONARQUBE_TOKEN")
+			then
+				require("sonarlint").setup({
+					server = {
+						cmd = {
+							"sonarlint-language-server",
+							"-stdio",
+							"-analyzers",
+							vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+							vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarhtml.jar"),
+						},
+						settings = {
+							sonarlint = {
+								disableTelemetry = true,
+								output = {
+									showAnalyzerLogs = true,
+									showVerboseLogs = true,
+								},
+								connectedMode = {
+									projects = {
+										{
+											connectionId = os.getenv("SONARQUBE_ID"),
+											projectKey = os.getenv("SONARQUBE_KEY"),
+										},
+									},
+									servers = {
+										{
+
+											connectionId = os.getenv("SONARQUBE_ID"),
+											serverUrl = os.getenv("SONARQUBE_URL"),
+										},
+									},
+									connections = {
+										sonarqube = {
+											{
+												connectionId = os.getenv("SONARQUBE_ID"),
+												serverUrl = os.getenv("SONARQUBE_URL"),
+												token = os.getenv("SONARQUBE_TOKEN"),
+											},
+										},
+									},
+								},
+								rules = {
+									["typescript:S6019"] = { level = "on" },
+									["typescript:S6035"] = { level = "on" },
+									["typescript:S2933"] = { level = "on" },
+									["typescript:S1607"] = { level = "on" },
+									["typescript:S6079"] = { level = "on" },
+								},
+							},
+						},
+					},
+					filetypes = {
+						"javascript",
+						"typescript",
+						"javascriptreact",
+						"typescriptreact",
+						"html",
+						"htmlangular",
+					},
+				})
+			end
 		end,
 	},
 }
