@@ -20,8 +20,6 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # custom prompt
-#eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/custom.toml)"
-export STARSHIP_CONFIG=~/.dot/starship.toml
 eval "$(starship init zsh)"
 
 # zsh plugins
