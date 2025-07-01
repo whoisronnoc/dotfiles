@@ -19,12 +19,16 @@ return {
 					exclude = {
 						".git",
 						"node_modules",
+						".nx",
+						".nx-cache",
 					},
 				},
 				smart = {
 					exclude = {
 						".git",
 						"node_modules",
+						".nx",
+						".nx-cache",
 					},
 				},
 				explorer = {
