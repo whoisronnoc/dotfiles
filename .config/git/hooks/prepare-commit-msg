@@ -1,0 +1,42 @@
+#!/bin/sh
+
+INCOMING_COMMIT_MESSAGE=`cat $1`
+
+# prepend the Jira issue number to a commit message
+BRANCH_REGEX="trivial/|feat/|fix/|feature/|bugfix/|chore/"
+# get the first branch prefix match
+BRANCH_TYPE=`git branch | grep -E "^\*" | grep -Eo "$BRANCH_REGEX" | head -1` 
+
+# check for jira issue regex
+JIRA_REGEX="[A-Z]+\-[0-9]{1,7}"
+JIRA_ISSUE=`git branch | grep -E "^\*" | grep -Eo "$JIRA_REGEX"` 
+FIRST_LINE_ALREADY_HAS_JIRA_ISSUE=`head -1 $1 | grep -E "$JIRA_ISSUE"`
+
+# if trivial branch then get second branch prefix match
+if [ "$BRANCH_TYPE" = "trivial/" ]; then 
+  JIRA_ISSUE="TRIVIAL"
+  BRANCH_TYPE=`git branch | grep -E "^\*" | grep -Eo "$BRANCH_REGEX" | tail -1`
+fi
+
+if [ "$BRANCH_TYPE" ]; then
+  # remove the trailing '/'
+  BRANCH_TYPE=${BRANCH_TYPE::${#BRANCH_TYPE}-1} 
+
+  # map branch types to commit prefix
+  if [ "$BRANCH_TYPE" = "feature" ]; then
+    BRANCH_TYPE="feat"
+  elif [ "$BRANCH_TYPE" = "bugfix" ]; then
+    BRANCH_TYPE="fix"
+  fi
+fi
+
+if [ "$JIRA_ISSUE" -a ! "$FIRST_LINE_ALREADY_HAS_JIRA_ISSUE" -a "$2" != "merge" ]; then
+  if [ "$BRANCH_TYPE" ]; then
+    echo "$BRANCH_TYPE($JIRA_ISSUE): \c" > $1
+    echo "$INCOMING_COMMIT_MESSAGE" >> $1
+  else
+    echo "$JIRA_ISSUE \c" > $1
+    echo "$INCOMING_COMMIT_MESSAGE" >> $1
+  fi
+fi
+

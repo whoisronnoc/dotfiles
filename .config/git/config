@@ -1,0 +1,21 @@
+[core]
+  ; excludesfile = ~/.config/git/.gitignore_global
+  hooksPath = ~/.config/git/hooks
+  ; pager = delta
+[push]
+  default = simple
+; [init]
+  ; templatedir = ~/.config/git/git_template
+[interactive]
+  diffFilter = delta
+[delta]
+  navigate = true
+  side-by-side = false
+  line-numbers = true
+  colorMoved = default
+  features = ansi
+  paging = never
+[merge]
+  conflictStyle = zdiff3
+[include]
+  path = ~/.config/git/.gitconfig.local
