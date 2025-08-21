@@ -25,7 +25,7 @@ return {
 			provider_opts = {},
 		},
 		windows = {
-			width = 40,
+			width = 25, -- percent
 		},
 		behaviour = {
 			auto_suggestions = false, -- Experimental stage

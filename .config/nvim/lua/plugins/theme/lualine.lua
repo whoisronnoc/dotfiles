@@ -21,7 +21,7 @@ local function mixed_indent()
 		if space_indent > 0 then
 			return "󱁐 " .. shift_width
 		end
-		return "not"
+		return ""
 	end
 	if mixed_same_line ~= nil and mixed_same_line > 0 then
 		return "󱁐 "

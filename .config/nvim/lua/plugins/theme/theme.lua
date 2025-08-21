@@ -28,6 +28,7 @@ local function update_theme(mode)
 			vim.cmd.hi("Text guifg=#a8a8a8")
 			vim.cmd.hi("Comment guifg=#0B4AED")
 
+			vim.cmd("hi! link NonText @comment.documentation")
 			vim.cmd("hi! link BlinkCmpMenuSelection Pmenu")
 
 			-- vim.cmd.hi("NeoTreeTabInactive  guifg=#000000 guibg=#CDCDCD")
@@ -44,6 +45,8 @@ local function update_theme(mode)
 	vim.cmd("hi! link LspInlayHint @comment.documentation")
 	vim.cmd("hi! link SpellBad LspDiagnosticHint")
 
+	vim.cmd("hi! link AvanteSidebarWinSeparator WinSeparator")
+	vim.cmd("hi! link AvanteSidebarWinHorizontalSeparator WinSeparator")
 	-- vim.cmd.hi("SpellBad gui=undercurl guisp=blue")
 
 	vim.opt.guicursor =
