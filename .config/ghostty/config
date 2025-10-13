@@ -1,5 +1,5 @@
 # https://ghostty.org/docs/config/reference
-command = /usr/local/bin/tmux
+#command = /usr/local/bin/tmux
 # command=~/.dot/ghostty/tmux.sh
 
 #font-family = JetBrainsMono NFM Regular
@@ -199,7 +199,7 @@ gtk-single-instance = desktop
 gtk-titlebar = true
 gtk-tabs-location = top
 adw-toolbar-style = raised
-gtk-adwaita = true
+#gtk-adwaita = true
 
 desktop-notifications = true
 

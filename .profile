@@ -9,6 +9,13 @@ export PATH=/usr/local/bin:$PATH
 # universe ( includes all our shared scripts )
 export PATH="$PATH:$HOME/.universe/bin"
 
+if [[ $(uname -m) == 'arm64' ]]; then
+  export BREW_PATH="/opt/homebrew/bin/brew"
+  export HOMEBREW_PREFIX="/opt/homebrew"
+else
+  export BREW_PATH="/usr/local/bin/brew"
+fi
+
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 
@@ -37,7 +44,7 @@ esac
 
 # NVM initialisation
 export NVM_DIR="$HOME/.nvm"
-
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
 
 # Enable colored output for ls
 export CLICOLOR=1 # MacOS

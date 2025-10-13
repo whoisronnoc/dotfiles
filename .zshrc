@@ -2,11 +2,6 @@
 # Add deno completions to search path
 # if [[ ":$FPATH:" != *":/Users/connor/.zsh/completions:"* ]]; then export FPATH="/Users/connor/.zsh/completions:$FPATH"; fi
 # homebrew
-# if [[ $(uname -m) == 'arm64' ]]; then
-# BREW_PATH="/opt/homebrew/bin/brew"
-# else
-BREW_PATH="/usr/local/bin/brew"
-# fi
 if [[ -f $BREW_PATH ]]; then
   eval "$($BREW_PATH shellenv)"
 fi
@@ -120,5 +115,5 @@ alias lg='lazygit'
 #eval "$(gh copilot alias -- zsh)"
 
 # zprof
+zstyle ':completion:*:ssh:*' hosts off
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
