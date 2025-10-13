@@ -63,6 +63,19 @@ M.options = {
 		obsidian_vault = "~/dev/ronnocwiki/RonnocWiki",
 		workspace_diagnostics = false,
 	},
+	--- @type machine_options
+	Mini = {
+		profile = "personal",
+		explorer = "neo-tree",
+		picker = "snacks",
+		theme_dark = "sonokai",
+		theme_light = "catppuccin",
+		theme_default_mode = "dark",
+		ai_source = "none",
+		diagnostic_display = "float",
+		obsidian_vault = "~/dev/ronnocwiki",
+		workspace_diagnostics = false,
+	},
 }
 
 return M
