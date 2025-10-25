@@ -1,5 +1,5 @@
 name: dot
-root: ~/.dot
+root: ~/dot
 
 # Optional tmux socket
 # socket_name: foo
