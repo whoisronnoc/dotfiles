@@ -7,11 +7,11 @@ return {
 	--- @type snacks.Config
 	opts = {
 		explorer = {
-			enabled = true,
+			enabled = machine_options:getOption("explorer") == "snacks",
 			replace_netrw = true,
 		},
 		picker = {
-			enabled = true,
+			enabled = machine_options:getOption("picker") == "snacks",
 			hidden = true,
 			ignored = true,
 			sources = {

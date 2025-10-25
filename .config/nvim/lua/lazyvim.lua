@@ -23,7 +23,7 @@ require("lazy").setup({
 		-- Directory where you store your local plugin projects. If a function is used,
 		-- the plugin directory (e.g. `~/projects/plugin-name`) must be returned.
 		---@type string | fun(plugin: LazyPlugin): string
-		path = "~/.dot/.config/nvim/plugins",
+		path = "~/.config/nvim/plugins",
 	},
 	checker = {
 		enabled = true,

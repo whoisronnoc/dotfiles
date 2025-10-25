@@ -154,21 +154,21 @@ return {
 			extensions = { "lazy", "mason", "neo-tree", "nvim-dap-ui" },
 		}
 
-		if enable_ai then
-			local mcp_hub = {
-				require("mcphub.extensions.lualine"),
-				cond = function()
-					local ok, avante = pcall(require, "avante")
-					if ok then
-						if avante.get() then
-							return avante.get():is_open()
-						end
-					end
-					return false
-				end,
-			}
-			table.insert(opts.sections.lualine_x, 1, mcp_hub)
-		end
+		-- if enable_ai then
+		-- local mcp_hub = {
+		-- 	require("mcphub.extensions.lualine"),
+		-- 	cond = function()
+		-- 		local ok, avante = pcall(require, "avante")
+		-- 		if ok then
+		-- 			if avante.get() then
+		-- 				return avante.get():is_open()
+		-- 			end
+		-- 		end
+		-- 		return false
+		-- 	end,
+		-- }
+		-- table.insert(opts.sections.lualine_x, 1, mcp_hub)
+		-- end
 
 		lualine.setup(opts)
 	end,
