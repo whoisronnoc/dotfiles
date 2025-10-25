@@ -1,6 +1,4 @@
 # zmodload zsh/zprof 
-# Add deno completions to search path
-# if [[ ":$FPATH:" != *":/Users/connor/.zsh/completions:"* ]]; then export FPATH="/Users/connor/.zsh/completions:$FPATH"; fi
 # homebrew
 if [[ -f $BREW_PATH ]]; then
   eval "$($BREW_PATH shellenv)"

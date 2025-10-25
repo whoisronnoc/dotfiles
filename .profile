@@ -14,6 +14,7 @@ if [[ $(uname -m) == 'arm64' ]]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
 else
   export BREW_PATH="/usr/local/bin/brew"
+  export HOMEBREW_PREFIX="/usr/local"
 fi
 
 # jenv
@@ -31,7 +32,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # export PATH=$HOME/dev/flutter/flutter/bin:$PATH
 
 # deno
-. "$HOME/.deno/env"
+#. "$HOME/.deno/env"
 
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
@@ -45,6 +46,7 @@ esac
 # NVM initialisation
 export NVM_DIR="$HOME/.nvm"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Enable colored output for ls
 export CLICOLOR=1 # MacOS
