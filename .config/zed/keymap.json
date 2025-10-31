@@ -1,0 +1,31 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space": null,
+      "\\": "project_panel::ToggleFocus",
+      "b d": "pane::CloseActiveItem",
+      "b a": "pane::CloseOtherItems",
+      "space |": "pane::SplitVertical",
+      "space -": "pane::SplitHorizontal",
+      "space s f": "file_finder::Toggle",
+      "space s g": "workspace::NewSearch",
+      "space h r": "git::Restore",
+      "space h s": "git::ToggleStaged",
+      "space l g": "git_panel::ToggleFocus",
+      "space a a": "workspace::ToggleRightDock",
+      "/": "buffer_search::Deploy",
+      "?": "buffer_search::DeployReplace",
+      "L": "pane::ActivateNextItem",
+      "H": "pane::ActivatePreviousItem"
+    }
+  }
+]

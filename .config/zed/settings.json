@@ -1,0 +1,49 @@
+{
+  "icon_theme": "Material Icon Theme",
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3.7-sonnet"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "minimap": {
+    "show": "auto"
+  },
+  "inlay_hints": {
+    "enabled": true,
+    "show_value_hints": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+    "show_background": false,
+    "edit_debounce_ms": 700,
+    "scroll_debounce_ms": 50,
+    "toggle_on_modifiers_press": {
+      "control": false,
+      "alt": false,
+      "shift": false,
+      "platform": false,
+      "function": false
+    }
+  },
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "base_keymap": "Cursor",
+  "ui_font_size": 16.0,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "VSCode Dark Modern"
+  },
+  "buffer_font_features": {
+    "calt": false
+  }
+}
