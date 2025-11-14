@@ -1,6 +1,6 @@
-#!/bin/bash
-/usr/local/bin/tmuxinator list | tail -n +2 | tr -s ' ' '\n' \
+#!/bin/zsh
+tmuxinator list | tail -n +2 | tr -s ' ' '\n' \
   | awk '{printf "\"%s\" %s \"run-shell #tmuxinator start %s#\" ", $1, NR, $1}' \
   | sed "s/#/'/g" \
-  | xargs /usr/local/bin/tmux display-menu -T " Open Project " 
+  | xargs tmux display-menu -T " Open Project " 
 

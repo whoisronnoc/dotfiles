@@ -4,7 +4,6 @@ export EDITOR='nvim'
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-export PATH=/usr/local/bin:$PATH
 
 # universe ( includes all our shared scripts )
 export PATH="$PATH:$HOME/.universe/bin"
@@ -16,6 +15,8 @@ else
   export BREW_PATH="/usr/local/bin/brew"
   export HOMEBREW_PREFIX="/usr/local"
 fi
+
+export PATH=/usr/local/bin:$PATH
 
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"

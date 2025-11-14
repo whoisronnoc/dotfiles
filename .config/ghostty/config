@@ -1,5 +1,5 @@
 # https://ghostty.org/docs/config/reference
-command=/bin/zsh ~/.config/ghostty/tmux.sh
+command=~/.config/ghostty/tmux.sh
 
 #font-family = JetBrainsMono NFM Regular
 #font-family-bold = JetBrainsMono NFM Bold
@@ -209,4 +209,8 @@ enquiry-response =
 auto-update = check
 auto-update-channel = 
 
-macos-titlebar-style = transparent
+macos-titlebar-style = tabs
+# window-decoration = false
+
+# adjust-cell-height = 10%
+# adjust-cell-width = 10%

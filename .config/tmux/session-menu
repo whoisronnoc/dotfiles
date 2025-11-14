@@ -1,5 +1,5 @@
-#!/bin/bash
-/usr/local/bin/tmux list-sessions -F '#S' \
+#!/bin/zsh
+tmux list-sessions -F '#S' \
   | awk 'BEGIN {ORS=" "} {print $1, NR, "\"switch-client -t", $1 "\""}' \
-  | xargs /usr/local/bin/tmux display-menu -T " Switch Session "
+  | xargs tmux display-menu -T " Switch Session "
 
