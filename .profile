@@ -57,3 +57,5 @@ then
     # alias ls='ls --color=auto --classify'
     eval $(gdircolors)
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
