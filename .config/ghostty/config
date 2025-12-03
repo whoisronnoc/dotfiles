@@ -214,3 +214,5 @@ macos-titlebar-style = tabs
 
 # adjust-cell-height = 10%
 # adjust-cell-width = 10%
+
+custom-shader = ~/.config/ghostty/shaders/ghostty-cursor-shaders/cursor_warp.glsl
