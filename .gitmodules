@@ -2,5 +2,5 @@
 	path = .universe
 	url = https://github.com/BrandonRoehl/universe.git
 [submodule ".config/ghostty/shaders/ghostty-cursor-shaders"]
-	path = .config/ghostty/shaders
+	path = .config/ghostty/shaders/ghostty-cursor-shaders
 	url = git@github.com:sahaj-b/ghostty-cursor-shaders.git
