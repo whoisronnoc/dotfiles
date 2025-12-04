@@ -59,10 +59,10 @@ return {
 			},
 		},
 	},
-    -- stylua: ignore
-  keys = {
+-- stylua: ignore
+	keys = {
 		-- Top Pickers & Explorer
-    explorer == "snacks" and { "\\", desc = "File Explorer", function()
+		explorer == "snacks" and { "\\", desc = "File Explorer", function()
 			local explorer_pickers = Snacks.picker.get({ source = "explorer" })
 			if #explorer_pickers == 0 then
 				Snacks.picker.explorer()
@@ -119,5 +119,5 @@ return {
 		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		{ "<leader>sf", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-  },
+	},
 }
