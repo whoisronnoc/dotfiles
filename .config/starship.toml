@@ -23,3 +23,7 @@ detect_extensions = []
 
 [nodejs]
 detect_extensions = []
+
+[dotnet]
+disabled = true
+
