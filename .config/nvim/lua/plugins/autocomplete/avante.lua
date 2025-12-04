@@ -1,5 +1,5 @@
 local machine_options = require("core.machine_options")
-local enable_ai = machine_options:getOption("ai_source") ~= "none"
+local enable_ai = machine_options:getOption("ai_source")
 
 return {
 	enabled = enable_ai == "copilot",
