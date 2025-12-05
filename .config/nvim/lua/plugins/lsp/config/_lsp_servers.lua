@@ -1,4 +1,7 @@
-return {
+local machine_options = require("core.machine_options")
+local ai_source = machine_options:getOption("ai_source")
+
+local servers = {
 	-- "harper_ls",
 	"eslint",
 	"stylelint_lsp",
@@ -14,3 +17,9 @@ return {
 	"angularls",
 	"kotlin_language_server",
 }
+
+if ai_source == "copilot" then
+	table.insert(servers, "copilot")
+end
+
+return servers

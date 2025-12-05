@@ -1,5 +1,6 @@
 local machine_options = require("core.machine_options")
 local enable_supermaven = machine_options:getOption("ai_source") == "supermaven"
+local enable_copilot = machine_options:getOption("ai_source") == "copilot"
 local enable_ai = machine_options:getOption("ai_source") ~= "none"
 
 -- Autocompletion
@@ -54,17 +55,40 @@ return {
 
 				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 
-				["<Tab>"] = enable_supermaven and { "snippet_forward", "fallback" } or {
-					function(cmp)
-						if cmp.snippet_active() then
-							return cmp.accept()
-						else
-							return cmp.select_and_accept()
-						end
-					end,
-					"snippet_forward",
-					"fallback",
-				},
+				["<Tab>"] = enable_supermaven
+						and {
+							-- disable blink tab accept to avoid conflict with supermaven
+							"snippet_forward",
+							"fallback",
+						}
+					or enable_copilot
+						and {
+							-- sidekick accept next edit suggestion
+							function()
+								return require("sidekick").nes_jump_or_apply()
+							end,
+							function(cmp)
+								if cmp.snippet_active() then
+									return cmp.accept()
+								else
+									return cmp.select_and_accept()
+								end
+							end,
+							"snippet_forward",
+							"fallback",
+						}
+					or {
+						-- default blink handle tab accept on highlighted suggestion
+						function(cmp)
+							if cmp.snippet_active() then
+								return cmp.accept()
+							else
+								return cmp.select_and_accept()
+							end
+						end,
+						"snippet_forward",
+						"fallback",
+					},
 
 				["<CR>"] = { "accept", "fallback" },
 
