@@ -7,10 +7,12 @@ return {
 		vim.cmd.hi("IblScope guifg=#aaaaaa")
 		return require("indent-rainbowline").make_opts(
 			-- ibl opts
+			-- :help ibl.config
 			{
 				scope = {
 					char = "▎",
-					-- inject_languages = false,
+					show_start = false,
+					show_end = false,
 				},
 			},
 			-- rainbow opts
