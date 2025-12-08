@@ -75,7 +75,7 @@ return {
 		-- "MunifTanjim/nui.nvim",
 		-- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 		-- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-		"github/copilot.vim",
+		-- "github/copilot.vim",
 		-- "HakonHarnes/img-clip.nvim", -- for image pasting
 		"ravitemer/mcphub.nvim",
 	},
