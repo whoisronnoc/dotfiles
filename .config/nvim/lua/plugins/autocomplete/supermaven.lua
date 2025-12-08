@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local enable_supermaven = machine_options:getOption("ai_source") == "supermaven"
+local enable_supermaven = Options:getOption("ai_source") == "supermaven"
 
 return {
 	enabled = enable_supermaven,

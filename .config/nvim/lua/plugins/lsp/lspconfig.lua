@@ -1,6 +1,5 @@
-local machine_options = require("core.machine_options")
-local diagnostic_display = machine_options:getOption("diagnostic_display")
-local workspace_diagnostics = machine_options:getOption("workspace_diagnostics")
+local diagnostic_display = Options:getOption("diagnostic_display")
+local workspace_diagnostics = Options:getOption("workspace_diagnostics")
 
 -- LSP Plugins
 --- @module 'lazy'

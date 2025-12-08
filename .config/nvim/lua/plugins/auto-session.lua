@@ -1,5 +1,5 @@
-local machine_options = require("core.machine_options")
-local explorer = machine_options:getOption("explorer")
+local explorer = Options:getOption("explorer")
+
 return {
 	"rmagatti/auto-session",
 	enabled = true,

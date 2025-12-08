@@ -1,5 +1,5 @@
-local machine_options = require("core.machine_options")
-local picker = machine_options:getOption("picker")
+local picker = Options:getOption("picker")
+
 --- @module 'lazy'
 --- @return LazyPluginSpec[]
 return {

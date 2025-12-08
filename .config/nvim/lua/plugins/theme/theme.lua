@@ -1,7 +1,6 @@
-local machine_options = require("core.machine_options")
-local default_mode = machine_options:getOption("theme_default_mode")
-local theme_dark = machine_options:getOption("theme_dark")
-local theme_light = machine_options:getOption("theme_light")
+local default_mode = Options:getOption("theme_default_mode")
+local theme_dark = Options:getOption("theme_dark")
+local theme_light = Options:getOption("theme_light")
 
 local function update_theme(mode)
 	vim.api.nvim_set_option_value("background", mode, {})

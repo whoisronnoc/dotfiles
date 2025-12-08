@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local diagnostic_display = machine_options:getOption("diagnostic_display")
+local diagnostic_display = Options:getOption("diagnostic_display")
 
 if vim.g.border then
 	-- To override globally the opts if none are provided

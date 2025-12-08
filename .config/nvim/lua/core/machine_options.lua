@@ -78,4 +78,6 @@ M.options = {
 	},
 }
 
+_G.Options = M
+
 return M

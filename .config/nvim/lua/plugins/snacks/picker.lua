@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local explorer = machine_options:getOption("explorer")
+local explorer = Options:getOption("explorer")
 
 return {
 	"snacks.nvim",
@@ -7,11 +6,11 @@ return {
 	--- @type snacks.Config
 	opts = {
 		explorer = {
-			enabled = machine_options:getOption("explorer") == "snacks",
+			enabled = Options:getOption("explorer") == "snacks",
 			replace_netrw = true,
 		},
 		picker = {
-			enabled = machine_options:getOption("picker") == "snacks",
+			enabled = Options:getOption("picker") == "snacks",
 			hidden = true,
 			ignored = true,
 			sources = {

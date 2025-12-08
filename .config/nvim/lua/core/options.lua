@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local profile = machine_options:getOption("profile")
+local profile = Options:getOption("profile")
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`

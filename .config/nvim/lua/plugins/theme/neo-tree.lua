@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local explorer = machine_options:getOption("explorer")
+local explorer = Options:getOption("explorer")
 
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {

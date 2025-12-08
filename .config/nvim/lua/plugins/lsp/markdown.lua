@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local obsidian_vault = machine_options:getOption("obsidian_vault")
+local obsidian_vault = Options:getOption("obsidian_vault")
 
 return {
 	{

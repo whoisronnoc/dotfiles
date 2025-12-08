@@ -1,8 +1,11 @@
+local ai_source = Options:getOption("ai_source")
+
 ---@module "lazy"
 ---@return LazyPluginSpec
 return {
 	{
 		"folke/sidekick.nvim",
+		enabled = ai_source == "copilot",
 		event = { "BufWinEnter", "VeryLazy" },
 		opts = {
 			-- add any options here

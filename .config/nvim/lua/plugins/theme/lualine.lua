@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local enable_ai = machine_options:getOption("ai_source") ~= "none"
+local enable_ai = Options:getOption("ai_source") ~= "none"
 
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#mixed-indent
 local function mixed_indent()

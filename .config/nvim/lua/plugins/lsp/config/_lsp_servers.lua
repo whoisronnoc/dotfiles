@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local ai_source = machine_options:getOption("ai_source")
+local ai_source = Options:getOption("ai_source")
 
 local servers = {
 	-- "harper_ls",

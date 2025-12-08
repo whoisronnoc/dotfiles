@@ -1,5 +1,4 @@
-local machine_options = require("core.machine_options")
-local enable_ai = machine_options:getOption("ai_source")
+local enable_ai = Options:getOption("ai_source")
 
 ---@module "lazy"
 ---@return LazyPluginSpec

@@ -1,7 +1,6 @@
-local machine_options = require("core.machine_options")
-local enable_supermaven = machine_options:getOption("ai_source") == "supermaven"
-local enable_copilot = machine_options:getOption("ai_source") == "copilot"
-local enable_ai = machine_options:getOption("ai_source") ~= "none"
+local enable_supermaven = Options:getOption("ai_source") == "supermaven"
+local enable_copilot = Options:getOption("ai_source") == "copilot"
+local enable_ai = Options:getOption("ai_source") ~= "none"
 
 -- Autocompletion
 --- @module 'blink.cmp'
