@@ -62,8 +62,8 @@ return {
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		version = "*",
-		lazy = true,
-		event = { "BufReadPost", "BufNewFile" },
+		lazy = false,
+		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
 		cmd = { "LspInfo", "LspInstall", "LspUninstall" },
 		keys = {
 			{ "<leader>ms", "<cmd>LspInfo<CR>", desc = "LSP Info" },
@@ -91,6 +91,7 @@ return {
 		},
 		config = function(_, opts)
 			require("plugins.lsp.config.diagnostic")
+			require("plugins.lsp.config.progress"):create_autocmd()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
