@@ -20,6 +20,7 @@ return {
 						"node_modules",
 						".nx",
 						".nx-cache",
+						"dist",
 					},
 				},
 				smart = {
@@ -28,6 +29,7 @@ return {
 						"node_modules",
 						".nx",
 						".nx-cache",
+						"dist",
 					},
 				},
 				explorer = {
