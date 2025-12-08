@@ -1,5 +1,7 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - "#171717"
 git:
-  paging:
-    #colorArg: never
-    #pager: delta --dark --paging=never
-    useConfig: true
+  pagers:
+    - pager: delta --paging=never

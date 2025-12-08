@@ -1,13 +1,13 @@
 [core]
   ; excludesfile = ~/.config/git/.gitignore_global
   hooksPath = ~/.config/git/hooks
-  ; pager = delta
+  pager = delta
 [push]
   default = simple
 ; [init]
   ; templatedir = ~/.config/git/git_template
 [interactive]
-  diffFilter = delta
+  diffFilter = "delta --color-only"
 [delta]
   navigate = true
   side-by-side = false
