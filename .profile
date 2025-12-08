@@ -59,3 +59,5 @@ then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+export NX_TUI=false
