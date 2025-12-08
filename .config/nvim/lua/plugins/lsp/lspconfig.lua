@@ -83,9 +83,9 @@ return {
 
 			"b0o/schemastore.nvim",
 
-			"nvimtools/none-ls.nvim",
+			-- "nvimtools/none-ls.nvim",
 
-			"jay-babu/mason-null-ls.nvim",
+			-- "jay-babu/mason-null-ls.nvim",
 
 			"https://gitlab.com/schrieveslaach/sonarlint.nvim",
 		},

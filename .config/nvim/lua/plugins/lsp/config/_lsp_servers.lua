@@ -15,6 +15,7 @@ local servers = {
 	"vue_ls",
 	"angularls",
 	"kotlin_language_server",
+	"cspell_ls",
 }
 
 if ai_source == "copilot" then

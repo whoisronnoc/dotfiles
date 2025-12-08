@@ -1,14 +1,24 @@
 {
   "version": "0.2",
   "language": "en",
-  "languageSettings": [],
   "allowCompoundWords": true,
   "words": [],
   "flagWords": [],
-  "dictionaries": ["custom-words", "local-words"],
-  "import": [
-    "@cspell/dict-lua/cspell-ext.json",
-    "@cspell/dict-vim/cspell-ext.json"
+  "import": ["https://cdn.jsdelivr.net/npm/@cspell/dict-vim/cspell-ext.json"],
+  "dictionaries": [
+    "custom-words",
+    "local-words",
+    "software-term-suggestions",
+    "softwareTerms",
+    "software-tools",
+    "networking-terms",
+    "web-services",
+    "computing-acronyms",
+    "coding-compound-terms",
+    "vim",
+    "lua",
+    "html",
+    "typescript"
   ],
   "dictionaryDefinitions": [
     {
@@ -21,5 +31,6 @@
       "path": "~/.config/cspell/local-words.txt",
       "addWords": true
     }
-  ]
+  ],
+  "languageSettings": []
 }

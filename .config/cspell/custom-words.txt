@@ -1,11 +1,10 @@
-nvim
 ronnoc
+whoisronnoc
 jamf
 catppuccin
 sonokai
-udid
-lspconfig
-whoisronnoc
-autocmd
-autocmds
-serv
+lsp
+lspinfo
+nvim
+noplainbuffer
+nvimtools

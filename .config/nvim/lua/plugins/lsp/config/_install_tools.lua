@@ -7,9 +7,5 @@ return {
 	"eslint_d",
 	"xmlformatter",
 	"commitlint",
-	-- code spell
-	"codespell",
-	"misspell",
-	"cspell",
 	"sonarlint-language-server",
 }

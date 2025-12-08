@@ -140,7 +140,7 @@ return {
 							done = "✓",
 							separator = " ",
 						},
-						ignore_lsp = { "null-ls", "GitHub Copilot", "tailwindcss", "copilot" },
+						ignore_lsp = { "null-ls", "GitHub Copilot", "tailwindcss", "copilot", "cspell_ls" },
 					},
 					lint_status,
 					mixed_indent,

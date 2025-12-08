@@ -34,7 +34,7 @@ return {
 				diagnostic_opts = { severity_sort = true }, -- options for diagnostic display
 			})
 
-			-- misspelledd wordz
+			-- misspelledd wordz, google, vim, nvim, p, abcdefghijklmnopqrstuvwxyz
 		end,
 	},
 	{
@@ -48,7 +48,7 @@ return {
 	},
 	{
 		"nvimtools/none-ls.nvim",
-		enabled = true,
+		enabled = false,
 		event = "VeryLazy",
 		dependencies = {
 			"davidmh/cspell.nvim",
