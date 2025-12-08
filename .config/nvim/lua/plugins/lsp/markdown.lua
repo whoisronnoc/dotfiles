@@ -12,7 +12,7 @@ return {
 			-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
 			-- refer to `:h file-pattern` for more examples
 			"BufReadPre "
-				.. vim.fn.expand(obsidian_vault)
+				.. vim.fn.expand(tostring(obsidian_vault))
 				.. "/*.md",
 		},
 		keys = {

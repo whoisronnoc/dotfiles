@@ -60,7 +60,7 @@ M.options = {
 		theme_default_mode = "dark",
 		ai_source = "supermaven",
 		diagnostic_display = "float",
-		obsidian_vault = "~/dev/ronnocwiki/RonnocWiki",
+		obsidian_vault = "~/notes/ronnocwiki",
 		workspace_diagnostics = false,
 	},
 	--- @type machine_options
