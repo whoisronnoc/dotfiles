@@ -3,9 +3,9 @@ layout {
         children
         pane size=1 borderless=true {
             plugin location="https://github.com/dj95/zjstatus/releases/download/v0.21.0/zjstatus.wasm" {
-                format_left   "{mode} #[fg=#89B4FA,bold]{tabs}"
+                format_left   "{mode}#[fg=#89B4FA,bold]{tabs}"
                 format_center ""
-                format_right  "{session} {datetime}"
+                format_right  "{session}" // {datetime}"
                 format_space  ""
                 format_hide_on_overlength "false"
 
@@ -14,24 +14,25 @@ layout {
                 border_format   "#[fg=#6C7086]{char}"
                 border_position "top"
 
-                hide_frame_for_single_pane "true"
+                // hide_frame_for_single_pane "true"
+                hide_frame_except_for_search "true"
 
-                mode_locked "#[bg=#F38BA8,fg=234,bold] LOCKED #[bg=234,fg=#F38BA8]"
-                mode_normal "#[bg=#A6E3A1,fg=234,bold] NORMAL #[bg=234,fg=#A6E3A1]"
-                mode_pane "#[bg=#F9E2AF,fg=234,bold] PANE #[bg=234,fg=#F9E2AF]"
-                mode_resize "#[bg=#F5C2E7,fg=234,bold] RESIZE #[bg=234,fg=#F5C2E7]"
-                mode_tab "#[bg=#94E2D5,fg=234,bold] TAB #[bg=234,fg=#94E2D5]"
-                mode_scroll "#[bg=#89B4FA,fg=234,bold] SCROLL #[bg=234,fg=#89B4FA]"
-                mode_search "#[bg=#CBA6F7,fg=234,bold] SEARCH #[bg=234,fg=#CBA6F7]"
-                mode_rename_tab "#[bg=#EBA0AC,fg=234,bold] RENAME_TAB #[bg=234,fg=#EBA0AC]"
-                mode_rename_pane "#[bg=#74C7EC,fg=234,bold] RENAME_PANE #[bg=234,fg=#74C7EC]"
-                mode_move "#[bg=#B4BEFE,fg=234,bold] MOVE #[bg=234,fg=#B4BEFE]"
-                mode_prompt "#[bg=#F5C2E7,fg=234,bold] PROMPT #[bg=234,fg=#F5C2E7]"
-                mode_tmux "#[bg=#DDB6F2,fg=234,bold] TMUX #[bg=234,fg=#DDB6F2]"
-                mode_session "#[bg=#9FE2BF,fg=234,bold] SESSION #[bg=234,fg=#9FE2BF]"
+                mode_locked "#[bg=#6C7086,fg=234,bold]   #[bg=234,fg=#6C7086]"
+                mode_normal "#[bg=#A6E3A1,fg=234,bold]   #[bg=234,fg=#A6E3A1]"
+                mode_pane "#[bg=#F9E2AF,fg=234,bold] P #[bg=234,fg=#F9E2AF]"
+                mode_resize "#[bg=#F5C2E7,fg=234,bold] 󰩨  #[bg=234,fg=#F5C2E7]"
+                mode_tab "#[bg=#94E2D5,fg=234,bold]  #[bg=234,fg=#94E2D5]"
+                mode_scroll "#[bg=#89B4FA,fg=234,bold]   #[bg=234,fg=#89B4FA]"
+                mode_search "#[bg=#CBA6F7,fg=234,bold] ? #[bg=234,fg=#CBA6F7]"
+                mode_rename_tab "#[bg=#EBA0AC,fg=234,bold] 󰑕#[bg=234,fg=#EBA0AC]"
+                mode_rename_pane "#[bg=#74C7EC,fg=234,bold] 󰑕 #[bg=234,fg=#74C7EC]"
+                mode_move "#[bg=#B4BEFE,fg=234,bold]   #[bg=234,fg=#B4BEFE]"
+                mode_prompt "#[bg=#F5C2E7,fg=234,bold]   #[bg=234,fg=#F5C2E7]"
+                mode_tmux "#[bg=#DDB6F2,fg=234,bold]   #[bg=234,fg=#DDB6F2]"
+                mode_session "#[bg=#9FE2BF,fg=234,bold]   #[bg=234,fg=#9FE2BF]"
 
-                tab_normal   "#[fg=#6C7086]#[bg=234,fg=#F38BA8] {name} #[bg=234,fg=#F38BA8] "
-                tab_active   "#[fg=#6C7086]#[bg=234,fg=#F38BA8] {name} #[bg=234,fg=#F38BA8] "
+                tab_normal   "#[bg=234,fg=#6C7086] {name} #[bg=234,fg=#6C7086] "
+                tab_active   "#[bg=234,fg=#89B4FA] {name} #[bg=234,fg=#89B4FA] "
 
                 command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
                 command_git_branch_format      "#[fg=blue] {stdout} "
@@ -39,7 +40,7 @@ layout {
                 command_git_branch_rendermode  "static"
 
                 datetime        "#[fg=#6C7086,bold] {format} "
-                datetime_format "%A, %d %b %Y %H:%M"
+                datetime_format "%A, %d %b %Y %H:%M:%S"
                 datetime_timezone "America/Chicago"
             }
         }
