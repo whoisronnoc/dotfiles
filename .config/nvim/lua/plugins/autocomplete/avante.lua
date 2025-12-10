@@ -1,7 +1,7 @@
 local enable_ai = Options:getOption("ai_source")
 
 return {
-	enabled = enable_ai == "copilot",
+	enabled = false,
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!

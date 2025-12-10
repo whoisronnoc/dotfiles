@@ -2,7 +2,7 @@ local enable_ai = Options:getOption("ai_source") ~= "none"
 
 return {
 	event = "VeryLazy",
-	enabled = enable_ai,
+	enabled = false,
 	lazy = true,
 	"ravitemer/mcphub.nvim",
 	dependencies = {
