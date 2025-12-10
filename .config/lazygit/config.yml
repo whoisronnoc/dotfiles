@@ -2,6 +2,15 @@ gui:
   theme:
     selectedLineBgColor:
       - "#171717"
+  tabWidth: 2
+  branchColorPatterns:
+    "^feat+": "#11aaff"
+    "^fix+": "#ff5733"
+    "^chore+": "#7BF1A8"
+    "^trivial+": "#7BF1A8"
+  authorColors:
+    "Connor Temple": "blue"
+    "whoisronnoc": "red"
 git:
   pagers:
     - pager: delta --paging=never

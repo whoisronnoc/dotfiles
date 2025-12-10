@@ -15,6 +15,7 @@
   colorMoved = default
   features = ansi
   paging = never
+  tabs = 2
 [merge]
   conflictStyle = zdiff3
 [include]
