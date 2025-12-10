@@ -11,6 +11,19 @@ local function update_theme(mode)
 		vim.cmd.hi("Cursor guifg=black guibg=white")
 		vim.cmd.hi("lCursor guifg=black guibg=white")
 
+		-- vim.cmd.hi("RenderMarkdownH1Bg guifg=blue guibg=none")
+		-- vim.cmd.hi("RenderMarkdownH2Bg guifg=blue guibg=none")
+		-- vim.cmd.hi("RenderMarkdownH3Bg guifg=blue guibg=none")
+		-- vim.cmd.hi("RenderMarkdownH4Bg guifg=blue guibg=none")
+		-- vim.cmd.hi("RenderMarkdownH5Bg guifg=blue guibg=none")
+		-- vim.cmd.hi("RenderMarkdownH6Bg guifg=blue guibg=none")
+		vim.cmd("hi! link RenderMarkdownH1Bg @markup.heading.1.markdown")
+		vim.cmd("hi! link RenderMarkdownH2Bg @markup.heading.2.markdown")
+		vim.cmd("hi! link RenderMarkdownH3Bg @markup.heading.3.markdown")
+		vim.cmd("hi! link RenderMarkdownH4Bg @markup.heading.4.markdown")
+		vim.cmd("hi! link RenderMarkdownH5Bg @markup.heading.5.markdown")
+		vim.cmd("hi! link RenderMarkdownH6Bg @markup.heading.6.markdown")
+
 		if theme_dark == "sonokai" then
 			vim.cmd.hi("GitConflictCurrentLabel guibg=#9FC9FF")
 			vim.cmd.hi("GitConflictCurrent guibg=#989EFE")
@@ -214,14 +227,36 @@ return {
 			update_theme(default_mode)
 		end,
 	},
+	--- @type LazyPluginSpec
 	{
-		"projekt0n/github-nvim-theme",
-		name = "github-theme",
-		enabled = theme_dark == "github",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
+		"rebelot/kanagawa.nvim",
+		enabled = theme_dark == "kanagawa",
 		config = function()
-			require("github-theme").setup({})
+			require("kanagawa").setup({
+				compile = false,
+				undercurl = true,
+				commentStyle = { italic = true },
+				functionStyle = {},
+				keywordStyle = { italic = true },
+				statementStyle = { bold = true },
+				typeStyle = {},
+				transparent = false,
+				dimInactive = false,
+				terminalColors = true,
+				colors = { -- add/modify theme and palette colors
+					palette = {},
+					theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+				},
+				overrides = function(colors) -- add/modify highlights
+					return {}
+				end,
+				theme = "wave", -- wave, lotus, dragon
+				background = { -- map the value of 'background' option to a theme
+					dark = "wave",
+					light = "lotus",
+				},
+			})
+
 			update_theme(default_mode)
 		end,
 	},

@@ -8,3 +8,5 @@ lspinfo
 nvim
 noplainbuffer
 nvimtools
+nvimtree
+guifg

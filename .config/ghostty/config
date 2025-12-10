@@ -115,7 +115,7 @@ keybind = super+page_down=scroll_page_down
 # scrollback
 keybind = super+shift+j=write_scrollback_file:paste
 keybind = super+alt+shift+j=write_scrollback_file:open
-keybind = super+k=clear_screen
+keybind = command+k=text:\x0c
 # text input
 keybind = super+a=select_all
 keybind = super+c=copy_to_clipboard
@@ -124,8 +124,9 @@ keybind = super+v=paste_from_clipboard
 keybind = alt+right=esc:f
 keybind = alt+left=esc:b
 keybind = super+left=text:\x01
-keybind = super+backspace=text:\x15
 keybind = super+right=text:\x05
+keybind = alt+backspace=text:\x17
+keybind = super+backspace=text:\x15
 # text select
 # keybind = shift+page_up=adjust_selection:page_up
 # keybind = shift+down=adjust_selection:down
@@ -180,7 +181,7 @@ custom-shader-animation = true
 macos-non-native-fullscreen = false
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = visible
-macos-option-as-alt = 
+macos-option-as-alt = left
 macos-window-shadow = true
 macos-auto-secure-input = true
 macos-secure-input-indication = true
