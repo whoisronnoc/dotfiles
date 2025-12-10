@@ -87,8 +87,6 @@ eval "$(pyenv init -)"
 # aliases
 
 # vim
-alias vim='nvim'
-alias vi='nvim'
 alias v='nvim'
 alias e='nvim'
 
@@ -102,9 +100,7 @@ alias gsa='gsub add'
 alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 
 # modern-unix 
-# alias cat='bat --theme auto:system --theme-dark default --theme-light GitHub'
-alias cat='bat'
-alias ls='lsd'
+alias l='lsd -lFh'
 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
@@ -125,10 +121,3 @@ function y() {
   rm -f -- "$tmp"
 }
 
-# pnpm
-export PNPM_HOME="~/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
