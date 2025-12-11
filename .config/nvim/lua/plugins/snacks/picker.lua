@@ -22,6 +22,7 @@ return {
 						".nx-cache",
 						"dist",
 						"storybook-dist",
+						"pnpm",
 					},
 				},
 				smart = {
@@ -32,6 +33,7 @@ return {
 						".nx-cache",
 						"dist",
 						"storybook-dist",
+						"pnpm",
 					},
 				},
 				explorer = {
