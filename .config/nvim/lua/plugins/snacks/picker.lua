@@ -1,5 +1,17 @@
 local explorer = Options:getOption("explorer")
 
+local exclude_dirs = {
+	".git",
+	"node_modules",
+	".nx",
+	".nx-cache",
+	"dist",
+	"storybook-dist",
+	"pnpm",
+	"coverage",
+	"cache",
+}
+
 return {
 	"snacks.nvim",
 	--- @module 'snacks'
@@ -15,26 +27,13 @@ return {
 			ignored = true,
 			sources = {
 				grep = {
-					exclude = {
-						".git",
-						"node_modules",
-						".nx",
-						".nx-cache",
-						"dist",
-						"storybook-dist",
-						"pnpm",
-					},
+					exclude = exclude_dirs,
 				},
 				smart = {
-					exclude = {
-						".git",
-						"node_modules",
-						".nx",
-						".nx-cache",
-						"dist",
-						"storybook-dist",
-						"pnpm",
-					},
+					exclude = exclude_dirs,
+				},
+				todo_comments = {
+					exclude = exclude_dirs,
 				},
 				explorer = {
 					border = "none",
@@ -124,5 +123,6 @@ return {
 		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		{ "<leader>sf", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+		{ "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Search Todo Comments" }, --- @diagnostic disable-line: undefined-field
 	},
 }

@@ -39,13 +39,13 @@ return {
 			-- },
 			keywords = {
 				-- stylua: ignore start
-				FIX =  { icon = " ", color = "error",   alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "fix", "fixme", "bug", "fixit", "issue" } },
-				TODO = { icon = " ", color = "info",    alt = { "todo" } },
-				HACK = { icon = " ", color = "warning", alt = { "hack" } },
-				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "warn", "warning", "xxx" } },
-				PERF = { icon = " ", color = "test",    alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "perf", "optim", "performance", "optimize" } },
-				NOTE = { icon = " ", color = "hint",    alt = { "INFO", "MARK", "note", "info", "mark", "hint" } },
-				TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED", "test", "testing", "passed", "failed" } },
+				FIX =  { icon = " ", color = "error",   alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "FIX" } },
+				TODO = { icon = " ", color = "info",    alt = { "DO" } },
+				HACK = { icon = " ", color = "warning", alt = { "OVERRIDE" } },
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+				PERF = { icon = " ", color = "test",    alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+				NOTE = { icon = " ", color = "hint",    alt = { "INFO", "MARK", "HINT" } },
+				TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
 				-- stylua: ignore end
 			},
 		},
