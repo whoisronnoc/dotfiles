@@ -4,6 +4,8 @@ local servers = {
 	-- "harper_ls",
 	"eslint",
 	"stylelint_lsp",
+	"cssls",
+	"css_variables",
 	"rust_analyzer",
 	"lua_ls",
 	"jsonls",
