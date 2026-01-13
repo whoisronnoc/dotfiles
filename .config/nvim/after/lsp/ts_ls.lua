@@ -7,40 +7,11 @@ end
 
 local vue_plugin = {
 	name = "@vue/typescript-plugin",
-	location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+	location = "",
 	languages = { "vue" },
 }
 
-local inlayHints = {
-	includeInlayParameterNameHints = "all",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-	includeInlayFunctionParameterTypeHints = true,
-	includeInlayVariableTypeHints = true,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-	includeInlayPropertyDeclarationTypeHints = true,
-	includeInlayFunctionLikeReturnTypeHints = true,
-	includeInlayEnumMemberValueHints = true,
-}
-
 return {
-	handlers = {
-		["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-			if result.diagnostics == nil then
-				return
-			end
-
-			local idx = 1
-			while idx <= #result.diagnostics do
-				local entry = result.diagnostics[idx]
-				local formatter = require("format-ts-errors")[entry.code]
-
-				entry.message = formatter and formatter(entry.message) or entry.message
-				idx = idx + 1
-			end
-
-			vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
-		end,
-	},
 	--- @type lsp.ClientCapabilities
 	capabilities = {
 		textDocument = {
@@ -48,20 +19,8 @@ return {
 		},
 	},
 	init_options = {
-		preferences = inlayHints,
-		plugins = {
-			vue_plugin,
-		},
+		plugins = nil,
 	},
-	-- javascript = {
-	-- 	inlayHints = inlayHints,
-	-- },
-	-- typescript = {
-	-- 	tsserver = {
-	-- 		useSyntaxServer = false,
-	-- 	},
-	-- 	inlayHints = inlayHints,
-	-- },
 	before_init = function(_, config)
 		-- Check that we haven't set anything yet
 		if not config.init_options or config.init_options.plugins then
