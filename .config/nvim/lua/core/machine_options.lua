@@ -18,7 +18,7 @@ end
 --- @alias machine_option "profile" | "explorer" | "theme_dark" | "theme_light" | "theme_default_mode" | "picker" | "ai_source" | "diagnostic_display" | "obsidian_vault" | "workspace_diagnostics"
 --- @alias profile "work" | "personal"
 --- @alias explorer "neo-tree" | "snacks"
---- @alias theme "vscode" | "sonokai" | "catppuccin" | "carbide"
+--- @alias theme "vscode" | "sonokai" | "catppuccin" | "carbide" | "kanagawa"
 --- @alias theme_default_mode "dark" | "light"
 --- @alias picker "telescope" | "snacks"
 --- @alias ai_source "none" | "copilot" | "supermaven"
@@ -35,6 +35,7 @@ end
 --- @field diagnostic_display diagnostic_display
 --- @field obsidian_vault string
 --- @field workspace_diagnostics boolean
+--- @field inlay_hints boolean
 
 M.options = {
 	--- @type machine_options
@@ -49,6 +50,7 @@ M.options = {
 		diagnostic_display = "float",
 		obsidian_vault = "~/dev/notes",
 		workspace_diagnostics = false,
+		inlay_hints = false,
 	},
 	--- @type machine_options
 	MkIII = {
@@ -62,6 +64,7 @@ M.options = {
 		diagnostic_display = "float",
 		obsidian_vault = "~/notes/ronnocwiki",
 		workspace_diagnostics = false,
+		inlay_hints = true,
 	},
 	--- @type machine_options
 	Mini = {
@@ -75,6 +78,7 @@ M.options = {
 		diagnostic_display = "float",
 		obsidian_vault = "~/dev/ronnocwiki",
 		workspace_diagnostics = false,
+		inlay_hints = true,
 	},
 }
 

@@ -1,3 +1,4 @@
+local enable_inlay_hints = Options:getOption("enable_inlay_hints")
 local M = {}
 
 function M.map_inlay_hints(buffer)
@@ -6,7 +7,9 @@ function M.map_inlay_hints(buffer)
 	end, { desc = "Toggle Inlay [C]ode [H]ints" })
 
 	-- enable inlay hints by default
-	vim.lsp.inlay_hint.enable()
+	if enable_inlay_hints then
+		vim.lsp.inlay_hint.enable()
+	end
 end
 
 -- setup lsp keybinds
@@ -32,6 +35,7 @@ function M.setup_keybinds(buffer)
 	-- Execute a code action, usually your cursor needs to be on top an error
 	-- or a suggestion from your LSP for this to activate.
 	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
+	vim.keymap.set({ "n", "x" }, "<D-,>", vim.lsp.buf.code_action, { buffer = buffer, desc = "[C]ode [A]ction" })
 	-- stylua: ignore end
 
 	vim.keymap.set("n", "<esc>", function()

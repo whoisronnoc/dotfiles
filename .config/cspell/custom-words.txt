@@ -10,3 +10,4 @@ noplainbuffer
 nvimtools
 nvimtree
 guifg
+kanagawa

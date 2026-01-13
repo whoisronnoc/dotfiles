@@ -11,7 +11,7 @@ local map = vim.keymap.set
 vim.opt.hlsearch = true -- Set highlight on search, but clear on pressing <Esc> in normal mode
 
 -- stylua: ignore start
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- FIX:
 
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk", })
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights", })
@@ -20,10 +20,10 @@ map("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- window management
-map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
-map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+-- map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+-- map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+-- map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+-- map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
 map("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
@@ -62,12 +62,13 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("", "<ScrollWheelUp>", "<C-Y>", { desc = "Scroll up one line" })
 map("", "<ScrollWheelDown>", "<C-E>", { desc = "Scroll down one line" })
 
--- map left-alt plus left arrow to 'h'
 map("n", "<Esc-b>", "B", { desc = "Move cursor to the left one word" })
-map("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" }) -- FIX:
+-- map("n", "<Esc-f>", "E", { desc = "Move cursor to the right one word" }) -- FIX:
+-- vim.api.nvim_del_keymap("n", "f")
+vim.api.nvim_set_keymap("n", "<Esc-f>", "E", { noremap = true, silent = true })
 
-map("n", "<D-x>", "dd", { desc = "Delete current line" })
-map("n", "<D-c>", "yy", { desc = "Copy current line" })
+map("n", "<Esc-d>", "dd", { desc = "Delete current line" })
+map("n", "<Esc-c>", "yy", { desc = "Copy current line" })
 
 map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })

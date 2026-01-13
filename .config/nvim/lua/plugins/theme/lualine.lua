@@ -1,4 +1,5 @@
 local enable_ai = Options:getOption("ai_source") ~= "none"
+local theme_dark = Options:getOption("theme_dark")
 
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#mixed-indent
 local function mixed_indent()
@@ -170,5 +171,10 @@ return {
 		-- end
 
 		lualine.setup(opts)
+
+		if theme_dark == "vscode" then
+			vim.cmd("hi! lualine_a_normal guifg=#000000 guibg=#51A2FF")
+			vim.cmd("hi! lualine_b_normal guifg=#51A2FF")
+		end
 	end,
 }

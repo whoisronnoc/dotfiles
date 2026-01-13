@@ -5,6 +5,7 @@ return {
 	},
 	{
 		"mfussenegger/nvim-dap",
+		enabled = false,
 		lazy = true,
 		event = "VeryLazy",
 		dependencies = {
