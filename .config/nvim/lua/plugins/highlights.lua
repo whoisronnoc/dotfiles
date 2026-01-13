@@ -18,7 +18,7 @@ return {
 	event = "VeryLazy",
 	cmd = "HighlightColors",
 	opts = {
-		render = "virtual",
+		-- render = "virtual",
 	},
 	specs = {
 		"saghen/blink.cmp",

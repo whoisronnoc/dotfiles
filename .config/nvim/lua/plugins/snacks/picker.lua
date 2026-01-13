@@ -6,10 +6,6 @@ return {
 	--- @module 'snacks'
 	--- @type snacks.Config
 	opts = {
-		explorer = {
-			enabled = true,
-			replace_netrw = true,
-		},
 		picker = {
 			enabled = true,
 			sources = {
@@ -35,17 +31,6 @@ return {
 	},
 	-- stylua: ignore
 	keys = {
-		-- Top Pickers & Explorer
-		{ "\\", desc = "File Explorer", function()
-			local explorer_pickers = Snacks.picker.get({ source = "explorer" })
-			if #explorer_pickers == 0 then
-				Snacks.picker.explorer()
-				-- elseif explorer_pickers[1]:is_focused() then
-				-- 	explorer_pickers[1]:close()
-			else
-				explorer_pickers[1]:focus()
-			end
-		end },
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },

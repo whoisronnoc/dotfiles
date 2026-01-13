@@ -2,7 +2,7 @@
 ---@return LazyPluginSpec
 return {
 	"folke/sidekick.nvim",
-	enabled = false,
+	enabled = true,
 	event = { "BufWinEnter", "VeryLazy" },
 	opts = {
 		-- add any options here

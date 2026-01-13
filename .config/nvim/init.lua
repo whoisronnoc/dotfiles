@@ -36,6 +36,7 @@ require("config")
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
+		Utils.computer:host_contains("MkIV") and { import = "profiles.work" } or { import = "profiles.home" },
 	},
 	defaults = {
 		-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
