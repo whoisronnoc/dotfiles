@@ -1,6 +1,6 @@
 ---@module "lazy"
 ---@return LazyPluginSpec
 return {
-	import = "plugins.copilot",
+	import = "profiles.work.copilot",
 	enabled = true,
 }
