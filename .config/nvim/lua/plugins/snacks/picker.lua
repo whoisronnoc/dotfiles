@@ -1,3 +1,15 @@
+local exclude_dirs = {
+	".git",
+	"node_modules",
+	".nx",
+	".nx-cache",
+	"dist",
+	"storybook-dist",
+	"pnpm",
+	"coverage",
+	"cache",
+}
+
 ---@module "lazy"
 ---@type LazyPluginSpec
 return {
@@ -9,22 +21,14 @@ return {
 		picker = {
 			enabled = true,
 			sources = {
-				files = {
-					hidden = true,
-					ignored = true,
+				grep = {
+					exclude = exclude_dirs,
 				},
-				explorer = {
-					hidden = true,
-					ignored = true,
-					win = {
-						list = {
-							keys = {
-								["s"] = "edit_vsplit",
-								["S"] = "edit_split",
-								["\\"] = "close",
-							},
-						},
-					},
+				smart = {
+					exclude = exclude_dirs,
+				},
+				todo_comments = {
+					exclude = exclude_dirs,
 				},
 			},
 		},

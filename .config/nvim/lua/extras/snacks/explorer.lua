@@ -10,6 +10,21 @@ return {
 			enabled = true,
 			replace_netrw = true,
 		},
+		sources = {
+			explorer = {
+				hidden = true,
+				ignored = true,
+				win = {
+					list = {
+						keys = {
+							["s"] = "edit_vsplit",
+							["S"] = "edit_split",
+							["\\"] = "close",
+						},
+					},
+				},
+			},
+		},
 	},
 	-- stylua: ignore
 	keys = {
