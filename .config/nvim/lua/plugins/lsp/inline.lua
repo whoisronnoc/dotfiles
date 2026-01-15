@@ -12,12 +12,12 @@ return {
 	opts = {
 		servers = {
 			["*"] = {
-                -- stylua: ignore
-                ---@type LazyKeysLspSpec[]
+				-- stylua: ignore
+				--- @type LazyKeysLspSpec[]
 				keys = {
-                    { "<c-f>", vim.lsp.inline_completion.get, mode = "i", desc = "Accept inline completion", method = "textDocument/inlineCompletion" },
-                    { "<c-g>", vim.lsp.inline_completion.select, mode = "i", desc = "Switch inline completion", method = "textDocument/inlineCompletion" },
-                },
+					{"<c-f>", vim.lsp.inline_completion.get, mode = "i", desc = "Accept inline completion", method = "textDocument/inlineCompletion" },
+					{ "<c-g>", vim.lsp.inline_completion.select, mode = "i", desc = "Switch inline completion", method = "textDocument/inlineCompletion" },
+				},
 			},
 		},
 	},
