@@ -11,6 +11,31 @@ return {
 			replace_netrw = true,
 		},
 		sources = {
+			--   explorer = {
+			-- 	border = "none",
+			-- 	layout = {
+			-- 		layout = {
+			-- 			width = 32,
+			-- 			backdrop = false,
+			-- 			min_width = 32,
+			-- 			height = 0,
+			-- 			position = "left",
+			-- 			border = "none",
+			-- 			box = "vertical",
+			-- 			{ win = "list", border = "none" },
+			-- 			-- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+			-- 		},
+			-- 	},
+			-- 	win = {
+			-- 		list = {
+			-- 			keys = {
+			-- 				["s"] = "edit_vsplit",
+			-- 				["S"] = "edit_split",
+			-- 				["\\"] = "close",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- }
 			explorer = {
 				hidden = true,
 				ignored = true,
