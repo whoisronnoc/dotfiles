@@ -9,11 +9,11 @@ return {
 		suppressed_dirs = { "~/", "~/dev", "~/Downloads", "/" },
 		pre_save_cmds = {
 			"Neotree close",
-			-- explorer == "snacks" and "lua Snacks.close()" or "",
+			-- "lua Snacks.close()"
 		},
 		post_restore_cmds = {
 			"Neotree",
-			-- explorer == "snacks" and "lua Snacks.explorer()" or "",
+			-- "lua Snacks.explorer()",
 		},
 		bypass_save_filetypes = { "alpha", "dashboard" },
 	},

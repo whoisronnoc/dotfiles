@@ -113,3 +113,4 @@ vim.keymap.set("n", "<leader>tb", "<cmd>tabnext #<CR>", { desc = "[T]ab [B]ack" 
 -- map("n", "<M-w>", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 -- map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 --
+vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage Lazy Config" })
