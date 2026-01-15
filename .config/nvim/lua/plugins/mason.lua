@@ -10,7 +10,7 @@ return {
 	"mason-org/mason.nvim",
 	lazy = true,
 	cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
-	keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+	keys = { { "<leader>mm", "<cmd>Mason<cr>", desc = "Manage [M]ason" } },
 	build = ":MasonUpdate",
 	opts_extend = { "ensure_installed" },
 	---@module 'mason'

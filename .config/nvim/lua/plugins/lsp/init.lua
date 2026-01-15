@@ -46,25 +46,26 @@ return {
 		---@type table<string, LspServerConfig?>
 		servers = {
 			["*"] = {
-                -- stylua: ignore
-                ---@type LazyKeysLspSpec[]
+				-- stylua: ignore
+				---@type LazyKeysLspSpec[]
 				keys = {
-                    -- { "K", vim.lsp.buf.hover, desc = "Hover" },
-                    { "gd", vim.lsp.buf.definition, desc = "Goto Definition", method = "textDocument/definition" },
-                    { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-                    { "gr", vim.lsp.buf.references, desc = "References", nowait = true },
-                    { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
-                    { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
-                    { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", method = "textDocument/signatureHelp" },
-                    { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", method = "textDocument/signatureHelp" },
-                    { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", method = "rename" },
-                    { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" }, method = "textDocument/codeAction" },
-                    { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" }, method = "textDocument/codeLens" },
-                    { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, method = "textDocument/codeLens" },
-                    { "<leader>ch>", function()
-		            	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		            end, desc = "Toggle Inlay [C]ode [H]ints", method = "textDocument/inlayHint" },
-                },
+					-- { "K", vim.lsp.buf.hover, desc = "Hover" },
+					{ "gd", vim.lsp.buf.definition, desc = "Goto Definition", method = "textDocument/definition" },
+					{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+					{ "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+					{ "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+					{ "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+					{ "gK", vim.lsp.buf.signature_help, desc = "Signature Help", method = "textDocument/signatureHelp" },
+					{ "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", method = "textDocument/signatureHelp" },
+					{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename", method = "rename" },
+					{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" }, method = "textDocument/codeAction" },
+					{ "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" }, method = "textDocument/codeLens" },
+					{ "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, method = "textDocument/codeLens" },
+					{ "<leader>ch", function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+						end, desc = "Toggle Inlay [C]ode [H]ints", method = "textDocument/inlayHint"
+					},
+				},
 			},
 		},
 		---@type vim.diagnostic.Opts
@@ -76,11 +77,13 @@ return {
 				scope = "cursor",
 			},
 			update_in_insert = false,
-			virtual_text = {
-				severity = {
-					min = vim.diagnostic.severity.ERROR,
-				},
-			},
+			virtual_text = true,
+			-- virtual_text = {
+			-- 	current_line = true,
+			-- 	severity = {
+			-- 		min = vim.diagnostic.severity.ERROR,
+			-- 	},
+			-- },
 			signs = {
 				-- linehl = {
 				-- 	[vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
@@ -88,22 +91,23 @@ return {
 				-- 	[vim.diagnostic.severity.HINT] = "DiagnosticVirtualTextHint",
 				-- 	[vim.diagnostic.severity.INFO] = "DiagnosticVirtualTextInfo",
 				-- },
-				text = vim.g.have_nerd_font and {
-					[vim.diagnostic.severity.ERROR] = "",
-					[vim.diagnostic.severity.WARN] = "",
-					[vim.diagnostic.severity.INFO] = "",
-					[vim.diagnostic.severity.HINT] = "",
-				} or {},
 				numhl = {
 					[vim.diagnostic.severity.ERROR] = "DiagnosticError",
 					[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
 					[vim.diagnostic.severity.HINT] = "DiagnosticHint",
 					[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
 				},
+				text = vim.g.have_nerd_font and {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.INFO] = "",
+					[vim.diagnostic.severity.HINT] = "",
+				} or {},
 			},
 			underline = true,
 			severity_sort = true,
 			virtual_lines = false,
+			-- virtual_lines = { current_line = true },
 			focusable = false,
 		},
 	},

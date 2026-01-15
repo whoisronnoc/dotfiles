@@ -102,7 +102,17 @@ return {
 				component_separators = { left = "│", right = "│" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
-					statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" },
+					statusline = {
+						"dashboard",
+						"alpha",
+						"ministarter",
+						"snacks_dashboard",
+						"Avante",
+						-- "AvanteInput",
+						"AvanteSelectedFiles",
+						"codecompanion",
+						"snacks_picker_list",
+					},
 					winbar = {},
 				},
 			},
@@ -113,13 +123,26 @@ return {
 						return mode_map[s] or s
 					end,
 				} },
-				lualine_b = { "branch" },
+				-- lualine_b = { "branch" },
 				lualine_c = {
-					"diagnostics",
-					"filetype",
+					-- "diagnostics",
 					"filename",
+					{
+						function()
+							local ok, screenkey = pcall(require, "screenkey")
+							if ok then
+								return screenkey.get_keys()
+							end
+							return ""
+						end,
+						cond = function()
+							local ok, _ = pcall(require, "screenkey")
+							return ok
+						end,
+					},
 				},
 				lualine_x = {
+					"overseer",
 					-- This will be replaced by the actual component in the config function
 					-- this is registered in `lua/lualine/components`
 					"codecompanion",
@@ -149,7 +172,7 @@ return {
 						color = function() return { fg = Snacks.util.color("Special") } end,
 					},
 					{
-						"diff",
+						-- "diff",
 						-- symbols = {
 						-- 	added = icons.git.added,
 						-- 	modified = icons.git.modified,
@@ -173,7 +196,7 @@ return {
 					"filetype",
 				},
 				lualine_y = {
-					"progress",
+					-- "progress",
 					-- { "progress", separator = " ", padding = { left = 1, right = 0 } },
 					-- { "location", padding = { left = 0, right = 1 } },
 				},
@@ -184,42 +207,17 @@ return {
 					-- end,
 				},
 			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
-			},
+			-- inactive_sections = {
+			-- 	lualine_a = {},
+			-- 	lualine_b = {},
+			-- 	lualine_c = { "filename" },
+			-- 	lualine_x = { "location" },
+			-- 	lualine_y = {},
+			-- 	lualine_z = {},
+			-- },
 			extensions = { "lazy", "mason", "fzf", "neo-tree", "nvim-dap-ui" },
 		}
 
 		return opts
 	end,
-	-- config = function(_, opts)
-	-- 	local lualine = require("lualine")
-	-- 	-- if enable_ai then
-	-- 	-- local mcp_hub = {
-	-- 	-- 	require("mcphub.extensions.lualine"),
-	-- 	-- 	cond = function()
-	-- 	-- 		local ok, avante = pcall(require, "avante")
-	-- 	-- 		if ok then
-	-- 	-- 			if avante.get() then
-	-- 	-- 				return avante.get():is_open()
-	-- 	-- 			end
-	-- 	-- 		end
-	-- 	-- 		return false
-	-- 	-- 	end,
-	-- 	-- }
-	-- 	-- table.insert(opts.sections.lualine_x, 1, mcp_hub)
-	-- 	-- end
-	--
-	-- 	lualine.setup(opts)
-	--
-	-- 	if theme_dark == "vscode" then
-	-- 		vim.cmd("hi! lualine_a_normal guifg=#000000 guibg=#51A2FF")
-	-- 		vim.cmd("hi! lualine_b_normal guifg=#51A2FF")
-	-- 	end
-	-- end,
 }
