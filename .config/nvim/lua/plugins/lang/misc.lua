@@ -27,6 +27,9 @@ return {
 				"yaml",
 				"swift",
 				"graphql",
+				"prisma",
+				"dockerfile",
+				"gitignore",
 			},
 		},
 	},
@@ -50,6 +53,11 @@ return {
 		opts = {
 			ensure_installed = {
 				"texlab",
+				"prettierd",
+				"eslint_d",
+				"xmlformatter",
+				"commitlint",
+				"sonarlint-language-server",
 			},
 		},
 	},

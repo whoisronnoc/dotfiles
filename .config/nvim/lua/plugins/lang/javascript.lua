@@ -9,8 +9,10 @@ return {
 			ensure_installed = {
 				"javascript",
 				"typescript",
+				"tsx",
 				"jsdoc",
 				"vue",
+				"angular",
 			},
 		},
 	},
@@ -19,8 +21,10 @@ return {
 		optional = true,
 		opts = {
 			servers = {
+				eslint = {},
 				ts_ls = {},
 				vue_ls = {},
+				angularls = {},
 			},
 		},
 	},
@@ -29,7 +33,12 @@ return {
 		optional = true,
 		opts_extend = { "ensure_installed" },
 		opts = {
-			ensure_installed = { "ts_ls" },
+			ensure_installed = {
+				"eslint",
+				"ts_ls",
+				"vue_ls",
+				"angularls",
+			},
 		},
 	},
 	{
@@ -41,6 +50,8 @@ return {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				vue = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
 			},
 		},
 	},
