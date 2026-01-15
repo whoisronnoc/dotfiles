@@ -1,11 +1,6 @@
----@module "lazy"
----@return LazyPluginSpec
+--- @type LazyPluginSpec
 return {
 	"Mofiqul/vscode.nvim",
-	enabled = true,
-	lazy = false,
-	version = false,
-	priority = 1000, -- Make sure to load this before all the other start plugins.
 	config = function()
 		local c = require("vscode.colors").get_colors()
 		require("vscode").setup({
@@ -56,9 +51,21 @@ return {
 			},
 		})
 		require("vscode").load()
-	end,
-	init = function()
-		-- Load the colorscheme here.
-		vim.cmd.colorscheme("vscode")
+
+		vim.cmd("hi! link NeoTreeTab BufferLineTab")
+		vim.cmd("hi! link NeoTreeTabInactive BufferLineTab")
+		vim.cmd("hi! link NeoTreeTabSeparator BufferLineTabSeparator")
+		vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
+		vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
+
+		vim.cmd("hi! link LspInlayHint @comment.documentation")
+		vim.cmd("hi! link SpellBad LspDiagnosticHint")
+
+		vim.cmd("hi! link AvanteSidebarWinSeparator WinSeparator")
+		vim.cmd("hi! link AvanteSidebarWinHorizontalSeparator WinSeparator")
+		-- vim.cmd.hi("SpellBad gui=undercurl guisp=blue")
+
+		vim.opt.guicursor =
+			"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 	end,
 }

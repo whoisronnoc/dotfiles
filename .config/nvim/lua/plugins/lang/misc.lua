@@ -53,11 +53,11 @@ return {
 		opts = {
 			ensure_installed = {
 				"texlab",
-				"prettierd",
-				"eslint_d",
-				"xmlformatter",
-				"commitlint",
-				"sonarlint-language-server",
+				-- "prettierd",
+				-- "eslint_d",
+				-- "xmlformatter",
+				-- "commitlint",
+				-- "sonarlint-language-server",
 			},
 		},
 	},
