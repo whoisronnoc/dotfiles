@@ -37,6 +37,7 @@ return {
 	},
 	-- stylua: ignore
 	keys = {
+		-- Top Pickers & Explorer
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -84,6 +85,7 @@ return {
 		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		{ "<leader>sf", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+		{ "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Search Todo Comments" }, --- @diagnostic disable-line: undefined-field
 	},
 	specs = {
 		{
