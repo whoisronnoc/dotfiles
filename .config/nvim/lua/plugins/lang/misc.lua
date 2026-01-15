@@ -37,7 +37,6 @@ return {
 			servers = {
 				sourcekit = {},
 				clangd = {},
-				harper_ls = {},
 				gdscript = {},
 				graphql = {},
 				texlab = {},
@@ -50,7 +49,6 @@ return {
 		opts_extend = { "ensure_installed" },
 		opts = {
 			ensure_installed = {
-				"harper_ls",
 				"texlab",
 			},
 		},
