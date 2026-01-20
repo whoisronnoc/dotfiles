@@ -17,19 +17,18 @@ return {
 		"neovim/nvim-lspconfig",
 		optional = true,
 		dependencies = { "folke/snacks.nvim" },
-		opts_extend = { "servers.*.keys" },
 		---@module "plugins.lsp"
 		---@type LspOptions lsp options
-		opts = {
+		opts = {		{ import = "plugins" },
 			servers = {
 				["*"] = {
-          -- stylua: ignore
-          keys = {
-            { "]]",    function() Snacks.words.jump(vim.v.count1)        end, desc = "Next Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
-            { "[[",    function() Snacks.words.jump(-vim.v.count1)       end, desc = "Prev Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
-            { "<a-n>", function() Snacks.words.jump(vim.v.count1, true)  end, desc = "Next Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
-            { "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, desc = "Prev Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
-            },
+					-- stylua: ignore
+					keys = {
+						{ "]]",    function() Snacks.words.jump(vim.v.count1)        end, desc = "Next Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
+						{ "[[",    function() Snacks.words.jump(-vim.v.count1)       end, desc = "Prev Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
+						{ "<a-n>", function() Snacks.words.jump(vim.v.count1, true)  end, desc = "Next Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
+						{ "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, desc = "Prev Reference", mode = { "n", "t" }, method = "textDocument/documentHighlight" },
+					},
 				},
 			},
 		},

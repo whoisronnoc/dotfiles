@@ -21,7 +21,6 @@ return {
 			TS.update(nil, { summary = true })
 		end)
 	end,
-	opts_extend = { "ensure_installed" },
 	---@class LazyTSConfig: TSConfig
 	opts = {
 		---@type string[]
@@ -71,7 +70,6 @@ return {
 	specs = {
 		"mason-org/mason.nvim",
 		optional = true,
-		opts_extend = { "ensure_installed" },
 		opts = {
 			ensure_installed = { "tree-sitter-cli" },
 		},

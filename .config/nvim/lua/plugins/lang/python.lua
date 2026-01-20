@@ -11,11 +11,11 @@ return {
 		event = "LazyDap",
 		dependencies = {
 			"mfussenegger/nvim-dap",
-            -- stylua: ignore
-            keys = {
-                { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-                { "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
-            },
+			-- stylua: ignore
+			keys = {
+				{ "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+				{ "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
+			},
 		},
 		config = function()
 			-- Python specific config
@@ -25,7 +25,6 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		optional = true,
-		opts_extend = { "ensure_installed" },
 		opts = {
 			ensure_installed = { "python" },
 		},
@@ -39,7 +38,7 @@ return {
 				basedpyright = {},
 				-- pyrefly = {},
 				ruff = {
-                    -- stylua: ignore
+-- stylua: ignore
 					keys = {
 						{ "<leader>co", Utils.lsp.action["source.organizeImports"], desc = "Organize Imports" },
 					},
@@ -53,7 +52,6 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		optional = true,
-		opts_extend = { "ensure_installed" },
 		opts = {
 			ensure_installed = {
 				"basedpyright",

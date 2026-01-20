@@ -92,7 +92,6 @@ return {
 			"neovim/nvim-lspconfig",
 			optional = true,
 			dependencies = { "folke/snacks.nvim" },
-			opts_extend = { "servers.*.keys" },
 			---@module "plugins.lsp"
 			---@type LspOptions lsp options
 			opts = {
@@ -117,7 +116,6 @@ return {
 		{
 			"folke/which-key.nvim",
 			optional = true,
-			opts_extend = { "spec" },
 			opts = {
 				---@type wk.Spec
 				spec = {

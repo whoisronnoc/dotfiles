@@ -6,7 +6,10 @@ return {
 	--- @module 'snacks'
 	--- @type snacks.Config
 	opts = {
-		bigfile = { enabled = true },
+		dashboard = {
+			enabled = false,
+		},
+		bigfile = { enabled = false },
 		indent = {
 			enabled = false,
 			indent = {

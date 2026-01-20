@@ -12,7 +12,6 @@ return {
 	cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
 	keys = { { "<leader>mm", "<cmd>Mason<cr>", desc = "Manage [M]ason" } },
 	build = ":MasonUpdate",
-	opts_extend = { "ensure_installed" },
 	---@module 'mason'
 	---@type MasonSettings | {ensure_installed: string[]}
 	opts = {
@@ -49,7 +48,6 @@ return {
 		lazy = true,
 		event = { "LspPreEnable" },
 		config = true,
-		opts_extend = { "ensure_installed" },
 		---@module 'mason-lspconfig'
 		---@type MasonLspconfigSettings settings for what to install
 		opts = {
