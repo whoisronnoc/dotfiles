@@ -5,7 +5,7 @@ gui:
   tabWidth: 2
   branchColorPatterns:
     "^feat+": "#11aaff"
-    "^fix+": "#ff5733"
+    "^fix+": "#FFB86A"
     "^chore+": "#7BF1A8"
     "^trivial+": "#7BF1A8"
   authorColors:
