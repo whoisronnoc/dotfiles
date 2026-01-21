@@ -7,4 +7,5 @@ return {
 	{ import = "extras.lang.go" },
 	{ import = "extras.lang.rust" },
 	-- plugins
+	{ import = "extras.ai.supermaven" },
 }
