@@ -39,6 +39,9 @@ return {
 	lazy = true,
 	event = { "LazyFile" },
 	cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+	keys = {
+		{ "<leader>ms", "<cmd>LspInfo<CR>", desc = "LSP Info" },
+	},
 	-- `opts_extend` can be a list of dotted keys that will be extended instead of merged
 	opts_extend = { "servers.*.keys" },
 	---@class LspOptions configs to change when the popup is shown

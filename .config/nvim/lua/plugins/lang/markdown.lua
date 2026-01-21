@@ -59,4 +59,15 @@ return {
 		},
 		ft = { "markdown", "Avante" },
 	},
+	-- Extend
+	{
+		"nvim-treesitter/nvim-treesitter",
+		optional = true,
+		opts = {
+			ensure_installed = {
+				"markdown",
+				"markdown-inline",
+			},
+		},
+	},
 }

@@ -4,7 +4,7 @@ return {
 	{
 		"mfussenegger/nvim-dap-python",
 		enabled = function()
-			return Utils.lazy:has_plugin("nvim-dap") and Utils.computer:is_host("🔥")
+			return Utils.lazy:has_plugin("nvim-dap")
 		end,
 		version = false,
 		lazy = true,

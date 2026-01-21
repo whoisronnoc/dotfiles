@@ -5,6 +5,7 @@ return {
 		optional = true,
 		opts = {
 			ensure_installed = {
+				"xml",
 				"html",
 				"css",
 				"scss",
@@ -28,7 +29,7 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		optional = true,
-		opts = { ensure_installed = { "prettierd" } },
+		opts = { ensure_installed = { "prettierd", "xmlformatter" } },
 	},
 	{
 		"stevearc/conform.nvim",
@@ -37,6 +38,7 @@ return {
 			formatters_by_ft = {
 				html = { "prettierd" },
 				css = { "prettierd" },
+				xml = { "xmlformatter" },
 			},
 		},
 	},

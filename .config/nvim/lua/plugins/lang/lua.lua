@@ -73,4 +73,18 @@ return {
 		optional = true,
 		opts = { ensure_installed = { "lua_ls", "stylua" } },
 	},
+	-- {
+	-- 	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	-- 	optional = true,
+	-- 	opts = { ensure_installed = { "prettierd" } },
+	-- },
+	-- {
+	-- 	"stevearc/conform.nvim",
+	-- 	optional = true,
+	-- 	opts = {
+	-- 		formatters_by_ft = {
+	-- 			html = { "prettierd" },
+	-- 		},
+	-- 	},
+	-- },
 }
