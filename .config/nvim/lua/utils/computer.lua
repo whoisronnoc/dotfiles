@@ -35,18 +35,12 @@ function M:is_host(...)
 	end)
 end
 
--- FIX:
--- ---@param pattern string pattern to match against host names
--- ---@return boolean true if the computer name matches
--- function M:host_contains(pattern)
--- 	return self:host_matches(function(name)
--- 		return string.match(pattern, name) ~= nil
--- 	end)
--- end
-
-function M:host_contains(search)
-	local hostname = vim.fn.hostname()
-	return string.match(hostname, search) ~= nil
+---@param pattern string pattern to match against host names
+---@return boolean true if the computer name matches
+function M:host_contains(pattern)
+	return self:host_matches(function(name)
+		return string.match(name, pattern) ~= nil
+	end)
 end
 
 return M
