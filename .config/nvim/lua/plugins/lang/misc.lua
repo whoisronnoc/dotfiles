@@ -46,16 +46,17 @@ return {
 		},
 	},
 	{
-		"mason-org/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		optional = true,
 		opts = {
 			ensure_installed = {
 				"texlab",
-				-- "prettierd",
-				-- "eslint_d",
-				-- "xmlformatter",
-				-- "commitlint",
-				-- "sonarlint-language-server",
+				"prettierd",
+				"eslint_d",
+				"xmlformatter",
+				"commitlint",
+				"yamllint",
+				"sonarlint-language-server",
 			},
 		},
 	},

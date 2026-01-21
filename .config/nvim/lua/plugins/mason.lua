@@ -54,5 +54,14 @@ return {
 			ensure_installed = {},
 			automatic_enable = false,
 		},
+		{
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			dependencies = { "mason-org/mason.nvim", "mason-org/mason-lspconfig.nvim" },
+			lazy = true,
+			event = { "LspPreEnable" },
+			opts = {
+				ensure_installed = {},
+			},
+		},
 	},
 }

@@ -20,7 +20,6 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 	},
-	-- `opts_extend` can be a list of dotted keys that will be extended instead of merged
 	--- @module 'blink.cmp'
 	--- @type blink.cmp.Config
 	opts = {
@@ -95,7 +94,6 @@ return {
 		},
 
 		-- Default list of enabled providers defined so that you can extend it
-		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
 			default = { "lsp", "path", "snippets" },
 			-- default = { "lsp", "path", "snippets", "buffer" },
