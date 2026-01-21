@@ -46,6 +46,7 @@ return {
 		},
 	},
 	{
+		-- "mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		optional = true,
 		opts = {
@@ -55,7 +56,6 @@ return {
 				"eslint_d",
 				"xmlformatter",
 				"commitlint",
-				"yamllint",
 				"sonarlint-language-server",
 			},
 		},
