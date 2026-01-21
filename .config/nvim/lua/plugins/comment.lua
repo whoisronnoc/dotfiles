@@ -39,12 +39,13 @@ return {
 			---Extra mapping; `gco`, `gcO`, `gcA`
 			extra = true,
 		},
-		---Function to call before (un)comment
+		-- -Function to call before (un)comment
 		pre_hook = nil,
 		---Function to call after (un)comment
 		post_hook = nil,
 	},
 	keys = {
-		{ "<D-/>", "<Plug>(comment_toggle_linewise_current)", mode = "n" },
+		{ "<c-_>", "<Plug>(comment_toggle_linewise_current)", mode = "n" },
+		{ "<c-_>", "<Plug>(comment_toggle_linewise_visual)", mode = "v" },
 	},
 }
