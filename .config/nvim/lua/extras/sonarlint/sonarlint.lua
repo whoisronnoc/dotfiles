@@ -58,16 +58,16 @@ require("sonarlint").setup({
 		},
 
 		before_init = function(params, config)
-			-- Your personal configuration needs to provide a mapping of root folders and project keys
-			local project_root_and_ids = {
-				-- ["/path/to/project/root"] = "<project key you to take from sonarqube>",
-			}
-
-			config.settings.sonarlint.connectedMode.project = {
-				connectionId = os.getenv("SONARQUBE_ID"),
-				-- projectKey = project_root_and_ids[params.rootPath],
-				projectKey = os.getenv("SONARQUBE_KEY"),
-			}
+			-- -- Your personal configuration needs to provide a mapping of root folders and project keys
+			-- local project_root_and_ids = {
+			-- 	-- ["/path/to/project/root"] = "<project key you to take from sonarqube>",
+			-- }
+			--
+			-- config.settings.sonarlint.connectedMode.project = {
+			-- 	connectionId = os.getenv("SONARQUBE_ID"),
+			-- 	-- projectKey = project_root_and_ids[params.rootPath],
+			-- 	projectKey = os.getenv("SONARQUBE_KEY"),
+			-- }
 		end,
 	},
 	filetypes = {
