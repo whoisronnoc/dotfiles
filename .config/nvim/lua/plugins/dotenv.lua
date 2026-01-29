@@ -1,7 +1,9 @@
 return {
-	"tpope/vim-dotenv",
-	config = function()
-		local path = vim.fn.stdpath("config") .. "/.env"
-		vim.cmd("Dotenv " .. path)
-	end,
+	"ellisonleao/dotenv.nvim",
+	lazy = false,
+	opts = {
+		enable_on_load = true,
+		verbose = false,
+		file_name = vim.fn.stdpath("config") .. "/.env",
+	},
 }
