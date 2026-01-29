@@ -14,3 +14,22 @@ gui:
 git:
   pagers:
     - pager: delta --paging=never
+customCommands:
+  - key: 'h'
+    command: "git update-index --assume-unchanged {{.SelectedFile.Name | quote}}"
+    context: 'files'
+    description: 'Assume unchanged'
+  - key: 'I'
+    command: "git ls-files -v | grep '^h'"
+    context: 'global'
+    description: 'Show "unchanged" files'
+    output: log
+  - key: 'H'
+    description: 'Unmark assume unchanged'
+    command: "git update-index --no-assume-unchanged {{.Form.File | quote}}"
+    context: 'files'
+    prompts:
+      - type: 'menuFromCommand'
+        title: 'Unmark assume unchanged'
+        key: 'File'
+        command: bash -c "git ls-files -v | grep '^h' | cut -d ' ' -f2"
