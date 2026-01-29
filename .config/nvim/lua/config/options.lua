@@ -53,7 +53,7 @@ vim.opt.fillchars = {
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
-vim.opt.mousescroll = "ver:3,hor:0"
+vim.opt.mousescroll = "ver:1,hor:1"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 -- vim.opt.scrolloff = 10
