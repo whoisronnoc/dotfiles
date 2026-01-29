@@ -10,6 +10,10 @@ local exclude_dirs = {
 	"cache",
 }
 
+local function stop_insert()
+	vim.cmd("stopinsert")
+end
+
 ---@module "lazy"
 ---@type LazyPluginSpec
 return {
@@ -23,6 +27,18 @@ return {
 			hidden = true,
 			ignored = true,
 			sources = {
+				lsp_references = {
+					on_show = stop_insert,
+				},
+				lsp_declarations = {
+					on_show = stop_insert,
+				},
+				lsp_definitions = {
+					on_show = stop_insert,
+				},
+				notifications = {
+					on_show = stop_insert,
+				},
 				grep = {
 					exclude = exclude_dirs,
 				},
