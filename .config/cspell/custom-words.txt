@@ -11,3 +11,7 @@ nvimtools
 nvimtree
 guifg
 kanagawa
+pkgs
+nixpkgs
+Avante
+noice
