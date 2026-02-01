@@ -189,6 +189,16 @@ return {
 							end
 						end,
 					},
+					{
+						"lsp_status",
+						icon = "",
+						symbols = {
+							spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+							done = "✓",
+							separator = " ",
+						},
+						-- ignore_lsp = { "null-ls", "GitHub Copilot", "tailwindcss", "copilot", "cspell_ls" },
+					},
 					lint_status,
 					mixed_indent,
 					"encoding",
