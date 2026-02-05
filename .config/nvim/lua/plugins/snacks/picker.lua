@@ -23,6 +23,13 @@ return {
 	--- @type snacks.Config
 	opts = {
 		picker = {
+			win = {
+				preview = {
+					wo = {
+						wrap = true,
+					},
+				},
+			},
 			enabled = true,
 			hidden = true,
 			ignored = true,

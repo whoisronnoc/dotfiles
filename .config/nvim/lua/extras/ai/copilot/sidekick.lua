@@ -38,16 +38,15 @@ return {
 			"<leader>aa",
 			function()
 				require("sidekick.cli").toggle()
+				vim.cmd("stopinsert")
 			end,
 			desc = "Sidekick Toggle CLI",
 		},
 		{
 			"<leader>as",
 			function()
-				require("sidekick.cli").select()
+				require("sidekick.cli").select({ filter = { installed = true } })
 			end,
-			-- Or to select only installed tools:
-			-- require("sidekick.cli").select({ filter = { installed = true } })
 			desc = "Select CLI",
 		},
 		{
