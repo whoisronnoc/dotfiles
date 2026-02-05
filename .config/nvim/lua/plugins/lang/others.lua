@@ -33,6 +33,7 @@ return {
 				gdscript = {},
 				graphql = {},
 				texlab = {},
+				eslint = {},
 			},
 		},
 	},
@@ -42,7 +43,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"prettierd",
-				"eslint_d",
+				-- "eslint_d",
 				"commitlint",
 				"texlab",
 			},

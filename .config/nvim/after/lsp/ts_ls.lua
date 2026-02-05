@@ -13,10 +13,10 @@ local vue_plugin = {
 
 local inlayHints = {
 	includeInlayParameterNameHints = "all",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-	includeInlayFunctionParameterTypeHints = true,
+	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	includeInlayFunctionParameterTypeHints = false,
 	includeInlayVariableTypeHints = true,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 	includeInlayPropertyDeclarationTypeHints = true,
 	includeInlayFunctionLikeReturnTypeHints = true,
 	includeInlayEnumMemberValueHints = true,
