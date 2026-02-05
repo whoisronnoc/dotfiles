@@ -1,3 +1,4 @@
+# cSpell:disable
 # zmodload zsh/zprof 
 # homebrew
 if [[ -f $BREW_PATH ]]; then
@@ -13,7 +14,9 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # custom prompt
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -79,10 +82,19 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # shell integrations
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(jenv init -)"
-eval "$(pyenv init -)"
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+fi
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+if [[ -d "${HOME}/.jenv" ]]; then
+  eval "$(jenv init -)"
+  # jenv enable-plugin export
+fi
+if [[ -d "${HOME}/.pyenv" ]]; then
+  eval "$(pyenv init -)"
+fi
 
 # aliases
 
