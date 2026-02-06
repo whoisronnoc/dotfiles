@@ -60,6 +60,10 @@ bindkey '^[b' backward-word # ⌥←
 bindkey "^A" beginning-of-line # cmd+←
 bindkey "^E" end-of-line # cmd+→
 
+# Remove common delimiters from WORDCHARS so they act as word separators
+# default WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS=''
+
 # history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
