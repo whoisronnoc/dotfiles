@@ -1,15 +1,16 @@
 return {
-	enabled = true,
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	opts = function(_, opts)
-		vim.cmd.hi("IblScope guifg=#aaaaaa")
+		vim.cmd("hi! IblScope guifg=#aaaaaa")
+
 		return require("indent-rainbowline").make_opts(
 			-- ibl opts
 			-- :help ibl.config
 			{
 				scope = {
+					-- highlight = "IblScope",
 					char = "▎",
 					show_start = false,
 					show_end = false,
@@ -17,6 +18,7 @@ return {
 			},
 			-- rainbow opts
 			{
+				-- color_transparency = 0.15,
 				exclude = { filetypes = { "dashboard", "text" } },
 				colors = {
 					-- 0xff6e67,

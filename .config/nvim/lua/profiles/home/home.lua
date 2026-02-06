@@ -1,5 +1,6 @@
 vim.g.theme_light = "catppuccin"
 vim.g.theme_dark = "catppuccin"
+require("extras.themes.overrides")
 
 ---@module "lazy"
 ---@type LazyPluginSpec[]

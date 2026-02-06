@@ -1,11 +1,12 @@
-vim.g.theme_light = "catppuccin"
+vim.g.theme_light = "carbide"
 vim.g.theme_dark = "vscode"
+require("extras.themes.overrides")
 
 ---@module "lazy"
 ---@type LazyPluginSpec[]
 return {
 	-- theme
-	{ import = "extras.themes.catppuccin" },
+	{ import = "extras.themes.carbide" },
 	{ import = "extras.themes.vscode" },
 	-- languages
 	-- plugins
