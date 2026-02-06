@@ -15,6 +15,6 @@ return {
 			"Neotree",
 			-- "lua Snacks.explorer()",
 		},
-		bypass_save_filetypes = { "alpha", "dashboard" },
+		bypass_save_filetypes = { "alpha", "dashboard", "sidekick_terminal" },
 	},
 }
