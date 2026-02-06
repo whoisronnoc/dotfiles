@@ -106,7 +106,12 @@ keybind = super+physical:nine=last_tab
 # text navigation
 keybind = super+shift+up=jump_to_prompt:-1
 keybind = super+shift+down=jump_to_prompt:1
-keybind = super+down=jump_to_prompt:1
+keybind = super+up=text:\x1b[1;5A
+keybind = super+down=text:\x1b[1;5B
+keybind = super+left=text:\x1b[1;5D
+keybind = super+right=text:\x1b[1;5C
+keybind = alt+right=esc:f
+keybind = alt+left=esc:b
 # scroll to
 keybind = super+home=scroll_to_top
 keybind = super+page_up=scroll_page_up
@@ -121,10 +126,6 @@ keybind = super+a=select_all
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 # text edit
-keybind = alt+right=esc:f
-keybind = alt+left=esc:b
-keybind = super+left=text:\x01
-keybind = super+right=text:\x05
 keybind = alt+backspace=text:\x17
 keybind = super+backspace=text:\x15
 # text select

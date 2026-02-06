@@ -36,5 +36,23 @@ vim.keymap.set("n", "<leader>tl", "<cmd>tabnext +<CR>", { desc = "[T]ab Next" })
 vim.keymap.set("n", "<leader>th", "<cmd>tabnext -<CR>", { desc = "[T]ab Previous" })
 vim.keymap.set("n", "<leader>tb", "<cmd>tabnext #<CR>", { desc = "[T]ab [B]ack" })
 
+-- Map Cmd+Left/Right for beginning/end of line
+vim.keymap.set({ "n", "v" }, "<Esc>[1;5D", "^", { desc = "Move to start of line" })
+vim.keymap.set({ "n", "v" }, "<Esc>[1;5C", "$", { desc = "Move to end of line" })
+vim.keymap.set("i", "<Esc>[1;5D", "<C-o>^", { desc = "Move to start of line" })
+vim.keymap.set("i", "<Esc>[1;5C", "<C-o>$", { desc = "Move to end of line" })
+
+-- Map Cmd+Up/Down for top/bottom of file
+vim.keymap.set({ "n", "v" }, "<Esc>[1;5A", "gg", { desc = "Move to top of file" })
+vim.keymap.set({ "n", "v" }, "<Esc>[1;5B", "G", { desc = "Move to bottom of file" })
+vim.keymap.set("i", "<Esc>[1;5A", "<C-o>gg", { desc = "Move to top of file" })
+vim.keymap.set("i", "<Esc>[1;5B", "<C-o>G", { desc = "Move to bottom of file" })
+
+-- Map Alt+Left/Right for word navigation (Ghostty sends esc:b and esc:f)
+vim.keymap.set({ "n", "v" }, "<M-b>", "b", { desc = "Move backward by word" })
+vim.keymap.set({ "n", "v" }, "<M-f>", "w", { desc = "Move forward by word" })
+vim.keymap.set("i", "<M-b>", "<C-o>b", { desc = "Move backward by word" })
+vim.keymap.set("i", "<M-f>", "<C-o>w", { desc = "Move forward by word" })
+
 -- misc
 vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage [L]azy Config" })
