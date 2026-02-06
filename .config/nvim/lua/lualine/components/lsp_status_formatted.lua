@@ -13,6 +13,7 @@ local default_options = {
 	-- List of LSP names to ignore (e.g., `null-ls`):
 	ignore_lsp = {},
 	show_name = true,
+	display_names = {},
 }
 
 function M:init(options)
@@ -24,6 +25,8 @@ function M:init(options)
 
 	-- Apply symbols.
 	self.symbols = self.options.symbols or {}
+
+	self.display_names = self.options.display_names or {}
 
 	---The difference between the `begin` and `end` progress events for each LSP.
 	---
@@ -82,7 +85,11 @@ function M:update_status()
 		if not processed[client.name] and not list_contains(self.options.ignore_lsp, client.name) then
 			local status_display = ((status and status ~= "") and (" " .. status) or "")
 			if self.options.show_name then
-				table.insert(result, client.name .. status_display)
+				if self.display_names[client.name] then
+					table.insert(result, self.display_names[client.name] .. status_display)
+				else
+					table.insert(result, client.name .. status_display)
+				end
 			else
 				table.insert(result, status_display)
 			end
@@ -94,4 +101,3 @@ function M:update_status()
 end
 
 return M
-

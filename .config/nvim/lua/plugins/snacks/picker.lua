@@ -34,6 +34,9 @@ return {
 			hidden = true,
 			ignored = true,
 			sources = {
+				lsp_config = {
+					on_show = stop_insert,
+				},
 				lsp_references = {
 					on_show = stop_insert,
 				},
@@ -127,7 +130,7 @@ return {
 							{ "gr", function() Snacks.picker.lsp_references() end, desc = "[R]eferences", nowait = true },
 							{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "[G]oto [I]mplementation" },
 							{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "[G]oto T[y]pe Definition" },
-							{ "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" },
+							{ "<leader>ms", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" },
 							{ "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP [S]ymbols" },
 							{ "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace [S]ymbols" },
 							{ "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode = {"n"}, method = { "workspace/didRenameFiles", "workspace/willRenameFiles" } }
