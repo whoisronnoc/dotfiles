@@ -4,13 +4,13 @@ gui:
       - "#171717"
   tabWidth: 2
   branchColorPatterns:
-    "^feat+": "#11aaff"
+    "^feat+": "#11AAff"
     "^fix+": "#FFB86A"
     "^chore+": "#7BF1A8"
     "^trivial+": "#7BF1A8"
   authorColors:
-    "Connor Temple": "blue"
-    "whoisronnoc": "red"
+    "Connor Temple": "#51A2FF"
+    "whoisronnoc": "#663399"
 git:
   pagers:
     - pager: delta --paging=never
