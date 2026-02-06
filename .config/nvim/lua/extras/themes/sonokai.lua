@@ -1,71 +1,3 @@
-local function update_theme(mode)
-	vim.api.nvim_set_option_value("background", mode, {})
-
-	if mode == "dark" then
-		vim.cmd.colorscheme("sonokai")
-
-		vim.cmd.hi("Cursor guifg=black guibg=white")
-		vim.cmd.hi("lCursor guifg=black guibg=white")
-
-		-- vim.cmd.hi("RenderMarkdownH1Bg guifg=blue guibg=none")
-		-- vim.cmd.hi("RenderMarkdownH2Bg guifg=blue guibg=none")
-		-- vim.cmd.hi("RenderMarkdownH3Bg guifg=blue guibg=none")
-		-- vim.cmd.hi("RenderMarkdownH4Bg guifg=blue guibg=none")
-		-- vim.cmd.hi("RenderMarkdownH5Bg guifg=blue guibg=none")
-		-- vim.cmd.hi("RenderMarkdownH6Bg guifg=blue guibg=none")
-		vim.cmd("hi! link RenderMarkdownH1Bg @markup.heading.1.markdown")
-		vim.cmd("hi! link RenderMarkdownH2Bg @markup.heading.2.markdown")
-		vim.cmd("hi! link RenderMarkdownH3Bg @markup.heading.3.markdown")
-		vim.cmd("hi! link RenderMarkdownH4Bg @markup.heading.4.markdown")
-		vim.cmd("hi! link RenderMarkdownH5Bg @markup.heading.5.markdown")
-		vim.cmd("hi! link RenderMarkdownH6Bg @markup.heading.6.markdown")
-
-		-- if theme_dark == "sonokai" then
-		vim.cmd.hi("GitConflictCurrentLabel guibg=#9FC9FF")
-		vim.cmd.hi("GitConflictCurrent guibg=#989EFE")
-		-- end
-	else
-		vim.cmd.colorscheme("carbide")
-
-		-- vim.cmd.hi("LspInlayHint guibg=#E9EBF1 guifg=#0B4AED")
-		-- bg = "#E9EBF1",
-		-- fg = "#9CA0B0"
-		-- if theme_light == "carbide" then
-		vim.cmd.hi("Normal guibg=none")
-		vim.cmd.hi("NeoTreeNormal guibg=none")
-		vim.cmd.hi("Text guifg=#a8a8a8")
-		vim.cmd.hi("Comment guifg=#0B4AED")
-
-		vim.cmd("hi! link NonText @comment.documentation")
-		vim.cmd("hi! link BlinkCmpMenuSelection Pmenu")
-
-		-- vim.cmd.hi("NeoTreeTabInactive  guifg=#000000 guibg=#CDCDCD")
-		-- vim.cmd.hi("NeoTreeTabSeparatorInactive  guifg=#000000 guibg=#CDCDCD")
-		-- end
-	end
-
-	vim.cmd("hi! link NeoTreeTab BufferLineTab")
-	vim.cmd("hi! link NeoTreeTabInactive BufferLineTab")
-	vim.cmd("hi! link NeoTreeTabSeparator BufferLineTabSeparator")
-	vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
-	vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
-
-	vim.cmd("hi! link LspInlayHint @comment.documentation")
-	vim.cmd("hi! link SpellBad LspDiagnosticHint")
-
-	vim.cmd("hi! link AvanteSidebarWinSeparator WinSeparator")
-	vim.cmd("hi! link AvanteSidebarWinHorizontalSeparator WinSeparator")
-	-- vim.cmd.hi("SpellBad gui=undercurl guisp=blue")
-
-	vim.opt.guicursor =
-		"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-end
-
-local function should_update_bg_option(mode)
-	local current = vim.api.nvim_get_option_value("background", {})
-	return current ~= mode
-end
-
 ---@module "lazy"
 ---@return LazyPluginSpec
 return {
@@ -109,17 +41,52 @@ return {
 				-- \ 'none':       ['NONE',      'NONE']
 				-- \ }
 
-				set_hl("Directory", palette.none, palette.none)
-				set_hl("Title", palette.none, palette.none)
+				-- set_hl("Directory", palette.none, palette.none)
+				-- set_hl("Title", palette.none, palette.none)
 
 				set_hl("SnacksPickerDirectory", palette.none, palette.none)
 				set_hl("SnacksPickerGitStatusUntracked", palette.green, palette.none)
 				set_hl("SnacksPickerPathIgnored", palette.grey, palette.none)
 				set_hl("SnacksPickerPathHidden", palette.fg, palette.none)
+
+				-- vim.cmd.hi("Cursor guifg=black guibg=white")
+				-- vim.cmd.hi("lCursor guifg=black guibg=white")
+
+				-- vim.cmd.hi("RenderMarkdownH1Bg guifg=blue guibg=none")
+				-- vim.cmd.hi("RenderMarkdownH2Bg guifg=blue guibg=none")
+				-- vim.cmd.hi("RenderMarkdownH3Bg guifg=blue guibg=none")
+				-- vim.cmd.hi("RenderMarkdownH4Bg guifg=blue guibg=none")
+				-- vim.cmd.hi("RenderMarkdownH5Bg guifg=blue guibg=none")
+				-- vim.cmd.hi("RenderMarkdownH6Bg guifg=blue guibg=none")
+				-- vim.cmd("hi! link RenderMarkdownH1Bg @markup.heading.1.markdown")
+				-- vim.cmd("hi! link RenderMarkdownH2Bg @markup.heading.2.markdown")
+				-- vim.cmd("hi! link RenderMarkdownH3Bg @markup.heading.3.markdown")
+				-- vim.cmd("hi! link RenderMarkdownH4Bg @markup.heading.4.markdown")
+				-- vim.cmd("hi! link RenderMarkdownH5Bg @markup.heading.5.markdown")
+				-- vim.cmd("hi! link RenderMarkdownH6Bg @markup.heading.6.markdown")
+				--
+				-- vim.cmd.hi("GitConflictCurrentLabel guibg=#9FC9FF")
+				-- vim.cmd.hi("GitConflictCurrent guibg=#989EFE")
+				-- vim.cmd("hi! link NeoTreeTab BufferLineTab")
+				--
+				-- vim.cmd("hi! link NeoTreeTabInactive BufferLineTab")
+				-- vim.cmd("hi! link NeoTreeTabSeparator BufferLineTabSeparator")
+				-- vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
+				-- vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
+				--
+				-- vim.cmd("hi! link LspInlayHint @comment.documentation")
+				-- vim.cmd("hi! link SpellBad LspDiagnosticHint")
+				--
+				-- vim.cmd("hi! link AvanteSidebarWinSeparator WinSeparator")
+				-- vim.cmd("hi! link AvanteSidebarWinHorizontalSeparator WinSeparator")
+				-- vim.cmd.hi("SpellBad gui=undercurl guisp=blue")
+
+				-- vim.cmd.hi("link @ibl.indent.char.1 IndentBlanklineChar")
+				vim.opt.guicursor =
+					"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 			end,
 		})
 
 		vim.g.sonokai_style = "atlantis"
-		update_theme("dark")
 	end,
 }
