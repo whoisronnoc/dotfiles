@@ -1,5 +1,0 @@
-require("core.machine_options")
-require("core.options")
-require("core.keymaps")
-require("core.autocommands")
-require("core.filetypes")

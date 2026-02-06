@@ -1,22 +1,15 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
-	"snacks.nvim",
+	"folke/snacks.nvim",
+	optional = true,
 	--- @module 'snacks'
 	--- @type snacks.Config
-	opts = {},
+	-- stylua: ignore
 	init = function()
-		vim.g.snacks_animate = false
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
-				-- Setup some globals for debugging (lazy-loaded)
-				_G.dd = function(...)
-					Snacks.debug.inspect(...)
-				end
-				_G.bt = function()
-					Snacks.debug.backtrace()
-				end
-				vim.print = _G.dd -- Override print to use snacks for `:=` command
-
 				-- Create some toggle mappings
 				-- stylua: ignore start
 				-- Snacks.toggle.option("spell", { name = "[s]pelling" }):map("<leader>ts")
@@ -33,7 +26,6 @@ return {
 
 				Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark [b]ackground" }):map("<leader>tb")
 				-- stylua: ignore end
-
 				Snacks.toggle
 					.new({
 						id = "toggle_autoformat",

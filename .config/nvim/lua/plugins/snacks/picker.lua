@@ -1,5 +1,3 @@
-local explorer = Options:getOption("explorer")
-
 local exclude_dirs = {
 	".git",
 	"node_modules",
@@ -12,20 +10,42 @@ local exclude_dirs = {
 	"cache",
 }
 
+local function stop_insert()
+	vim.cmd("stopinsert")
+end
+
+---@module "lazy"
+---@type LazyPluginSpec
 return {
-	"snacks.nvim",
+	"folke/snacks.nvim",
+	optional = true,
 	--- @module 'snacks'
 	--- @type snacks.Config
 	opts = {
-		explorer = {
-			enabled = Options:getOption("explorer") == "snacks",
-			replace_netrw = true,
-		},
 		picker = {
-			enabled = Options:getOption("picker") == "snacks",
+			win = {
+				preview = {
+					wo = {
+						wrap = true,
+					},
+				},
+			},
+			enabled = true,
 			hidden = true,
 			ignored = true,
 			sources = {
+				lsp_references = {
+					on_show = stop_insert,
+				},
+				lsp_declarations = {
+					on_show = stop_insert,
+				},
+				lsp_definitions = {
+					on_show = stop_insert,
+				},
+				notifications = {
+					on_show = stop_insert,
+				},
 				grep = {
 					exclude = exclude_dirs,
 				},
@@ -35,47 +55,12 @@ return {
 				todo_comments = {
 					exclude = exclude_dirs,
 				},
-				explorer = {
-					border = "none",
-					layout = {
-						layout = {
-							width = 32,
-							backdrop = false,
-							min_width = 32,
-							height = 0,
-							position = "left",
-							border = "none",
-							box = "vertical",
-							{ win = "list", border = "none" },
-							-- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
-						},
-					},
-					win = {
-						list = {
-							keys = {
-								["s"] = "edit_vsplit",
-								["S"] = "edit_split",
-								["\\"] = "close",
-							},
-						},
-					},
-				},
 			},
 		},
 	},
--- stylua: ignore
+	-- stylua: ignore
 	keys = {
 		-- Top Pickers & Explorer
-		explorer == "snacks" and { "\\", desc = "File Explorer", function()
-			local explorer_pickers = Snacks.picker.get({ source = "explorer" })
-			if #explorer_pickers == 0 then
-				Snacks.picker.explorer()
-				-- elseif explorer_pickers[1]:is_focused() then
-				-- 	explorer_pickers[1]:close()
-			else
-				explorer_pickers[1]:focus()
-			end
-		end } or { "\\\\", desc = "File Explorer", function() end },
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -87,14 +72,14 @@ return {
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 		{ "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
 		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-		-- git
-		{ "<leader>hgb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-		{ "<leader>hgl", function() Snacks.picker.git_log() end, desc = "Git Log" },
-		{ "<leader>hgL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-		{ "<leader>hgs", function() Snacks.picker.git_status() end, desc = "Git Status" },
-		{ "<leader>hgS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
-		{ "<leader>hgd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
-		{ "<leader>hgf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+		-- git, [h]unk [s]nacks
+		{ "<leader>hsb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+		{ "<leader>hsl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+		{ "<leader>hsL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+		{ "<leader>hss", function() Snacks.picker.git_status() end, desc = "Git Status" },
+		{ "<leader>hsS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+		{ "<leader>hsd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+		{ "<leader>hsf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
 		-- Grep
 		{ "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
@@ -114,7 +99,7 @@ return {
 		{ "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
 		{ "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
 		{ "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-		{ "<leader>sll", function() Snacks.picker.loclist() end, desc = "Location List" },
+		{ "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
 		{ "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
 		{ "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
 		{ "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
@@ -124,5 +109,44 @@ return {
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		{ "<leader>sf", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
 		{ "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Search Todo Comments" }, --- @diagnostic disable-line: undefined-field
+	},
+	specs = {
+		{
+			"neovim/nvim-lspconfig",
+			optional = true,
+			dependencies = { "folke/snacks.nvim" },
+			---@module "plugins.lsp"
+			---@type LspOptions lsp options
+			opts = {
+				servers = {
+					["*"] = {
+						-- stylua: ignore
+						keys = {
+							{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "[G]oto [D]efinition", method = "textDocument/definition" },
+							{ "gD", function() Snacks.picker.lsp_declarations() end, desc = "[G]oto [D]eclaration" },
+							{ "gr", function() Snacks.picker.lsp_references() end, desc = "[R]eferences", nowait = true },
+							{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "[G]oto [I]mplementation" },
+							{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "[G]oto T[y]pe Definition" },
+							{ "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" },
+							{ "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP [S]ymbols" },
+							{ "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace [S]ymbols" },
+							{ "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode = {"n"}, method = { "workspace/didRenameFiles", "workspace/willRenameFiles" } }
+						},
+					},
+				},
+			},
+		},
+		{
+			"folke/which-key.nvim",
+			optional = true,
+			opts = {
+				---@type wk.Spec
+				spec = {
+					{ "<leader>s", group = "[S]earch", icon = " " },
+					{ "<leader>f", group = "[F]ind", icon = " " },
+					{ "<leader>g", group = "[G]it", icon = " " },
+				},
+			},
+		},
 	},
 }

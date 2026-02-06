@@ -1,8 +1,8 @@
 local function get_vue_path(root_dir, default)
 	local project_root = vim.fs.dirname(vim.fs.find("node_modules", { path = root_dir, upward = true })[1])
-	local vuels = project_root and vim.fs.joinpath(project_root, "node_modules", "@vue", "language-server") or default
+	local vue_ls = project_root and vim.fs.joinpath(project_root, "node_modules", "@vue", "language-server") or default
 	-- Return the value if it exists else empty string
-	return vim.uv.fs_stat(vuels) and vuels or ""
+	return vim.uv.fs_stat(vue_ls) and vue_ls or ""
 end
 
 local vue_plugin = {
@@ -13,10 +13,10 @@ local vue_plugin = {
 
 local inlayHints = {
 	includeInlayParameterNameHints = "all",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-	includeInlayFunctionParameterTypeHints = true,
+	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	includeInlayFunctionParameterTypeHints = false,
 	includeInlayVariableTypeHints = true,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 	includeInlayPropertyDeclarationTypeHints = true,
 	includeInlayFunctionLikeReturnTypeHints = true,
 	includeInlayEnumMemberValueHints = true,
