@@ -19,3 +19,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	desc = "Set conceallevel for markdown files",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit" },
+	callback = function()
+		vim.cmd("normal! $")
+		-- vim.cmd("startinsert")
+	end,
+	desc = "Move cursor to end of git commit message prefix",
+})
