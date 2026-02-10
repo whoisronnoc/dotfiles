@@ -166,7 +166,7 @@ return {
 				-- Show the signature help window after typing a trigger character
 				show_on_trigger_character = true,
 				-- Show the signature help window when entering insert mode
-				show_on_insert = true,
+				show_on_insert = false,
 				-- Show the signature help window when the cursor comes after a trigger character when entering insert mode
 				show_on_insert_on_trigger_character = true,
 			},
