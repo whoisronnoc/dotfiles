@@ -28,5 +28,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		-- vim.cmd("hi! link RenderMarkdownH4Bg @markup.heading.4.markdown")
 		-- vim.cmd("hi! link RenderMarkdownH5Bg @markup.heading.5.markdown")
 		-- vim.cmd("hi! link RenderMarkdownH6Bg @markup.heading.6.markdown")
+
+		vim.cmd("hi! link SidekickDiffAdd DiffAdd")
+		vim.cmd("hi! link SidekickDiffDelete DiffDelete")
+		vim.cmd("hi! link SidekickDiffContext NeogitDiffContextHighlight")
 	end,
 })
