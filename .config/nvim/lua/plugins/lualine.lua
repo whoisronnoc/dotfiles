@@ -201,7 +201,7 @@ return {
 							["null-ls"] = "󰟢",
 							["GitHub Copilot"] = "",
 							copilot = "",
-							cspell_ls = "󰓆",
+							cspell_ls = "󱀍",
 							tailwindcss = "",
 							lua_ls = "",
 							stylua = "",
