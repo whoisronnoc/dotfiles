@@ -77,5 +77,5 @@ return {
 			config.init_options.plugins = {}
 		end
 	end,
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 }
