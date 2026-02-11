@@ -1,6 +1,180 @@
 ---@module "lazy"
 ---@return LazyPluginSpec[]
 return {
+
+	-- MARK: DAP
+	{
+		"mxsdev/nvim-dap-vscode-js",
+		enabled = function()
+			return Utils.lazy:has_plugin("nvim-dap")
+		end,
+		version = false,
+		lazy = true,
+		event = "LazyDap",
+		config = function()
+			require("dap-vscode-js").setup({
+				debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
+				debugger_cmd = { "js-debug-adapter" },
+				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+			})
+
+			local dap = require("dap")
+
+			for _, adapterType in ipairs({ "node", "chrome", "msedge" }) do
+				local pwaType = "pwa-" .. adapterType
+
+				dap.adapters[pwaType] = {
+					type = "server",
+					host = "localhost",
+					port = "${port}",
+					executable = {
+						command = "node",
+						args = {
+							vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+							"${port}",
+						},
+					},
+				}
+
+				-- this allow us to handle launch.json configurations
+				-- which specify type as "node" or "chrome" or "msedge"
+				dap.adapters[adapterType] = function(cb, config)
+					local nativeAdapter = dap.adapters[pwaType]
+
+					config.type = pwaType
+
+					if type(nativeAdapter) == "function" then
+						nativeAdapter(cb, config)
+					else
+						cb(nativeAdapter)
+					end
+				end
+			end
+
+			-- for _, adapter in pairs({ "pwa-node", "pwa-chrome" }) do
+			-- 	dap.adapters[adapter] = {
+			-- 		type = "server",
+			-- 		host = "localhost",
+			-- 		port = "${port}",
+			-- 		executable = {
+			-- 			command = "js-debug-adapter",
+			-- 			args = { "${port}" },
+			-- 		},
+			-- 	}
+			-- end
+
+			-- language config
+			for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }) do
+				dap.configurations[language] = {
+					{
+						name = "Launch",
+						type = "pwa-node",
+						request = "launch",
+						program = "${file}",
+						rootPath = "${workspaceFolder}",
+						cwd = "${workspaceFolder}",
+						sourceMaps = true,
+						skipFiles = { "<node_internals>/**" },
+						protocol = "inspector",
+						console = "integratedTerminal",
+					},
+					{
+						name = "Attach to node process",
+						type = "pwa-node",
+						request = "attach",
+						rootPath = "${workspaceFolder}",
+						processId = require("dap.utils").pick_process,
+					},
+					{
+						name = "Attach to chrome process",
+						type = "pwa-chrome",
+						request = "attach",
+						rootPath = "${workspaceFolder}",
+						processId = require("dap.utils").pick_process,
+					},
+					{
+						type = "pwa-chrome",
+						request = "launch",
+						name = "Launch Chrome against localhost",
+						url = "http://localhost:3000", -- Ensure this matches your dev port
+						webRoot = "${workspaceFolder}",
+						sourceMaps = true,
+						skipFiles = { "<node_internals>/**", "node_modules/**" },
+					},
+					-- {
+					-- 	name = "Debug Main Process (Electron)",
+					-- 	type = "pwa-node",
+					-- 	request = "launch",
+					-- 	program = "${workspaceFolder}/node_modules/.bin/electron",
+					-- 	args = {
+					-- 		"${workspaceFolder}/dist/index.js",
+					-- 	},
+					-- 	outFiles = {
+					-- 		"${workspaceFolder}/dist/*.js",
+					-- 	},
+					-- 	resolveSourceMapLocations = {
+					-- 		"${workspaceFolder}/dist/**/*.js",
+					-- 		"${workspaceFolder}/dist/*.js",
+					-- 	},
+					-- 	rootPath = "${workspaceFolder}",
+					-- 	cwd = "${workspaceFolder}",
+					-- 	sourceMaps = true,
+					-- 	skipFiles = { "<node_internals>/**" },
+					-- 	protocol = "inspector",
+					-- 	console = "integratedTerminal",
+					-- },
+					-- {
+					-- 	name = "Compile & Debug Main Process (Electron)",
+					-- 	type = custom_adapter,
+					-- 	request = "launch",
+					-- 	preLaunchTask = "npm run build-ts",
+					-- 	program = "${workspaceFolder}/node_modules/.bin/electron",
+					-- 	args = {
+					-- 		"${workspaceFolder}/dist/index.js",
+					-- 	},
+					-- 	outFiles = {
+					-- 		"${workspaceFolder}/dist/*.js",
+					-- 	},
+					-- 	resolveSourceMapLocations = {
+					-- 		"${workspaceFolder}/dist/**/*.js",
+					-- 		"${workspaceFolder}/dist/*.js",
+					-- 	},
+					-- 	rootPath = "${workspaceFolder}",
+					-- 	cwd = "${workspaceFolder}",
+					-- 	sourceMaps = true,
+					-- 	skipFiles = { "<node_internals>/**" },
+					-- 	protocol = "inspector",
+					-- 	console = "integratedTerminal",
+					-- },
+				}
+			end
+		end,
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			dependencies = {
+				{
+					"jay-babu/mason-nvim-dap.nvim",
+				},
+			},
+			{
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				optional = true,
+				opts = {
+					ensure_installed = {
+						"js-debug-adapter",
+					},
+				},
+			},
+
+			-- stylua: ignore
+			-- keys = {
+			-- 	{ "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+			-- 	{ "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
+			-- },
+		},
+	},
+
+	-- MARK: Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
 		optional = true,
@@ -15,6 +189,8 @@ return {
 			},
 		},
 	},
+
+	-- MARK: LSP
 	{
 		"neovim/nvim-lspconfig",
 		optional = true,
@@ -39,6 +215,8 @@ return {
 			},
 		},
 	},
+
+	-- MARK: Formatters
 	{
 		"stevearc/conform.nvim",
 		optional = true,
@@ -53,6 +231,8 @@ return {
 			},
 		},
 	},
+
+	-- MARK: Other JS/TS Plugins
 	{
 		"vuki656/package-info.nvim",
 		event = "VeryLazy",
@@ -83,14 +263,20 @@ return {
 				package_manager = "npm",
 			})
 
-		-- stylua: ignore start
-		vim.keymap.set({ "n" }, "<LEADER>ns", require("package-info").show, { desc = "Show dependency versions", silent = true, noremap = true })
-		vim.keymap.set({ "n" }, "<LEADER>nc", require("package-info").hide, { desc = "Hide dependency versions", silent = true, noremap = true })
-		-- vim.keymap.set({ "n" }, "<LEADER>nt", require("package-info").toggle, { desc = "Toggle dependency versions", silent = true, noremap = true })
-		vim.keymap.set({ "n" }, "<LEADER>nu", require("package-info").update, { desc = "Update dependency on the line", silent = true, noremap = true })
-		vim.keymap.set({ "n" }, "<LEADER>nd", require("package-info").delete, { desc = "Delete dependency on the line", silent = true, noremap = true })
-		vim.keymap.set({ "n" }, "<LEADER>ni", require("package-info").install, { desc = "Install a new dependency", silent = true, noremap = true })
-		vim.keymap.set({ "n" }, "<LEADER>np", require("package-info").change_version, { desc = "Install a different dependency version", silent = true, noremap = true })
+			-- stylua: ignore start
+			vim.keymap.set({ "n" }, "<LEADER>ns", require("package-info").show,
+				{ desc = "Show dependency versions", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nc", require("package-info").hide,
+				{ desc = "Hide dependency versions", silent = true, noremap = true })
+			-- vim.keymap.set({ "n" }, "<LEADER>nt", require("package-info").toggle, { desc = "Toggle dependency versions", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nu", require("package-info").update,
+				{ desc = "Update dependency on the line", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nd", require("package-info").delete,
+				{ desc = "Delete dependency on the line", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>ni", require("package-info").install,
+				{ desc = "Install a new dependency", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>np", require("package-info").change_version,
+				{ desc = "Install a different dependency version", silent = true, noremap = true })
 		end,
 	},
 }
