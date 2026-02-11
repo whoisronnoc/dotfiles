@@ -1,7 +1,6 @@
 ---@module "lazy"
 ---@return LazyPluginSpec[]
 return {
-
 	-- MARK: DAP
 	{
 		"mxsdev/nvim-dap-vscode-js",
@@ -95,57 +94,12 @@ return {
 					{
 						type = "pwa-chrome",
 						request = "launch",
-						name = "Launch Chrome against localhost",
+						name = "Launch Chrome against localhost:3000",
 						url = "http://localhost:3000", -- Ensure this matches your dev port
 						webRoot = "${workspaceFolder}",
 						sourceMaps = true,
 						skipFiles = { "<node_internals>/**", "node_modules/**" },
 					},
-					-- {
-					-- 	name = "Debug Main Process (Electron)",
-					-- 	type = "pwa-node",
-					-- 	request = "launch",
-					-- 	program = "${workspaceFolder}/node_modules/.bin/electron",
-					-- 	args = {
-					-- 		"${workspaceFolder}/dist/index.js",
-					-- 	},
-					-- 	outFiles = {
-					-- 		"${workspaceFolder}/dist/*.js",
-					-- 	},
-					-- 	resolveSourceMapLocations = {
-					-- 		"${workspaceFolder}/dist/**/*.js",
-					-- 		"${workspaceFolder}/dist/*.js",
-					-- 	},
-					-- 	rootPath = "${workspaceFolder}",
-					-- 	cwd = "${workspaceFolder}",
-					-- 	sourceMaps = true,
-					-- 	skipFiles = { "<node_internals>/**" },
-					-- 	protocol = "inspector",
-					-- 	console = "integratedTerminal",
-					-- },
-					-- {
-					-- 	name = "Compile & Debug Main Process (Electron)",
-					-- 	type = custom_adapter,
-					-- 	request = "launch",
-					-- 	preLaunchTask = "npm run build-ts",
-					-- 	program = "${workspaceFolder}/node_modules/.bin/electron",
-					-- 	args = {
-					-- 		"${workspaceFolder}/dist/index.js",
-					-- 	},
-					-- 	outFiles = {
-					-- 		"${workspaceFolder}/dist/*.js",
-					-- 	},
-					-- 	resolveSourceMapLocations = {
-					-- 		"${workspaceFolder}/dist/**/*.js",
-					-- 		"${workspaceFolder}/dist/*.js",
-					-- 	},
-					-- 	rootPath = "${workspaceFolder}",
-					-- 	cwd = "${workspaceFolder}",
-					-- 	sourceMaps = true,
-					-- 	skipFiles = { "<node_internals>/**" },
-					-- 	protocol = "inspector",
-					-- 	console = "integratedTerminal",
-					-- },
 				}
 			end
 		end,
@@ -165,12 +119,6 @@ return {
 					},
 				},
 			},
-
-			-- stylua: ignore
-			-- keys = {
-			-- 	{ "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-			-- 	{ "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
-			-- },
 		},
 	},
 
