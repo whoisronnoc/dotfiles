@@ -75,14 +75,14 @@ return {
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 		{ "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
 		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-		-- git, [h]unk [s]nacks
-		{ "<leader>hsb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-		{ "<leader>hsl", function() Snacks.picker.git_log() end, desc = "Git Log" },
-		{ "<leader>hsL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-		{ "<leader>hss", function() Snacks.picker.git_status() end, desc = "Git Status" },
-		{ "<leader>hsS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
-		{ "<leader>hsd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
-		{ "<leader>hsf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+		-- git, [h]unk	
+		{ "<leader>hgb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+		{ "<leader>hgl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+		{ "<leader>hgL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+		{ "<leader>hgs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+		{ "<leader>hgS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+		{ "<leader>hgd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+		{ "<leader>hgf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
 		-- Grep
 		{ "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
@@ -147,7 +147,7 @@ return {
 				spec = {
 					{ "<leader>s", group = "[S]earch", icon = " " },
 					{ "<leader>f", group = "[F]ind", icon = " " },
-					{ "<leader>g", group = "[G]it", icon = " " },
+					{ "<leader>hg", group = "[G]it [S]nacks", icon = " " },
 				},
 			},
 		},

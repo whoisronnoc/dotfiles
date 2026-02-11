@@ -1,7 +1,105 @@
+local function setup_document_highlight(event)
+	vim.keymap.set("n", "<esc>", function()
+		vim.cmd("nohlsearch") -- TODO: workaround for overriding esc keybind in normal mode
+
+		for _, win in ipairs(vim.api.nvim_list_wins()) do
+			if vim.api.nvim_win_get_config(win).relative == "win" then
+				vim.g.block_next_cursor_hold_event = true
+				vim.api.nvim_win_close(win, false)
+			end
+		end
+	end, { buffer = event.buf })
+
+	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_document_highlight" })
+
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		group = "lsp_document_highlight",
+		buffer = event.buf,
+		callback = vim.lsp.buf.document_highlight,
+	})
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = "lsp_document_highlight",
+		buffer = event.buf,
+		callback = vim.lsp.buf.clear_references,
+	})
+end
+
+local function setup_float_diagnostics(event)
+	vim.api.nvim_create_augroup("lsp_float_diagnostics", { clear = false })
+	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_float_diagnostics" })
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = "lsp_float_diagnostics",
+		buffer = event.buf,
+		callback = function()
+			if vim.g.block_next_cursor_hold_event then
+				vim.g.block_next_cursor_hold_event = false
+			end
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("CursorHold", {
+		group = "lsp_float_diagnostics",
+		buffer = event.buf,
+		callback = function()
+			-- Check if there are any visible floating windows already
+			-- for _, win in ipairs(vim.api.nvim_list_wins()) do
+			-- 	if vim.api.nvim_win_get_config(win).relative ~= "" then
+			-- 		-- A float exists, don't create another one
+			-- 		return
+			-- 	end
+			-- end
+
+			if vim.g.block_next_cursor_hold_event then
+				return
+			end
+
+			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+			-- local b = vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+			-- if b then
+			-- 	vim.api.nvim_buf_set_option(b, "filetype", "markdown")
+			-- 	-- vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = b })
+			-- 	vim.cmd("hi! clear DiagnosticError")
+			-- 	-- vim.cmd("hi! link DiagnosticFloatingError Normal")
+			-- 	-- vim.cmd("syntax match customConceals 'typescript' conceal cchar=4")
+			-- 	vim.cmd("hi! link @markup.link.label.markdown_inline Normal")
+			-- end
+		end,
+	})
+end
+
+local function setup_auto_format(event, client)
+	-- Auto-format ("lint") on save.
+	-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+	if
+		not client:supports_method(vim.lsp.protocol.Methods.textDocument_willSaveWaitUntil, event.buf)
+		and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf)
+	then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("lsp_document_lint", { clear = false }),
+			buffer = event.buf,
+			callback = function()
+				vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
+			end,
+		})
+	end
+end
+
+local function setup_inline_completions(event, client)
+	if
+		vim.fn.has("nvim-0.12") == 1
+		and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf)
+	then
+		vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
+	end
+end
+
 ---@module "plugins.lsp"
 ---@param client vim.lsp.Client
 ---@param bufnr integer
-local bind_keys = vim.schedule_wrap(function(client, bufnr)
+local setup_keybinds = vim.schedule_wrap(function(client, bufnr)
 	local opts = Utils.lazy:plugin_opts("nvim-lspconfig")
 	---@type LazyKeysSpec[]
 	local global_spec = vim.tbl_get(opts, "servers", "*", "keys") or {}
@@ -38,45 +136,12 @@ end)
 ---@return boolean?
 local function on_attach(event)
 	local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
-	bind_keys(client, event.buf)
 
-	-- The following auto commands trigger the diagnostics for what you are hovering
-	vim.api.nvim_create_autocmd("CursorHold", {
-		buffer = event.buf,
-		callback = function()
-			-- Check if there are any visible floating windows already
-			-- for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-			-- 	if vim.api.nvim_win_get_config(win).relative ~= "" then
-			-- 		-- A float exists, don't create another one
-			-- 		return
-			-- 	end
-			-- end
-
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-		end,
-	})
-
-	-- Auto-format ("lint") on save.
-	-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-	if
-		not client:supports_method(vim.lsp.protocol.Methods.textDocument_willSaveWaitUntil, event.buf)
-		and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf)
-	then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = vim.api.nvim_create_augroup("lsp_document_lint", { clear = false }),
-			buffer = event.buf,
-			callback = function()
-				vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
-			end,
-		})
-	end
-
-	if
-		vim.fn.has("nvim-0.12") == 1
-		and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf)
-	then
-		vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
-	end
+	setup_keybinds(client, event.buf)
+	setup_document_highlight(event)
+	setup_float_diagnostics(event)
+	setup_auto_format(event, client)
+	setup_inline_completions(event, client)
 end
 
 ---@module "lazy"
