@@ -3,11 +3,6 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- sets the listing style to a tree view, which displays files and directories in a hierarchical tree format.
-vim.cmd("let g:netrw_liststyle = 3")
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = false

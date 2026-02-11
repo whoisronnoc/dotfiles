@@ -38,6 +38,18 @@ return {
 						end,
 					})
 					:map("<leader>tf")
+				Snacks.toggle
+					.new({
+						id = "toggle_autoformat",
+						name = "Auto organize imports",
+						get = function()
+							return vim.g.autoformat_imports
+						end,
+						set = function(state)
+							vim.g.autoformat_imports = state
+						end,
+					})
+					:map("<leader>ti")
 			end,
 		})
 	end,

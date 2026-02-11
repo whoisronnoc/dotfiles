@@ -19,7 +19,7 @@ return {
 			desc = "Octo Command List",
 		},
 		{
-			"<leader>oi",
+			"<leader>ol",
 			"<CMD>Octo issue list<CR>",
 			desc = "List GitHub Issues",
 		},

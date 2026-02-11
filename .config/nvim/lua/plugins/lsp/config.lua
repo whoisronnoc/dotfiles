@@ -81,9 +81,31 @@ local function setup_auto_format(event, client)
 			group = vim.api.nvim_create_augroup("lsp_document_lint", { clear = false }),
 			buffer = event.buf,
 			callback = function()
+				if not vim.g.autoformat then
+					return
+				end
+
+				-- Auto-organize imports on save if supported by the server
+				if
+					client:supports_method(vim.lsp.protocol.CodeActionKind.SourceOrganizeImports, event.buf)
+					and vim.g.autoformat_imports
+				then
+					-- vim.notify("organizing imports...", vim.log.levels.INFO, { timeout = 1000 })
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.organizeImports" },
+							diagnostics = {},
+						},
+					})
+				end
+
+				-- vim.notify("Autoformatting...", vim.log.levels.INFO, { timeout = 1000 })
 				vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
 			end,
 		})
+		-- else
+		-- only organize imports if formatting on save is not supported
 	end
 end
 

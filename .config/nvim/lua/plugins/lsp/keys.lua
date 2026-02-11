@@ -32,9 +32,19 @@ return {
 					{ "<leader>e", vim.diagnostic.open_float, desc = "Open Floating Diagnostic", method = "textDocument/publishDiagnostics" },
 					{ "]g", vim.diagnostic.goto_next, desc = "Next Diagnostic", method = "textDocument/publishDiagnostics" },
 					{ "[g", vim.diagnostic.goto_prev, desc = "Previous Diagnostic", method = "textDocument/publishDiagnostics" },
-					--
+					{"<D-.>", vim.lsp.buf.code_action, desc = "Code Action", method = "textDocument/codeAction" },
+					-- rename local variable
 					{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame", method = "textDocument/rename" },
-					{"<D-.>", vim.lsp.buf.code_action, desc = "[R]e[n]ame", method = "textDocument/codeAction" },
+					-- organize imports
+					{ "<leader>oi", function()
+						vim.lsp.buf.code_action({
+							apply = true,
+							context = {
+								only = { "source.organizeImports" },
+								diagnostics = {},
+							},
+						})
+						end, desc = "Organize Imports", method = "textDocument/codeAction"}
 				},
 			},
 		},
