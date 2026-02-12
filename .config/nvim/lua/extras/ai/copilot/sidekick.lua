@@ -27,12 +27,11 @@ return {
 			desc = "Goto/Apply Next Edit Suggestion",
 		},
 		{
-			"<c-.>",
+			"<leader>ae",
 			function()
-				require("sidekick.cli").toggle()
+				require("sidekick.nes").update()
 			end,
-			desc = "Sidekick Toggle",
-			mode = { "n", "t", "i", "x" },
+			desc = "Sidekick request [e]dits",
 		},
 		{
 			"<leader>aa",
