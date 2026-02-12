@@ -1,4 +1,4 @@
-local function setup_document_highlight(event)
+local function setup_document_highlight(event, client)
 	vim.keymap.set("n", "<esc>", function()
 		vim.cmd("nohlsearch") -- TODO: workaround for overriding esc keybind in normal mode
 
@@ -10,20 +10,22 @@ local function setup_document_highlight(event)
 		end
 	end, { buffer = event.buf })
 
-	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
-	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_document_highlight" })
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+		vim.api.nvim_clear_autocmds({ buffer = event.buf, group = "lsp_document_highlight" })
 
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		group = "lsp_document_highlight",
-		buffer = event.buf,
-		callback = vim.lsp.buf.document_highlight,
-	})
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			group = "lsp_document_highlight",
+			buffer = event.buf,
+			callback = vim.lsp.buf.document_highlight,
+		})
 
-	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-		group = "lsp_document_highlight",
-		buffer = event.buf,
-		callback = vim.lsp.buf.clear_references,
-	})
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+			group = "lsp_document_highlight",
+			buffer = event.buf,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
 end
 
 local function setup_float_diagnostics(event)
@@ -87,17 +89,38 @@ local function setup_auto_format(event, client)
 
 				-- Auto-organize imports on save if supported by the server
 				if
-					client:supports_method(vim.lsp.protocol.CodeActionKind.SourceOrganizeImports, event.buf)
+					client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction, event.buf)
 					and vim.g.autoformat_imports
 				then
-					-- vim.notify("organizing imports...", vim.log.levels.INFO, { timeout = 1000 })
-					vim.lsp.buf.code_action({
-						apply = true,
-						context = {
-							only = { "source.organizeImports" },
-							diagnostics = {},
-						},
-					})
+					local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
+					params.context = {
+						only = { "source.organizeImports" },
+						diagnostics = {},
+					}
+					vim.lsp.buf_request(0, "textDocument/codeAction", params, function(err, result, _ctx, _config)
+						if err or not result or #result == 0 then
+							return
+						end
+
+						-- check restult.kind for "source.organizeImports"
+						for _, res in ipairs(result) do
+							if string.find(res.kind or "", "source.organizeImports") == nil then
+								-- vim.notify("No organize imports action found", vim.log.levels.WARN, { timeout = 1000 })
+								return
+								-- else
+								-- vim.notify(vim.inspect(res.kind), vim.log.levels.INFO, { timeout = 1000 })
+							end
+						end
+
+						-- Apply the organize imports action if available
+						vim.lsp.buf.code_action({
+							apply = true,
+							context = {
+								only = { "source.organizeImports" },
+								diagnostics = {},
+							},
+						})
+					end)
 				end
 
 				-- vim.notify("Autoformatting...", vim.log.levels.INFO, { timeout = 1000 })
@@ -160,7 +183,7 @@ local function on_attach(event)
 	local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
 
 	setup_keybinds(client, event.buf)
-	setup_document_highlight(event)
+	setup_document_highlight(event, client)
 	setup_float_diagnostics(event)
 	setup_auto_format(event, client)
 	setup_inline_completions(event, client)

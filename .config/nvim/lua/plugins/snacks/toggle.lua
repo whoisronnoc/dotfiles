@@ -40,8 +40,8 @@ return {
 					:map("<leader>tf")
 				Snacks.toggle
 					.new({
-						id = "toggle_autoformat",
-						name = "Auto organize imports",
+						id = "toggle_autoformat_imports",
+						name = "Auto [o]rganize imports",
 						get = function()
 							return vim.g.autoformat_imports
 						end,
@@ -49,7 +49,7 @@ return {
 							vim.g.autoformat_imports = state
 						end,
 					})
-					:map("<leader>ti")
+					:map("<leader>to")
 			end,
 		})
 	end,

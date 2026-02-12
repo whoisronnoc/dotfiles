@@ -36,7 +36,7 @@ return {
 					-- rename local variable
 					{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame", method = "textDocument/rename" },
 					-- organize imports
-					{ "<leader>oi", function()
+					{ "<leader>co", function()
 						vim.lsp.buf.code_action({
 							apply = true,
 							context = {
@@ -44,7 +44,7 @@ return {
 								diagnostics = {},
 							},
 						})
-						end, desc = "Organize Imports", method = "textDocument/codeAction"}
+						end, desc = "[C]ode [O]rganize Imports", method = "textDocument/codeAction"}
 				},
 			},
 		},
