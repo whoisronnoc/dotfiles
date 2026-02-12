@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.cmd("hi! link NeoTreeTabSeparatorActive BufferLineTabSeparator")
 		vim.cmd("hi! link NeoTreeTabSeparatorInactive BufferLineTabSeparator")
 
-		vim.cmd("hi! link LspInlayHint @comment.documentation")
+		-- vim.cmd("hi! link LspInlayHint @comment.documentation")
 		vim.cmd("hi! link SpellBad LspDiagnosticHint")
 
 		vim.cmd("hi! link AvanteSidebarWinSeparator WinSeparator")

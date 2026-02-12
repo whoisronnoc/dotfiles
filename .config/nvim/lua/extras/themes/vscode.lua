@@ -23,6 +23,7 @@ return {
 				-- use colors from this colorscheme by requiring vscode.colors!
 				Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
 				GitSignsCurrentLineBlame = { fg = "#a0a0a0" },
+				NonText = { fg = c.vscGitIgnored },
 
 				-- neo-tree color config
 				NeoTreeDirectoryIcon = { fg = c.vscYellowOrange },
