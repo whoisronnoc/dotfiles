@@ -17,6 +17,22 @@ local mode_map = {
 	["CONFIRM"] = "Y?",
 	["MORE"] = "M",
 }
+
+local get_autoformat_status = function()
+	local format_status = ""
+	if not vim.g.autoformat then
+		return ""
+	else
+		format_status = "󰉼"
+	end
+
+	if vim.g.autoformat_imports then
+		return format_status .. "󰋺"
+	end
+
+	return format_status
+end
+
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#mixed-indent
 local function mixed_indent()
 	local shift_width = vim.opt.shiftwidth:get()
@@ -99,7 +115,8 @@ return {
 				-- 	or { left = "│", right = "│" },
 				-- section_separators = vim.g.have_nerd_font and { left = "", right = "" }
 				-- 	or { left = "", right = "" },
-				component_separators = { left = "│", right = "│" },
+				-- component_separators = { left = "│", right = "│" },
+				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {
@@ -221,6 +238,7 @@ return {
 					-- 	-- ignore_lsp = { "null-ls", "GitHub Copilot", "tailwindcss", "copilot", "cspell_ls" },
 					-- },
 					lint_status,
+					get_autoformat_status,
 					mixed_indent,
 					"encoding",
 					"fileformat",
