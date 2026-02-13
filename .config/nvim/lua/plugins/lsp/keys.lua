@@ -9,6 +9,7 @@ return {
 		---@type table<string, LspServerConfig?>
 		servers = {
 			["*"] = {
+				-- cspell:disable
 				-- stylua: ignore
 				---@type LazyKeysLspSpec[]
 				keys = {
@@ -36,15 +37,11 @@ return {
 					-- rename local variable
 					{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame", method = "textDocument/rename" },
 					-- organize imports
-					{ "<leader>co", function()
-						vim.lsp.buf.code_action({
-							apply = true,
-							context = {
-								only = { "source.organizeImports" },
-								diagnostics = {},
-							},
-						})
-						end, desc = "[C]ode [O]rganize Imports", method = "textDocument/codeAction"}
+					{ "<leader>co", Utils.lsp.action["source.organizeImports"], desc = "[C]ode [O]rganize Imports" },
+					{ "<leader>cio", Utils.lsp.action["source.organizeImports"], desc = "[C]ode [I]mport [O]rganize"},
+					{ "<leader>cis", Utils.lsp.action["source.sortImports"], desc = "[C]ode [I]mport [S]ort "},
+					{ "<leader>ciu", Utils.lsp.action["source.removeUnusedImports"], desc = "[C]ode [I]mport [R]emove Unused"},
+					{ "<leader>cia", Utils.lsp.action["source.addMissingImports"], desc = "[C]ode [I]mport [A]dd Missing"}
 				},
 			},
 		},

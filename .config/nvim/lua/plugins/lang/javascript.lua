@@ -105,6 +105,7 @@ return {
 		end,
 		dependencies = {
 			"mfussenegger/nvim-dap",
+			optional = true,
 			dependencies = {
 				{
 					"jay-babu/mason-nvim-dap.nvim",

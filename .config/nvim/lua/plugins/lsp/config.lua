@@ -92,6 +92,9 @@ local function setup_auto_format(event, client)
 					client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction, event.buf)
 					and vim.g.autoformat_imports
 				then
+					-- "source.removeUnusedImports",
+					-- "source.sortImports",
+					-- "source.addMissingImports",
 					local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
 					params.context = {
 						only = { "source.organizeImports" },
@@ -113,13 +116,23 @@ local function setup_auto_format(event, client)
 						end
 
 						-- Apply the organize imports action if available
+						-- Utils.lsp:common_save_actions()
+						-- Utils.lsp.action["source.organizeImports"]()
 						vim.lsp.buf.code_action({
 							apply = true,
 							context = {
-								only = { "source.organizeImports" },
+								only = { "source.removeUnusedImports" },
 								diagnostics = {},
 							},
-						})
+						}, function(err, actions, ctx)
+							vim.lsp.buf.code_action({
+								apply = true,
+								context = {
+									only = { "source.organizeImports" },
+									diagnostics = {},
+								},
+							})
+						end)
 					end)
 				end
 
@@ -175,6 +188,18 @@ local setup_keybinds = vim.schedule_wrap(function(client, bufnr)
 			vim.keymap.set(keys.mode or "n", keys.lhs, keys.rhs, opts)
 		end
 	end
+
+	-- debug code actions
+	vim.keymap.set("n", "<leader>ma", function()
+		local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
+		params.context = {
+			only = { "" },
+			diagnostics = {},
+		}
+		vim.lsp.buf_request_all(0, "textDocument/codeAction", params, function(results, ctx)
+			vim.notify(vim.inspect(results), vim.log.levels.INFO, { timeout = 1000 })
+		end)
+	end, { buffer = bufnr })
 end)
 
 ---@param event vim.api.keyset.create_autocmd.callback_args

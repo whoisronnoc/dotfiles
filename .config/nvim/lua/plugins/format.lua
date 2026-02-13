@@ -16,6 +16,7 @@ return {
 		},
 		{ "<leader>mc", "<cmd>ConformInfo<CR>", desc = "Conform Info" },
 	},
+	opts_extend = { "formatters_by_ft" },
 	opts = {
 		notify_on_error = true,
 		format_on_save = function(bufnr)
