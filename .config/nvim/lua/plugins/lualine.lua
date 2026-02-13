@@ -224,6 +224,8 @@ return {
 							stylua = "",
 							eslint = "",
 							ts_ls = "",
+							jsonls = "󰘦",
+							yamlls = "",
 							["sonarlint.nvim"] = "",
 						},
 					},
