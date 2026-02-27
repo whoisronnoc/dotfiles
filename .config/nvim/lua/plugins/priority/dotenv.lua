@@ -3,7 +3,7 @@ return {
 	lazy = false,
 	opts = {
 		enable_on_load = true,
-		verbose = false,
+		verbose = true,
 		file_name = vim.fn.stdpath("config") .. "/.env",
 	},
 }

@@ -6,6 +6,9 @@
 ---@module "lazy"
 ---@return LazyPluginSpec[]
 return {
+	-- Prerequisites
+	{ import = "plugins.priority.dotenv" },
+
 	-- Tier 1
 	{ import = "plugins.mason" },
 	{ import = "plugins.lsp" },
