@@ -8,10 +8,12 @@ return {
 	-- theme
 	{ import = "extras.themes.carbide" },
 	{ import = "extras.themes.vscode" },
-	-- languages
-	-- plugins
+	-- languages, tools, etc.
 	{ import = "extras.sonarlint" },
+	-- ai
 	{ import = "extras.ai.copilot" },
+	-- plugins
+	{ import = "extras.obsidian" },
 	{ import = "extras.octo" },
 	{ import = "extras.overseer" },
 	{ import = "extras.screenkey" },
