@@ -11,6 +11,12 @@ return {
 				backend = "tmux",
 				enabled = true,
 			},
+			win = {
+				split = {
+					-- width = 40,
+					width = 80,
+				},
+			},
 		},
 	},
 	keys = {

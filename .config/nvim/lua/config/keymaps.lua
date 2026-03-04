@@ -56,3 +56,4 @@ vim.keymap.set("i", "<M-f>", "<C-o>w", { desc = "Move forward by word" })
 
 -- misc
 vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<CR>", { desc = "Manage [L]azy Config" })
+vim.keymap.set("n", "ZW", "<cmd>noa w<CR>", { desc = "No Autocommand Write Buffer" })

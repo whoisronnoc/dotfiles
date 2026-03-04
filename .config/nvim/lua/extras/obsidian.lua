@@ -38,7 +38,11 @@ return {
 				name = "vault",
 				path = function()
 					local obsidian_vault = get_obsidian_vault()
-					return obsidian_vault
+					if obsidian_vault ~= nil then
+						return obsidian_vault
+					else
+						return vim.fn.expand("~") -- default path if OBSIDIAN_VAULT is not set
+					end
 				end,
 			},
 		},

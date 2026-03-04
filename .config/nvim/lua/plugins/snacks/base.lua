@@ -32,7 +32,7 @@ return {
 		dim = {
 			animate = { enabled = false },
 		},
-		quickfile = { enabled = true },
+		quickfile = { enabled = false },
 		scope = { enabled = false },
 		statuscolumn = { enabled = true },
 		image = { enabled = true },
@@ -64,7 +64,7 @@ return {
 					vim.print = _G.dd
 				end
 
-				require("plugins.snacks.progress.notify").create_autocmd()
+				-- require("plugins.snacks.progress.notify").create_autocmd()
 			end,
 		})
 	end,

@@ -6,6 +6,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
+		"j-hui/fidget.nvim",
 	},
 	lazy = true,
 	cmd = {
@@ -32,8 +33,8 @@ return {
 	config = function(_, opts)
 		require("codecompanion").setup(opts)
 		-- Notification providers
-		-- require("plugins.codecompanion.fidget-spinner"):init()
-		-- require("plugins.codecompanion.progress-bar"):init()
+		require("plugins.codecompanion.fidget-spinner"):init()
+		require("plugins.codecompanion.progress-bar"):init()
 		require("plugins.codecompanion.snacks-notify"):init()
 	end,
 }

@@ -9,13 +9,18 @@ return {
 		providers = {
 			copilot = {
 				extra_request_body = { max_tokens = 4096 },
-				model = "claude-3.7-sonnet",
+				model = "claude-4.5-sonnet",
+			},
+			bedrock = {
+				model = "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+				aws_profile = "claude-code-bedrock",
+				aws_region = "us-east-1",
 			},
 		},
-		-- web_search_engine = { -- must set TAVILY_API_KEY, BRAVE_API_KEY, etc
-		-- 	provider = "brave", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
-		-- 	proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
-		-- },
+		web_search_engine = { -- must set TAVILY_API_KEY, BRAVE_API_KEY, etc
+			provider = "brave", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+			-- 	proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+		},
 		file_selector = {
 			provider = "snacks",
 			provider_opts = {},

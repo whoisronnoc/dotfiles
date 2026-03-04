@@ -52,12 +52,15 @@ return {
 			{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
 			{ "<leader>r", group = "[R]ename" },
 			{ "<leader>w", group = "[W]orkspace" },
-			{ "<leader>t", group = "[T]ab", icon = "󰓩 " },
+			{ "<leader>t", group = "[T]toggle", icon = "󰓩 " },
+			{ "<leader>b", group = "[B]uffer", icon = "󰓩 " },
 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 			{ "g", group = "Goto" },
 			{ "K", desc = "LSP Hover", mode = { "n" } },
 			{ "<BS>", desc = "Decrement Selection", mode = "x" },
 			{ "<c-space>", desc = "Increment Selection", mode = { "x", "n" } },
+			{ "ZZ", desc = "Save and Quit All Buffers", mode = { "n" } },
+			{ "ZQ", desc = "Force Quit All Buffers", mode = { "n" } },
 		},
 
 		win = {
