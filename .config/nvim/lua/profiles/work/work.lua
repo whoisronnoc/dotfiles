@@ -10,6 +10,7 @@ return {
 	{ import = "extras.themes.vscode" },
 	-- languages, tools, etc.
 	{ import = "extras.sonarlint" },
+	{ import = "extras.i18n" },
 	-- ai
 	{ import = "extras.ai.copilot" },
 	-- plugins
