@@ -116,6 +116,7 @@ return {
 				optional = true,
 				opts = {
 					ensure_installed = {
+						"prettierd",
 						"js-debug-adapter",
 					},
 				},
@@ -172,11 +173,11 @@ return {
 		opts = {
 			formatters_by_ft = {
 				-- You can use 'stop_after_first' to run the first available formatter from the list
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				vue = { "prettierd", "prettier", stop_after_first = true },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
+				javascript = { "prettierd", stop_after_first = true },
+				typescript = { "prettierd", stop_after_first = true },
+				javascriptreact = { "prettierd", stop_after_first = true },
+				typescriptreact = { "prettierd", stop_after_first = true },
+				vue = { "prettierd", stop_after_first = true },
 			},
 		},
 	},
@@ -213,19 +214,13 @@ return {
 			})
 
 			-- stylua: ignore start
-			vim.keymap.set({ "n" }, "<LEADER>ns", require("package-info").show,
-				{ desc = "Show dependency versions", silent = true, noremap = true })
-			vim.keymap.set({ "n" }, "<LEADER>nc", require("package-info").hide,
-				{ desc = "Hide dependency versions", silent = true, noremap = true })
 			-- vim.keymap.set({ "n" }, "<LEADER>nt", require("package-info").toggle, { desc = "Toggle dependency versions", silent = true, noremap = true })
-			vim.keymap.set({ "n" }, "<LEADER>nu", require("package-info").update,
-				{ desc = "Update dependency on the line", silent = true, noremap = true })
-			vim.keymap.set({ "n" }, "<LEADER>nd", require("package-info").delete,
-				{ desc = "Delete dependency on the line", silent = true, noremap = true })
-			vim.keymap.set({ "n" }, "<LEADER>ni", require("package-info").install,
-				{ desc = "Install a new dependency", silent = true, noremap = true })
-			vim.keymap.set({ "n" }, "<LEADER>np", require("package-info").change_version,
-				{ desc = "Install a different dependency version", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>ns", require("package-info").show, { desc = "Show dependency versions", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nc", require("package-info").hide, { desc = "Hide dependency versions", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nu", require("package-info").update, { desc = "Update dependency on the line", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>nd", require("package-info").delete, { desc = "Delete dependency on the line", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>ni", require("package-info").install, { desc = "Install a new dependency", silent = true, noremap = true })
+			vim.keymap.set({ "n" }, "<LEADER>np", require("package-info").change_version, { desc = "Install a different dependency version", silent = true, noremap = true })
 		end,
 	},
 }

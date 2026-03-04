@@ -16,10 +16,17 @@ return {
 		},
 		{ "<leader>mc", "<cmd>ConformInfo<CR>", desc = "Conform Info" },
 	},
-	opts_extend = { "formatters_by_ft" },
+	-- opts_extend = { "formatters_by_ft" },
+	--- @type conform.setupOpts
 	opts = {
+		formatters_by_ft = {},
+		-- log_level = vim.log.levels.DEBUG,
 		notify_on_error = true,
 		format_on_save = function(bufnr)
+			if not vim.g.autoformat then
+				return
+			end
+
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
@@ -31,15 +38,11 @@ return {
 				lsp_format_opt = "fallback"
 			end
 
-			if not vim.g.autoformat then
-				return
-			end
-
+			--- @type conform.FormatOpts
 			return {
-				timeout_ms = 500,
+				timeout_ms = 1000,
 				lsp_format = lsp_format_opt,
 			}
 		end,
-		formatters_by_ft = {},
 	},
 }
