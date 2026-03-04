@@ -85,4 +85,9 @@ if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# add nvim mason binaries to path for prettierd and other formatters
+if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
+  export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+fi
+
 export NX_TUI=false
