@@ -74,7 +74,7 @@ return {
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 		{ "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+		{ "<leader>fr", function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "Recent" },
 		-- git, [h]unk	
 		{ "<leader>hgb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
 		{ "<leader>hgl", function() Snacks.picker.git_log() end, desc = "Git Log" },

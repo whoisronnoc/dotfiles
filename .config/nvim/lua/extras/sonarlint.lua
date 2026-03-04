@@ -77,8 +77,8 @@ local setup_sonarlint = function()
 							sonarqube = {
 								{
 									-- this is the url that will go into get_credentials
-									connectionId = os.getenv("SONARQUBE_ID"),
-									serverUrl = os.getenv("SONARQUBE_URL"),
+									connectionId = vim.fn.getenv("SONARQUBE_ID"),
+									serverUrl = vim.fn.getenv("SONARQUBE_URL"),
 									disableNotifications = false,
 								},
 							},
@@ -93,8 +93,8 @@ local setup_sonarlint = function()
 				-- ["/path/to/project/root"] = "<project key you to take from sonarqube>",
 				-- }
 				config.settings.sonarlint.connectedMode.project = {
-					connectionId = os.getenv("SONARQUBE_ID"),
-					-- projectKey = project_root_and_ids[params.rootPath],
+					connectionId = vim.fn.getenv("SONARQUBE_ID"),
+					-- projectKey =
 					projectKey = project_root_and_ids[params.rootPath],
 				}
 			end,

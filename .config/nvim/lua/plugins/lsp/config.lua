@@ -210,7 +210,7 @@ local function on_attach(event)
 	setup_keybinds(client, event.buf)
 	setup_document_highlight(event, client)
 	setup_float_diagnostics(event)
-	setup_auto_format(event, client)
+	-- setup_auto_format(event, client)
 	setup_inline_completions(event, client)
 end
 
