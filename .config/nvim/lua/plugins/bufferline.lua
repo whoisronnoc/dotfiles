@@ -3,7 +3,7 @@ return {
 	"akinsho/bufferline.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = { "LazyFile" },
-  -- stylua: ignore
+	-- stylua: ignore
 	keys = {
 		{ "<C-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", desc = "Go to buffer 1" },
 		{ "<C-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", desc = "Go to buffer 2" },
@@ -23,6 +23,8 @@ return {
 		{ "[b", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous buffer" },
 		{ "]b", "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
 		{ "<leader>bd", function() require("mini.bufremove").delete(0, true) end, desc = "Delete current buffer" },
+		{ "<A-w>", function() require("mini.bufremove").delete(0, true) end, desc = "Delete current buffer" },
+		{ "<A-S-w>", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close all other buffers" },
 		{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close buffers to the left" },
 		{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close buffers to the right" },
 		{ "<leader>ba", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close all other buffers" },
