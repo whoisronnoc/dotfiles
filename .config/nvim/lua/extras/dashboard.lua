@@ -44,7 +44,7 @@ return {
 							icon = vim.g.have_nerd_font and " " or "🔍",
 							key = "f",
 							desc = " Find File",
-							action = ":lua Snacks.dashboard.pick('smart')",
+							action = ":lua Snacks.dashboard.pick('smart', { filter = { cwd = true } })",
 						},
 						{
 							icon = vim.g.have_nerd_font and " " or "📄",
@@ -56,13 +56,13 @@ return {
 							icon = vim.g.have_nerd_font and " " or "📑",
 							key = "r",
 							desc = " Recent Files",
-							action = ":lua Snacks.dashboard.pick('oldfiles')",
+							action = ":lua Snacks.dashboard.pick('oldfiles', { filter = { cwd = true } })",
 						},
 						{
 							icon = vim.g.have_nerd_font and " " or "📋",
 							key = "g",
 							desc = " Find Text",
-							action = ":lua Snacks.dashboard.pick('grep')",
+							action = ":lua Snacks.dashboard.pick('grep', { filter = { cwd = true } })",
 						},
 						{
 							icon = vim.g.have_nerd_font and " " or "⚙ ",

@@ -23,6 +23,9 @@ return {
 	--- @type snacks.Config
 	opts = {
 		picker = {
+			filter = {
+				cwd = true,
+			},
 			win = {
 				preview = {
 					wo = {
