@@ -22,6 +22,7 @@ return {
 		end)
 	end,
 	---@class LazyTSConfig: TSConfig
+	opts_extend = { "ensure_installed" },
 	opts = {
 		---@type string[]
 		ensure_installed = {},
