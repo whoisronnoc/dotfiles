@@ -4,7 +4,7 @@ return {
 	"sainnhe/sonokai",
 	config = function()
 		vim.api.nvim_create_autocmd("ColorScheme", {
-			group = vim.api.nvim_create_augroup("custom_highlights_sonokai", {}),
+			-- group = vim.api.nvim_create_augroup("custom_highlights_sonokai", {}),
 			pattern = "sonokai",
 			callback = function()
 				local config = vim.fn["sonokai#get_configuration"]()
@@ -37,17 +37,21 @@ return {
 				-- \ 'none':       ['NONE',      'NONE']
 				-- \ }
 
+				set_hl("NonText", palette.grey, palette.none)
 				set_hl("Directory", palette.none, palette.none)
 				set_hl("Title", palette.none, palette.none)
 				set_hl("SnacksPickerDirectory", palette.none, palette.none)
 				set_hl("SnacksPickerGitStatusUntracked", palette.green, palette.none)
 				set_hl("SnacksPickerPathIgnored", palette.grey, palette.none)
 				set_hl("SnacksPickerPathHidden", palette.fg, palette.none)
+				set_hl("SnacksPickerDimmed", palette.purple, palette.none)
 
-				set_hl("NonText", palette.grey, palette.none)
+				vim.cmd.hi("InfoText gui=none")
+				vim.cmd.hi("WarningText gui=none")
+				vim.cmd.hi("ErrorText gui=none")
 			end,
 		})
 
-		vim.g.sonokai_style = "atlantis"
+		vim.g.sonokai_style = "maia"
 	end,
 }
