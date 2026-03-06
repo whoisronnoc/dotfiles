@@ -57,20 +57,21 @@ return {
 			-- or enter if nothing is yet
 			["<CR>"] = { "accept", "fallback" },
 			-- Tab will accept the ghost text or the selection first
-			["<Tab>"] = {
-				-- If there is something selected accept it
-				"accept",
-				-- If there is nothing selected and a running snippet jump forward in the snippet
-				"snippet_forward",
-				-- If there is an inline completion available, select and accept it (nvim 0.12+)
-				function(_)
-					return vim.fn.has("nvim-0.12") == 1 and vim.lsp.inline_completion.get()
-				end,
-				-- If nothing so far is true but there is a menu select the first thing
-				"select_and_accept",
-				-- If there is actually nothing trigger the normal key
-				"fallback",
-			},
+			["<Tab>"] = (Utils.lazy:has_plugin("cursortab.nvim") or Utils.lazy:has_plugin("supermaven.nvim")) and nil
+				or {
+					-- If there is something selected accept it
+					"accept",
+					-- If there is nothing selected and a running snippet jump forward in the snippet
+					"snippet_forward",
+					-- If there is an inline completion available, select and accept it (nvim 0.12+)
+					function(_)
+						return vim.fn.has("nvim-0.12") == 1 and vim.lsp.inline_completion.get()
+					end,
+					-- If nothing so far is true but there is a menu select the first thing
+					"select_and_accept",
+					-- If there is actually nothing trigger the normal key
+					"fallback",
+				},
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
 
 			-- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
