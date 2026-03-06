@@ -1,5 +1,6 @@
 vim.g.theme_light = "catppuccin"
-vim.g.theme_dark = "catppuccin"
+-- vim.g.theme_dark = "vscode"
+vim.g.theme_dark = "sonokai"
 require("extras.themes.overrides")
 
 ---@module "lazy"
@@ -7,10 +8,15 @@ require("extras.themes.overrides")
 return {
 	-- theme
 	{ import = "extras.themes.catppuccin" },
-	-- { import = "extras.themes.sonokai" },
+	-- { import = "extras.themes.vscode" },
+	{ import = "extras.themes.sonokai" },
 	-- languages
 	{ import = "extras.lang.go" },
 	{ import = "extras.lang.rust" },
 	-- plugins
-	{ import = "extras.ai.supermaven" },
+	{ import = "extras.obsidian" },
+	-- ai testing
+	{ import = "extras.ai.cursortab" },
+	-- { import = "extras.ai.supermaven" },
+	-- { import = "extras.ai.copilot" },
 }

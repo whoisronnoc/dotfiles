@@ -43,6 +43,8 @@ return {
 				set_hl("SnacksPickerGitStatusUntracked", palette.green, palette.none)
 				set_hl("SnacksPickerPathIgnored", palette.grey, palette.none)
 				set_hl("SnacksPickerPathHidden", palette.fg, palette.none)
+
+				set_hl("NonText", palette.grey, palette.none)
 			end,
 		})
 
