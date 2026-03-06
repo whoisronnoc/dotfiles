@@ -16,3 +16,7 @@ nixpkgs
 Avante
 noice
 ghostty
+gpgsign
+osxkeychain
+zdiff
+SONARQUBE

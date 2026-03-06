@@ -32,7 +32,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"markdown",
-				"markdown-inline",
+				-- "markdown-inline",
 			},
 		},
 	},
