@@ -24,18 +24,22 @@ local inlayHints = {
 
 return {
 	handlers = {
-		["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+		---@param err lsp.ResponseError?
+		---@param result lsp.PublishDiagnosticsParams
+		---@param ctx lsp.HandlerContext
+		["textDocument/publishDiagnostics"] = function(err, result, ctx)
 			if result.diagnostics == nil then
 				return
 			end
 
-			local idx = 1
-			while idx <= #result.diagnostics do
-				local entry = result.diagnostics[idx]
-				local formatter = require("format-ts-errors")[entry.code]
-
-				entry.message = formatter and formatter(entry.message) or entry.message
-				idx = idx + 1
+			if Utils.lazy:has_plugin("format-ts-errors.nvim") then
+				local idx = 1
+				while idx <= #result.diagnostics do
+					local entry = result.diagnostics[idx]
+					local formatter = require("format-ts-errors")[entry.code]
+					entry.message = formatter and formatter(entry.message) or entry.message
+					idx = idx + 1
+				end
 			end
 
 			vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)

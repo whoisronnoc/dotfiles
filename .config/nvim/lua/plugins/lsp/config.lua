@@ -58,16 +58,15 @@ local function setup_float_diagnostics(event)
 				return
 			end
 
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-			-- local b = vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-			-- if b then
-			-- 	vim.api.nvim_buf_set_option(b, "filetype", "markdown")
-			-- 	-- vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = b })
-			-- 	vim.cmd("hi! clear DiagnosticError")
-			-- 	-- vim.cmd("hi! link DiagnosticFloatingError Normal")
-			-- 	-- vim.cmd("syntax match customConceals 'typescript' conceal cchar=4")
-			-- 	vim.cmd("hi! link @markup.link.label.markdown_inline Normal")
-			-- end
+			local bufnr = vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+			if bufnr then
+				if Utils.lazy:has_plugin("format-ts-errors.nvim") then
+					if vim.api.nvim_buf_is_valid(bufnr) then
+						vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = bufnr })
+						vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1) -- clear extmarks
+					end
+				end
+			end
 		end,
 	})
 end
