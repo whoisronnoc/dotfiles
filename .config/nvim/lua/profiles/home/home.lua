@@ -14,7 +14,7 @@ return {
 	{ import = "extras.lang.go" },
 	{ import = "extras.lang.rust" },
 	-- plugins
-	{ import = "extras.obsidian" },
+	-- { import = "extras.obsidian" },
 	-- ai testing
 	{ import = "extras.ai.cursortab" },
 	-- { import = "extras.ai.supermaven" },

@@ -9,7 +9,6 @@ return {
 		---@type table<string, LspServerConfig?>
 		servers = {
 			["*"] = {
-				-- cspell:disable
 				-- stylua: ignore
 				---@type LazyKeysLspSpec[]
 				keys = {
