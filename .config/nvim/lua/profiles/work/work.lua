@@ -12,10 +12,11 @@ return {
 	{ import = "extras.themes.vscode" },
 	-- languages, tools, etc.
 	{ import = "extras.sonarlint" },
-	{ import = "extras.i18n" },
+	-- { import = "extras.i18n" },
 	-- ai
 	{ import = "extras.ai.copilot" },
 	-- plugins
+	{ import = "extras.auto-session" },
 	{ import = "extras.obsidian" },
 	{ import = "extras.octo" },
 	{ import = "extras.overseer" },
