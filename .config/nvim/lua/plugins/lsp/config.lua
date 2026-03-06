@@ -189,6 +189,12 @@ local setup_keybinds = vim.schedule_wrap(function(client, bufnr)
 
 		if should_bind then
 			vim.keymap.set(keys.mode or "n", keys.lhs, keys.rhs, opts)
+
+			if Utils.lazy:has_plugin("tiny-code-action.nvim") then
+				vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+					require("tiny-code-action").code_action(opts)
+				end, { noremap = true, silent = true })
+			end
 		end
 	end
 

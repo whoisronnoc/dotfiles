@@ -21,7 +21,7 @@ return {
 					{ "gK", vim.lsp.buf.signature_help, desc = "Signature Help", method = "textDocument/signatureHelp" },
 					{ "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", method = "textDocument/signatureHelp" },
 					{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename", method = "rename" },
-					{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" }, method = "textDocument/codeAction" },
+					-- { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" }, method = "textDocument/codeAction" },
 					{ "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" }, method = "textDocument/codeLens" },
 					{ "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, method = "textDocument/codeLens" },
 					{ "<leader>ch", function()
