@@ -158,6 +158,10 @@ end
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 local setup_keybinds = vim.schedule_wrap(function(client, bufnr)
+	if not vim.api.nvim_buf_is_valid(bufnr) then
+		return
+	end
+
 	local opts = Utils.lazy:plugin_opts("nvim-lspconfig")
 	---@type LazyKeysSpec[]
 	local global_spec = vim.tbl_get(opts, "servers", "*", "keys") or {}
