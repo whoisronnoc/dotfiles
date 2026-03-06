@@ -48,23 +48,32 @@ end
 local colors = {
 	"#ff77ff",
 	"#60fdff",
+	"#6871ff",
+	"#5ffa68",
+	"#fffa67",
+	"#ff8700",
+	"#ff6e67",
 }
 
 local bgGroup = "Normal"
 local fgGroup = "LineNr"
 
+local blend_bg = 0.05
+local blend_fg = 0.5
+
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-	opts = function(_, opts)
+	opts = function(_, _)
 		vim.api.nvim_create_autocmd("ColorScheme", {
-			callback = function(args)
+			callback = function()
 				vim.defer_fn(function()
-					local blended = blendBgColorsWithGroup(colors, 0.05, bgGroup)
-					local guifg = getHighlightFg(fgGroup)
+					local blended = blendBgColorsWithGroup(colors, blend_bg, bgGroup)
+					local fg = getHighlightFg(fgGroup)
 
 					for i, color in ipairs(blended) do
+						local guifg = blendColor(fg, color, blend_fg)
 						vim.cmd.hi(string.format("@ibl.scope.char.%d guibg=%s guifg=%s", i, color, guifg))
 						vim.cmd.hi(string.format("@ibl.indent.char.%d guibg=%s guifg=%s", i, color, guifg))
 						vim.cmd.hi(string.format("@ibl.whitespace.char.%d guibg=%s guifg=%s", i, color, guifg))
@@ -89,13 +98,13 @@ return {
 				-- color_transparency = 0.15,
 				exclude = { filetypes = { "dashboard", "text" } },
 				colors = {
-					-- 0xff6e67,
-					-- 0xff8700,
-					-- 0x5ffa68,
-					-- 0xfffa67,
-					-- 0x6871ff,
 					0xff77ff,
 					0x60fdff,
+					0x6871ff,
+					0x5ffa68,
+					0xfffa67,
+					0xff8700,
+					0xff6e67,
 				},
 			}
 		)
