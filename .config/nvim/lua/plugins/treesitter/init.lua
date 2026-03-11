@@ -26,6 +26,7 @@ return {
 	opts = {
 		---@type string[]
 		ensure_installed = {},
+		sync_install = false,
 	},
 	---@param opts LazyTSConfig
 	config = function(_, opts)
@@ -49,7 +50,7 @@ return {
 		end, opts.ensure_installed or {})
 		if #install > 0 then
 			Utils.treesitter:build(function()
-				TS.install(install, { summary = true }):await(function()
+				TS.install(install, { summary = false }):await(function()
 					Utils.treesitter:get_installed(true) -- refresh the installed langs
 				end)
 			end)

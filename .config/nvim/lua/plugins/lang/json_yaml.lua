@@ -10,7 +10,6 @@ return {
 		opts = {
 			ensure_installed = {
 				"json",
-				"jsonc",
 				"yaml",
 				"toml",
 			},
