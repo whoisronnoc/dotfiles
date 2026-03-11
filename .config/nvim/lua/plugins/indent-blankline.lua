@@ -55,7 +55,7 @@ local colors = {
 	"#ff6e67",
 }
 
-local bgGroup = "Normal"
+local bgGroup = "NormalFloat"
 local fgGroup = "LineNr"
 
 local blend_bg = 0.05
