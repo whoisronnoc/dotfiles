@@ -13,6 +13,20 @@ return {
 		},
 	},
 	{
+		"mason-org/mason-lspconfig.nvim",
+		optional = true,
+		opts = {
+			ensure_installed = {
+				"html",
+				"lemminx",
+				"css_variables",
+				"stylelint_lsp",
+				"cssls",
+				"tailwindcss",
+			},
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		optional = true,
 		opts = {
@@ -39,6 +53,8 @@ return {
 				html = { "prettierd" },
 				css = { "prettierd" },
 				xml = { "xmlformatter" },
+				scss = { "prettierd" },
+				sass = { "prettierd" },
 			},
 		},
 	},
