@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local lualine_require = require("lualine_require")
 local highlight = require("lualine.highlight")
 
@@ -21,6 +22,8 @@ end
 
 local M = lualine_require.require("lualine.component"):extend()
 
+M.highlights = {}
+
 local default_options = {
 	icon = "", -- f013
 	symbols = {
@@ -33,6 +36,7 @@ local default_options = {
 	ignore_lsp = {},
 	show_name = true,
 	display_names = {},
+	colors = {},
 }
 
 function M:init(options)
@@ -47,13 +51,10 @@ function M:init(options)
 		complete = getHighlightFg("DiagnosticOk") or "#4EC9B0",
 		clear = getHighlightFg("Normal") or "#000000",
 	})
-	-- vim.notify("LSP status colors: " .. vim.inspect(self.colors))
 
-	self.highlights = {}
 	for name, color in pairs(self.colors) do
-		self.highlights[name] = create_status_color_hl(name, color, options)
+		M.highlights[name] = create_status_color_hl(name, color, options)
 	end
-	-- vim.notify("LSP status colors: " .. vim.inspect(self.highlights))
 
 	-- Apply symbols.
 	self.symbols = self.options.symbols or {}
@@ -95,6 +96,7 @@ function M:update_status()
 	---@diagnostic disable-next-line: deprecated
 	local get_lsp_clients = vim.lsp.get_clients or vim.lsp.get_active_clients
 	local clients = get_lsp_clients({ bufnr = vim.api.nvim_get_current_buf() })
+	-- vim.notify(vim.inspect(clients), vim.log.levels.INFO, { title = "LSP Clients" })
 
 	-- Backwards-compatible function to get the current time in nanoseconds.
 	local hrtime = (vim.uv or vim.loop).hrtime
@@ -115,30 +117,31 @@ function M:update_status()
 		local list_contains = vim.list_contains or vim.tbl_contains
 		-- Append the status to the LSP only if it supports progress reporting and is not ignored.
 		if not processed[client.name] and not list_contains(self.options.ignore_lsp, client.name) then
-			local status_clear = highlight.component_format_highlight(self.highlights["clear"])
-			local status_color = highlight.component_format_highlight(
-				status == self.symbols.done and self.highlights["complete"] or self.highlights["pending"]
-			)
-			-- local status_color = "%#lualine_b_diagnostics_error_normal#"
-
 			local status_display = ((status and status ~= "") and (" " .. status) or "")
-			local status_colored = string.format("%s%s%s", status_color, status_display, status_clear)
 
 			if self.options.show_name then
-				if self.display_names[client.name] then
-					local display_name = self.display_names[client.name]
+				local status_clear = highlight.component_format_highlight(M.highlights["clear"])
+				local status_color = highlight.component_format_highlight(
+					status == self.symbols.done and M.highlights["complete"] or M.highlights["pending"]
+				)
+				local status_colored = string.format("%s%s%s", status_color, status_display, status_clear)
 
-					if self.highlights[client.name] then
-						local name_highlight = highlight.component_format_highlight(self.highlights[client.name])
-						-- local name_highlight = "%#lualine_b_diagnostics_error_normal#"
-						-- local name_highlight = "%#" .. self.highlights[client.name] .. "#"
-						display_name = string.format("%s%s%s", name_highlight, display_name, status_clear)
-					end
-
-					table.insert(result, display_name .. status_colored)
-				else
-					table.insert(result, client.name .. status_display)
+				local display_name = self.display_names[client.name] or client.name
+				if client.config.lualine and client.config.lualine.name then
+					display_name = client.config.lualine.name
 				end
+
+				if client.config.lualine and client.config.lualine.color and not M.highlights[client.name] then
+					M.highlights[client.name] =
+						create_status_color_hl(client.name, client.config.lualine.color, self.options)
+				end
+
+				if M.highlights[client.name] then
+					local client_color = highlight.component_format_highlight(M.highlights[client.name])
+					display_name = string.format("%s%s%s", client_color, display_name, status_clear)
+				end
+
+				table.insert(result, display_name .. status_colored)
 			else
 				table.insert(result, status_display)
 			end

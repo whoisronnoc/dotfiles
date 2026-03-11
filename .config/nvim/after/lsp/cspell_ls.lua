@@ -1,4 +1,8 @@
 return {
+	lualine = {
+		name = "",
+		color = "#e67e22",
+	},
 	settings = {
 		cspell = {
 			-- Example: specify preferred config file name for code actions
