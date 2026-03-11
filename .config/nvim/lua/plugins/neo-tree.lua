@@ -44,7 +44,7 @@ return {
 			close_if_last_window = true, -- close neotree if it is the only window left
 			filesystem = {
 				window = {
-					width = 32,
+					width = 24,
 					mappings = {
 						["\\"] = "close_window",
 					},
@@ -113,8 +113,8 @@ return {
 					enable_character_fade = false,
 				},
 				indent = {
-					indent_size = 2,
-					padding = 1, -- extra padding on left hand side
+					indent_size = 1,
+					padding = 0, -- extra padding on left hand side
 					-- indent guides
 					with_markers = true,
 					indent_marker = "│",

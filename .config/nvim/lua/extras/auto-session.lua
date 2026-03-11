@@ -6,14 +6,23 @@ return {
 	opts = {
 		lazy_support = true, -- Automatically detect if Lazy.nvim is being used and wait until Lazy is done to make sure session is restored correctly. Does nothing if Lazy isn't being used. Can be disabled if a problem is suspected or for debugging
 		suppressed_dirs = { "~/", "~/dev", "~/Downloads", "/" },
-		pre_save_cmds = {
-			"Neotree close",
-			-- "lua Snacks.close()"
-		},
+		-- pre_save_cmds = {
+		-- "Neotree close",
+		-- "lua Snacks.close()"
+		-- },
 		post_restore_cmds = {
-			"Neotree",
+			"Neotree show",
 			-- "lua Snacks.explorer()",
 		},
-		bypass_save_filetypes = { "alpha", "dashboard", "sidekick_terminal", "neo-tree" },
+		bypass_save_filetypes = {
+			-- :echo &filetype
+			"alpha",
+			"dashboard",
+			"sidekick_terminal",
+			"neo-tree",
+			"OverseerList",
+			"OverseerOutput",
+			-- "",
+		},
 	},
 }
