@@ -144,9 +144,23 @@ return {
 						return mode_map[s] or s
 					end,
 				} },
-				-- lualine_b = { "branch" },
+				lualine_b = {
+					"branch",
+					{
+						"diff",
+						source = function()
+							local gitsigns = vim.b.gitsigns_status_dict
+							if gitsigns then
+								return {
+									added = gitsigns.added,
+									modified = gitsigns.changed,
+									removed = gitsigns.removed,
+								}
+							end
+						end,
+					},
+				},
 				lualine_c = {
-					-- "diagnostics",
 					"filename",
 					{
 						function()
@@ -163,6 +177,7 @@ return {
 					},
 				},
 				lualine_x = {
+					"diagnostics",
 					"overseer",
 					-- This will be replaced by the actual component in the config function
 					-- this is registered in `lua/lualine/components`
@@ -191,24 +206,6 @@ return {
 						require("lazy.status").updates,
 						cond = require("lazy.status").has_updates,
 						color = function() return { fg = Snacks.util.color("Special") } end,
-					},
-					{
-						-- "diff",
-						-- symbols = {
-						-- 	added = icons.git.added,
-						-- 	modified = icons.git.modified,
-						-- 	removed = icons.git.removed,
-						-- },
-						source = function()
-							local gitsigns = vim.b.gitsigns_status_dict
-							if gitsigns then
-								return {
-									added = gitsigns.added,
-									modified = gitsigns.changed,
-									removed = gitsigns.removed,
-								}
-							end
-						end,
 					},
 					{
 						"lsp_status_formatted",

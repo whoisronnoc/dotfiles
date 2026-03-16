@@ -45,3 +45,4 @@ return {
 	-- `opts_extend` can be a list of dotted keys that will be extended instead of merged
 	opts_extend = { "keys", "servers.*.keys", "diagnostics" },
 }
+-- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs

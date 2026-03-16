@@ -70,7 +70,7 @@ return {
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-		{ "<leader>nl", function() Snacks.picker.notifications() end, desc = "Notification History" },
+		-- { "<leader>nl", function() Snacks.picker.notifications() end, desc = "Notification History" },
 		-- find
 		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },

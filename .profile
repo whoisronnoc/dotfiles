@@ -20,6 +20,7 @@ else
   export BREW_PATH="/usr/local/bin/brew"
   export HOMEBREW_PREFIX="/usr/local"
 fi
+export PATH="$PATH:$HOMEBREW_PREFIX/bin"
 
 if [ -d "/usr/local/bin" ] ; then
   export PATH=/usr/local/bin:$PATH

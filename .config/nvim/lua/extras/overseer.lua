@@ -1,17 +1,13 @@
 return {
-	"pwntester/octo.nvim",
-	requires = {
-		"nvim-lua/plenary.nvim",
-		-- "nvim-telescope/telescope.nvim",
-		"nvim-tree/nvim-web-devicons",
+	"stevearc/overseer.nvim",
+	keys = {
+		{
+			"<leader>ot",
+			"<CMD>OverseerToggle<CR>",
+			desc = "Overseer Task List",
+		},
 	},
-	lazy = true,
-	cmd = "Octo",
-	config = function()
-		vim.treesitter.language.register("markdown", "octo")
-
-		require("octo").setup({
-			picker = "snacks", -- "telescope" or "fzf-lua" or "snacks"
-		})
-	end,
+	---@module 'overseer'
+	---@type overseer.SetupOpts
+	opts = {},
 }
