@@ -3,7 +3,8 @@ local function getHighlightBg(group_name)
 	if hl.bg then
 		return string.format("#%06X", hl.bg)
 	end
-	return nil
+
+	return (vim.opt.background == "dark" and "#000000" or "#ffffff")
 end
 
 local function getHighlightFg(group_name)
@@ -11,7 +12,8 @@ local function getHighlightFg(group_name)
 	if hl.fg then
 		return string.format("#%06X", hl.fg)
 	end
-	return nil
+
+	return (vim.opt.background == "dark" and "#ffffff" or "#000000")
 end
 
 local function hexToRgb(hex)
@@ -55,7 +57,7 @@ local colors = {
 	"#ff6e67",
 }
 
-local bgGroup = "NormalFloat"
+local bgGroup = "NormalNC"
 local fgGroup = "LineNr"
 
 local blend_bg = 0.05
