@@ -59,6 +59,10 @@ return {
 					return
 				end
 
+				vim.g.theme_ibl_bg = "Normal"
+				vim.g.theme_ibl_fg = "LineNr"
+				-- vim.g.theme_ibl_colors = "#ff77ff,#60fdff,#ff77ff,#60fdff,#ff77ff,#60fdff"
+
 				-- lualine "auto" theme needs time to update first before overrides are applied
 				vim.defer_fn(function()
 					vim.cmd("hi! lualine_a_normal guifg=#000000 guibg=#51A2FF")

@@ -1,10 +1,20 @@
+-- parse string e.g. "#ff77ff,#60fdff" into table
+local function parseColors(colors)
+	local result = {}
+	for color in string.gmatch(colors, "([^,]+)") do
+		table.insert(result, color)
+	end
+
+	return result
+end
+
 local function getHighlightBg(group_name)
 	local hl = vim.api.nvim_get_hl(0, { name = group_name })
 	if hl.bg then
 		return string.format("#%06X", hl.bg)
 	end
 
-	return (vim.opt.background == "dark" and "#000000" or "#ffffff")
+	return (vim.o.background == "dark" and "#000000" or "#ffffff")
 end
 
 local function getHighlightFg(group_name)
@@ -13,7 +23,7 @@ local function getHighlightFg(group_name)
 		return string.format("#%06X", hl.fg)
 	end
 
-	return (vim.opt.background == "dark" and "#ffffff" or "#000000")
+	return (vim.o.background == "dark" and "#ffffff" or "#000000")
 end
 
 local function hexToRgb(hex)
@@ -46,23 +56,6 @@ local function blendBgColorsWithGroup(colors, alpha, group)
 
 	return blendedColors
 end
-
-local colors = {
-	"#ff77ff",
-	"#60fdff",
-	"#6871ff",
-	"#5ffa68",
-	"#fffa67",
-	"#ff8700",
-	"#ff6e67",
-}
-
-local bgGroup = "NormalNC"
-local fgGroup = "LineNr"
-
-local blend_bg = 0.05
-local blend_fg = 0.5
-
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
@@ -71,6 +64,25 @@ return {
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			callback = function()
 				vim.defer_fn(function()
+					-- defaults that usually work for most themes
+					local bgGroup = vim.g.theme_ibl_bg or "Normal"
+					local fgGroup = vim.g.theme_ibl_fg or "LineNr"
+
+					local blend_bg = vim.g.theme_ibl_blend_bg or 0.05
+					local blend_fg = vim.g.theme_ibl_blend_fg or 0.5
+
+					-- has to be 6 total values to override all values in make_opts()
+					local colors = vim.g.theme_ibl_colors and parseColors(vim.g.theme_ibl_colors)
+						or {
+							"#ff77ff",
+							"#60fdff",
+							"#6871ff",
+							"#5ffa68",
+							"#fffa67",
+							"#ff8700",
+							"#ff6e67",
+						}
+
 					local blended = blendBgColorsWithGroup(colors, blend_bg, bgGroup)
 					local fg = getHighlightFg(fgGroup)
 
