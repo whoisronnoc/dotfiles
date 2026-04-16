@@ -13,23 +13,24 @@ gui:
     "whoisronnoc": "#663399"
 git:
   pagers:
-    - pager: delta --paging=never
+    - pager: ~/.config/lazygit/delta.sh
+  overrideGpg: true
 customCommands:
-  - key: 'h'
+  - key: "h"
     command: "git update-index --assume-unchanged {{.SelectedFile.Name | quote}}"
-    context: 'files'
-    description: 'Assume unchanged'
-  - key: 'I'
+    context: "files"
+    description: "Assume unchanged"
+  - key: "I"
     command: "git ls-files -v | grep '^h'"
-    context: 'global'
+    context: "global"
     description: 'Show "unchanged" files'
     output: log
-  - key: 'H'
-    description: 'Unmark assume unchanged'
+  - key: "H"
+    description: "Unmark assume unchanged"
     command: "git update-index --no-assume-unchanged {{.Form.File | quote}}"
-    context: 'files'
+    context: "files"
     prompts:
-      - type: 'menuFromCommand'
-        title: 'Unmark assume unchanged'
-        key: 'File'
+      - type: "menuFromCommand"
+        title: "Unmark assume unchanged"
+        key: "File"
         command: bash -c "git ls-files -v | grep '^h' | cut -d ' ' -f2"
