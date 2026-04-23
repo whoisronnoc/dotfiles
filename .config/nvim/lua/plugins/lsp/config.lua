@@ -62,8 +62,10 @@ local function setup_float_diagnostics(event)
 			if bufnr then
 				if Utils.lazy:has_plugin("format-ts-errors.nvim") then
 					if vim.api.nvim_buf_is_valid(bufnr) then
-						vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = bufnr })
-						vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1) -- clear extmarks
+						local ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+						vim.api.nvim_set_option_value("filetype", ft, { scope = "local", buf = bufnr })
+						-- vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local", buf = bufnr })
+						-- vim.api.nvim_buf_clear_namespace(bufnr, -1, 0, -1) -- clear extmarks
 					end
 				end
 			end
@@ -189,6 +191,12 @@ local setup_keybinds = vim.schedule_wrap(function(client, bufnr)
 
 		if should_bind then
 			vim.keymap.set(keys.mode or "n", keys.lhs, keys.rhs, opts)
+
+			vim.keymap.set("n", "<leader>K", function()
+				--- @type vim.lsp.util.open_floating_preview.Opts
+				local o = {}
+				vim.lsp.buf.hover(o)
+			end, { desc = "Peek definition", buffer = bufnr })
 
 			if Utils.lazy:has_plugin("tiny-code-action.nvim") then
 				vim.keymap.set({ "n", "x" }, "<leader>ca", function()
