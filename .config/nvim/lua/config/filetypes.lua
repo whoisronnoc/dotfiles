@@ -3,6 +3,7 @@ vim.filetype.add({
 		-- [".env"] = "config",
 	},
 	pattern = {
+		-- [".*%.component%.html"] = "htmlangular",
 		-- ["%.?env.*"] = "config",
 		-- ["%.?.ts"] = "typescript",
 	},
