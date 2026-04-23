@@ -1,11 +1,11 @@
 [
   {
     "context": "Workspace",
-    "bindings": {}
+    "bindings": {},
   },
   {
     "context": "Editor && vim_mode == insert",
-    "bindings": {}
+    "bindings": {},
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -14,6 +14,7 @@
       "\\": "project_panel::ToggleFocus",
       "b d": "pane::CloseActiveItem",
       "b a": "pane::CloseOtherItems",
+      "b r": "pane::ReopenClosedItem",
       "space |": "pane::SplitVertical",
       "space -": "pane::SplitHorizontal",
       "space s f": "file_finder::Toggle",
@@ -25,7 +26,9 @@
       "/": "buffer_search::Deploy",
       "?": "buffer_search::DeployReplace",
       "L": "pane::ActivateNextItem",
-      "H": "pane::ActivatePreviousItem"
-    }
-  }
+      "H": "pane::ActivatePreviousItem",
+      "alt-w": "pane::CloseActiveItem",
+      "alt-shift-w": "pane::ReopenClosedItem",
+    },
+  },
 ]
