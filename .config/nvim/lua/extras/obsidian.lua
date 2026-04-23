@@ -12,7 +12,7 @@ end
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
-	lazy = false,
+	lazy = true,
 	ft = "markdown",
 	event = function()
 		local obsidian_vault = get_obsidian_vault()

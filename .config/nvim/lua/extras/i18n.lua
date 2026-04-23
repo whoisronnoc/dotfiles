@@ -1,8 +1,22 @@
 -- npm install -g js-i18n-language-server
+-- local cwd = vim.loop.cwd()
 return {
-	"nabekou29/js-i18n.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	opts = {},
+	-- {
+	-- 	"neovim/nvim-lspconfig",
+	-- 	optional = true,
+	-- 	opts = {
+	-- 		servers = {
+	-- 			js_i18n = {},
+	-- 		},
+	-- 	},
+	-- },
+	{
+		"nabekou29/js-i18n.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {},
+		enabled = false,
+		-- enabled = string.find(cwd, "dsys/mfe-ascent") ~= nil,
+	},
 }
 -- return {
 -- 	"yelog/i18n.nvim",
