@@ -22,6 +22,7 @@ local inlayHints = {
 	includeInlayEnumMemberValueHints = true,
 }
 
+---@type vim.lsp.Config
 return {
 	handlers = {
 		---@param err lsp.ResponseError?
