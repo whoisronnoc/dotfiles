@@ -42,6 +42,12 @@ return {
 					center = {
 						{
 							icon = vim.g.have_nerd_font and " " or "🔍",
+							key = "s",
+							desc = " Restore Session",
+							action = ":Autosession search",
+						},
+						{
+							icon = vim.g.have_nerd_font and " " or "🔍",
 							key = "f",
 							desc = " Find File",
 							action = ":lua Snacks.dashboard.pick('smart', { filter = { cwd = true } })",
