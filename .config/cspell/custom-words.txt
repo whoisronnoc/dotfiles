@@ -21,3 +21,4 @@ osxkeychain
 zdiff
 SONARQUBE
 angularls
+yazi
