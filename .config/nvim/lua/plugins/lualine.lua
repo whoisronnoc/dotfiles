@@ -177,7 +177,20 @@ return {
 					},
 				},
 				lualine_x = {
-					"diagnostics",
+					{
+						"diagnostics",
+						color = function()
+							return {
+								-- get bg from hl group
+								bg = vim.api.nvim_get_hl_by_name("lualine_b_normal", true).background
+										and string.format(
+											"#%06x",
+											vim.api.nvim_get_hl_by_name("lualine_b_normal", true).background
+										)
+									or "#373737",
+							}
+						end,
+					},
 					"overseer",
 					-- This will be replaced by the actual component in the config function
 					-- this is registered in `lua/lualine/components`
