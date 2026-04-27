@@ -20,3 +20,4 @@ gpgsign
 osxkeychain
 zdiff
 SONARQUBE
+angularls

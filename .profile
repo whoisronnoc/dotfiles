@@ -91,4 +91,10 @@ if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
   export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 fi
 
+
+# sonarqube-cli 
+if [ -d "$HOME/.local/share/sonarqube-cli/bin" ]; then
+  export PATH="$HOME/.local/share/sonarqube-cli/bin:$PATH"
+fi
+
 export NX_TUI=false
