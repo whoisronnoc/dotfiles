@@ -1,7 +1,7 @@
 gui:
   theme:
     selectedLineBgColor:
-      - "#171717"
+      - reverse
   tabWidth: 2
   branchColorPatterns:
     "^feat+": "#11AAff"
