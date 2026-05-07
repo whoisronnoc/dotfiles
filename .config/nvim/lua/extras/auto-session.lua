@@ -87,4 +87,16 @@ return {
 			},
 		},
 	},
+	specs = {
+		"folke/which-key.nvim",
+		optional = true,
+		opts = {
+			---@type wk.Spec
+			spec = {
+				{ "<leader>Sa", desc = "Alternate Session" },
+				{ "<leader>Sy", desc = "Copy Session" },
+				{ "<leader>Sd", desc = "Delete Session" },
+			},
+		},
+	},
 }

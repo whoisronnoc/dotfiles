@@ -61,6 +61,9 @@ return {
 				todo_comments = {
 					exclude = exclude_dirs,
 				},
+				recent = {
+					on_show = stop_insert,
+				},
 			},
 		},
 	},

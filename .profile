@@ -97,4 +97,9 @@ if [ -d "$HOME/.local/share/sonarqube-cli/bin" ]; then
   export PATH="$HOME/.local/share/sonarqube-cli/bin:$PATH"
 fi
 
+# lmstudio
+if [ -d "$HOME/.lmstudio/bin" ]; then
+  export PATH="$PATH:$HOME/.lmstudio/bin"
+fi
+
 export NX_TUI=false
