@@ -1,5 +1,22 @@
-[plugin]
-deps = []
+[[plugin.deps]]
+use = "yozlog/exif-image"
+rev = "65a0fdb"
+hash = "f2736dd4299eac7ed01a8ed5dedaf020"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "4f80288"
+hash = "daf12bd7eb26044a8a5f41eeb369c27a"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot"
+rev = "7b29740"
+hash = "3d83be32b0859360996e167debc123ee"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot-image"
+rev = "7b29740"
+hash = "56e1db487a7bff6dc1d5d35f1f9f70"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"

@@ -107,4 +107,8 @@ if [ -d "$HOME/.lmstudio/bin" ]; then
   export PATH="$PATH:$HOME/.lmstudio/bin"
 fi
 
+if [ -d "/Applications/MediaInfo.app/Contents/MacOS" ]; then
+  export PATH="$PATH:/Applications/MediaInfo.app/Contents/MacOS"
+fi
+
 export NX_TUI=false
