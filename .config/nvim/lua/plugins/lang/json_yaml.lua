@@ -12,6 +12,7 @@ return {
 				"json",
 				"yaml",
 				"toml",
+				"helm",
 			},
 		},
 	},
@@ -24,6 +25,7 @@ return {
 			servers = {
 				jsonls = {},
 				yamlls = {},
+				helm_ls = {},
 			},
 		},
 	},
@@ -34,6 +36,7 @@ return {
 			ensure_installed = {
 				"jsonls",
 				"yamlls",
+				"helm_ls",
 			},
 		},
 	},
@@ -59,6 +62,7 @@ return {
 				jsonc = { "prettierd", "prettier", stop_after_first = true },
 				yaml = { "prettierd", "prettier", stop_after_first = true },
 				toml = { "prettierd", "prettier", stop_after_first = true },
+				helm = { "prettierd", "prettier", stop_after_first = true },
 			},
 		},
 	},
