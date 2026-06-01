@@ -12,6 +12,11 @@ fi
 if [ -d "$HOME/.universe/bin" ]; then
   export PATH="$PATH:$HOME/.universe/bin"
 fi
+if [ -d "$HOME/scripts" ]; then
+  export PATH="$PATH:$HOME/scripts"
+fi
+
+
 
 if [[ $(uname -m) == 'arm64' ]]; then
   export BREW_PATH="/opt/homebrew/bin/brew"
