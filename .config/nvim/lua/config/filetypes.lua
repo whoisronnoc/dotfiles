@@ -8,7 +8,7 @@ vim.filetype.add({
 		["ingress.yaml"] = "helm",
 	},
 	pattern = {
-		[".*/helm/.*%.yaml"] = "helm",
+		["**/helm/**.yaml"] = "helm",
 		-- [".*%.component%.html"] = "htmlangular",
 		-- ["%.?env.*"] = "config",
 		-- ["%.?.ts"] = "typescript",
