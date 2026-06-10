@@ -59,6 +59,8 @@ bindkey '^[f' forward-word # ⌥→
 bindkey '^[b' backward-word # ⌥←
 bindkey "^A" beginning-of-line # cmd+←
 bindkey "^E" end-of-line # cmd+→
+bindkey '\x1b[1;5D' beginning-of-line # cmd+← (via ghostty escape seq)
+bindkey '\x1b[1;5C' end-of-line # cmd+→ (via ghostty escape seq)
 
 # Remove common delimiters from WORDCHARS so they act as word separators
 # default WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
