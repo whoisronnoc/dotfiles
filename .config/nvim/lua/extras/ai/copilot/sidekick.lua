@@ -20,7 +20,7 @@ return {
 		},
 	},
 	keys = {
-		{
+		Utils.lazy:has_plugin("cursortab.nvim") and nil or {
 			"<tab>",
 			function()
 				-- if there is a next edit, jump to it, otherwise apply it if any

@@ -46,9 +46,18 @@ return {
 				set_hl("SnacksPickerPathHidden", palette.fg, palette.none)
 				set_hl("SnacksPickerDimmed", palette.purple, palette.none)
 
-				vim.cmd.hi("InfoText gui=none")
-				vim.cmd.hi("WarningText gui=none")
-				vim.cmd.hi("ErrorText gui=none")
+				-- remove undercurl
+				vim.cmd.hi("SnacksPickerLSPDisabled gui=none")
+				vim.cmd.hi("SnacksPickerLSPAttached gui=none")
+				vim.cmd.hi("SnacksPickerLSPAttachedBuf gui=none")
+				vim.cmd.hi("SnacksPickerLSPUnavailable gui=none")
+
+				-- TODO:
+				vim.cmd.hi("MiniIconsBlue gui=none")
+				vim.cmd.hi("MiniIconsCyan gui=none")
+				vim.cmd.hi("MiniIconsRed gui=none")
+				vim.cmd.hi("MiniIconsOrange gui=none")
+				vim.cmd.hi("MiniIconsYellow gui=none")
 			end,
 		})
 

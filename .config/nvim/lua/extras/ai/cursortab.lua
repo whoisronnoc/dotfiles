@@ -9,7 +9,16 @@ return {
 			provider = {
 				type = "fim",
 				url = vim.fn.getenv("AI_URL"),
-				model = vim.fn.getenv("AI_MODEL"),
+				-- model = vim.fn.getenv("AI_MODEL"),
+			},
+			-- blink = {
+			-- 	enabled = true, -- Enable blink source
+			-- 	ghost_text = true, -- Show native ghost text alongside blink menu
+			-- },
+			keymaps = {
+				accept = "<Tab>", -- Keymap to accept completion, or false to disable
+				partial_accept = "<S-Tab>", -- Keymap to partially accept, or false to disable
+				trigger = false, -- Keymap to manually trigger completion, or false to disable
 			},
 		})
 
