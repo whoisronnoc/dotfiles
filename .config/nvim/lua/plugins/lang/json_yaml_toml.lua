@@ -27,6 +27,7 @@ return {
 				yamlls = {},
 				helm_ls = {},
 				tombi = {},
+				gh_actions_ls = {},
 			},
 		},
 	},
@@ -39,6 +40,7 @@ return {
 				"yamlls",
 				"helm_ls",
 				"tombi",
+				"gh_actions_ls",
 			},
 		},
 	},
@@ -50,6 +52,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"yamllint",
+				"actionlint",
 			},
 		},
 	},
