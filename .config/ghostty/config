@@ -1,5 +1,5 @@
 # https://ghostty.org/docs/config/reference
-command=~/.config/ghostty/tmux.sh
+command="$([ $(arch) = 'arm64' ] && ~/.config/ghostty/tmux-arm64.sh || ~/.config/ghostty/tmux.sh)"
 
 #font-family = JetBrainsMono NFM Regular
 #font-family-bold = JetBrainsMono NFM Bold
