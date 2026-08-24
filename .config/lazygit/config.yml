@@ -12,8 +12,8 @@ gui:
     "Connor Temple": "#51A2FF"
     "whoisronnoc": "#663399"
 git:
-  pagers:
-    - pager: ~/.config/lazygit/delta.sh
+  diffRenderers:
+    - command: ~/.config/lazygit/delta.sh
   overrideGpg: true
 customCommands:
   - key: "h"
