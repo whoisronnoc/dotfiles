@@ -13,4 +13,8 @@ vim.filetype.add({
 		-- ["%.?env.*"] = "config",
 		-- ["%.?.ts"] = "typescript",
 	},
+	extension = {
+		xmp = "xml",
+		on1 = "json"
+	}
 })
