@@ -1,0 +1,63 @@
+# ripgrep global ignore — sensitive & noisy paths
+# gitignore syntax. Applied globally to all rg searches.
+
+# ── Keychains & credentials ──────────────────────────────────────────────────
+Library/Keychains/
+Library/Passwords/
+.gnupg/
+.ssh/
+.netrc
+.aws/credentials
+.aws/
+.azure/
+.config/gcloud/
+.config/op/
+
+# ── Browser profiles (cookies, sessions, saved passwords, history) ────────────
+Library/Application Support/Arc/
+Library/Application Support/BraveSoftware/
+Library/Application Support/Google/Chrome/
+Library/Application Support/Firefox/
+Library/Application Support/Microsoft Edge/
+Library/Application Support/Microsoft Edge Beta/
+Library/Application Support/Microsoft Edge Canary/
+Library/Application Support/Microsoft Edge Dev/
+Library/Application Support/Vivaldi/
+Library/Application Support/Vivaldi Snapshot/
+Library/Application Support/com.operasoftware.Opera/
+Library/Application Support/Safari/
+Library/Application Support/
+
+# ── Cookie stores ─────────────────────────────────────────────────────────────
+Library/Cookies/
+
+# ── macOS system sensitive dirs ───────────────────────────────────────────────
+Library/Mail/
+Library/Messages/
+Library/HomeKit/
+Library/IdentityServices/
+Library/PersonalizationPortrait/
+Library/Suggestions/
+Library/CallHistoryTransactions/
+Library/CallHistoryDB/
+Library/Accounts/
+Library/Safari/
+
+# ── Tokens & secrets in config dirs ──────────────────────────────────────────
+**/.env
+**/.env.*
+**/secrets.*
+**/*_rsa
+**/*_ed25519
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.keystore
+
+# ── Noisy / large dirs that are never useful to search ────────────────────────
+.Trash/
+Library/Caches/
+Library/Logs/
+Library/CloudStorage/
+Library/com.apple.nsurlsessiond/

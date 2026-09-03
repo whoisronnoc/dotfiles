@@ -1,0 +1,64 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+  tabWidth: 2
+  branchColorPatterns:
+    "^feat+": "#11AAff"
+    "^fix+": "#FFB86A"
+    "^chore+": "#7BF1A8"
+    "^trivial+": "#7BF1A8"
+  authorColors:
+    "Connor Temple": "#51A2FF"
+    "whoisronnoc": "#663399"
+    "connor-temple": "#FC7208"
+    "Claude": "#a8a8a8"
+git:
+  diffRenderers:
+    - command: ~/.config/lazygit/delta.sh
+customCommands:
+  - key: "C"
+    context: "files"
+    description: "Commit"
+    prompts:
+      - type: menu
+        title: "Claude Attribution"
+        key: "Claude"
+        options:
+          - value: "no"
+            name: "No"
+            description: "Standard commit"
+            key: "n"
+          - value: "yes"
+            name: "Yes"
+            description: "Append Co-authored-by trailer"
+            key: "y"
+      - type: "input"
+        title: "Commit message"
+        key: "Message"
+    command: >-
+      git commit -e -m "{{.Form.Message}}" {{ if eq .Form.Claude "yes" }} --trailer 'Co-authored-by: Claude <noreply@anthropic.com>'{{ end }}
+    output: terminal
+  - key: "T"
+    context: "files, commits"
+    description: "Amend with Co-authored-by trailer"
+    command: >-
+      git commit --amend --no-edit --trailer 'Co-authored-by: Claude <noreply@anthropic.com>'
+  - key: "h"
+    command: "git update-index --assume-unchanged {{.SelectedFile.Name | quote}}"
+    context: "files"
+    description: "Assume unchanged"
+  - key: "I"
+    command: "git ls-files -v | grep '^h'"
+    context: "global"
+    description: 'Show "unchanged" files'
+    output: log
+  - key: "H"
+    description: "Unmark assume unchanged"
+    command: "git update-index --no-assume-unchanged {{.Form.File | quote}}"
+    context: "files"
+    prompts:
+      - type: "menuFromCommand"
+        title: "Unmark assume unchanged"
+        key: "File"
+        command: bash -c "git ls-files -v | grep '^h' | cut -d ' ' -f2"

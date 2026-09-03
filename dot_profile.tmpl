@@ -112,3 +112,10 @@ if [ -d "/Applications/MediaInfo.app/Contents/MacOS" ]; then
 fi
 
 export NX_TUI=false
+
+# private dotfiles overlay
+{{ if eq .machine_type "work" -}}
+[ -f "$HOME/.dot_work/.profile" ] && source "$HOME/.dot_work/.profile"
+{{ else -}}
+[ -f "$HOME/.dot_personal/.profile" ] && source "$HOME/.dot_personal/.profile"
+{{ end -}}

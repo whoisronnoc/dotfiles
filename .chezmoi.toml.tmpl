@@ -1,0 +1,4 @@
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+  machine_type = {{ .machine_type | default "personal" | quote }}

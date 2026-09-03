@@ -1,0 +1,13 @@
+# not managed by chezmoi
+README.md
+setup
+com.googlecode.iterm2.plist
+cspell.json
+.stow-local-ignore
+.universe/
+# tmux plugins managed separately (tpm)
+.config/tmux/plugins/**
+# base configs — deployed via .chezmoiexternal.toml.tmpl, not directly
+.config/lazygit/config.base.yml
+.gitignore
+

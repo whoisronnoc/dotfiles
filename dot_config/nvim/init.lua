@@ -33,6 +33,9 @@ require("config")
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+-- Load private overrides if present (work or personal machine extras)
+pcall(require, "private")
+
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },

@@ -1,0 +1,12 @@
+{{- if eq .machine_type "work" }}
+[".config/lazygit/config.yml"]
+  type = "file"
+  url = "file:///Users/connor.temple/.dot_work/lazygit/config.yml"
+{{- else }}
+[".config/lazygit/config.yml"]
+  type = "file"
+  url = "file:///Users/connor.temple/.dot/dot_config/lazygit/config.base.yml"
+{{- end }}
+[".config/git/.gitconfig.local"]
+  type = "file"
+  url = "file:///Users/connor.temple/.dot_work/git/.gitconfig.local"

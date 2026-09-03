@@ -12,7 +12,7 @@ return {
 	{ import = "extras.sonarlint" },
 	{ import = "extras.i18n" },
 	-- ai
-	{ import = "extras.ai.copilot" },
+	-- { import = "extras.ai.copilot" },
 	-- plugins
 	{ import = "extras.auto-session" },
 	{ import = "extras.obsidian" },

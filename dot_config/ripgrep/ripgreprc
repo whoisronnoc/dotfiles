@@ -1,0 +1,2 @@
+# ripgrep config
+--ignore-file=~/.config/ripgrep/ignore
