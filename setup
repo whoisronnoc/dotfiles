@@ -1,17 +1,6 @@
 #!/bin/bash
 
-# init submodules
-echo -e "setting up submodules\n"
-git submodule init
-git submodule update --recursive
-
 # apply dotfiles via chezmoi
 echo -e "applying dotfiles\n"
-chezmoi apply --source "$HOME/.dot"
-
-# install universe
-echo "Installing universe..."
-source $HOME/.profile # make sure universe path is loaded
-cd universe && ./universe update && cd ..
-echo "universe updated"
-echo ""
+chezmoi init
+chezmoi apply
