@@ -14,8 +14,3 @@
   url = "file://{{ .private_dotfiles }}/git/.gitconfig.local"
 {{- end}}
 
-{{- if stat (joinPath .private_dotfiles "cspell/local-words.txt") }}
-[".config/cspell/local-words.txt"]
-  type = "file"
-  url = "file://{{ .private_dotfiles }}/cspell/local-words.txt"
-{{- end}}

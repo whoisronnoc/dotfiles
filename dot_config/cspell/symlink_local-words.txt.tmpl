@@ -1,0 +1,3 @@
+{{- if stat (joinPath .private_dotfiles "cspell/local-words.txt") }}
+{{ .private_dotfiles }}/cspell/local-words.txt
+{{- end}}
