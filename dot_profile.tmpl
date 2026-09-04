@@ -113,9 +113,7 @@ fi
 
 export NX_TUI=false
 
+{{- if stat (joinPath .private_dotfiles ".profile") }}
 # private dotfiles overlay
-{{ if eq .machine_type "work" -}}
-[ -f "$HOME/.dot_work/.profile" ] && source "$HOME/.dot_work/.profile"
-{{ else -}}
-[ -f "$HOME/.dot_personal/.profile" ] && source "$HOME/.dot_personal/.profile"
+[ -f "{{ .private_dotfiles }}/.profile" ] && source "{{ .private_dotfiles }}/.profile"
 {{ end -}}

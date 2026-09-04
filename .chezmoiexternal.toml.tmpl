@@ -1,12 +1,21 @@
-{{- if eq .machine_type "work" }}
+{{- if stat (joinPath .private_dotfiles "lazygit/config.yml") }}
 [".config/lazygit/config.yml"]
   type = "file"
-  url = "file:///Users/connor.temple/.dot_work/lazygit/config.yml"
+  url = "file:///{{ .private_dotfiles }}/lazygit/config.yml"
 {{- else }}
 [".config/lazygit/config.yml"]
   type = "file"
-  url = "file:///Users/connor.temple/.dot/dot_config/lazygit/config.base.yml"
+  url = "file://{{ .sourceDir }}/lazygit/config.base.yml"
 {{- end }}
+
+{{- if stat (joinPath .private_dotfiles "git/.gitconfig.local") }}
 [".config/git/.gitconfig.local"]
   type = "file"
-  url = "file:///Users/connor.temple/.dot_work/git/.gitconfig.local"
+  url = "file://{{ .private_dotfiles }}/git/.gitconfig.local"
+{{- end}}
+
+{{- if stat (joinPath .private_dotfiles "cspell/local-words.txt") }}
+[".config/cspell/local-words.txt"]
+  type = "file"
+  url = "file://{{ .private_dotfiles }}/cspell/local-words.txt"
+{{- end}}

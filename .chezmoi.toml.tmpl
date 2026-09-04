@@ -1,4 +1,5 @@
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
-  machine_type = {{ .machine_type | default "personal" | quote }}
+  machine_type = {{ promptChoice "Machine type" (list "personal" "work") | quote }}
+  private_dotfiles = {{ promptString "Private dotfiles directory (Optional)" | quote }}
