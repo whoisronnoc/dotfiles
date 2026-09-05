@@ -1,16 +1,15 @@
-{{- if stat (joinPath .private_dotfiles "lazygit/config.yml") }}
+{{- if stat (joinPath .private_dotfiles "dot_config/lazygit/config.yml") }}
 [".config/lazygit/config.yml"]
   type = "file"
-  url = "file:///{{ .private_dotfiles }}/lazygit/config.yml"
+  url = "file:///{{ .private_dotfiles }}/dot_config/lazygit/config.yml"
 {{- else }}
 [".config/lazygit/config.yml"]
   type = "file"
-  url = "file://{{ .sourceDir }}/lazygit/config.base.yml"
+  url = "file://{{ .sourceDir }}/dot_config/lazygit/config.base.yml"
 {{- end }}
 
-{{- if stat (joinPath .private_dotfiles "git/.gitconfig.local") }}
+{{- if stat (joinPath .private_dotfiles "dot_config/git/dot_gitconfig.local") }}
 [".config/git/.gitconfig.local"]
   type = "file"
-  url = "file://{{ .private_dotfiles }}/git/.gitconfig.local"
+  url = "file://{{ .private_dotfiles }}/dot_config/git/dot_gitconfig.local"
 {{- end}}
-

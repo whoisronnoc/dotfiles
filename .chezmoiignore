@@ -2,7 +2,6 @@
 README.md
 setup
 com.googlecode.iterm2.plist
-cspell.json
 .stow-local-ignore
 .universe/
 # tmux plugins managed separately (tpm)

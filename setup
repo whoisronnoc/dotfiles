@@ -2,5 +2,4 @@
 
 # apply dotfiles via chezmoi
 echo -e "applying dotfiles\n"
-chezmoi init
-chezmoi apply
+chezmoi init --apply --source ./

@@ -1,0 +1,3 @@
+{{- if stat (joinPath .private_dotfiles "dot_config/yazi/vfs.toml") -}}
+{{- include (joinPath .private_dotfiles "dot_config/yazi/vfs.toml") -}}
+{{- end -}}
