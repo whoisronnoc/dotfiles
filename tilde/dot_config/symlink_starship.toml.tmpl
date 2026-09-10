@@ -1,0 +1,3 @@
+{{- if stat (joinPath .dotfiles "/.config/starship.toml") }}
+{{ .dotfiles }}/.config/starship.toml
+{{- end }}

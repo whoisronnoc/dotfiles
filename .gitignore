@@ -1,11 +1,4 @@
 .DS_Store
-backup/*
-dot_config/nvim/spell
-dot_config/tmux/plugins/
-dot_config/tmuxinator/*
-!dot_config/tmuxinator/dot.yml
-dot_config/nvim/plugins/
-dot_config/cspell/local-words.txt
 *dot_env
 !dot_env.sample
 *.env

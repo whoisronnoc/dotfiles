@@ -1,0 +1,3 @@
+{{- if stat (joinPath .dotfiles "/.tmux.conf") }}
+{{ .dotfiles }}/.tmux.conf
+{{- end }}

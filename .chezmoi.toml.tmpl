@@ -1,6 +1,6 @@
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
-  sourceDir = {{ .chezmoi.sourceDir | quote }}
+  dotfiles = {{ joinPath .chezmoi.sourceDir "/home" }}
   machine_type = {{ promptChoice "Machine type" (list "personal" "work") | quote }}
   private_dotfiles = {{ promptString "Private dotfiles directory (Optional)" | quote }}

@@ -1,0 +1,5 @@
+{{ include (joinPath .dotfiles ".config/yazi/keymap.toml") }}
+
+{{ if stat (joinPath .private_dotfiles ".config/yazi/keymap.toml") }}
+{{ include (joinPath .private_dotfiles ".config/yazi/keymap.toml") }}
+{{ end }}

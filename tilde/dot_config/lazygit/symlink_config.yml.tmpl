@@ -1,0 +1,5 @@
+{{- if stat (joinPath .private_dotfiles ".config/lazygit/config.yml") }}
+{{ .private_dotfiles }}/.config/lazygit/config.yml
+{{- else }}
+{{ .dotfiles }}/.config/lazygit/config.yml
+{{- end }}

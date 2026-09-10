@@ -1,0 +1,3 @@
+{{- if stat (joinPath .dotfiles "/.config/nvim") }}
+{{ .dotfiles }}/.config/nvim
+{{- end }}
