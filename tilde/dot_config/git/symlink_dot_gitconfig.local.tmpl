@@ -1,0 +1,3 @@
+{{- if stat (joinPath .private_dotfiles ".config/git/.gitconfig.local") }}
+{{ .private_dotfiles }}/.config/git/.gitconfig.local
+{{- end }}

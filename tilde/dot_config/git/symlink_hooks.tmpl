@@ -1,0 +1,3 @@
+{{- if stat (joinPath .dotfiles ".config/git/hooks") }}
+{{ .dotfiles }}/.config/git/hooks
+{{- end }}
