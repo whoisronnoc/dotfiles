@@ -18,6 +18,11 @@ use = "AminurAlam/yazi-plugins:spot-image"
 rev = "7b29740"
 hash = "56e1db487a7bff6dc1d5d35f1f9f70"
 
+[[plugin.deps]]
+use = "terrakok/split-tabs"
+rev = "d0531f4"
+hash = "4298f0a23f6109a92334eef06fc7ffb9"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "9511cb0"

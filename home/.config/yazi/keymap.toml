@@ -512,3 +512,30 @@ keymap = [
   # Filtering
   { on = "f", run = "filter", desc = "Filter help items" },
 ]
+
+# plugins
+## split-tabs
+[[mgr.prepend_keymap]]
+on = "\\"
+run = "plugin split-tabs spl_toggle"
+desc = "Split-tabs: toggle split tabs mode"
+
+[[mgr.prepend_keymap]]
+on = "<Tab>"
+run = "plugin split-tabs spl_switch_tab"
+desc = "Split-tabs: switch to the other pane"
+
+[[mgr.prepend_keymap]]
+on = "<F5>"
+run = [ "escape --visual", "plugin split-tabs spl_copy" ]
+desc = "Split-tabs: copy to the other pane"
+
+[[mgr.prepend_keymap]]
+on = "<F6>"
+run = [ "escape --visual", "plugin split-tabs spl_move" ]
+desc = "Split-tabs: move to the other pane"
+
+[[mgr.prepend_keymap]]
+on = "P"
+run = "plugin split-tabs spl_preview"
+desc = "Split-tabs: toggle preview pane"
