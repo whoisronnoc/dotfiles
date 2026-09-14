@@ -1,0 +1,3 @@
+{{- if stat (joinPath .private_dotfiles "/.profile") }}
+{{ .private_dotfiles }}/.profile
+{{- end }}
