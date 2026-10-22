@@ -5,7 +5,6 @@ return {
 	enabled = true,
 	event = { "BufWinEnter", "VeryLazy" },
 	opts = {
-		-- add any options here
 		cli = {
 			mux = {
 				backend = "tmux",
@@ -51,6 +50,7 @@ return {
 			"<leader>as",
 			function()
 				require("sidekick.cli").select({ filter = { installed = true } })
+				vim.cmd("stopinsert")
 			end,
 			desc = "Select CLI",
 		},
@@ -65,6 +65,7 @@ return {
 			"<leader>at",
 			function()
 				require("sidekick.cli").send({ msg = "{this}" })
+				vim.cmd("stopinsert")
 			end,
 			mode = { "x", "n" },
 			desc = "Send This",
@@ -73,6 +74,7 @@ return {
 			"<leader>af",
 			function()
 				require("sidekick.cli").send({ msg = "{file}" })
+				vim.cmd("stopinsert")
 			end,
 			desc = "Send File",
 		},
@@ -80,6 +82,7 @@ return {
 			"<leader>av",
 			function()
 				require("sidekick.cli").send({ msg = "{selection}" })
+				vim.cmd("stopinsert")
 			end,
 			mode = { "x" },
 			desc = "Send Visual Selection",
