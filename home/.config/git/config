@@ -5,7 +5,7 @@
   hooksPath = ~/.config/git/hooks
   pager = delta
 [push]
-  default = simple
+  default = upstream
 ; [init]
   ; templatedir = ~/.config/git/git_template
 [interactive]
