@@ -1,0 +1,3 @@
+{{- if stat (joinPath .dotfiles "/.config/herdr/config.toml") }}
+{{ .dotfiles }}/.config/herdr/config.toml
+{{- end }}

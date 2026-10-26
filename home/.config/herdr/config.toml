@@ -1,0 +1,180 @@
+onboarding = false
+
+[theme]
+name = "vesper"
+auto_switch = false
+light_name = "one-light"
+dark_name = "one-dark"
+
+[theme.custom.dark]
+sidebar_bg = "#0c111a"
+panel_bg = "#0c111a"
+
+[theme.custom.light]
+sidebar_bg = "#f0f0f1"
+panel_bg = "#f0f0f1"
+
+[ui]
+tab_bar_position = "bottom"
+prompt_new_tab_name = false
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "$title"],
+  ["$provider"],
+  ["$limit_5h_high", { token = "$limit_5h_mid", fg = "#e0af68" }, { token = "$limit_5h_low", fg = "#f7768e" }, "$limit_7d_high", { token = "$limit_7d_mid", fg = "#e0af68" }, { token = "$limit_7d_low", fg = "#f7768e" }, "$limit_30d_high", { token = "$limit_30d_mid", fg = "#e0af68" }, { token = "$limit_30d_low", fg = "#f7768e" }],
+  # ["$cache_high", { token = "$cache_mid", fg = "#e0af68" }, { token = "$cache_low", fg = "#f7768e" }],
+  ["$context"],
+]
+
+[ui.toast]
+delivery = "herdr"  # or "system" / "terminal"
+
+[ui.toast.herdr]
+position = "bottom-left"
+
+[keys]
+prefix = "ctrl+a"
+reload_config = "prefix+shift+r"
+# Tabs: alt+1..9 jump, alt+tab / alt+shift+tab cycle.
+# previous_tab not bound to prefix+p because your plugin-manager uses it.
+switch_tab = ["prefix+1..9", "alt+1..9"]
+next_tab = ["prefix+n", "alt+tab"]
+previous_tab = ["alt+shift+tab"]
+new_tab = ["prefix+c", "cmd+t"]
+# Workspaces (spaces): cmd+1..9 jumps straight to workspace 1..9.
+# Ghostty side must not claim these chords; ~/.config/ghostty/config unbinds them.
+switch_workspace = "cmd+1..9"
+split_horizontal = "prefix+_"
+split_vertical = "prefix+|"
+
+# Machines: cmd+shift+1..9 switch between connected machines.
+
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "ray.plugin-manager.open"
+description = "open plugin manager"
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "collapse-agents.toggle"
+description = "collapse/expand the agents list"
+
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "herdr-bar.open"
+description = "command bar"
+
+[[keys.command]]
+key = "prefix+shift+p"
+type = "plugin_action"
+command = "pet.toggle"  # wake / tuck away
+description = "pet: toggle"
+
+[[keys.command]]
+key = "prefix+shift+o"
+type = "plugin_action"
+command = "pet.settings"  # popover: pick a pet, size, speed, mode…
+description = "pet: settings"
+
+# Override herdr's built-in "new worktree" key (prefix+shift+g) with worktrunk's
+# default-branch switch/create picker:
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+# Optional: bind current-branch creation separately.
+[[keys.command]]
+key = "prefix+shift+c"
+type = "plugin_action"
+command = "worktrunk.open-current"
+description = "Worktree: switch / create from current branch"
+
+# Optional: include remote-tracking branches for this picker.
+[[keys.command]]
+key = "prefix+shift+w"
+type = "plugin_action"
+command = "worktrunk.open-with-remotes"
+description = "Worktree: switch / create from local or remote branches"
+
+[[keys.command]]
+key = "prefix+shift+d"
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "Worktree: remove"
+
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "worktrunk.merge"
+description = "Worktree: merge into the target branch"
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
+
+[[keys.command]]
+key = "prefix+ctrl+s"
+type = "plugin_action"
+command = "ntindle.herdr-resurrect.save"
+description = "resurrect: save"
+
+[[keys.command]]
+key = "prefix+ctrl+r"
+type = "plugin_action"
+command = "ntindle.herdr-resurrect.restore"
+description = "resurrect: restore"
+
+[[keys.command]]
+key = "prefix+ctrl+S"
+type = "plugin_action"
+command = "ntindle.herdr-resurrect.save-space"
+description = "resurrect: save this space as…"
+
+[[keys.command]]
+key = "prefix+ctrl+O"
+type = "plugin_action"
+command = "ntindle.herdr-resurrect.open-space"
+description = "resurrect: open saved space…"
+
+# drovr: move live panes/tabs with a fuzzy picker (no respawn)
+[[keys.command]]
+key = "prefix+m"
+type = "plugin_action"
+command = "drovr.move-pane"
+description = "move pane to tab"
+
+[[keys.command]]
+key = "prefix+t"
+type = "plugin_action"
+command = "drovr.move-tab"
+description = "move tab to workspace"
+
+[[keys.command]]
+key = "ctrl+shift+u"
+type = "plugin_action"
+command = "usagebar.open-limits"
+description = "Agent Usage: open limits pane"
+
+[[keys.command]]
+key = "ctrl+shift+i"
+type = "plugin_action"
+command = "usagebar.refresh"
+description = "Agent Usage: refresh sidebar meters"
+
+[experimental]
+kitty_graphics = true
