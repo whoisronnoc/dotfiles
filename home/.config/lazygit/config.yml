@@ -2,17 +2,17 @@ gui:
   theme:
     selectedLineBgColor:
       - reverse
+    authorColors:
+      "Connor Temple": "#51A2FF"
+      "whoisronnoc": "#663399"
+      "connor-temple": "#FC7208"
+      "Claude": "#a8a8a8"
+    branchColorPatterns:
+      "^feat+": "#11AAff"
+      "^fix+": "#FFB86A"
+      "^chore+": "#7BF1A8"
+      "^trivial+": "#7BF1A8"
   tabWidth: 2
-  branchColorPatterns:
-    "^feat+": "#11AAff"
-    "^fix+": "#FFB86A"
-    "^chore+": "#7BF1A8"
-    "^trivial+": "#7BF1A8"
-  authorColors:
-    "Connor Temple": "#51A2FF"
-    "whoisronnoc": "#663399"
-    "connor-temple": "#FC7208"
-    "Claude": "#a8a8a8"
 git:
   diffRenderers:
     - command: ~/.config/lazygit/delta.sh
