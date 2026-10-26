@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 if [ "$(arch)" = "arm64" ]; then
-  exec ~/.config/ghostty/tmux-arm64.sh
+  exec /opt/homebrew/bin/herdr
 else
   exec ~/.config/ghostty/tmux.sh
 fi

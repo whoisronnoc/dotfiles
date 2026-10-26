@@ -51,7 +51,9 @@ keybind = super+shift+comma=reload_config
 # tab / window management
 # keybind = super+enter=toggle_fullscreen
 # keybind = super+ctrl+f=toggle_fullscreen
-keybind = super+t=new_tab
+# Tabs are OFF. Herdr owns workspaces and tabs inside one surface.
+# unbind (not just commenting out) is required: these are built-in defaults.
+keybind = super+t=unbind
 keybind = super+n=new_window
 keybind = super+q=quit
 keybind = super+shift+w=close_window
@@ -86,22 +88,37 @@ keybind = super+zero=reset_font_size
 keybind = super+plus=increase_font_size:1
 
 # tab navigation
-keybind = alt+shift+tab=previous_tab
-keybind = alt+tab=next_tab
-# Send Ctrl Tab and Ctrl + Shift + Tab for Tmux navigation
-keybind = ctrl+tab=text:\x1b[27;5;9~
-keybind = ctrl+shift+tab=text:\x1b[27;6;9~
-# keybind = super+shift+right_bracket=next_tab
-# keybind = super+shift+left_bracket=previous_tab
-keybind = super+physical:one=goto_tab:1
-keybind = super+physical:two=goto_tab:2
-keybind = super+physical:three=goto_tab:3
-keybind = super+physical:four=goto_tab:4
-keybind = super+physical:five=goto_tab:5
-keybind = super+physical:six=goto_tab:6
-keybind = super+physical:seven=goto_tab:7
-keybind = super+physical:eight=goto_tab:8
-keybind = super+physical:nine=last_tab
+# Tabs are OFF in Ghostty. Every tab chord is unbound so the raw key reaches
+# herdr (herdr uses cmd+1..9 for workspaces).
+# NOTE: these are built-in defaults, so they must be unbound explicitly.
+# cmd+digit defaults register BOTH physical digit keys and unicode digits,
+# so both forms must be unbound or the chord still fires goto_tab.
+keybind = super+shift+left_bracket=unbind
+keybind = super+shift+[=unbind
+keybind = super+shift+right_bracket=unbind
+keybind = super+shift+]=unbind
+keybind = super+alt+w=unbind
+keybind = super+physical:one=unbind
+keybind = super+1=unbind
+keybind = super+physical:two=unbind
+keybind = super+2=unbind
+keybind = super+physical:three=unbind
+keybind = super+3=unbind
+keybind = super+physical:four=unbind
+keybind = super+4=unbind
+keybind = super+physical:five=unbind
+keybind = super+5=unbind
+keybind = super+physical:six=unbind
+keybind = super+6=unbind
+keybind = super+physical:seven=unbind
+keybind = super+7=unbind
+keybind = super+physical:eight=unbind
+keybind = super+8=unbind
+keybind = super+physical:nine=unbind
+keybind = super+9=unbind
+# ctrl+tab passes through raw (was rewritten for tmux; herdr wants the real chord)
+keybind = ctrl+tab=unbind
+keybind = ctrl+shift+tab=unbind
 
 # text navigation
 keybind = super+shift+up=jump_to_prompt:-1
@@ -128,6 +145,8 @@ keybind = super+v=paste_from_clipboard
 # text edit
 keybind = alt+backspace=text:\x17
 keybind = super+backspace=text:\x15
+# right option+a as ctrl+a
+# right option+a as ctrl+a moved to karabiner/hidutil if needed
 # text select
 # keybind = shift+page_up=adjust_selection:page_up
 # keybind = shift+down=adjust_selection:down
@@ -211,7 +230,7 @@ enquiry-response =
 auto-update = check
 auto-update-channel = 
 
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 #window-decoration = false
 window-padding-balance = true
 #window-padding-color = extend-always
