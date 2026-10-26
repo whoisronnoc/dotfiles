@@ -52,12 +52,6 @@ split_vertical = "prefix+|"
 # Machines: cmd+shift+1..9 switch between connected machines.
 
 [[keys.command]]
-key = "prefix+p"
-type = "plugin_action"
-command = "ray.plugin-manager.open"
-description = "open plugin manager"
-
-[[keys.command]]
 key = "prefix+a"
 type = "plugin_action"
 command = "collapse-agents.toggle"
@@ -175,6 +169,12 @@ key = "ctrl+shift+i"
 type = "plugin_action"
 command = "usagebar.refresh"
 description = "Agent Usage: refresh sidebar meters"
+
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "herdr-lazy.manage"
+description = "manage plugins"
 
 [experimental]
 kitty_graphics = true
