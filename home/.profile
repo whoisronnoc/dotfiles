@@ -111,3 +111,8 @@ export NX_TUI=false
 
 # source .profile_local if exists
 [ -f "$HOME/.profile_local" ] && . "$HOME/.profile_local"
+
+export NVM_DIR="$HOME/.nvm"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh"
+fi
