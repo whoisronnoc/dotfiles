@@ -38,7 +38,7 @@ zinit snippet OMZP::common-aliases
 # zinit snippet OMZP::docker-compose
 # zinit snippet OMZP::brew
 # zinit snippet OMZP::jsontools
-# zinit snippet OMZP::nvm
+# nvm — sourcing nvm.sh without --no-use auto-runs `nvm use default`
 # zinit snippet OMZP::jenv
 # zinit snippet OMZP::rvm
 # zinit snippet OMZP::gem
@@ -92,7 +92,7 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init --cmd cd zsh)"
+  eval "$(zoxide init zsh)"
 fi
 if [[ -d "${HOME}/.jenv" ]]; then
   eval "$(jenv init -)"
@@ -126,6 +126,8 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias lg='lazygit'
 alias lb='but tui'
 
+unalias zi
+
 #eval "$(gh copilot alias -- zsh)"
 
 # zprof
@@ -143,3 +145,5 @@ function y() {
   rm -f -- "$tmp"
 }
 
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
