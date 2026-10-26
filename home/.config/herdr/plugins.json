@@ -1,0 +1,1273 @@
+[
+  {
+    "plugin_id": "chmarax.herdr-nvim",
+    "name": "herdr-nvim",
+    "version": "1.2.2",
+    "min_herdr_version": "0.7.5",
+    "description": "Full-height nvim sidebar with agent annotations: toggle with one key, comment code, send to any agent.",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/chmarax.herdr-nvim-178624809c23/17715-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/chmarax.herdr-nvim-178624809c23/17715-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux",
+      "windows"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "herdr/install.sh"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell.exe",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "herdr/install.ps1"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "bin/herdr-nvim",
+          "daemon-gc"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open-link",
+        "title": "nvim sidebar: open clicked file",
+        "command": [
+          "bin/herdr-nvim",
+          "open-link"
+        ]
+      },
+      {
+        "id": "pick-file",
+        "title": "nvim sidebar: open file from agent output",
+        "contexts": [
+          "pane"
+        ],
+        "command": [
+          "bin/herdr-nvim",
+          "pick-file"
+        ]
+      },
+      {
+        "id": "toggle",
+        "title": "nvim sidebar: toggle",
+        "contexts": [
+          "pane",
+          "workspace"
+        ],
+        "command": [
+          "bin/herdr-nvim",
+          "toggle"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "tab.closed",
+        "command": [
+          "bin/herdr-nvim",
+          "on-event"
+        ]
+      },
+      {
+        "on": "workspace.closed",
+        "command": [
+          "bin/herdr-nvim",
+          "on-event"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "open file",
+        "placement": "popup",
+        "command": [
+          "bin/herdr-nvim",
+          "picker"
+        ]
+      },
+      {
+        "id": "sidebar",
+        "title": "nvim sidebar",
+        "placement": "split",
+        "command": [
+          "bin/herdr-nvim",
+          "sidebar"
+        ]
+      }
+    ],
+    "link_handlers": [
+      {
+        "id": "file-path",
+        "title": "Open in nvim sidebar",
+        "pattern": "^(?:~|[A-Za-z]:)?[\\w.@/()\\[\\]\\\\+-]+[\\\\/][\\w.@()\\[\\]\\\\+-]+\\.[A-Za-z]\\w*(?::\\d+){0,2}$",
+        "action": "open-link"
+      },
+      {
+        "id": "file-url",
+        "title": "Open in nvim sidebar",
+        "pattern": "^file://",
+        "action": "open-link"
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ChmaraX",
+      "repo": "herdr-nvim",
+      "resolved_commit": "b7c69cab2c1eb8754b505061e942fffc4a557a3e",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/chmarax.herdr-nvim-178624809c23/17715-0/checkout",
+      "installed_unix_ms": 1792710560830
+    }
+  },
+  {
+    "plugin_id": "drovr",
+    "name": "drovr",
+    "version": "0.4.8",
+    "min_herdr_version": "0.7.4",
+    "description": "Drive your herd: move the focused tab or pane, live agents included, anywhere with an fzf picker.",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/drovr-4bf708966830/16288-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/drovr-4bf708966830/16288-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "move-pane",
+        "title": "Move pane to tab…",
+        "contexts": [
+          "pane"
+        ],
+        "command": [
+          "node",
+          "--import",
+          "./compile-cache.js",
+          "open-picker.ts",
+          "pane"
+        ]
+      },
+      {
+        "id": "move-tab",
+        "title": "Move tab to workspace…",
+        "contexts": [
+          "tab"
+        ],
+        "command": [
+          "node",
+          "--import",
+          "./compile-cache.js",
+          "open-picker.ts",
+          "tab"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "drovr",
+        "placement": "popup",
+        "width": 64,
+        "height": 28,
+        "command": [
+          "node",
+          "--import",
+          "./compile-cache.js",
+          "pick-and-move.ts"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "AVGVSTVS96",
+      "repo": "herdr-drovr",
+      "resolved_commit": "03f38edba501f63d3f7044fc99cf3ae55438401e",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/drovr-4bf708966830/16288-0/checkout",
+      "installed_unix_ms": 1792717994005
+    }
+  },
+  {
+    "plugin_id": "herdr-bar",
+    "name": "Bar",
+    "version": "0.11.0",
+    "min_herdr_version": "0.9.0",
+    "description": "Cmd+K command bar with agent icons, fuzzy search, and optional automatic tab titles",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/herdr-bar-96eebe452a9c/11876-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/herdr-bar-96eebe452a9c/11876-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "sh",
+          "scripts/install.sh"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "scripts/install.ps1"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "bin/herdr-bar",
+          "--start-titles"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bin/herdr-bar",
+          "--open"
+        ]
+      },
+      {
+        "id": "open-windows",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "contexts": [
+          "global"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "bin/herdr-bar.exe",
+          "--open"
+        ]
+      },
+      {
+        "id": "start-titles",
+        "title": "Start tab watcher",
+        "description": "Start task title and tab status updates enabled in the plugin config",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bin/herdr-bar",
+          "--start-titles",
+          "--resume"
+        ]
+      },
+      {
+        "id": "stop-titles",
+        "title": "Stop tab watcher",
+        "description": "Stop this server's title and status watcher, restoring bare tab names",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bin/herdr-bar",
+          "--stop-titles"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_detected",
+        "command": [
+          "bin/herdr-bar",
+          "--start-titles"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "bar",
+        "title": "Bar",
+        "description": "Fuzzy-jump to any tab, pane, or agent",
+        "placement": "popup",
+        "width": "74%",
+        "height": "62%",
+        "command": [
+          "bin/herdr-bar"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "jeffarese",
+      "repo": "herdr-bar",
+      "resolved_commit": "261de9b0441a6972941414bbf16eb4f5df27ac34",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/herdr-bar-96eebe452a9c/11876-0/checkout",
+      "installed_unix_ms": 1792709951290
+    }
+  },
+  {
+    "plugin_id": "ntindle.herdr-resurrect",
+    "name": "herdr-resurrect",
+    "version": "0.2.0",
+    "min_herdr_version": "0.7.0",
+    "description": "tmux-resurrect for herdr: snapshot the whole herd (workspaces, tabs, panes, cwd, running programs, agents) and bring it back after a crash or reboot.",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/ntindle.herdr-resurrect-6e4571261caf/26483-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/ntindle.herdr-resurrect-6e4571261caf/26483-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "actions": [
+      {
+        "id": "delete-space",
+        "title": "Resurrect: delete saved space…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "delete-space.sh"
+        ]
+      },
+      {
+        "id": "open-space",
+        "title": "Resurrect: open saved space…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "open-space.sh"
+        ]
+      },
+      {
+        "id": "restore",
+        "title": "Resurrect: restore last snapshot",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/restore.js"
+        ]
+      },
+      {
+        "id": "restore-preview",
+        "title": "Resurrect: preview restore (dry run)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/restore.js",
+          "--dry-run"
+        ]
+      },
+      {
+        "id": "save",
+        "title": "Resurrect: save snapshot",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/save.js"
+        ]
+      },
+      {
+        "id": "save-space",
+        "title": "Resurrect: save this space as…",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "save-space.sh"
+        ]
+      },
+      {
+        "id": "snapshots",
+        "title": "Resurrect: list snapshots",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "node",
+          "bin/list.js"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_detected",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.closed",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.created",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "pane.exited",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "workspace.closed",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      },
+      {
+        "on": "workspace.created",
+        "command": [
+          "node",
+          "bin/on-event.js"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "autosave",
+        "title": "resurrect autosave",
+        "placement": "split",
+        "command": [
+          "node",
+          "bin/autosave.js"
+        ]
+      },
+      {
+        "id": "delete-space-ui",
+        "title": "Delete space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/delete-space-ui.sh\""
+        ]
+      },
+      {
+        "id": "open-space-ui",
+        "title": "Open space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/open-space-ui.sh\""
+        ]
+      },
+      {
+        "id": "save-space-ui",
+        "title": "Save space",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/save-space-ui.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ntindle",
+      "repo": "herdr-resurrect",
+      "resolved_commit": "109a9376549e29646c77fdfb7ed8ba456a9d6617",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/ntindle.herdr-resurrect-6e4571261caf/26483-0/checkout",
+      "installed_unix_ms": 1792711569639
+    }
+  },
+  {
+    "plugin_id": "pet",
+    "name": "Herdr Pet",
+    "version": "0.1.2",
+    "min_herdr_version": "0.7.4",
+    "description": "Codex-style animated pet floating over your agent panes, reacting to agent status",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/pet-bbba57318f71/12540-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/pet-bbba57318f71/12540-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "build": [
+      {
+        "command": [
+          "bash",
+          "scripts/install.sh"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "./target/release/herdr-pet",
+          "ensure"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "settings",
+        "title": "Pet: settings",
+        "description": "Open the pet settings popover (pet, size, speed, mode, …)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "./target/release/herdr-pet",
+          "open-settings"
+        ]
+      },
+      {
+        "id": "toggle",
+        "title": "Pet: toggle",
+        "description": "Wake the pet or tuck it away",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "./target/release/herdr-pet",
+          "toggle"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "settings",
+        "title": "Pet settings",
+        "placement": "popup",
+        "width": 64,
+        "height": 16,
+        "command": [
+          "./target/release/herdr-pet",
+          "settings"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "nikok6",
+      "repo": "herdr-pet",
+      "resolved_commit": "deea6f7c014a959b3c7a7b36fe3e42a6b3f19537",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/pet-bbba57318f71/12540-0/checkout",
+      "installed_unix_ms": 1792710037278
+    }
+  },
+  {
+    "plugin_id": "ray.plugin-manager",
+    "name": "Plugin Manager",
+    "version": "0.6.0",
+    "min_herdr_version": "0.7.4",
+    "description": "Manage herdr plugins from a popup: list, install, update, enable/disable, uninstall, browse the marketplace, open repo in browser, edit plugins.json",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/ray.plugin-manager-75f462e8e1d0/95485-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/ray.plugin-manager-75f462e8e1d0/95485-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux",
+      "windows"
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open plugin manager",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin ray.plugin-manager --entrypoint manager --placement popup --focus"
+        ]
+      },
+      {
+        "id": "open-windows",
+        "title": "Open plugin manager (Windows)",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell.exe",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/bin/windows.ps1\" open"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "manager",
+        "title": "Plugin Manager",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "popup",
+        "width": 82,
+        "height": 28,
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/bin/manager.sh\""
+        ]
+      },
+      {
+        "id": "manager-windows",
+        "title": "Plugin Manager",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "popup",
+        "width": 82,
+        "height": 28,
+        "command": [
+          "powershell.exe",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/bin/windows.ps1\" manager"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "speardragon",
+      "repo": "herdr-plugin-manager",
+      "resolved_commit": "8ed222ab7efe735b3ef5e037e7ee81d6d7650e4e",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/ray.plugin-manager-75f462e8e1d0/95485-0/checkout",
+      "installed_unix_ms": 1792708565129
+    }
+  },
+  {
+    "plugin_id": "usagebar",
+    "name": "Agent Usage",
+    "version": "0.5.23",
+    "min_herdr_version": "0.7.5",
+    "description": "Sidebar context meters, provider limit windows, and rate-limit toasts for Claude, Codex, OpenCode Go, OMP, Pi coding agent, Grok, Kilo Code, and Hermes Agent, plus context meters for Cursor",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/usagebar-33803b79d616/60160-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/usagebar-33803b79d616/60160-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "build": [
+      {
+        "command": [
+          "bash",
+          "bin/ensure-binary.sh",
+          "--in-tree"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "bash",
+          "bin/run-startup.sh"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "check-updates",
+        "title": "Check for Agent Usage updates",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/run-update-check.sh"
+        ]
+      },
+      {
+        "id": "enable-toast",
+        "title": "Enable Herdr toast delivery (safe append)",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/run-setup.sh",
+          "--write-toast"
+        ]
+      },
+      {
+        "id": "open-limits",
+        "title": "Open Agent Usage pane",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/open-limits-pane.sh"
+        ]
+      },
+      {
+        "id": "refresh",
+        "title": "Refresh usage status",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/run-status.sh"
+        ]
+      },
+      {
+        "id": "setup",
+        "title": "Setup Agent Usage (show config snippets)",
+        "contexts": [
+          "workspace",
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "bin/run-setup.sh"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.agent_status_changed",
+        "command": [
+          "bash",
+          "bin/run-notify.sh"
+        ]
+      },
+      {
+        "on": "pane.agent_status_changed",
+        "command": [
+          "bash",
+          "bin/run-status.sh"
+        ]
+      },
+      {
+        "on": "pane.focused",
+        "command": [
+          "bash",
+          "bin/run-status.sh"
+        ]
+      },
+      {
+        "on": "pane.focused",
+        "command": [
+          "bash",
+          "bin/run-update-check.sh",
+          "--auto"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "limits",
+        "title": "Agent Usage",
+        "placement": "split",
+        "command": [
+          "bash",
+          "bin/run-limits-pane.sh"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "senna-lang",
+      "repo": "herdr-agent-usage",
+      "resolved_commit": "592e277bfe8963c64eeedc137e94bbfce05069f9",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/usagebar-33803b79d616/60160-0/checkout",
+      "installed_unix_ms": 1792714176219
+    }
+  },
+  {
+    "plugin_id": "worktrunk",
+    "name": "Worktrunk",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Switch, create, remove, or merge git worktrees via worktrunk",
+    "manifest_path": "$HOME/.config/herdr/plugins/github-installations/worktrunk-7fb519583f31/17154-0/checkout/herdr-plugin.toml",
+    "plugin_root": "$HOME/.config/herdr/plugins/github-installations/worktrunk-7fb519583f31/17154-0/checkout",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux",
+      "windows"
+    ],
+    "actions": [
+      {
+        "id": "merge",
+        "title": "Worktree: merge into the target branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" merger"
+        ]
+      },
+      {
+        "id": "merge-no-squash",
+        "title": "Worktree: merge into the target branch, keeping every commit",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" merger-no-squash"
+        ]
+      },
+      {
+        "id": "merge-no-squash-windows",
+        "title": "Worktree: merge into the target branch, keeping every commit",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" merger-no-squash-windows"
+        ]
+      },
+      {
+        "id": "merge-windows",
+        "title": "Worktree: merge into the target branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" merger-windows"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Worktree: switch / create from default branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" picker-default"
+        ]
+      },
+      {
+        "id": "open-current",
+        "title": "Worktree: switch / create from current branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" picker-current"
+        ]
+      },
+      {
+        "id": "open-current-windows",
+        "title": "Worktree: switch / create from current branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" picker-current-windows"
+        ]
+      },
+      {
+        "id": "open-windows",
+        "title": "Worktree: switch / create from default branch",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" picker-default-windows"
+        ]
+      },
+      {
+        "id": "open-with-remotes",
+        "title": "Worktree: switch / create from local or remote branches",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" picker-with-remotes"
+        ]
+      },
+      {
+        "id": "open-with-remotes-windows",
+        "title": "Worktree: switch / create from local or remote branches",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" picker-with-remotes-windows"
+        ]
+      },
+      {
+        "id": "remove",
+        "title": "Worktree: remove",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/open.sh\" remover"
+        ]
+      },
+      {
+        "id": "remove-windows",
+        "title": "Worktree: remove",
+        "contexts": [
+          "workspace"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/open.ps1\" remover-windows"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "merger",
+        "title": "Worktrunk — merge",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/merge.sh\""
+        ]
+      },
+      {
+        "id": "merger-no-squash",
+        "title": "Worktrunk — merge (no squash)",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/merge.sh\" --no-squash"
+        ]
+      },
+      {
+        "id": "merger-no-squash-windows",
+        "title": "Worktrunk — merge (no squash)",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/merge.ps1\" --no-squash"
+        ]
+      },
+      {
+        "id": "merger-windows",
+        "title": "Worktrunk — merge",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/merge.ps1\""
+        ]
+      },
+      {
+        "id": "picker-current",
+        "title": "Worktrunk — current branch",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/picker.sh\" --create-base=current"
+        ]
+      },
+      {
+        "id": "picker-current-windows",
+        "title": "Worktrunk — current branch",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/picker.ps1\" --create-base=current"
+        ]
+      },
+      {
+        "id": "picker-default",
+        "title": "Worktrunk — default branch",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/picker.sh\" --create-base=default"
+        ]
+      },
+      {
+        "id": "picker-default-windows",
+        "title": "Worktrunk — default branch",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/picker.ps1\" --create-base=default"
+        ]
+      },
+      {
+        "id": "picker-with-remotes",
+        "title": "Worktrunk — local and remote branches",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/picker.sh\" --show-with-remotes"
+        ]
+      },
+      {
+        "id": "picker-with-remotes-windows",
+        "title": "Worktrunk — local and remote branches",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/picker.ps1\" --show-with-remotes"
+        ]
+      },
+      {
+        "id": "remover",
+        "title": "Worktrunk — remove",
+        "platforms": [
+          "macos",
+          "linux"
+        ],
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/remove.sh\""
+        ]
+      },
+      {
+        "id": "remover-windows",
+        "title": "Worktrunk — remove",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "split",
+        "command": [
+          "powershell",
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "& \"$env:HERDR_PLUGIN_ROOT/remove.ps1\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "devashish2203",
+      "repo": "herdr-worktrunk",
+      "resolved_commit": "f9df9ba700b8a4f4d97ddfe3ea3eb345e80b880b",
+      "managed_path": "$HOME/.config/herdr/plugins/github-installations/worktrunk-7fb519583f31/17154-0/checkout",
+      "installed_unix_ms": 1792710476398
+    }
+  }
+]
