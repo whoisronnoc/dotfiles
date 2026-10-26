@@ -8,4 +8,5 @@ return {
 	-- theme
 	{ import = "extras.themes.carbide" },
 	{ import = "extras.themes.sonokai" },
+	{ import = "extras.ai.copilot.sidekick" },
 }
