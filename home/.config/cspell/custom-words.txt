@@ -22,3 +22,8 @@ zdiff
 SONARQUBE
 angularls
 yazi
+Siri
+deauth
+prefs
+MQTT
+herdr
