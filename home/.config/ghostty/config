@@ -49,39 +49,37 @@ keybind = super+shift+comma=reload_config
 # keybind = super+comma=open_config
 
 # tab / window management
-# keybind = super+enter=toggle_fullscreen
-# keybind = super+ctrl+f=toggle_fullscreen
-# Tabs are OFF. Herdr owns workspaces and tabs inside one surface.
-# unbind (not just commenting out) is required: these are built-in defaults.
+# TUIOS now owns all pane and window keys.
+# Ghostty pane/window binds are unbound.
+# unbind (not just commenting out) is required; these are built-in defaults.
 keybind = super+t=unbind
-keybind = super+n=new_window
+keybind = super+enter=unbind
+keybind = super+ctrl+f=unbind
+keybind = super+n=unbind
 keybind = super+q=quit
-keybind = super+shift+w=close_window
-keybind = super+alt+shift+w=close_all_windows
-keybind = super+w=close_surface
+keybind = super+shift+w=unbind
+keybind = super+alt+shift+w=unbind
+keybind = super+w=unbind
 
-# splits
-# manage splits
-keybind = super+shift+backslash=new_split:right
-keybind = super+shift+minus=new_split:down
-keybind = super+d=new_split:right
-keybind = super+shift+d=new_split:down
-# resize splits
-keybind = super+ctrl+equal=equalize_splits
-keybind = super+ctrl+up=resize_split:up,10
-keybind = super+ctrl+down=resize_split:down,10
-keybind = super+ctrl+left=resize_split:left,10
-keybind = super+ctrl+right=resize_split:right,10
-# navigate splits
-keybind = super+left_bracket=goto_split:previous
-keybind = super+right_bracket=goto_split:next
-keybind = super+alt+up=goto_split:top
-keybind = super+alt+down=goto_split:bottom
-keybind = super+alt+left=goto_split:left
-keybind = super+alt+right=goto_split:right
+# splits (owned by TUIOS)
+keybind = super+shift+backslash=unbind
+keybind = super+shift+minus=unbind
+keybind = super+d=unbind
+keybind = super+shift+d=unbind
+keybind = super+ctrl+==unbind
+keybind = super+ctrl+up=unbind
+keybind = super+ctrl+down=unbind
+keybind = super+ctrl+left=unbind
+keybind = super+ctrl+right=unbind
+keybind = super+[=unbind
+keybind = super+]=unbind
+keybind = super+alt+up=unbind
+keybind = super+alt+down=unbind
+keybind = super+alt+left=unbind
+keybind = super+alt+right=unbind
+keybind = super+shift+enter=unbind
 
 # ui adjustments 
-keybind = super+shift+enter=toggle_split_zoom
 keybind = super+minus=decrease_font_size:1
 keybind = super+zero=reset_font_size
 # keybind = super+equal=increase_font_size:1
@@ -99,23 +97,25 @@ keybind = super+shift+right_bracket=unbind
 keybind = super+shift+]=unbind
 keybind = super+alt+w=unbind
 keybind = super+physical:one=unbind
-keybind = super+1=unbind
+keybind = super+1=csi:49;9u
 keybind = super+physical:two=unbind
-keybind = super+2=unbind
+keybind = super+2=csi:50;9u
 keybind = super+physical:three=unbind
-keybind = super+3=unbind
+keybind = super+3=csi:51;9u
 keybind = super+physical:four=unbind
-keybind = super+4=unbind
+keybind = super+4=csi:52;9u
 keybind = super+physical:five=unbind
-keybind = super+5=unbind
+keybind = super+5=csi:53;9u
 keybind = super+physical:six=unbind
-keybind = super+6=unbind
+keybind = super+6=csi:54;9u
 keybind = super+physical:seven=unbind
-keybind = super+7=unbind
+keybind = super+7=csi:55;9u
 keybind = super+physical:eight=unbind
-keybind = super+8=unbind
+keybind = super+8=csi:56;9u
 keybind = super+physical:nine=unbind
-keybind = super+9=unbind
+keybind = super+9=csi:57;9u
+# shift+super+v is tuios paste. Ghostty's paste_from_selection would take it first.
+keybind = super+shift+v=unbind
 # ctrl+tab passes through raw (was rewritten for tmux; herdr wants the real chord)
 keybind = ctrl+tab=unbind
 keybind = ctrl+shift+tab=unbind
