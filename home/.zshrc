@@ -47,7 +47,13 @@ zinit snippet OMZP::common-aliases
 # zinit snippet OMZP::tmux
 
 # completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# Full compinit (security scan + dump rebuild) only once a day; otherwise reuse the dump with -C
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh-24) ]]; then
+  compinit -C
+else
+  compinit
+fi
 
 zinit cdreplay -q
 
@@ -147,3 +153,4 @@ function y() {
 
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
