@@ -119,6 +119,12 @@
 [startup]
 tiled = true
 daemon = true
+open_default_window = true
+layout = "bsp"
+start_in_terminal_mode = true
+
+[keybindings]
+leader_key = "ctrl+a"
 
 # alt+left / alt+right belong to the shell (zsh/readline word jump).
 # Pane focus keeps alt+up / alt+down, plus prefix + arrows.
@@ -128,6 +134,24 @@ daemon = true
 terminal_focus_left = []
 terminal_focus_right = []
 terminal_paste_host = ["ctrl+shift+v", "shift+super+v", "middle"]
+
+# cmd+1..9 switch to sessions 1..9, like opt+1..9 switch workspaces.
+[keybindings.global]
+switch_session_1 = ["super+1"]
+switch_session_2 = ["super+2"]
+switch_session_3 = ["super+3"]
+switch_session_4 = ["super+4"]
+switch_session_5 = ["super+5"]
+switch_session_6 = ["super+6"]
+switch_session_7 = ["super+7"]
+switch_session_8 = ["super+8"]
+switch_session_9 = ["super+9"]
+
+[[keybindings.command]]
+key = "prefix+alt+w"
+type = "popup"
+command = 'HERDR_PLUGIN_ROOT="$HOME/.config/herdr/plugins/github/worktrunk-7fb519583f31" HERDR_PLUGIN_CONFIG_DIR="$HOME/.config/herdr/plugins/config/worktrunk" HERDR_PLUGIN_CONTEXT_JSON="{\"focused_pane_cwd\":\"$TUIOS_ACTIVE_PANE_CWD\"}" bash "$HOME/.config/herdr/plugins/github/worktrunk-7fb519583f31/open.sh" picker-default'
+description = "Worktree: open"
 
 # herdr plugins, enabled in tuios. tuios reads herdr's registry but a plugin
 # stays off until listed here.
@@ -142,3 +166,102 @@ enabled = [
   "usagebar",
   "worktrunk",
 ]
+
+[appearance]
+theme = "zeonica"
+glyphs = "default"
+border_style = "rounded"
+frame_panels = false
+window_title_position = "top"
+window_title_style = "pill"
+window_title_align = "right"
+shared_borders = true
+hide_window_buttons = true
+window_button_style = "dots"
+gap = 0
+panel_padding = 1
+zen_mode = "disabled"
+link_click = "ctrl"
+link_hover = "always"
+session_border = false
+dockbar_position = "bottom"
+show_clock = false
+show_cpu = false
+show_ram = false
+dock_workspace_tabs = true
+dock_workspace_label_max = 12
+dock_pill_caps = false
+dock_prefix_indicator = "pill"
+dock_mode_split_letter = false
+dock_compact = true
+motion = "none"
+animation_speed = 100
+theme_transition = "none"
+whichkey_position = "bottom-right"
+click_to_type = "single"
+auto_enter_terminal_on_focus = "off"
+nvim_navigation = true
+right_click_opens_menu = true
+new_window_follow_ssh = true
+max_fps = 60
+scrollback_lines = 128000
+clock_format = "%d"
+git_dirty = true
+hide_scrollbar = false
+popup_dim = 5
+
+[appearance.sidebar]
+enabled = true
+header_case = "lowercase"
+row_style = "bar"
+header_style = "auto"
+density = "roomy"
+show_glyphs = true
+show_counts = true
+show_numbers = true
+file_icons = true
+file_icon_colors = true
+folder_click = "navigate"
+files_style = "list"
+file_actions = true
+file_delete = "trash"
+marquee = true
+tooltips = true
+subagent_rows = "rows"
+
+[appearance.sidebar.left]
+enabled = false
+
+[appearance.sidebar.right]
+enabled = true
+
+[agents]
+enabled = true
+
+[notifications]
+duration = 2
+warning_duration = 10
+error_duration = 0
+
+[screenshot]
+format = "png"
+frame = "window"
+controls = "macos"
+cursor = true
+
+[screensaver]
+enabled = true
+
+[spotlight]
+enabled = false
+
+[daemon]
+log_level = "off"
+
+[workspaces]
+new_window_when_empty = true
+
+[tape]
+auto_review = true
+
+[dock.clock]
