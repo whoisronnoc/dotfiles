@@ -116,3 +116,13 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
 fi
+
+if [ -d "$HOME/.opencode/bin" ]; then
+  export PATH="$PATH:$HOME/.opencode/bin"
+fi
+
+# ripgrep
+if [ -d "$HOME/.config/ripgrep" ]; then
+  export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+fi
+

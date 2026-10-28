@@ -139,9 +139,6 @@ unalias zi
 # zprof
 zstyle ':completion:*:ssh:*' hosts off
 
-# ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
-
 # yazi
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
